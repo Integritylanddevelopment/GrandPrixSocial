@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils"
 import { UserNav } from "@/components/auth/user-nav"
 
 const navigationItems = [
-  { name: "Home", href: "/" },
   { name: "F1 Café", href: "/cafe" },
   { name: "Paddock Talk", href: "/paddock-talk" },
   { name: "Teams", href: "/teams" },
@@ -18,27 +17,31 @@ export default function Navigation() {
   const pathname = usePathname()
 
   return (
-    <nav className="hidden md:flex items-center justify-between p-4 bg-gradient-to-r from-red-600 via-gray-900 to-blue-600 text-white">
-      <div className="flex items-center space-x-8">
-        <Link href="/" className="text-xl font-bold">
-          Grand Prix Social
-        </Link>
-        <div className="flex space-x-6">
-          {navigationItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                pathname === item.href ? "bg-white/20 text-white" : "text-white/80 hover:text-white hover:bg-white/10",
-              )}
-            >
-              {item.name}
+    <nav className="glass sticky top-0 z-50 border-b border-white/10">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo - Centered */}
+          <div className="flex-1 flex justify-center">
+            <Link href="/" className="flex items-center gap-2">
+              <span className="text-2xl font-f1 text-chrome">GRAND PRIX SOCIAL</span>
             </Link>
-          ))}
+          </div>
+          
+          {/* Auth Buttons - Right */}
+          <div className="flex items-center gap-4">
+            <Link href="/auth/login">
+              <button className="glass-button text-white border-white/30">
+                Sign In
+              </button>
+            </Link>
+            <Link href="/auth/signup">
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg">
+                Join
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
-      <UserNav />
     </nav>
   )
 }
