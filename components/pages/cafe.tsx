@@ -4,7 +4,7 @@ import { useState } from "react"
 import { MessageSquare, Users, Trophy, Flame, Heart, MessageCircle, Share2, UserPlus, LogIn, User, Mail } from "lucide-react"
 
 export default function Cafe() {
-  const [activeTab, setActiveTab] = useState("")
+  const [activeTab, setActiveTab] = useState("feed")
   const [activeAuthTab, setActiveAuthTab] = useState("")
 
   const posts = [
