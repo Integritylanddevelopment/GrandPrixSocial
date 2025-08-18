@@ -75,7 +75,7 @@ export default function MobileNavigation() {
         "fixed bottom-0 left-0 right-0 z-[9998] transition-all duration-500 ease-in-out",
         isExpanded ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       )}>
-        <div className="flex items-end pb-6 px-2">
+        <div className="flex rounded-lg p-1 mb-6 mx-4 gap-1">
           {mobileNavItems.map((item) => {
             const Icon = item.icon
             const isActive = pathname === item.href
@@ -91,17 +91,17 @@ export default function MobileNavigation() {
                 href={item.href}
                 onClick={handleItemClick}
                 className={cn(
-                  "flex flex-col items-center justify-center gap-2 py-3 px-1 rounded-xl transition-all duration-300 backdrop-blur-md flex-1",
-                  isActive && item.color === "yellow" && "bg-yellow-500/20 text-yellow-400 shadow-lg border border-yellow-400/30 scale-110",
-                  isActive && item.color === "blue" && "bg-blue-500/20 text-blue-400 shadow-lg border border-blue-400/30 scale-110", 
-                  isActive && item.color === "purple" && "bg-purple-500/20 text-purple-400 shadow-lg border border-purple-400/30 scale-110",
-                  isActive && item.color === "green" && "bg-green-500/20 text-green-400 shadow-lg border border-green-400/30 scale-110",
-                  isActive && item.color === "red" && "bg-red-500/20 text-red-400 shadow-lg border border-red-400/30 scale-110",
-                  !isActive && item.color === "yellow" && "text-yellow-400 hover:bg-yellow-400/10",
-                  !isActive && item.color === "blue" && "text-blue-400 hover:bg-blue-400/10",
-                  !isActive && item.color === "purple" && "text-purple-400 hover:bg-purple-400/10",
-                  !isActive && item.color === "green" && "text-green-400 hover:bg-green-400/10",
-                  !isActive && item.color === "red" && "text-red-400 hover:bg-red-400/10"
+                  "flex-1 flex flex-col items-center justify-center gap-2 py-3 px-2 rounded-md transition-all duration-300 backdrop-blur-md",
+                  isActive && item.color === "yellow" && "bg-yellow-500/20 text-yellow-400 shadow-lg border border-yellow-400/30 scale-105",
+                  isActive && item.color === "blue" && "bg-blue-500/20 text-blue-400 shadow-lg border border-blue-400/30 scale-105", 
+                  isActive && item.color === "purple" && "bg-purple-500/20 text-purple-400 shadow-lg border border-purple-400/30 scale-105",
+                  isActive && item.color === "green" && "bg-green-500/20 text-green-400 shadow-lg border border-green-400/30 scale-105",
+                  isActive && item.color === "red" && "bg-red-500/20 text-red-400 shadow-lg border border-red-400/30 scale-105",
+                  !isActive && item.color === "yellow" && "text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10",
+                  !isActive && item.color === "blue" && "text-blue-400 hover:text-blue-300 hover:bg-blue-400/10",
+                  !isActive && item.color === "purple" && "text-purple-400 hover:text-purple-300 hover:bg-purple-400/10",
+                  !isActive && item.color === "green" && "text-green-400 hover:text-green-300 hover:bg-green-400/10",
+                  !isActive && item.color === "red" && "text-red-400 hover:text-red-300 hover:bg-red-400/10"
                 )}
               >
                 <Icon className="h-14 w-14" width={55} height={55} />
