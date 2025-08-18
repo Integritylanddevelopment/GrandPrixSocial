@@ -340,97 +340,80 @@
 }
 
 @layer utilities {
-  /* Nuclear-level prevention of ALL solid background buttons globally */
-  button:not(.btn-f1-red):not(.btn-f1-blue):not(.btn-f1-green):not(.btn-f1-yellow):not(.btn-f1-ferrari):not(
-      .btn-f1-mercedes
-    ):not(.btn-f1-mclaren):not(.btn-f1-redbull),
-  .bg-red-500,
-  .bg-red-600,
-  .bg-red-700,
-  .bg-blue-500,
-  .bg-blue-600,
-  .bg-blue-700,
-  .bg-green-500,
-  .bg-green-600,
-  .bg-green-700,
-  .bg-yellow-500,
-  .bg-yellow-600,
-  .bg-yellow-700,
-  .bg-primary,
-  .bg-secondary,
-  .bg-destructive {
-    background-color: transparent !important;
-    border: 2px solid currentColor !important;
-    color: inherit !important;
+  .font-racing {
+    font-family: var(--font-orbitron), monospace;
   }
 
-  /* Force ALL buttons to use F1 styling with proper CSS properties */
-  button {
-    background-color: transparent !important;
-    border: 2px solid #ef4444 !important;
-    color: #f87171 !important;
-    font-weight: 500 !important;
-    border-radius: 0.5rem !important;
-    padding: 0.5rem 1rem !important;
-    transition: all 0.2s !important;
-    font-family: var(--font-rajdhani) !important;
+  .font-rajdhani {
+    font-family: var(--font-rajdhani), sans-serif;
   }
 
-  button:hover {
-    background-color: rgba(239, 68, 68, 0.1) !important;
-    border-color: #f87171 !important;
-    color: #fca5a5 !important;
+  .font-orbitron {
+    font-family: var(--font-orbitron), monospace;
   }
 
-  /* Force ALL headings to be center-aligned with Orbitron font */
-  h1,
-  .h1 {
-    font-size: 2.25rem !important;
-    font-weight: 700 !important;
-    font-family: var(--font-orbitron) !important;
-    color: white !important;
-    text-align: center !important;
+  .text-racing-red {
+    color: var(--racing-red);
   }
 
-  h2,
-  .h2 {
-    font-size: 1.875rem !important;
-    font-weight: 700 !important;
-    font-family: var(--font-orbitron) !important;
-    color: white !important;
-    text-align: center !important;
+  .text-racing-blue {
+    color: var(--racing-blue);
   }
 
-  h3,
-  .h3 {
-    font-size: 1.5rem !important;
-    font-weight: 600 !important;
-    font-family: var(--font-orbitron) !important;
-    color: white !important;
-    text-align: center !important;
+  .text-racing-gold {
+    color: var(--racing-gold);
   }
 
-  h4,
-  .h4 {
-    font-size: 1.25rem !important;
-    font-weight: 500 !important;
-    font-family: var(--font-orbitron) !important;
-    color: white !important;
-    text-align: center !important;
+  .text-racing-silver {
+    color: var(--racing-silver);
   }
 
-  /* Force page titles and section headings to be center-aligned */
-  .page-title,
-  .section-title,
-  [class*="title"],
-  [class*="heading"] {
-    text-align: center !important;
-    font-family: var(--font-orbitron) !important;
+  .text-racing-ferrari {
+    color: var(--racing-ferrari);
   }
 
-  p,
-  .p {
-    @apply text-base font-rajdhani text-gray-300;
+  .text-racing-mercedes {
+    color: var(--racing-mercedes);
+  }
+
+  .text-racing-mclaren {
+    color: var(--racing-mclaren);
+  }
+
+  .text-racing-redbull {
+    color: var(--racing-redbull);
+  }
+
+  .bg-racing-red {
+    background-color: var(--racing-red);
+  }
+
+  .bg-racing-blue {
+    background-color: var(--racing-blue);
+  }
+
+  .bg-racing-gold {
+    background-color: var(--racing-gold);
+  }
+
+  .bg-racing-silver {
+    background-color: var(--racing-silver);
+  }
+
+  .bg-racing-ferrari {
+    background-color: var(--racing-ferrari);
+  }
+
+  .bg-racing-mercedes {
+    background-color: var(--racing-mercedes);
+  }
+
+  .bg-racing-mclaren {
+    background-color: var(--racing-mclaren);
+  }
+
+  .bg-racing-redbull {
+    background-color: var(--racing-redbull);
   }
 
   /* Comprehensive Lucide-only icon enforcement system */
