@@ -75,38 +75,40 @@ export default function MobileNavigation() {
         "fixed bottom-0 left-0 right-0 z-[9998] transition-all duration-500 ease-in-out",
         isExpanded ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       )}>
-        <div className="flex justify-center items-end pb-6 px-6">
-          <div className="flex items-center gap-4 bg-black/20 backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-white/10">
-            {mobileNavItems.map((item) => {
-              const Icon = item.icon
-              const isActive = pathname === item.href
+        <div className="flex justify-around items-end pb-6 px-6">
+          {mobileNavItems.map((item) => {
+            const Icon = item.icon
+            const isActive = pathname === item.href
 
-              const handleItemClick = (e: React.MouseEvent) => {
-                e.stopPropagation()
-                handleNavClick()
-              }
+            const handleItemClick = (e: React.MouseEvent) => {
+              e.stopPropagation()
+              handleNavClick()
+            }
 
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={handleItemClick}
-                  className={cn(
-                    "flex flex-col items-center justify-center gap-2 p-3 rounded-xl transition-all duration-300 min-w-[80px]",
-                    isActive && item.color === "yellow" && "bg-yellow-500/20 text-yellow-400 shadow-lg border border-yellow-400/30 scale-110",
-                    isActive && item.color === "blue" && "bg-blue-500/20 text-blue-400 shadow-lg border border-blue-400/30 scale-110",
-                    isActive && item.color === "purple" && "bg-purple-500/20 text-purple-400 shadow-lg border border-purple-400/30 scale-110",
-                    isActive && item.color === "green" && "bg-green-500/20 text-green-400 shadow-lg border border-green-400/30 scale-110",
-                    isActive && item.color === "red" && "bg-red-500/20 text-red-400 shadow-lg border border-red-400/30 scale-110",
-                    !isActive && "text-gray-300 hover:text-white hover:bg-white/10"
-                  )}
-                >
-                  <Icon className="h-10 w-10" width={40} height={40} />
-                  <span className="text-xs font-medium whitespace-nowrap font-rajdhani">{item.name}</span>
-                </Link>
-              )
-            })}
-          </div>
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={handleItemClick}
+                className={cn(
+                  "flex flex-col items-center justify-center gap-2 p-3 rounded-xl transition-all duration-300 backdrop-blur-md",
+                  isActive && item.color === "yellow" && "bg-yellow-500/20 text-yellow-400 shadow-lg border border-yellow-400/30 scale-110",
+                  isActive && item.color === "blue" && "bg-blue-500/20 text-blue-400 shadow-lg border border-blue-400/30 scale-110", 
+                  isActive && item.color === "purple" && "bg-purple-500/20 text-purple-400 shadow-lg border border-purple-400/30 scale-110",
+                  isActive && item.color === "green" && "bg-green-500/20 text-green-400 shadow-lg border border-green-400/30 scale-110",
+                  isActive && item.color === "red" && "bg-red-500/20 text-red-400 shadow-lg border border-red-400/30 scale-110",
+                  !isActive && item.color === "yellow" && "text-yellow-400 hover:bg-yellow-400/10",
+                  !isActive && item.color === "blue" && "text-blue-400 hover:bg-blue-400/10",
+                  !isActive && item.color === "purple" && "text-purple-400 hover:bg-purple-400/10",
+                  !isActive && item.color === "green" && "text-green-400 hover:bg-green-400/10",
+                  !isActive && item.color === "red" && "text-red-400 hover:bg-red-400/10"
+                )}
+              >
+                <Icon className="h-10 w-10" width={40} height={40} />
+                <span className="text-xs font-medium whitespace-nowrap font-rajdhani">{item.name}</span>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </>
