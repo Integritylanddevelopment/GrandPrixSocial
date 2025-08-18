@@ -103,6 +103,4 @@ grand-prix-socialv82/
 
 ## License
 
-This project is licensed under the MIT License.
-
-<!-- Updated for deployment -->
+This project is proprietary software. All rights reserved.
