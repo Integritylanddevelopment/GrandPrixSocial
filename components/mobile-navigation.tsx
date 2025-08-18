@@ -12,10 +12,10 @@ import { useState } from "react"
 
 const mobileNavItems = [
   { name: "F1 Café", href: "/cafe", icon: CafeIcon, color: "yellow" },
-  { name: "News", href: "/paddock-talk", icon: NewsIcon, color: "blue" },
+  { name: "F1 News", href: "/paddock-talk", icon: NewsIcon, color: "blue" },
   { name: "Fantasy F1", href: "/teams", icon: Trophy, color: "purple" },
-  { name: "Shop", href: "/merchandise", icon: ShopIcon, color: "green" },
-  { name: "Races", href: "/calendar", icon: RacesIcon, color: "red" },
+  { name: "F1 Merch", href: "/merchandise", icon: ShopIcon, color: "green" },
+  { name: "F1 Schedule", href: "/calendar", icon: RacesIcon, color: "red" },
 ]
 
 export default function MobileNavigation() {
@@ -104,7 +104,7 @@ export default function MobileNavigation() {
                   !isActive && item.color === "red" && "text-red-400 hover:bg-red-400/10"
                 )}
               >
-                <Icon className="h-10 w-10" width={40} height={40} />
+                <Icon className="h-12 w-12" width={48} height={48} />
                 <span className="text-xs font-medium whitespace-nowrap font-rajdhani">{item.name}</span>
               </Link>
             )
