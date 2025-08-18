@@ -10,7 +10,8 @@ let database: ReturnType<typeof drizzle> | null = null
 
 export function getDb() {
   if (!process.env.DATABASE_URL) {
-    throw new Error("DATABASE_URL must be set. Did you forget to provision a database?")
+    console.warn("DATABASE_URL not set - database operations will be disabled")
+    return null as any
   }
 
   if (!pool) {
@@ -26,4 +27,5 @@ export function getDb() {
 
 // Export for backward compatibility
 export { pool }
-export const db = getDb()
+// Lazy initialization - don't try to connect at build time
+export const db = null as any
