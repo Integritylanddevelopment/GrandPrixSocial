@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { MessageSquare, Users, Trophy, Flame, Heart, MessageCircle, Share2, UserPlus, LogIn } from "lucide-react"
+import { MessageSquare, Users, Trophy, Flame, Heart, MessageCircle, Share2, UserPlus, LogIn, User, Mail } from "lucide-react"
 
 export default function Cafe() {
   const [activeTab, setActiveTab] = useState("")
@@ -37,9 +37,10 @@ export default function Cafe() {
 
   const tabs = [
     { id: "feed", label: "Feed", icon: MessageSquare },
-    { id: "trending", label: "Trending", icon: Flame },
-    { id: "recent", label: "Recent", icon: Users },
-    { id: "popular", label: "Popular", icon: Trophy },
+    { id: "following", label: "Following", icon: Users },
+    { id: "messages", label: "Messages", icon: Mail },
+    { id: "profile", label: "Profile", icon: User },
+    { id: "mypage", label: "My Page", icon: Trophy },
   ]
 
   return (
