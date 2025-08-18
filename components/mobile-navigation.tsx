@@ -104,7 +104,7 @@ export default function MobileNavigation() {
                   !isActive && item.color === "red" && "text-red-400 hover:text-red-300 hover:bg-red-400/10"
                 )}
               >
-                <Icon className="h-14 w-14" width={55} height={55} />
+                <Icon className="h-14 w-14" width={55} height={55} style={{ width: '55px', height: '55px' }} />
                 <span className="text-sm font-medium whitespace-nowrap font-rajdhani">{item.name}</span>
               </Link>
             )

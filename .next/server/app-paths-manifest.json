@@ -1,9 +1,7 @@
 {
-  "/api/merchandise/route": "app/api/merchandise/route.js",
-  "/api/affiliates/route": "app/api/affiliates/route.js",
   "/cafe/page": "app/cafe/page.js",
+  "/calendar/page": "app/calendar/page.js",
   "/paddock-talk/page": "app/paddock-talk/page.js",
   "/merchandise/page": "app/merchandise/page.js",
-  "/calendar/page": "app/calendar/page.js",
   "/teams/page": "app/teams/page.js"
 }
