@@ -46,80 +46,69 @@ export default function MobileNavigation() {
   }
 
   return (
-    <nav className={cn(
-      "fixed bottom-0 left-0 right-0 bg-gradient-to-r from-red-900 via-slate-900 to-blue-700 text-white border-t-2 border-white/20 z-[9999] shadow-2xl mobile-nav-locked transition-all duration-300 cursor-pointer",
-      isExpanded ? "h-auto" : "h-4"
-    )} onClick={handleNavExpand}>
+    <>
+      {/* Home Button - Only show on non-home pages */}
+      {pathname !== "/" && (
+        <Link
+          href="/"
+          className="fixed bottom-6 left-6 z-[9999] w-16 h-16 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl border border-white/10 hover:bg-black/30 transition-all duration-300"
+          onClick={handleNavClick}
+        >
+          <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+          </svg>
+        </Link>
+      )}
+
+      {/* Menu Toggle Button */}
+      <button
+        onClick={handleNavExpand}
+        className="fixed bottom-6 right-6 z-[9999] w-16 h-16 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl border border-white/10 hover:bg-black/30 transition-all duration-300"
+      >
+        <svg className={cn("w-8 h-8 text-white transition-transform duration-300", isExpanded && "rotate-45")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+      </button>
+
+      {/* Navigation Icons */}
       <div className={cn(
-        "flex justify-around items-center px-2 pb-safe transition-all duration-300",
-        isExpanded ? "py-4" : "py-1"
+        "fixed bottom-0 left-0 right-0 z-[9998] transition-all duration-500 ease-in-out",
+        isExpanded ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       )}>
-        {mobileNavItems.map((item) => {
-          const Icon = item.icon
-          const isActive = pathname === item.href
-          const colorClass = item.color === "red" ? "from-red-800 to-red-950" : 
-                            item.color === "blue" ? "from-blue-600 to-blue-800" : 
-                            item.color === "green" ? "from-green-600 to-green-800" :
-                            item.color === "purple" ? "from-purple-600 to-purple-800" :
-                            "from-yellow-600 to-yellow-800"
+        <div className="flex justify-center items-end pb-6 px-6">
+          <div className="flex items-center gap-4 bg-black/20 backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-white/10">
+            {mobileNavItems.map((item) => {
+              const Icon = item.icon
+              const isActive = pathname === item.href
 
-          const handleItemClick = (e: React.MouseEvent) => {
-            e.stopPropagation()
-            handleNavClick()
-          }
+              const handleItemClick = (e: React.MouseEvent) => {
+                e.stopPropagation()
+                handleNavClick()
+              }
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={handleItemClick}
-              className={cn(
-                "flex flex-col items-center rounded-xl min-w-0 flex-1 transition-all duration-300 transform touch-manipulation",
-                isExpanded ? "p-3" : "p-1",
-                isActive
-                  ? item.color === "yellow" 
-                    ? `glass-yellow text-yellow-400 shadow-lg scale-105 border border-yellow-400/50 backdrop-blur-sm`
-                    : item.color === "blue"
-                    ? `glass-blue text-blue-400 shadow-lg scale-105 border border-blue-400/50 backdrop-blur-sm`
-                    : item.color === "green"
-                    ? `glass-green text-green-400 shadow-lg scale-105 border border-green-400/50 backdrop-blur-sm`
-                    : item.color === "purple"
-                    ? `glass-purple text-purple-400 shadow-lg scale-105 border border-purple-400/50 backdrop-blur-sm`
-                    : item.color === "red"
-                    ? `glass-red text-red-400 shadow-lg scale-105 border border-red-400/50 backdrop-blur-sm`
-                    : `glass-yellow text-white shadow-lg scale-105 border border-white/30 backdrop-blur-sm`
-                  : item.color === "yellow" ? "text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10 active:scale-95"
-                  : item.color === "blue" ? "text-blue-400 hover:text-blue-300 hover:bg-blue-400/10 active:scale-95"
-                  : item.color === "green" ? "text-green-400 hover:text-green-300 hover:bg-green-400/10 active:scale-95"
-                  : item.color === "purple" ? "text-purple-400 hover:text-purple-300 hover:bg-purple-400/10 active:scale-95"
-                  : item.color === "red" ? "text-red-400 hover:text-red-300 hover:bg-red-400/10 active:scale-95"
-                  : "text-white/80 hover:text-white hover:bg-white/10 active:scale-95",
-              )}
-            >
-              <Icon className={cn("transition-all duration-300", 
-                isExpanded ? (isActive ? "h-8 w-8 mb-1" : "h-7 w-7 mb-1") : "h-3 w-3 mb-0",
-                item.color === "yellow" ? "text-yellow-400" : 
-                item.color === "blue" ? "text-blue-400" :
-                item.color === "green" ? "text-green-400" :
-                item.color === "purple" ? "text-purple-400" :
-                item.color === "red" ? "text-red-400" : ""
-              )} />
-              <span
-                className={cn("font-rajdhani font-medium truncate transition-all duration-300", 
-                  isExpanded ? "text-sm opacity-100" : "text-xs opacity-0 h-0 overflow-hidden",
-                  item.color === "yellow" ? "text-yellow-400" : 
-                  item.color === "blue" ? "text-blue-400" :
-                  item.color === "green" ? "text-green-400" :
-                  item.color === "purple" ? "text-purple-400" :
-                  item.color === "red" ? "text-red-400" : ""
-                )}
-              >
-                {item.name}
-              </span>
-            </Link>
-          )
-        })}
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={handleItemClick}
+                  className={cn(
+                    "flex flex-col items-center justify-center gap-2 p-3 rounded-xl transition-all duration-300 min-w-[80px]",
+                    isActive && item.color === "yellow" && "bg-yellow-500/20 text-yellow-400 shadow-lg border border-yellow-400/30 scale-110",
+                    isActive && item.color === "blue" && "bg-blue-500/20 text-blue-400 shadow-lg border border-blue-400/30 scale-110",
+                    isActive && item.color === "purple" && "bg-purple-500/20 text-purple-400 shadow-lg border border-purple-400/30 scale-110",
+                    isActive && item.color === "green" && "bg-green-500/20 text-green-400 shadow-lg border border-green-400/30 scale-110",
+                    isActive && item.color === "red" && "bg-red-500/20 text-red-400 shadow-lg border border-red-400/30 scale-110",
+                    !isActive && "text-gray-300 hover:text-white hover:bg-white/10"
+                  )}
+                >
+                  <Icon className="h-10 w-10" width={40} height={40} />
+                  <span className="text-xs font-medium whitespace-nowrap font-rajdhani">{item.name}</span>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
       </div>
-    </nav>
+    </>
   )
 }
