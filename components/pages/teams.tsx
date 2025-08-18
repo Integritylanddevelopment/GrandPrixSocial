@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -34,9 +33,11 @@ import {
   Wrench,
   Fuel,
   Shield,
+  Flame,
 } from "lucide-react"
 
 export function Teams() {
+  const [activeTab, setActiveTab] = useState("")
   const [searchTerm, setSearchTerm] = useState("")
   const [showHowToPlay, setShowHowToPlay] = useState(false)
   const [showRules, setShowRules] = useState(false)
@@ -576,11 +577,26 @@ export function Teams() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-2 text-sm text-gray-300">
-                        <p>⏰ Team changes lock 1 hour before FP1</p>
-                        <p>🎯 Predictions must be submitted before qualifying</p>
-                        <p>🔄 Maximum 3 transfers per race weekend</p>
-                        <p>📱 Late submissions are automatically set to "chaos mode"</p>
-                        <p>🚨 Emergency transfers allowed only for driver illness/injury</p>
+                        <p>
+                          <Timer className="w-4 h-4 inline mr-2 text-blue-400" />
+                          Team changes lock 1 hour before FP1
+                        </p>
+                        <p>
+                          <Target className="w-4 h-4 inline mr-2 text-red-400" />
+                          Predictions must be submitted before qualifying
+                        </p>
+                        <p>
+                          <Zap className="w-4 h-4 inline mr-2 text-yellow-400" />
+                          Maximum 3 transfers per race weekend
+                        </p>
+                        <p>
+                          <Settings className="w-4 h-4 inline mr-2 text-purple-400" />
+                          Late submissions are automatically set to "chaos mode"
+                        </p>
+                        <p>
+                          <Shield className="w-4 h-4 inline mr-2 text-red-400" />
+                          Emergency transfers allowed only for driver illness/injury
+                        </p>
                       </CardContent>
                     </Card>
 
@@ -608,12 +624,30 @@ export function Teams() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-2 text-sm text-gray-300">
-                        <p>🎤 "Brilliant!" = 1pt per mention (Crofty only)</p>
-                        <p>🏎️ "Lights out and away we go!" = 5pts (race start only)</p>
-                        <p>🔥 "That's a big one!" = 3pts per crash</p>
-                        <p>🎯 "Bono, my tires are gone" = 4pts (Lewis only)</p>
-                        <p>📊 Weather mentions = 0.5pts each (max 20 per race)</p>
-                        <p>🤖 AI monitors all commentary automatically</p>
+                        <p>
+                          <Mic className="w-4 h-4 inline mr-2 text-blue-400" />
+                          "Brilliant!" = 1pt per mention (Crofty only)
+                        </p>
+                        <p>
+                          <Flag className="w-4 h-4 inline mr-2 text-green-400" />
+                          "Lights out and away we go!" = 5pts (race start only)
+                        </p>
+                        <p>
+                          <Flame className="w-4 h-4 inline mr-2 text-red-400" />
+                          "That's a big one!" = 3pts per crash
+                        </p>
+                        <p>
+                          <Target className="w-4 h-4 inline mr-2 text-yellow-400" />
+                          "Bono, my tires are gone" = 4pts (Lewis only)
+                        </p>
+                        <p>
+                          <CloudRain className="w-4 h-4 inline mr-2 text-blue-400" />
+                          Weather mentions = 0.5pts each (max 20 per race)
+                        </p>
+                        <p>
+                          <Settings className="w-4 h-4 inline mr-2 text-purple-400" />
+                          AI monitors all commentary automatically
+                        </p>
                       </CardContent>
                     </Card>
 
@@ -622,11 +656,26 @@ export function Teams() {
                         <CardTitle className="text-orange-400">Penalty System</CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-2 text-sm text-gray-300">
-                        <p>⚠️ Unsporting predictions: -10pts</p>
-                        <p>🚫 Offensive custom bets: Season ban</p>
-                        <p>💰 Budget cheating: -50pts + public shame</p>
-                        <p>🤖 Attempting to hack the AI: Lifetime ban</p>
-                        <p>😭 Excessive complaining: Mandatory optimism training</p>
+                        <p>
+                          <HelpCircle className="w-4 h-4 inline mr-2 text-yellow-400" />
+                          Unsporting predictions: -10pts
+                        </p>
+                        <p>
+                          <Shield className="w-4 h-4 inline mr-2 text-red-400" />
+                          Offensive custom bets: Season ban
+                        </p>
+                        <p>
+                          <Crown className="w-4 h-4 inline mr-2 text-yellow-400" />
+                          Budget cheating: -50pts + public shame
+                        </p>
+                        <p>
+                          <Settings className="w-4 h-4 inline mr-2 text-purple-400" />
+                          Attempting to hack the AI: Lifetime ban
+                        </p>
+                        <p>
+                          <Users className="w-4 h-4 inline mr-2 text-blue-400" />
+                          Excessive complaining: Mandatory optimism training
+                        </p>
                       </CardContent>
                     </Card>
                   </div>
@@ -635,60 +684,93 @@ export function Teams() {
             </div>
           </div>
 
-          <Tabs defaultValue="drivers" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-8 bg-transparent">
-              <TabsTrigger
-                value="drivers"
-                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 data-[state=active]:backdrop-blur-sm hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
+          <div className="space-y-6">
+            <div className="grid w-full grid-cols-8 rounded-lg p-1">
+              <button
+                onClick={() => setActiveTab("drivers")}
+                className={`flex items-center justify-center py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                  activeTab === "drivers" 
+                    ? "glass-purple text-purple-300 shadow-lg scale-105 border border-purple-400/50" 
+                    : "text-purple-400 hover:text-purple-300 hover:bg-purple-400/10"
+                }`}
               >
                 Drivers
-              </TabsTrigger>
-              <TabsTrigger
-                value="constructors"
-                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
+              </button>
+              <button
+                onClick={() => setActiveTab("constructors")}
+                className={`flex items-center justify-center py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                  activeTab === "constructors" 
+                    ? "glass-purple text-purple-300 shadow-lg scale-105 border border-purple-400/50" 
+                    : "text-purple-400 hover:text-purple-300 hover:bg-purple-400/10"
+                }`}
               >
                 Teams
-              </TabsTrigger>
-              <TabsTrigger
-                value="principals"
-                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
+              </button>
+              <button
+                onClick={() => setActiveTab("principals")}
+                className={`flex items-center justify-center py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                  activeTab === "principals" 
+                    ? "glass-purple text-purple-300 shadow-lg scale-105 border border-purple-400/50" 
+                    : "text-purple-400 hover:text-purple-300 hover:bg-purple-400/10"
+                }`}
               >
                 Principals
-              </TabsTrigger>
-              <TabsTrigger
-                value="engineers"
-                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
+              </button>
+              <button
+                onClick={() => setActiveTab("engineers")}
+                className={`flex items-center justify-center py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                  activeTab === "engineers" 
+                    ? "glass-purple text-purple-300 shadow-lg scale-105 border border-purple-400/50" 
+                    : "text-purple-400 hover:text-purple-300 hover:bg-purple-400/10"
+                }`}
               >
                 Engineers
-              </TabsTrigger>
-              <TabsTrigger
-                value="engines"
-                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
+              </button>
+              <button
+                onClick={() => setActiveTab("engines")}
+                className={`flex items-center justify-center py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                  activeTab === "engines" 
+                    ? "glass-purple text-purple-300 shadow-lg scale-105 border border-purple-400/50" 
+                    : "text-purple-400 hover:text-purple-300 hover:bg-purple-400/10"
+                }`}
               >
                 Engines
-              </TabsTrigger>
-              <TabsTrigger
-                value="pit-crews"
-                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
+              </button>
+              <button
+                onClick={() => setActiveTab("pit-crews")}
+                className={`flex items-center justify-center py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                  activeTab === "pit-crews" 
+                    ? "glass-purple text-purple-300 shadow-lg scale-105 border border-purple-400/50" 
+                    : "text-purple-400 hover:text-purple-300 hover:bg-purple-400/10"
+                }`}
               >
                 Pit Crews
-              </TabsTrigger>
-              <TabsTrigger
-                value="tires"
-                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
+              </button>
+              <button
+                onClick={() => setActiveTab("tires")}
+                className={`flex items-center justify-center py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                  activeTab === "tires" 
+                    ? "glass-purple text-purple-300 shadow-lg scale-105 border border-purple-400/50" 
+                    : "text-purple-400 hover:text-purple-300 hover:bg-purple-400/10"
+                }`}
               >
                 Tires
-              </TabsTrigger>
-              <TabsTrigger
-                value="my-team"
-                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
+              </button>
+              <button
+                onClick={() => setActiveTab("my-team")}
+                className={`flex items-center justify-center py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                  activeTab === "my-team" 
+                    ? "glass-purple text-purple-300 shadow-lg scale-105 border border-purple-400/50" 
+                    : "text-purple-400 hover:text-purple-300 hover:bg-purple-400/10"
+                }`}
               >
                 My Team
-              </TabsTrigger>
-            </TabsList>
+              </button>
+            </div>
 
             {/* Tab Contents */}
-            <TabsContent value="drivers" className="space-y-4">
+            {activeTab === "drivers" && (
+              <div className="space-y-4">
               <div className="flex items-center gap-4 mb-6">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -742,9 +824,13 @@ export function Teams() {
                   </Card>
                 ))}
               </div>
-            </TabsContent>
+              </div>
+            )}
 
-            <TabsContent value="constructors" className="space-y-4">
+            )}
+
+            {activeTab === "constructors" && (
+              <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {constructors.map((constructor) => (
                   <Card key={constructor.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
@@ -784,9 +870,13 @@ export function Teams() {
                   </Card>
                 ))}
               </div>
-            </TabsContent>
+              </div>
+            )}
 
-            <TabsContent value="principals" className="space-y-4">
+            )}
+
+            {activeTab === "principals" && (
+              <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {teamPrincipals.map((principal) => (
                   <Card key={principal.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
@@ -820,9 +910,13 @@ export function Teams() {
                   </Card>
                 ))}
               </div>
-            </TabsContent>
+              </div>
+            )}
 
-            <TabsContent value="engineers" className="space-y-4">
+            )}
+
+            {activeTab === "engineers" && (
+              <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {engineers.map((engineer) => (
                   <Card key={engineer.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
@@ -856,9 +950,13 @@ export function Teams() {
                   </Card>
                 ))}
               </div>
-            </TabsContent>
+              </div>
+            )}
 
-            <TabsContent value="engines" className="space-y-4">
+            )}
+
+            {activeTab === "engines" && (
+              <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {engines.map((engine) => (
                   <Card key={engine.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
@@ -896,9 +994,13 @@ export function Teams() {
                   </Card>
                 ))}
               </div>
-            </TabsContent>
+              </div>
+            )}
 
-            <TabsContent value="pit-crews" className="space-y-4">
+            )}
+
+            {activeTab === "pit-crews" && (
+              <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {pitCrews.map((crew) => (
                   <Card key={crew.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
@@ -936,9 +1038,13 @@ export function Teams() {
                   </Card>
                 ))}
               </div>
-            </TabsContent>
+              </div>
+            )}
 
-            <TabsContent value="tires" className="space-y-4">
+            )}
+
+            {activeTab === "tires" && (
+              <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {tireStrategies.map((strategy) => (
                   <Card key={strategy.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
@@ -978,9 +1084,13 @@ export function Teams() {
                   </Card>
                 ))}
               </div>
-            </TabsContent>
+              </div>
+            )}
 
-            <TabsContent value="my-team" className="space-y-4">
+            )}
+
+            {activeTab === "my-team" && (
+              <div className="space-y-4">
               <div className="text-center py-8">
                 <Button 
                   onClick={() => setShowTeamModal(true)}
@@ -990,8 +1100,9 @@ export function Teams() {
                   View My Team
                 </Button>
               </div>
-            </TabsContent>
-          </Tabs>
+              </div>
+            )}
+          </div>
 
           {/* Team Modal */}
           <Dialog open={showTeamModal} onOpenChange={setShowTeamModal}>

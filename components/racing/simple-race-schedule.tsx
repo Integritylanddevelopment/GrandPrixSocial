@@ -6,7 +6,7 @@ import { f1Schedule2025 } from "@/lib/race-schedule-data"
 import { format, parseISO, isFuture, isPast } from "date-fns"
 
 export default function SimpleRaceSchedule() {
-  const [activeTab, setActiveTab] = useState("upcoming")
+  const [activeTab, setActiveTab] = useState("")
 
   const getFilteredRaces = () => {
     switch (activeTab) {
@@ -36,22 +36,22 @@ export default function SimpleRaceSchedule() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-red-950">
-      <div className="container mx-auto px-4 py-6 max-w-6xl">
+      <div className="py-6">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold mb-2 font-orbitron text-red-400" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' }}>F1 2025 Race Schedule</h1>
           <p className="text-gray-400 font-rajdhani">Complete Formula 1 calendar with race times and circuit information</p>
         </div>
 
         <div className="w-full">
-          <div className="flex bg-gray-900/50 rounded-lg p-1 mb-6">
+          <div className="flex rounded-lg p-1 mb-6">
             {tabs.map((tab) => {
               const Icon = tab.icon
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-all duration-200 ${
-                    activeTab === tab.id ? "glass-red text-red-400 shadow-lg scale-105 border border-red-400/50" : "text-red-400 hover:text-red-300 hover:bg-red-400/10"
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                    activeTab === tab.id ? "glass-red text-red-300 shadow-lg scale-105 border border-red-400/50" : "text-red-400 hover:text-red-300 hover:bg-red-400/10"
                   }`}
                 >
                   <Icon className="h-4 w-4" />
@@ -61,8 +61,9 @@ export default function SimpleRaceSchedule() {
             })}
           </div>
 
-          <div className="space-y-4">
-            {filteredRaces.map((race) => {
+          {activeTab && (
+            <div className="space-y-4 px-4">
+              {filteredRaces.map((race) => {
               const raceDate = parseISO(race.date)
               const isUpcoming = isFuture(raceDate)
               const isPastRace = isPast(raceDate)
@@ -127,7 +128,8 @@ export default function SimpleRaceSchedule() {
                 </div>
               )
             })}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

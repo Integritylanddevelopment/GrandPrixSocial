@@ -3,18 +3,20 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Users, MessageCircle, ShoppingBag, Calendar, Flag } from "lucide-react"
+import { Trophy, MessageCircle, ShoppingBag, Calendar, Flag } from "lucide-react"
+import { useState } from "react"
 
 const mobileNavItems = [
-  { name: "Café", href: "/cafe", icon: MessageCircle, color: "yellow" },
+  { name: "F1 Café", href: "/cafe", icon: MessageCircle, color: "yellow" },
   { name: "News", href: "/paddock-talk", icon: Flag, color: "blue" },
+  { name: "Fantasy F1", href: "/teams", icon: Trophy, color: "purple" },
   { name: "Shop", href: "/merchandise", icon: ShoppingBag, color: "green" },
-  { name: "Teams", href: "/teams", icon: Users, color: "purple" },
   { name: "Races", href: "/calendar", icon: Calendar, color: "red" },
 ]
 
 export default function MobileNavigation() {
   const pathname = usePathname()
+  const [isExpanded, setIsExpanded] = useState(false)
 
   // Hide mobile navigation on home page
   if (pathname === "/") {
@@ -34,9 +36,20 @@ export default function MobileNavigation() {
     })
   }
 
+  const handleNavExpand = (e: React.MouseEvent) => {
+    e.preventDefault()
+    setIsExpanded(!isExpanded)
+  }
+
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-red-900 via-slate-900 to-blue-700 text-white border-t-2 border-white/20 z-[9999] shadow-2xl mobile-nav-locked">
-      <div className="flex justify-around items-center py-4 px-2 pb-safe">
+    <nav className={cn(
+      "fixed bottom-0 left-0 right-0 bg-gradient-to-r from-red-900 via-slate-900 to-blue-700 text-white border-t-2 border-white/20 z-[9999] shadow-2xl mobile-nav-locked transition-all duration-300 cursor-pointer",
+      isExpanded ? "h-auto" : "h-4"
+    )} onClick={handleNavExpand}>
+      <div className={cn(
+        "flex justify-around items-center px-2 pb-safe transition-all duration-300",
+        isExpanded ? "py-4" : "py-1"
+      )}>
         {mobileNavItems.map((item) => {
           const Icon = item.icon
           const isActive = pathname === item.href
@@ -46,25 +59,31 @@ export default function MobileNavigation() {
                             item.color === "purple" ? "from-purple-600 to-purple-800" :
                             "from-yellow-600 to-yellow-800"
 
+          const handleItemClick = (e: React.MouseEvent) => {
+            e.stopPropagation()
+            handleNavClick()
+          }
+
           return (
             <Link
               key={item.href}
               href={item.href}
-              onClick={handleNavClick}
+              onClick={handleItemClick}
               className={cn(
-                "flex flex-col items-center p-3 rounded-xl min-w-0 flex-1 transition-all duration-200 transform touch-manipulation",
+                "flex flex-col items-center rounded-xl min-w-0 flex-1 transition-all duration-300 transform touch-manipulation",
+                isExpanded ? "p-3" : "p-1",
                 isActive
                   ? item.color === "yellow" 
-                    ? `bg-gradient-to-b ${colorClass} text-yellow-400 shadow-lg scale-105 border border-yellow-400/50`
+                    ? `glass-yellow text-yellow-400 shadow-lg scale-105 border border-yellow-400/50 backdrop-blur-sm`
                     : item.color === "blue"
-                    ? `bg-gradient-to-b ${colorClass} text-blue-400 shadow-lg scale-105 border border-blue-400/50`
+                    ? `glass-blue text-blue-400 shadow-lg scale-105 border border-blue-400/50 backdrop-blur-sm`
                     : item.color === "green"
-                    ? `bg-gradient-to-b ${colorClass} text-green-400 shadow-lg scale-105 border border-green-400/50`
+                    ? `glass-green text-green-400 shadow-lg scale-105 border border-green-400/50 backdrop-blur-sm`
                     : item.color === "purple"
-                    ? `bg-gradient-to-b ${colorClass} text-purple-400 shadow-lg scale-105 border border-purple-400/50`
+                    ? `glass-purple text-purple-400 shadow-lg scale-105 border border-purple-400/50 backdrop-blur-sm`
                     : item.color === "red"
-                    ? `bg-gradient-to-b ${colorClass} text-red-400 shadow-lg scale-105 border border-red-400/50`
-                    : `bg-gradient-to-b ${colorClass} text-white shadow-lg scale-105 border border-white/30`
+                    ? `glass-red text-red-400 shadow-lg scale-105 border border-red-400/50 backdrop-blur-sm`
+                    : `glass-yellow text-white shadow-lg scale-105 border border-white/30 backdrop-blur-sm`
                   : item.color === "yellow" ? "text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10 active:scale-95"
                   : item.color === "blue" ? "text-blue-400 hover:text-blue-300 hover:bg-blue-400/10 active:scale-95"
                   : item.color === "green" ? "text-green-400 hover:text-green-300 hover:bg-green-400/10 active:scale-95"
@@ -73,8 +92,8 @@ export default function MobileNavigation() {
                   : "text-white/80 hover:text-white hover:bg-white/10 active:scale-95",
               )}
             >
-              <Icon className={cn("mb-1 transition-all duration-200", 
-                isActive ? "h-8 w-8" : "h-7 w-7",
+              <Icon className={cn("transition-all duration-300", 
+                isExpanded ? (isActive ? "h-8 w-8 mb-1" : "h-7 w-7 mb-1") : "h-3 w-3 mb-0",
                 item.color === "yellow" ? "text-yellow-400" : 
                 item.color === "blue" ? "text-blue-400" :
                 item.color === "green" ? "text-green-400" :
@@ -82,8 +101,8 @@ export default function MobileNavigation() {
                 item.color === "red" ? "text-red-400" : ""
               )} />
               <span
-                className={cn("font-rajdhani font-medium truncate transition-all duration-200", 
-                  isActive ? "text-sm" : "text-sm",
+                className={cn("font-rajdhani font-medium truncate transition-all duration-300", 
+                  isExpanded ? "text-sm opacity-100" : "text-xs opacity-0 h-0 overflow-hidden",
                   item.color === "yellow" ? "text-yellow-400" : 
                   item.color === "blue" ? "text-blue-400" :
                   item.color === "green" ? "text-green-400" :

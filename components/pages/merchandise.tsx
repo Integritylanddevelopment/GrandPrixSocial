@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { ProductCard } from "@/components/merchandise/product-card"
 import { AffiliateGateway } from "@/components/merchandise/affiliate-gateway"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -19,7 +18,7 @@ export default function Merchandise() {
   const [selectedNetwork, setSelectedNetwork] = useState("")
   const [showGateway, setShowGateway] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null)
-  const [activeTab, setActiveTab] = useState("team-store")
+  const [activeTab, setActiveTab] = useState("")
 
   useEffect(() => {
     fetchMerchandise()
@@ -112,21 +111,42 @@ export default function Merchandise() {
 
 
         {/* Content Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-gray-900/50 mb-6">
-            <TabsTrigger value="team-store" className="flex items-center gap-2 data-[state=active]:bg-gradient-to-b data-[state=active]:from-green-600 data-[state=active]:to-green-800 data-[state=active]:text-green-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-green-400/50 data-[state=active]:backdrop-blur-sm text-green-400 hover:text-green-300 hover:bg-green-400/10">
-              <ShoppingBag className="h-4 w-4" />
+        <div className="w-full">
+          <div className="flex rounded-lg p-1 mb-6">
+            <button
+              onClick={() => setActiveTab("team-store")}
+              className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                activeTab === "team-store" 
+                  ? "glass-green text-green-300 shadow-lg scale-105 border border-green-400/50" 
+                  : "text-green-400 hover:text-green-300 hover:bg-green-400/10"
+              }`}
+            >
+              <ShoppingBag className="h-4 w-4 text-green-400" />
               Shop Team
-            </TabsTrigger>
-            <TabsTrigger value="partner-deals" className="flex items-center gap-2 data-[state=active]:bg-gradient-to-b data-[state=active]:from-green-600 data-[state=active]:to-green-800 data-[state=active]:text-green-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-green-400/50 data-[state=active]:backdrop-blur-sm text-green-400 hover:text-green-300 hover:bg-green-400/10">
-              <ExternalLink className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => setActiveTab("partner-deals")}
+              className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                activeTab === "partner-deals" 
+                  ? "glass-green text-green-300 shadow-lg scale-105 border border-green-400/50" 
+                  : "text-green-400 hover:text-green-300 hover:bg-green-400/10"
+              }`}
+            >
+              <ExternalLink className="h-4 w-4 text-green-400" />
               Shop Driver
-            </TabsTrigger>
-            <TabsTrigger value="trending" className="flex items-center gap-2 data-[state=active]:bg-gradient-to-b data-[state=active]:from-green-600 data-[state=active]:to-green-800 data-[state=active]:text-green-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-green-400/50 data-[state=active]:backdrop-blur-sm text-green-400 hover:text-green-300 hover:bg-green-400/10">
-              <TrendingUp className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => setActiveTab("trending")}
+              className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                activeTab === "trending" 
+                  ? "glass-green text-green-300 shadow-lg scale-105 border border-green-400/50" 
+                  : "text-green-400 hover:text-green-300 hover:bg-green-400/10"
+              }`}
+            >
+              <TrendingUp className="h-4 w-4 text-green-400" />
               Shop Brand
-            </TabsTrigger>
-          </TabsList>
+            </button>
+          </div>
 
           {/* Search and Filters */}
           <div className="mb-8 space-y-4">
@@ -193,55 +213,61 @@ export default function Merchandise() {
             </div>
           </div>
 
-          <TabsContent value="team-store" className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-white">Team Merchandise</h2>
-              <Badge className="bg-green-600 text-green-400">Official Team Gear</Badge>
+          {activeTab === "team-store" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Team Merchandise</h2>
+                <Badge className="bg-green-600 text-green-400">Official Team Gear</Badge>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {teamMerchandise.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {teamMerchandise.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </TabsContent>
+          )}
 
-          <TabsContent value="partner-deals" className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-white">Partner Products</h2>
-              <Badge className="bg-green-600 text-green-400">Affiliate Partners</Badge>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {affiliateProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  isAffiliate={true}
-                  onAffiliateClick={handleAffiliateClick}
-                />
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="trending" className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-white">Trending Items</h2>
-              <Badge className="bg-green-600 text-green-400">Hot Deals</Badge>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {[...teamMerchandise, ...affiliateProducts]
-                .sort((a, b) => (b.rating || 0) - (a.rating || 0))
-                .slice(0, 8)
-                .map((product) => (
+          {activeTab === "partner-deals" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Partner Products</h2>
+                <Badge className="bg-green-600 text-green-400">Affiliate Partners</Badge>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {affiliateProducts.map((product) => (
                   <ProductCard
                     key={product.id}
                     product={product}
-                    isAffiliate={!!product.network}
+                    isAffiliate={true}
                     onAffiliateClick={handleAffiliateClick}
                   />
                 ))}
+              </div>
             </div>
-          </TabsContent>
-        </Tabs>
+          )}
+
+          {activeTab === "trending" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-white">Trending Items</h2>
+                <Badge className="bg-green-600 text-green-400">Hot Deals</Badge>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {[...teamMerchandise, ...affiliateProducts]
+                  .sort((a, b) => (b.rating || 0) - (a.rating || 0))
+                  .slice(0, 8)
+                  .map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      isAffiliate={!!product.network}
+                      onAffiliateClick={handleAffiliateClick}
+                    />
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
 
         {/* Affiliate Gateway Modal */}
         {showGateway && selectedProduct && (
