@@ -2,28 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
 @layer base {
   :root {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 72.2% 50.6%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 72.2% 50.6%;
-    --accent-foreground: 0 0% 98%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 217.2 32.6% 12%;
+    --card-foreground: 210 40% 98%;
+    --popover: 217.2 32.6% 17.5%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 347.5 100% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 347.5 100% 50%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 72.2% 50.6%;
-    --radius: 0.5rem;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 347.5 100% 50%;
+    --radius: 0.75rem;
   }
 }
 
@@ -33,24 +35,64 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-}
-
-/* F1 Theme Overrides */
-@layer components {
-  .card {
-    @apply bg-slate-900/50 border-slate-800;
-  }
-  
-  .btn-outline {
-    @apply border-2 bg-transparent hover:bg-white/10;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply text-center;
+    font-family: 'Oswald', 'Bebas Neue', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Glassmorphism utility classes */
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   }
   
-  .text-left-override {
-    @apply text-left;
+  .glass-card {
+    @apply bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   }
+  
+  .glass-button {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all;
+  }
+  
+  .text-chrome {
+    background: linear-gradient(135deg, #667eea 0%, #ef3b36 25%, #fbbf24 50%, #3b82f6 75%, #ef3b36 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  }
+  
+  .font-f1 {
+    font-family: 'Oswald', 'Bebas Neue', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* Fix button visibility */
+.btn-primary {
+  @apply bg-red-600 text-white hover:bg-red-700 font-semibold;
+}
+
+.btn-outline {
+  @apply border-2 border-white/30 text-white bg-transparent hover:bg-white/10 backdrop-blur-sm;
+}
+
+/* Fix card backgrounds */
+.card {
+  @apply glass-card text-white;
+}
+
+/* Center navigation */
+.nav-center {
+  @apply flex justify-center items-center w-full;
 }
