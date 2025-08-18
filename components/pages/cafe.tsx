@@ -1,10 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { MessageSquare, Users, Trophy, Flame, Heart, MessageCircle, Share2 } from "lucide-react"
+import { MessageSquare, Users, Trophy, Flame, Heart, MessageCircle, Share2, UserPlus, LogIn } from "lucide-react"
 
 export default function Cafe() {
   const [activeTab, setActiveTab] = useState("")
+  const [activeAuthTab, setActiveAuthTab] = useState("")
 
   const posts = [
     {
@@ -49,6 +50,33 @@ export default function Cafe() {
           <p className="text-gray-400">Connect with fellow F1 fans and share your passion for racing</p>
         </div>
 
+        {/* Auth Buttons */}
+        <div className="mb-6">
+          <div className="flex rounded-lg p-1 gap-2">
+            <button
+              onClick={() => setActiveAuthTab("signup")}
+              className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                activeAuthTab === "signup" 
+                  ? "glass-yellow text-yellow-300 shadow-lg scale-105 border border-yellow-400/50" 
+                  : "text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10"
+              }`}
+            >
+              <UserPlus className="h-4 w-4 text-yellow-400" />
+              <span className="text-yellow-400">Sign Up</span>
+            </button>
+            <button
+              onClick={() => setActiveAuthTab("signin")}
+              className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-all duration-200 font-rajdhani font-medium ${
+                activeAuthTab === "signin" 
+                  ? "glass-yellow text-yellow-300 shadow-lg scale-105 border border-yellow-400/50" 
+                  : "text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10"
+              }`}
+            >
+              <LogIn className="h-4 w-4 text-yellow-400" />
+              <span className="text-yellow-400">Sign In</span>
+            </button>
+          </div>
+        </div>
 
         <div className="w-full">
           <div className="flex rounded-lg p-1 mb-6">
