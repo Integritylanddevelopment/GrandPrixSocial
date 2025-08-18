@@ -51,7 +51,7 @@ export default function MobileNavigation() {
       {pathname !== "/" && (
         <Link
           href="/"
-          className="fixed bottom-6 left-6 z-[9999] w-16 h-16 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl border border-white/10 hover:bg-black/30 transition-all duration-300"
+          className="fixed bottom-6 left-6 z-[9999] w-16 h-16 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl hover:bg-black/30 transition-all duration-300"
           onClick={handleNavClick}
         >
           <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -63,7 +63,7 @@ export default function MobileNavigation() {
       {/* Menu Toggle Button */}
       <button
         onClick={handleNavExpand}
-        className="fixed bottom-6 right-6 z-[9999] w-16 h-16 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl border border-white/10 hover:bg-black/30 transition-all duration-300"
+        className="fixed bottom-6 right-6 z-[9999] w-16 h-16 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl hover:bg-black/30 transition-all duration-300"
       >
         <svg className={cn("w-8 h-8 text-white transition-transform duration-300", isExpanded && "rotate-45")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

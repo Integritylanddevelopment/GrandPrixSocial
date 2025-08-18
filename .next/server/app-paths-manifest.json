@@ -1,7 +1,7 @@
 {
-  "/merchandise/page": "app/merchandise/page.js",
-  "/calendar/page": "app/calendar/page.js",
   "/cafe/page": "app/cafe/page.js",
-  "/page": "app/page.js",
-  "/teams/page": "app/teams/page.js"
+  "/calendar/page": "app/calendar/page.js",
+  "/merchandise/page": "app/merchandise/page.js",
+  "/teams/page": "app/teams/page.js",
+  "/page": "app/page.js"
 }
