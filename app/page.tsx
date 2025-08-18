@@ -1,10 +1,11 @@
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Flag, Gamepad2, Zap, Users, Trophy, Calendar } from "lucide-react"
+import { Flag, Gamepad2, Zap, Users, Trophy } from "lucide-react"
 import CafeIcon from "@/components/icons/cafe-icon"
 import NewsIcon from "@/components/icons/news-icon"
 import ShopIcon from "@/components/icons/shop-icon"
+import RacesIcon from "@/components/icons/races-icon"
 
 export default function HomePage() {
   return (
@@ -133,7 +134,7 @@ export default function HomePage() {
               <CardContent className="p-6 text-center">
                 <h3 className="text-xl font-bold text-red-400 mb-4 font-orbitron">Races</h3>
                 <div className="bg-red-500/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-red-500/30 transition-colors">
-                  <Calendar className="w-8 h-8 text-red-400" />
+                  <RacesIcon className="text-red-400" width={32} height={32} />
                 </div>
                 <p className="text-gray-400 text-sm mb-4 font-rajdhani">Race calendar & schedule</p>
                 <div className="flex justify-center gap-2">
