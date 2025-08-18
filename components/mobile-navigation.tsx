@@ -75,7 +75,7 @@ export default function MobileNavigation() {
         "fixed bottom-0 left-0 right-0 z-[9998] transition-all duration-500 ease-in-out",
         isExpanded ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       )}>
-        <div className="flex justify-around items-end pb-6 px-6">
+        <div className="flex items-end pb-6 px-2">
           {mobileNavItems.map((item) => {
             const Icon = item.icon
             const isActive = pathname === item.href
@@ -91,7 +91,7 @@ export default function MobileNavigation() {
                 href={item.href}
                 onClick={handleItemClick}
                 className={cn(
-                  "flex flex-col items-center justify-center gap-2 p-3 rounded-xl transition-all duration-300 backdrop-blur-md",
+                  "flex flex-col items-center justify-center gap-2 py-3 px-1 rounded-xl transition-all duration-300 backdrop-blur-md flex-1",
                   isActive && item.color === "yellow" && "bg-yellow-500/20 text-yellow-400 shadow-lg border border-yellow-400/30 scale-110",
                   isActive && item.color === "blue" && "bg-blue-500/20 text-blue-400 shadow-lg border border-blue-400/30 scale-110", 
                   isActive && item.color === "purple" && "bg-purple-500/20 text-purple-400 shadow-lg border border-purple-400/30 scale-110",
@@ -104,8 +104,8 @@ export default function MobileNavigation() {
                   !isActive && item.color === "red" && "text-red-400 hover:bg-red-400/10"
                 )}
               >
-                <Icon className="h-12 w-12" width={48} height={48} />
-                <span className="text-xs font-medium whitespace-nowrap font-rajdhani">{item.name}</span>
+                <Icon className="h-14 w-14" width={55} height={55} />
+                <span className="text-sm font-medium whitespace-nowrap font-rajdhani">{item.name}</span>
               </Link>
             )
           })}
