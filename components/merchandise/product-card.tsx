@@ -59,7 +59,9 @@ export function ProductCard({ product, isAffiliate = false, onAffiliateClick }: 
   const formatPrice = (price: number) => `$${(price / 100).toFixed(2)}`
 
   return (
-    <Card className="bg-gray-900/90 border-gray-700 hover:border-red-500/50 transition-all duration-300 group overflow-hidden">
+    <Card className={`bg-gray-900/90 border-gray-700 transition-all duration-300 group overflow-hidden ${
+      isAffiliate ? "hover:border-green-500/50" : "hover:border-red-500/50"
+    }`}>
       <CardHeader className="p-0">
         <div className="relative overflow-hidden">
           <img
@@ -165,7 +167,7 @@ export function ProductCard({ product, isAffiliate = false, onAffiliateClick }: 
               <Button
                 onClick={handleAffiliateClick}
                 disabled={!product.inStock || loading}
-                className="flex-1 bg-transparent border border-blue-600 text-blue-400 hover:bg-blue-600/10 hover:border-blue-500 hover:text-blue-300 transition-all duration-200"
+                className="flex-1 bg-transparent border border-green-600 text-green-400 hover:bg-green-600/10 hover:border-green-500 hover:text-green-300 transition-all duration-200"
               >
                 <ExternalLink className="h-4 w-4 mr-2" />
                 {loading ? "Redirecting..." : "Buy from Partner"}

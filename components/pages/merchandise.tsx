@@ -236,7 +236,7 @@ export default function Merchandise() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white">Partner Products</h2>
-                <Badge className="bg-green-600 text-green-400">Affiliate Partners</Badge>
+                <Badge className="bg-green-600/30 text-green-300 border border-green-400/50">Affiliate Partners</Badge>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {affiliateProducts.map((product) => (

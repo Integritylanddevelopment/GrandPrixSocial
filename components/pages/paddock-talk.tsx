@@ -131,7 +131,7 @@ export default function PaddockTalk() {
               {newsData[activeTab as keyof typeof newsData]?.map((article) => (
               <div
                 key={article.id}
-                className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-lg p-6 hover:border-red-500/50 transition-all duration-200"
+                className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-lg p-6 hover:border-blue-500/50 transition-all duration-200"
               >
                 <div className="mb-4">
                   <h3 className="text-lg font-semibold text-white mb-2 font-sans">{article.title}</h3>
