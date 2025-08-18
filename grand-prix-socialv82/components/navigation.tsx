@@ -1,4 +1,5 @@
 "use client"
+// Fixed export issue
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
