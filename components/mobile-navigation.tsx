@@ -3,11 +3,12 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Trophy, MessageCircle, ShoppingBag, Calendar, Flag } from "lucide-react"
+import { Trophy, ShoppingBag, Calendar, Flag } from "lucide-react"
+import CafeIcon from "@/components/icons/cafe-icon"
 import { useState } from "react"
 
 const mobileNavItems = [
-  { name: "F1 Café", href: "/cafe", icon: MessageCircle, color: "yellow" },
+  { name: "F1 Café", href: "/cafe", icon: CafeIcon, color: "yellow" },
   { name: "News", href: "/paddock-talk", icon: Flag, color: "blue" },
   { name: "Fantasy F1", href: "/teams", icon: Trophy, color: "purple" },
   { name: "Shop", href: "/merchandise", icon: ShoppingBag, color: "green" },

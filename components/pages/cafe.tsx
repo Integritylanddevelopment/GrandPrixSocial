@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { MessageSquare, Users, Trophy, Flame, Heart, MessageCircle, Share2, UserPlus, LogIn, User, Mail } from "lucide-react"
+import CafeIcon from "@/components/icons/cafe-icon"
 
 export default function Cafe() {
   const [activeTab, setActiveTab] = useState("feed")
@@ -47,7 +48,11 @@ export default function Cafe() {
     <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-red-950">
       <div className="py-6">
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold mb-2 font-orbitron text-yellow-400" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' }}>The F1 Café</h1>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <CafeIcon className="text-yellow-400" width={48} height={48} />
+            <h1 className="text-4xl font-bold font-orbitron text-yellow-400" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' }}>The F1 Café</h1>
+            <CafeIcon className="text-yellow-400" width={48} height={48} />
+          </div>
           <p className="text-gray-400">Connect with fellow F1 fans and share your passion for racing</p>
         </div>
 
