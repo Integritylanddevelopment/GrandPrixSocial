@@ -26,4 +26,3 @@ export function getDb() {
 
 // Export for backward compatibility
 export { pool }
-export const db = getDb()
