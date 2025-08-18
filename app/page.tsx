@@ -145,26 +145,6 @@ export default function HomePage() {
             </Card>
           </Link>
         </div>
-
-        {/* Quick Stats */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-          <div className="text-center">
-            <div className="text-2xl font-bold text-red-400 font-orbitron">24</div>
-            <div className="text-sm text-gray-400 font-rajdhani">Active Races</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-blue-400 font-orbitron">10</div>
-            <div className="text-sm text-gray-400 font-rajdhani">F1 Teams</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-green-400 font-orbitron">500+</div>
-            <div className="text-sm text-gray-400 font-rajdhani">Community Members</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-purple-400 font-orbitron">50+</div>
-            <div className="text-sm text-gray-400 font-rajdhani">Active Tournaments</div>
-          </div>
-        </div>
       </div>
     </div>
   )
