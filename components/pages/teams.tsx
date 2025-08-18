@@ -40,6 +40,7 @@ export function Teams() {
   const [searchTerm, setSearchTerm] = useState("")
   const [showHowToPlay, setShowHowToPlay] = useState(false)
   const [showRules, setShowRules] = useState(false)
+  const [showTeamModal, setShowTeamModal] = useState(false)
 
   const [availableDrivers] = useState([
     // Red Bull Racing
@@ -255,10 +256,28 @@ export function Teams() {
       { name: "Max Verstappen", team: "Red Bull", price: 32000000, points: 575 },
       { name: "Lando Norris", team: "McLaren", price: 28000000, points: 374 },
     ],
-    constructor: { name: "Red Bull", price: 15000000, points: 860 },
+    constructor: { name: "Red Bull Racing", price: 20000000, points: 860 },
+    principal: null,
+    engineer: null,
+    engine: null,
+    pitCrew: null,
+    tireStrategy: null,
     totalPoints: 1809,
     rank: 1247,
   })
+
+  const [isEditingTeamName, setIsEditingTeamName] = useState(false)
+  const [newTeamName, setNewTeamName] = useState(myTeam.name)
+
+  const teamNameOptions = [
+    "Red Lightning Racing",
+    "Thunder Strike F1",
+    "Velocity Vanguard",
+    "Phoenix Racing Team", 
+    "Storm Chasers F1",
+    "Apex Predators",
+    "Lightning Bolts Racing"
+  ]
 
   const [leaderboard] = useState([
     { rank: 1, name: "F1_Master_2025", team: "Speed Demons", points: 2156, change: 0 },
@@ -276,6 +295,30 @@ export function Teams() {
 
   const formatCurrency = (amount: number) => {
     return `$${(amount / 1000000).toFixed(1)}M`
+  }
+
+  const calculateTotalSpent = () => {
+    const driversSpent = myTeam.drivers.reduce((sum, d) => sum + d.price, 0)
+    const constructorSpent = myTeam.constructor?.price || 0
+    const principalSpent = myTeam.principal?.price || 0
+    const engineerSpent = myTeam.engineer?.price || 0
+    const engineSpent = myTeam.engine?.price || 0
+    const pitCrewSpent = myTeam.pitCrew?.price || 0
+    const tireStrategySpent = myTeam.tireStrategy?.price || 0
+    
+    return driversSpent + constructorSpent + principalSpent + engineerSpent + engineSpent + pitCrewSpent + tireStrategySpent
+  }
+
+  const calculateTotalPoints = () => {
+    const driversPoints = myTeam.drivers.reduce((sum, d) => sum + d.points, 0)
+    const constructorPoints = myTeam.constructor?.points || 0
+    const principalPoints = myTeam.principal?.points || 0
+    const engineerPoints = myTeam.engineer?.points || 0
+    const enginePoints = myTeam.engine?.points || 0
+    const pitCrewPoints = myTeam.pitCrew?.points || 0
+    const tireStrategyPoints = myTeam.tireStrategy?.points || 0
+    
+    return driversPoints + constructorPoints + principalPoints + engineerPoints + enginePoints + pitCrewPoints + tireStrategyPoints
   }
 
   const getFormColor = (form: string) => {
@@ -309,20 +352,18 @@ export function Teams() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-red-950 to-blue-950">
+    <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-red-950">
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-blue-600/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-red-950/10 to-red-900/10" />
         <div className="relative container mx-auto px-4 py-8 space-y-8">
           <div className="text-center space-y-6">
             <div className="flex items-center justify-center gap-3">
-              <div className="p-3 bg-gradient-to-r from-red-500 to-blue-600 rounded-full">
-                <Trophy className="w-10 h-10 text-white" />
-              </div>
-              <h1 className="text-5xl font-bold bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent">
+              <Trophy className="w-8 h-8 text-purple-400" />
+              <h1 className="text-5xl font-bold font-orbitron text-purple-400" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' }}>
                 Fantasy F1 League
               </h1>
             </div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto font-rajdhani">
               Build your complete F1 empire with drivers, teams, engineers, pit crews, and strategic choices across
               every aspect of Formula 1 racing
             </p>
@@ -330,14 +371,14 @@ export function Teams() {
             <div className="flex flex-wrap justify-center gap-4 mt-6">
               <Dialog open={showHowToPlay} onOpenChange={setShowHowToPlay}>
                 <DialogTrigger asChild>
-                  <Button className="bg-transparent border-2 border-red-500 text-red-400 hover:bg-red-500/10 hover:border-red-400 hover:text-red-300 px-8 py-4 text-lg font-bold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
+                  <Button className="bg-transparent border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 hover:border-purple-400 hover:text-purple-300 px-8 py-4 text-lg font-bold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
                     <HelpCircle className="w-6 h-6 mr-3" />
                     How We Play
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-gradient-to-br from-slate-900 via-red-950/50 to-blue-950/50 border-2 border-red-500/30 backdrop-blur-sm">
+                <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-gradient-to-br from-slate-900 via-purple-950/50 to-purple-950/50 border-2 border-purple-500/30 backdrop-blur-sm">
                   <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-red-400 to-red-300 bg-clip-text text-transparent">
+                    <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-purple-300 bg-clip-text text-transparent">
                       How to Play Fantasy F1
                     </DialogTitle>
                     <DialogDescription className="text-lg text-gray-300">
@@ -346,7 +387,7 @@ export function Teams() {
                   </DialogHeader>
                   <div className="space-y-6 mt-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      <Card className="team-card border-red-500/30">
+                      <Card className="bg-gray-900/50 border-gray-700">
                         <CardHeader>
                           <CardTitle className="flex items-center gap-2 text-red-400">
                             <Users className="w-5 h-5" />
@@ -361,7 +402,7 @@ export function Teams() {
                         </CardContent>
                       </Card>
 
-                      <Card className="team-card border-blue-500/30">
+                      <Card className="bg-gray-900/50 border-gray-700">
                         <CardHeader>
                           <CardTitle className="flex items-center gap-2 text-blue-400">
                             <Target className="w-5 h-5" />
@@ -387,7 +428,7 @@ export function Teams() {
                         </CardContent>
                       </Card>
 
-                      <Card className="team-card border-green-500/30">
+                      <Card className="bg-gray-900/50 border-gray-700">
                         <CardHeader>
                           <CardTitle className="flex items-center gap-2 text-green-400">
                             <Zap className="w-5 h-5" />
@@ -415,7 +456,7 @@ export function Teams() {
                         </CardContent>
                       </Card>
 
-                      <Card className="team-card border-purple-500/30">
+                      <Card className="bg-gray-900/50 border-gray-700">
                         <CardHeader>
                           <CardTitle className="flex items-center gap-2 text-purple-400">
                             <Star className="w-5 h-5" />
@@ -432,7 +473,7 @@ export function Teams() {
                       </Card>
                     </div>
 
-                    <Card className="team-card border-yellow-500/30 bg-gradient-to-r from-yellow-900/20 to-orange-900/20">
+                    <Card className="bg-gray-900/50 border-gray-700">
                       <CardHeader>
                         <CardTitle className="text-yellow-400">Scoring System</CardTitle>
                       </CardHeader>
@@ -477,14 +518,14 @@ export function Teams() {
 
               <Dialog open={showRules} onOpenChange={setShowRules}>
                 <DialogTrigger asChild>
-                  <Button className="bg-transparent border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400 hover:text-blue-300 px-8 py-4 text-lg font-bold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
+                  <Button className="bg-transparent border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 hover:border-purple-400 hover:text-purple-300 px-8 py-4 text-lg font-bold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
                     <BookOpen className="w-6 h-6 mr-3" />
                     Rules & Regulations
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto bg-gradient-to-br from-slate-900 via-blue-950/50 to-red-950/50 border-2 border-blue-500/30 backdrop-blur-sm">
+                <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto bg-gradient-to-br from-slate-900 via-purple-950/50 to-purple-950/50 border-2 border-purple-500/30 backdrop-blur-sm">
                   <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">
+                    <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-purple-300 bg-clip-text text-transparent">
                       Official F1 Fantasy Rules
                     </DialogTitle>
                     <DialogDescription className="text-gray-300">
@@ -492,7 +533,7 @@ export function Teams() {
                     </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4 mt-4">
-                    <Card className="team-card border-red-500/30 bg-gradient-to-r from-red-900/20 to-red-800/20">
+                    <Card className="bg-gray-900/50 border-gray-700">
                       <CardHeader>
                         <CardTitle className="text-red-400 flex items-center gap-2">
                           <Flag className="w-5 h-5" />
@@ -527,7 +568,7 @@ export function Teams() {
                       </CardContent>
                     </Card>
 
-                    <Card className="team-card border-yellow-500/30 bg-gradient-to-r from-yellow-900/20 to-orange-900/20">
+                    <Card className="bg-gray-900/50 border-gray-700">
                       <CardHeader>
                         <CardTitle className="text-yellow-400 flex items-center gap-2">
                           <Timer className="w-5 h-5" />
@@ -543,7 +584,7 @@ export function Teams() {
                       </CardContent>
                     </Card>
 
-                    <Card className="team-card border-green-500/30 bg-gradient-to-r from-green-900/20 to-emerald-900/20">
+                    <Card className="bg-gray-900/50 border-gray-700">
                       <CardHeader>
                         <CardTitle className="text-green-400 flex items-center gap-2">
                           <CloudRain className="w-5 h-5" />
@@ -559,7 +600,7 @@ export function Teams() {
                       </CardContent>
                     </Card>
 
-                    <Card className="team-card border-purple-500/30 bg-gradient-to-r from-purple-900/20 to-indigo-900/20">
+                    <Card className="bg-gray-900/50 border-gray-700">
                       <CardHeader>
                         <CardTitle className="text-purple-400 flex items-center gap-2">
                           <Mic className="w-5 h-5" />
@@ -576,7 +617,7 @@ export function Teams() {
                       </CardContent>
                     </Card>
 
-                    <Card className="team-card border-orange-500/30 bg-gradient-to-r from-orange-900/20 to-red-900/20">
+                    <Card className="bg-gray-900/50 border-gray-700">
                       <CardHeader>
                         <CardTitle className="text-orange-400">Penalty System</CardTitle>
                       </CardHeader>
@@ -594,163 +635,108 @@ export function Teams() {
             </div>
           </div>
 
-          <Card className="bg-gradient-to-r from-red-900/50 to-blue-900/50 border-2 border-red-500/30 backdrop-blur-sm">
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="flex items-center gap-2 text-white">
-                    <Crown className="w-6 h-6 text-yellow-400" />
-                    {myTeam.name}
-                  </CardTitle>
-                  <CardDescription className="text-gray-300">Your Fantasy F1 Team</CardDescription>
-                </div>
-                <div className="text-right">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
-                    {myTeam.totalPoints} pts
-                  </div>
-                  <div className="text-sm text-gray-400">Rank #{myTeam.rank.toLocaleString()}</div>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-white flex items-center gap-2">
-                    <Users className="w-4 h-4" />
-                    Drivers
-                  </h4>
-                  {myTeam.drivers.map((driver, index) => (
-                    <div key={index} className="flex justify-between text-sm bg-white/10 p-2 rounded">
-                      <span className="text-gray-200">{driver.name}</span>
-                      <span className="font-medium text-green-300">{driver.points} pts</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-white flex items-center gap-2">
-                    <Target className="w-4 h-4" />
-                    Constructor
-                  </h4>
-                  <div className="flex justify-between text-sm bg-white/10 p-2 rounded">
-                    <span className="text-gray-200">{myTeam.constructor.name}</span>
-                    <span className="font-medium text-green-300">{myTeam.constructor.points} pts</span>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-white flex items-center gap-2">
-                    <Trophy className="w-4 h-4" />
-                    Budget Remaining
-                  </h4>
-                  <div className="text-2xl font-bold text-green-300">
-                    {formatCurrency(
-                      myTeam.budget - myTeam.drivers.reduce((sum, d) => sum + d.price, 0) - myTeam.constructor.price,
-                    )}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
           <Tabs defaultValue="drivers" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-8 bg-black/50 border border-red-500/30">
+            <TabsList className="grid w-full grid-cols-8 bg-transparent">
               <TabsTrigger
                 value="drivers"
-                className="text-gray-300 data-[state=active]:bg-transparent data-[state=active]:border-2 data-[state=active]:border-red-500 data-[state=active]:text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all duration-200"
+                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 data-[state=active]:backdrop-blur-sm hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
               >
                 Drivers
               </TabsTrigger>
               <TabsTrigger
                 value="constructors"
-                className="text-gray-300 data-[state=active]:bg-transparent data-[state=active]:border-2 data-[state=active]:border-blue-500 data-[state=active]:text-blue-400 hover:bg-blue-500/10 hover:text-blue-300 transition-all duration-200"
+                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
               >
                 Teams
               </TabsTrigger>
               <TabsTrigger
                 value="principals"
-                className="text-gray-300 data-[state=active]:bg-transparent data-[state=active]:border-2 data-[state=active]:border-purple-500 data-[state=active]:text-purple-400 hover:bg-purple-500/10 hover:text-purple-300 transition-all duration-200"
+                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
               >
                 Principals
               </TabsTrigger>
               <TabsTrigger
                 value="engineers"
-                className="text-gray-300 data-[state=active]:bg-transparent data-[state=active]:border-2 data-[state=active]:border-orange-500 data-[state=active]:text-orange-400 hover:bg-orange-500/10 hover:text-orange-300 transition-all duration-200"
+                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
               >
                 Engineers
               </TabsTrigger>
               <TabsTrigger
                 value="engines"
-                className="text-gray-300 data-[state=active]:bg-transparent data-[state=active]:border-2 data-[state=active]:border-yellow-500 data-[state=active]:text-yellow-400 hover:bg-yellow-500/10 hover:text-yellow-300 transition-all duration-200"
+                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
               >
                 Engines
               </TabsTrigger>
               <TabsTrigger
                 value="pit-crews"
-                className="text-gray-300 data-[state=active]:bg-transparent data-[state=active]:border-2 data-[state=active]:border-green-500 data-[state=active]:text-green-400 hover:bg-green-500/10 hover:text-green-300 transition-all duration-200"
+                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
               >
                 Pit Crews
               </TabsTrigger>
               <TabsTrigger
                 value="tires"
-                className="text-gray-300 data-[state=active]:bg-transparent data-[state=active]:border-2 data-[state=active]:border-pink-500 data-[state=active]:text-pink-400 hover:bg-pink-500/10 hover:text-pink-300 transition-all duration-200"
+                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
               >
                 Tires
               </TabsTrigger>
               <TabsTrigger
                 value="my-team"
-                className="text-gray-300 data-[state=active]:bg-transparent data-[state=active]:border-2 data-[state=active]:border-cyan-500 data-[state=active]:text-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-300 transition-all duration-200"
+                className="text-purple-400 data-[state=active]:bg-gradient-to-b data-[state=active]:from-purple-600 data-[state=active]:to-purple-800 data-[state=active]:backdrop-blur-sm data-[state=active]:text-purple-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-purple-400/50 hover:text-purple-300 hover:bg-purple-400/10 transition-all duration-200"
               >
                 My Team
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="drivers" className="space-y-6">
-              <div className="flex gap-4">
+            {/* Tab Contents */}
+            <TabsContent value="drivers" className="space-y-4">
+              <div className="flex items-center gap-4 mb-6">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
-                    placeholder="Search all 20 F1 drivers..."
+                    placeholder="Search drivers..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 bg-black/50 border-red-500/30 text-white placeholder:text-gray-400"
+                    className="pl-10 bg-gray-800 border-gray-700 text-white"
                   />
                 </div>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {filteredDrivers.map((driver, index) => (
-                  <Card
-                    key={index}
-                    className="bg-black/50 border-red-500/30 hover:border-red-500/50 transition-all hover:shadow-lg hover:shadow-red-500/20"
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {filteredDrivers.map((driver) => (
+                  <Card key={driver.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
+                    onClick={() => {
+                      const updatedTeam = { ...myTeam }
+                      if (updatedTeam.drivers.length < 2) {
+                        updatedTeam.drivers.push(driver)
+                      } else {
+                        updatedTeam.drivers[0] = updatedTeam.drivers[1]
+                        updatedTeam.drivers[1] = driver
+                      }
+                      setMyTeam(updatedTeam)
+                      setShowTeamModal(true)
+                    }}
                   >
-                    <CardHeader className="pb-3">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-lg text-white">{driver.name}</CardTitle>
-                          <CardDescription className="text-gray-300">{driver.team}</CardDescription>
-                          <Badge variant="outline" className="mt-1 text-xs text-blue-400 border-blue-400">
-                            {driver.engine}
-                          </Badge>
-                        </div>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-semibold text-white text-sm">{driver.name}</h3>
                         <Badge className={getFormBadge(driver.form)}>{driver.form}</Badge>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-2">
+                      <div className="space-y-1 text-xs text-gray-400">
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Price:</span>
-                          <span className="font-semibold text-white">{formatCurrency(driver.price)}</span>
+                          <span>Team:</span>
+                          <span className="text-white">{driver.team}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Points:</span>
-                          <span className="font-semibold text-green-300">{driver.points}</span>
+                          <span>Price:</span>
+                          <span className="text-green-400">{formatCurrency(driver.price)}</span>
                         </div>
-                        <Button
-                          className="w-full mt-3 bg-transparent border-2 border-red-500 text-red-400 hover:bg-red-500/10 hover:border-red-400 hover:text-red-300"
-                          size="sm"
-                        >
-                          <Plus className="w-4 h-4 mr-2" />
-                          Add Driver
-                        </Button>
+                        <div className="flex justify-between">
+                          <span>Points:</span>
+                          <span className="text-blue-400">{driver.points}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Engine:</span>
+                          <span className="text-orange-400">{driver.engine}</span>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -758,46 +744,41 @@ export function Teams() {
               </div>
             </TabsContent>
 
-            <TabsContent value="constructors" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {constructors.map((constructor, index) => (
-                  <Card
-                    key={index}
-                    className="bg-black/50 border-blue-500/30 hover:border-blue-500/50 transition-all hover:shadow-lg hover:shadow-blue-500/20"
+            <TabsContent value="constructors" className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {constructors.map((constructor) => (
+                  <Card key={constructor.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
+                    onClick={() => {
+                      const updatedTeam = { ...myTeam }
+                      updatedTeam.constructor = constructor
+                      setMyTeam(updatedTeam)
+                      setShowTeamModal(true)
+                    }}
                   >
-                    <CardHeader className="pb-3">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-lg text-white">{constructor.name}</CardTitle>
-                          <CardDescription className="text-gray-300">{constructor.engine} Engine</CardDescription>
-                          <div className="mt-2 space-y-1">
-                            {constructor.drivers.map((driver, idx) => (
-                              <Badge key={idx} variant="outline" className="text-xs text-gray-400 border-gray-400 mr-1">
-                                {driver}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-semibold text-white text-sm">{constructor.name}</h3>
                         <Badge className={getFormBadge(constructor.form)}>{constructor.form}</Badge>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-2">
+                      <div className="space-y-1 text-xs text-gray-400">
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Price:</span>
-                          <span className="font-semibold text-white">{formatCurrency(constructor.price)}</span>
+                          <span>Price:</span>
+                          <span className="text-green-400">{formatCurrency(constructor.price)}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Points:</span>
-                          <span className="font-semibold text-green-300">{constructor.points}</span>
+                          <span>Points:</span>
+                          <span className="text-blue-400">{constructor.points}</span>
                         </div>
-                        <Button
-                          className="w-full mt-3 bg-transparent border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400 hover:text-blue-300"
-                          size="sm"
-                        >
-                          <Target className="w-4 h-4 mr-2" />
-                          Select Team
-                        </Button>
+                        <div className="flex justify-between">
+                          <span>Engine:</span>
+                          <span className="text-orange-400">{constructor.engine}</span>
+                        </div>
+                        <div className="space-y-1 mt-2">
+                          <span className="text-gray-500">Drivers:</span>
+                          {constructor.drivers.map((driver, idx) => (
+                            <div key={idx} className="text-gray-300 text-xs">{driver}</div>
+                          ))}
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -805,41 +786,35 @@ export function Teams() {
               </div>
             </TabsContent>
 
-            <TabsContent value="principals" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {teamPrincipals.map((principal, index) => (
-                  <Card
-                    key={index}
-                    className="bg-black/50 border-purple-500/30 hover:border-purple-500/50 transition-all hover:shadow-lg hover:shadow-purple-500/20"
+            <TabsContent value="principals" className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {teamPrincipals.map((principal) => (
+                  <Card key={principal.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
+                    onClick={() => {
+                      const updatedTeam = { ...myTeam }
+                      updatedTeam.principal = principal
+                      setMyTeam(updatedTeam)
+                      setShowTeamModal(true)
+                    }}
                   >
-                    <CardHeader className="pb-3">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-lg text-white">{principal.name}</CardTitle>
-                          <CardDescription className="text-gray-300">{principal.team}</CardDescription>
-                          <Badge variant="outline" className="mt-1 text-xs text-purple-400 border-purple-400">
-                            {principal.specialty}
-                          </Badge>
-                        </div>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-semibold text-white text-sm">{principal.name}</h3>
+                        <Badge className="bg-purple-100 text-purple-800">{principal.specialty}</Badge>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-2">
+                      <div className="space-y-1 text-xs text-gray-400">
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Price:</span>
-                          <span className="font-semibold text-white">{formatCurrency(principal.price)}</span>
+                          <span>Team:</span>
+                          <span className="text-white">{principal.team}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Leadership:</span>
-                          <span className="font-semibold text-green-300">{principal.points} pts</span>
+                          <span>Price:</span>
+                          <span className="text-green-400">{formatCurrency(principal.price)}</span>
                         </div>
-                        <Button
-                          className="w-full mt-3 bg-transparent border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 hover:border-purple-400 hover:text-purple-300"
-                          size="sm"
-                        >
-                          <Crown className="w-4 h-4 mr-2" />
-                          Hire Principal
-                        </Button>
+                        <div className="flex justify-between">
+                          <span>Points:</span>
+                          <span className="text-blue-400">{principal.points}</span>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -847,41 +822,35 @@ export function Teams() {
               </div>
             </TabsContent>
 
-            <TabsContent value="engineers" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {engineers.map((engineer, index) => (
-                  <Card
-                    key={index}
-                    className="bg-black/50 border-orange-500/30 hover:border-orange-500/50 transition-all hover:shadow-lg hover:shadow-orange-500/20"
+            <TabsContent value="engineers" className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {engineers.map((engineer) => (
+                  <Card key={engineer.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
+                    onClick={() => {
+                      const updatedTeam = { ...myTeam }
+                      updatedTeam.engineer = engineer
+                      setMyTeam(updatedTeam)
+                      setShowTeamModal(true)
+                    }}
                   >
-                    <CardHeader className="pb-3">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-lg text-white">{engineer.name}</CardTitle>
-                          <CardDescription className="text-gray-300">{engineer.team}</CardDescription>
-                          <Badge variant="outline" className="mt-1 text-xs text-orange-400 border-orange-400">
-                            {engineer.specialty}
-                          </Badge>
-                        </div>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-semibold text-white text-sm">{engineer.name}</h3>
+                        <Badge className="bg-blue-100 text-blue-800">{engineer.specialty}</Badge>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-2">
+                      <div className="space-y-1 text-xs text-gray-400">
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Price:</span>
-                          <span className="font-semibold text-white">{formatCurrency(engineer.price)}</span>
+                          <span>Team:</span>
+                          <span className="text-white">{engineer.team}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Innovation:</span>
-                          <span className="font-semibold text-green-300">{engineer.points} pts</span>
+                          <span>Price:</span>
+                          <span className="text-green-400">{formatCurrency(engineer.price)}</span>
                         </div>
-                        <Button
-                          className="w-full mt-3 bg-transparent border-2 border-orange-500 text-orange-400 hover:bg-orange-500/10 hover:border-orange-400 hover:text-orange-300"
-                          size="sm"
-                        >
-                          <Settings className="w-4 h-4 mr-2" />
-                          Hire Engineer
-                        </Button>
+                        <div className="flex justify-between">
+                          <span>Points:</span>
+                          <span className="text-blue-400">{engineer.points}</span>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -889,40 +858,39 @@ export function Teams() {
               </div>
             </TabsContent>
 
-            <TabsContent value="engines" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {engines.map((engine, index) => (
-                  <Card
-                    key={index}
-                    className="bg-black/50 border-yellow-500/30 hover:border-yellow-500/50 transition-all hover:shadow-lg hover:shadow-yellow-500/20"
+            <TabsContent value="engines" className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {engines.map((engine) => (
+                  <Card key={engine.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
+                    onClick={() => {
+                      const updatedTeam = { ...myTeam }
+                      updatedTeam.engine = engine
+                      setMyTeam(updatedTeam)
+                      setShowTeamModal(true)
+                    }}
                   >
-                    <CardHeader className="pb-3">
-                      <div>
-                        <CardTitle className="text-lg text-white">{engine.name}</CardTitle>
-                        <CardDescription className="text-gray-300">{engine.manufacturer}</CardDescription>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-semibold text-white text-sm">{engine.name}</h3>
+                        <Badge className="bg-orange-100 text-orange-800">{engine.manufacturer}</Badge>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-2">
+                      <div className="space-y-1 text-xs text-gray-400">
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Price:</span>
-                          <span className="font-semibold text-white">{formatCurrency(engine.price)}</span>
+                          <span>Price:</span>
+                          <span className="text-green-400">{formatCurrency(engine.price)}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Power:</span>
-                          <span className="font-semibold text-red-300">{engine.power}hp</span>
+                          <span>Points:</span>
+                          <span className="text-blue-400">{engine.points}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Reliability:</span>
-                          <span className="font-semibold text-green-300">{engine.reliability}%</span>
+                          <span>Power:</span>
+                          <span className="text-red-400">{engine.power}hp</span>
                         </div>
-                        <Button
-                          className="w-full mt-3 bg-transparent border-2 border-yellow-500 text-yellow-400 hover:bg-yellow-500/10 hover:border-yellow-400 hover:text-yellow-300"
-                          size="sm"
-                        >
-                          <Fuel className="w-4 h-4 mr-2" />
-                          Select Engine
-                        </Button>
+                        <div className="flex justify-between">
+                          <span>Reliability:</span>
+                          <span className="text-green-400">{engine.reliability}%</span>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -930,45 +898,39 @@ export function Teams() {
               </div>
             </TabsContent>
 
-            <TabsContent value="pit-crews" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {pitCrews.map((crew, index) => (
-                  <Card
-                    key={index}
-                    className="bg-black/50 border-green-500/30 hover:border-green-500/50 transition-all hover:shadow-lg hover:shadow-green-500/20"
+            <TabsContent value="pit-crews" className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {pitCrews.map((crew) => (
+                  <Card key={crew.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
+                    onClick={() => {
+                      const updatedTeam = { ...myTeam }
+                      updatedTeam.pitCrew = crew
+                      setMyTeam(updatedTeam)
+                      setShowTeamModal(true)
+                    }}
                   >
-                    <CardHeader className="pb-3">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-lg text-white">{crew.name}</CardTitle>
-                          <CardDescription className="text-gray-300">{crew.team}</CardDescription>
-                          <Badge variant="outline" className="mt-1 text-xs text-green-400 border-green-400">
-                            {crew.specialty}
-                          </Badge>
-                        </div>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-semibold text-white text-sm">{crew.name}</h3>
+                        <Badge className="bg-yellow-100 text-yellow-800">{crew.specialty}</Badge>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-2">
+                      <div className="space-y-1 text-xs text-gray-400">
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Price:</span>
-                          <span className="font-semibold text-white">{formatCurrency(crew.price)}</span>
+                          <span>Team:</span>
+                          <span className="text-white">{crew.team}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Avg Time:</span>
-                          <span className="font-semibold text-blue-300">{crew.avgTime}s</span>
+                          <span>Price:</span>
+                          <span className="text-green-400">{formatCurrency(crew.price)}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Performance:</span>
-                          <span className="font-semibold text-green-300">{crew.points} pts</span>
+                          <span>Avg Time:</span>
+                          <span className="text-blue-400">{crew.avgTime}s</span>
                         </div>
-                        <Button
-                          className="w-full mt-3 bg-transparent border-2 border-green-500 text-green-400 hover:bg-green-500/10 hover:border-green-400 hover:text-green-300"
-                          size="sm"
-                        >
-                          <Wrench className="w-4 h-4 mr-2" />
-                          Hire Pit Crew
-                        </Button>
+                        <div className="flex justify-between">
+                          <span>Points:</span>
+                          <span className="text-blue-400">{crew.points}</span>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -976,46 +938,41 @@ export function Teams() {
               </div>
             </TabsContent>
 
-            <TabsContent value="tires" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {tireStrategies.map((strategy, index) => (
-                  <Card
-                    key={index}
-                    className="bg-black/50 border-pink-500/30 hover:border-pink-500/50 transition-all hover:shadow-lg hover:shadow-pink-500/20"
+            <TabsContent value="tires" className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {tireStrategies.map((strategy) => (
+                  <Card key={strategy.name} className="bg-gray-900/50 border-gray-700 hover:border-purple-500/50 transition-all duration-200 cursor-pointer"
+                    onClick={() => {
+                      const updatedTeam = { ...myTeam }
+                      updatedTeam.tireStrategy = strategy
+                      setMyTeam(updatedTeam)
+                      setShowTeamModal(true)
+                    }}
                   >
-                    <CardHeader className="pb-3">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-lg text-white">{strategy.name}</CardTitle>
-                          <CardDescription className="text-gray-300">{strategy.description}</CardDescription>
-                        </div>
-                        <div className="text-right">
-                          <Badge variant="outline" className="text-xs text-red-400 border-red-400 mb-1">
-                            {strategy.risk} Risk
-                          </Badge>
-                          <Badge variant="outline" className="text-xs text-green-400 border-green-400">
-                            {strategy.reward} Reward
-                          </Badge>
-                        </div>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-semibold text-white text-sm">{strategy.name}</h3>
+                        <Badge className={`${strategy.risk === 'High' || strategy.risk === 'Very High' ? 'bg-red-100 text-red-800' : strategy.risk === 'Medium' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'}`}>
+                          {strategy.risk} Risk
+                        </Badge>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-2">
+                      <div className="space-y-1 text-xs text-gray-400">
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Price:</span>
-                          <span className="font-semibold text-white">{formatCurrency(strategy.price)}</span>
+                          <span>Strategy:</span>
+                          <span className="text-white">{strategy.description}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-sm text-gray-400">Strategy Bonus:</span>
-                          <span className="font-semibold text-green-300">{strategy.points} pts</span>
+                          <span>Price:</span>
+                          <span className="text-green-400">{formatCurrency(strategy.price)}</span>
                         </div>
-                        <Button
-                          className="w-full mt-3 bg-transparent border-2 border-pink-500 text-pink-400 hover:bg-pink-500/10 hover:border-pink-400 hover:text-pink-300"
-                          size="sm"
-                        >
-                          <Shield className="w-4 h-4 mr-2" />
-                          Choose Strategy
-                        </Button>
+                        <div className="flex justify-between">
+                          <span>Points:</span>
+                          <span className="text-blue-400">{strategy.points}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Reward:</span>
+                          <span className="text-purple-400">{strategy.reward}</span>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -1023,116 +980,314 @@ export function Teams() {
               </div>
             </TabsContent>
 
-            <TabsContent value="my-team" className="space-y-6">
-              <Card className="bg-black/50 border-green-500/30">
-                <CardHeader>
-                  <CardTitle className="text-white">Team Management</CardTitle>
-                  <CardDescription className="text-gray-300">
-                    Manage your fantasy F1 team lineup and strategy
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-6">
+            <TabsContent value="my-team" className="space-y-4">
+              <div className="text-center py-8">
+                <Button 
+                  onClick={() => setShowTeamModal(true)}
+                  className="bg-gradient-to-r from-purple-600 to-purple-800 text-purple-400 hover:from-purple-700 hover:to-purple-900 px-8 py-4 text-lg font-bold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-purple-400/50"
+                >
+                  <Crown className="w-6 h-6 mr-3" />
+                  View My Team
+                </Button>
+              </div>
+            </TabsContent>
+          </Tabs>
+
+          {/* Team Modal */}
+          <Dialog open={showTeamModal} onOpenChange={setShowTeamModal}>
+            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-slate-900 via-purple-950/50 to-purple-950/50 border-2 border-purple-500/30 backdrop-blur-sm">
+              <DialogHeader>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Crown className="w-8 h-8 text-yellow-400" />
                     <div>
-                      <h3 className="text-lg font-semibold mb-3 text-white">Current Lineup</h3>
+                      <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
+                        <select 
+                          value={myTeam.name} 
+                          onChange={(e) => setMyTeam({...myTeam, name: e.target.value})}
+                          className="bg-transparent text-white border-none outline-none text-2xl font-bold cursor-pointer hover:text-purple-300"
+                        >
+                          {teamNameOptions.map(name => (
+                            <option key={name} value={name} className="bg-gray-800 text-white">{name}</option>
+                          ))}
+                        </select>
+                      </DialogTitle>
+                      <DialogDescription className="text-gray-300">Your Fantasy F1 Team</DialogDescription>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
+                      {calculateTotalPoints()} pts
+                    </div>
+                    <div className="text-sm text-gray-400">Rank #{myTeam.rank.toLocaleString()}</div>
+                  </div>
+                </div>
+              </DialogHeader>
+              
+              <div className="space-y-6 mt-6">
+                {/* Budget Overview */}
+                <Card className="bg-gray-900/50 border-gray-700">
+                  <CardHeader>
+                    <CardTitle className="text-white flex items-center gap-2">
+                      <Trophy className="w-5 h-5 text-yellow-400" />
+                      Budget Overview
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-gray-400 text-sm">Total Budget</p>
+                        <p className="text-white text-xl font-bold">{formatCurrency(myTeam.budget)}</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-400 text-sm">Remaining</p>
+                        <p className="text-green-400 text-xl font-bold">{formatCurrency(myTeam.budget - calculateTotalSpent())}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Team Composition */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Drivers */}
+                  <Card className="bg-gray-900/50 border-gray-700">
+                    <CardHeader>
+                      <CardTitle className="text-white flex items-center gap-2">
+                        <Users className="w-5 h-5 text-blue-400" />
+                        Drivers ({myTeam.drivers.length}/2)
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
                       <div className="space-y-3">
                         {myTeam.drivers.map((driver, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center justify-between p-3 bg-red-900/30 rounded-lg border border-red-500/30"
-                          >
+                          <div key={index} className="flex justify-between items-center p-3 bg-gray-800/50 rounded">
                             <div>
-                              <div className="font-medium text-white">{driver.name}</div>
-                              <div className="text-sm text-gray-300">{driver.team}</div>
+                              <p className="text-white font-semibold">{driver.name}</p>
+                              <p className="text-gray-400 text-sm">{driver.team}</p>
                             </div>
                             <div className="text-right">
-                              <div className="font-semibold text-green-300">{driver.points} pts</div>
-                              <div className="text-sm text-gray-400">{formatCurrency(driver.price)}</div>
+                              <p className="text-green-400 font-semibold">{formatCurrency(driver.price)}</p>
+                              <p className="text-blue-400 text-sm">{driver.points} pts</p>
                             </div>
                           </div>
                         ))}
-                        <div className="flex items-center justify-between p-3 bg-blue-900/30 rounded-lg border border-blue-500/30">
+                        {myTeam.drivers.length < 2 && (
+                          <div className="p-3 border-2 border-dashed border-gray-600 rounded text-center">
+                            <p className="text-gray-400">Select a driver</p>
+                          </div>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Constructor */}
+                  <Card className="bg-gray-900/50 border-gray-700">
+                    <CardHeader>
+                      <CardTitle className="text-white flex items-center gap-2">
+                        <Target className="w-5 h-5 text-purple-400" />
+                        Constructor
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {myTeam.constructor ? (
+                        <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded">
                           <div>
-                            <div className="font-medium text-white">{myTeam.constructor.name}</div>
-                            <div className="text-sm text-gray-300">Constructor</div>
+                            <p className="text-white font-semibold">{myTeam.constructor.name}</p>
+                            <p className="text-gray-400 text-sm">{myTeam.constructor.engine} Engine</p>
                           </div>
                           <div className="text-right">
-                            <div className="font-semibold text-green-300">{myTeam.constructor.points} pts</div>
-                            <div className="text-sm text-gray-400">{formatCurrency(myTeam.constructor.price)}</div>
+                            <p className="text-green-400 font-semibold">{formatCurrency(myTeam.constructor.price)}</p>
+                            <p className="text-blue-400 text-sm">{myTeam.constructor.points} pts</p>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      ) : (
+                        <div className="p-3 border-2 border-dashed border-gray-600 rounded text-center">
+                          <p className="text-gray-400">Select a constructor</p>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
 
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="p-4 bg-green-900/30 rounded-lg border border-green-500/30">
-                        <div className="text-sm text-gray-400">Total Points</div>
-                        <div className="text-2xl font-bold text-green-300">{myTeam.totalPoints}</div>
-                      </div>
-                      <div className="p-4 bg-blue-900/30 rounded-lg border border-blue-500/30">
-                        <div className="text-sm text-gray-400">Global Rank</div>
-                        <div className="text-2xl font-bold text-blue-300">#{myTeam.rank.toLocaleString()}</div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="leaderboard" className="space-y-6">
-              <Card className="bg-black/50 border-yellow-500/30">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-white">
-                    <Trophy className="w-5 h-5 text-yellow-400" />
-                    Global Leaderboard
-                  </CardTitle>
-                  <CardDescription className="text-gray-300">Top fantasy F1 managers worldwide</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {leaderboard.map((entry) => (
-                      <div
-                        key={entry.rank}
-                        className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10"
-                      >
-                        <div className="flex items-center gap-3">
-                          <div
-                            className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
-                              entry.rank === 1
-                                ? "bg-yellow-500 text-black"
-                                : entry.rank === 2
-                                  ? "bg-gray-300 text-black"
-                                  : entry.rank === 3
-                                    ? "bg-orange-500 text-white"
-                                    : "bg-blue-500 text-white"
-                            }`}
-                          >
-                            {entry.rank}
-                          </div>
+                  {/* Principal */}
+                  <Card className="bg-gray-900/50 border-gray-700">
+                    <CardHeader>
+                      <CardTitle className="text-white flex items-center gap-2">
+                        <Crown className="w-5 h-5 text-yellow-400" />
+                        Team Principal
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {myTeam.principal ? (
+                        <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded">
                           <div>
-                            <div className="font-medium text-white">{entry.name}</div>
-                            <div className="text-sm text-gray-400">{entry.team}</div>
+                            <p className="text-white font-semibold">{myTeam.principal.name}</p>
+                            <p className="text-gray-400 text-sm">{myTeam.principal.specialty}</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-green-400 font-semibold">{formatCurrency(myTeam.principal.price)}</p>
+                            <p className="text-blue-400 text-sm">{myTeam.principal.points} pts</p>
                           </div>
                         </div>
-                        <div className="text-right">
-                          <div className="font-semibold text-white">{entry.points.toLocaleString()} pts</div>
-                          <div
-                            className={`text-sm flex items-center gap-1 ${
-                              entry.change > 0 ? "text-green-400" : entry.change < 0 ? "text-red-400" : "text-gray-500"
-                            }`}
-                          >
-                            <TrendingUp className="w-3 h-3" />
-                            {entry.change > 0 ? "+" : ""}
-                            {entry.change}
+                      ) : (
+                        <div className="p-3 border-2 border-dashed border-gray-600 rounded text-center">
+                          <p className="text-gray-400">Select a team principal</p>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+
+                  {/* Engineer */}
+                  <Card className="bg-gray-900/50 border-gray-700">
+                    <CardHeader>
+                      <CardTitle className="text-white flex items-center gap-2">
+                        <Wrench className="w-5 h-5 text-orange-400" />
+                        Chief Engineer
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {myTeam.engineer ? (
+                        <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded">
+                          <div>
+                            <p className="text-white font-semibold">{myTeam.engineer.name}</p>
+                            <p className="text-gray-400 text-sm">{myTeam.engineer.specialty}</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-green-400 font-semibold">{formatCurrency(myTeam.engineer.price)}</p>
+                            <p className="text-blue-400 text-sm">{myTeam.engineer.points} pts</p>
                           </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+                      ) : (
+                        <div className="p-3 border-2 border-dashed border-gray-600 rounded text-center">
+                          <p className="text-gray-400">Select an engineer</p>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+
+                  {/* Engine */}
+                  <Card className="bg-gray-900/50 border-gray-700">
+                    <CardHeader>
+                      <CardTitle className="text-white flex items-center gap-2">
+                        <Fuel className="w-5 h-5 text-red-400" />
+                        Power Unit
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {myTeam.engine ? (
+                        <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded">
+                          <div>
+                            <p className="text-white font-semibold">{myTeam.engine.name}</p>
+                            <p className="text-gray-400 text-sm">{myTeam.engine.power}hp • {myTeam.engine.reliability}% reliability</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-green-400 font-semibold">{formatCurrency(myTeam.engine.price)}</p>
+                            <p className="text-blue-400 text-sm">{myTeam.engine.points} pts</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="p-3 border-2 border-dashed border-gray-600 rounded text-center">
+                          <p className="text-gray-400">Select an engine</p>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+
+                  {/* Pit Crew */}
+                  <Card className="bg-gray-900/50 border-gray-700">
+                    <CardHeader>
+                      <CardTitle className="text-white flex items-center gap-2">
+                        <Timer className="w-5 h-5 text-green-400" />
+                        Pit Crew
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {myTeam.pitCrew ? (
+                        <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded">
+                          <div>
+                            <p className="text-white font-semibold">{myTeam.pitCrew.name}</p>
+                            <p className="text-gray-400 text-sm">{myTeam.pitCrew.avgTime}s avg • {myTeam.pitCrew.specialty}</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-green-400 font-semibold">{formatCurrency(myTeam.pitCrew.price)}</p>
+                            <p className="text-blue-400 text-sm">{myTeam.pitCrew.points} pts</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="p-3 border-2 border-dashed border-gray-600 rounded text-center">
+                          <p className="text-gray-400">Select a pit crew</p>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+
+                  {/* Tire Strategy */}
+                  <Card className="bg-gray-900/50 border-gray-700">
+                    <CardHeader>
+                      <CardTitle className="text-white flex items-center gap-2">
+                        <Shield className="w-5 h-5 text-purple-400" />
+                        Tire Strategy
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {myTeam.tireStrategy ? (
+                        <div className="flex justify-between items-center p-3 bg-gray-800/50 rounded">
+                          <div>
+                            <p className="text-white font-semibold">{myTeam.tireStrategy.name}</p>
+                            <p className="text-gray-400 text-sm">{myTeam.tireStrategy.description} • {myTeam.tireStrategy.risk} Risk</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-green-400 font-semibold">{formatCurrency(myTeam.tireStrategy.price)}</p>
+                            <p className="text-blue-400 text-sm">{myTeam.tireStrategy.points} pts</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="p-3 border-2 border-dashed border-gray-600 rounded text-center">
+                          <p className="text-gray-400">Select a tire strategy</p>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Leaderboard */}
+                <Card className="bg-gray-900/50 border-gray-700">
+                  <CardHeader>
+                    <CardTitle className="text-white flex items-center gap-2">
+                      <Trophy className="w-5 h-5 text-yellow-400" />
+                      Leaderboard
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {leaderboard.map((entry) => (
+                        <div key={entry.rank} className="flex items-center justify-between p-2 bg-gray-800/50 rounded">
+                          <div className="flex items-center gap-3">
+                            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                              entry.rank === 1 ? 'bg-yellow-400 text-black' : 
+                              entry.rank === 2 ? 'bg-gray-400 text-black' : 
+                              entry.rank === 3 ? 'bg-orange-400 text-black' : 'bg-gray-600 text-white'
+                            }`}>
+                              {entry.rank}
+                            </span>
+                            <div>
+                              <p className="text-white text-sm font-semibold">{entry.name}</p>
+                              <p className="text-gray-400 text-xs">{entry.team}</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-green-400 font-semibold">{entry.points}</p>
+                            <p className={`text-xs ${entry.change > 0 ? 'text-green-400' : entry.change < 0 ? 'text-red-400' : 'text-gray-400'}`}>
+                              {entry.change > 0 ? '+' : ''}{entry.change}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </div>

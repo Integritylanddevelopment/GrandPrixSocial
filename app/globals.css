@@ -340,10 +340,11 @@
 
   /* Glass morphism effects */
   .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   }
 
   .glass-button {
@@ -352,6 +353,47 @@
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     @apply px-4 py-2 rounded-lg transition-all duration-200 hover:bg-white/20;
+  }
+
+  /* Colored glass variants - forcing with !important */
+  .glass-yellow {
+    background: rgba(234, 179, 8, 0.3) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 2px solid rgba(234, 179, 8, 0.5) !important;
+    box-shadow: 0 8px 32px 0 rgba(234, 179, 8, 0.4) !important;
+  }
+
+  .glass-blue {
+    background: rgba(59, 130, 246, 0.3) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 2px solid rgba(59, 130, 246, 0.5) !important;
+    box-shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.4) !important;
+  }
+
+  .glass-green {
+    background: rgba(34, 197, 94, 0.3) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 2px solid rgba(34, 197, 94, 0.5) !important;
+    box-shadow: 0 8px 32px 0 rgba(34, 197, 94, 0.4) !important;
+  }
+
+  .glass-purple {
+    background: rgba(168, 85, 247, 0.3) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 2px solid rgba(168, 85, 247, 0.5) !important;
+    box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.4) !important;
+  }
+
+  .glass-red {
+    background: rgba(239, 68, 68, 0.3) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 2px solid rgba(239, 68, 68, 0.5) !important;
+    box-shadow: 0 8px 32px 0 rgba(239, 68, 68, 0.4) !important;
   }
 }
 
@@ -474,11 +516,9 @@
     display: none !important;
   }
 
-  /* Force Lucide icon styling */
+  /* Lucide icon default styling - no size constraints */
   .lucide {
-    width: 1.25rem !important;
-    height: 1.25rem !important;
-    stroke-width: 2 !important;
+    stroke-width: 2;
   }
 
   /* Global emoji prevention - hide all Unicode emoji ranges */

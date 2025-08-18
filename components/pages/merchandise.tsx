@@ -102,120 +102,101 @@ export default function Merchandise() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-red-900/20">
+    <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-red-950">
       <div className="container mx-auto px-4 py-6 max-w-7xl">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">F1 Merchandise Store</h1>
-          <p className="text-gray-400">Official team gear and partner products with exclusive discounts</p>
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl font-bold mb-2 font-orbitron text-green-400" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' }}>F1 Merchandise Store</h1>
+          <p className="text-gray-400 font-rajdhani">Official team gear and partner products with exclusive discounts</p>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-red-400">{teamMerchandise.length}</div>
-            <div className="text-sm text-gray-400">Team Items</div>
-          </div>
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-blue-400">{affiliateProducts.length}</div>
-            <div className="text-sm text-gray-400">Partner Products</div>
-          </div>
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-green-400">5</div>
-            <div className="text-sm text-gray-400">Partner Networks</div>
-          </div>
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-purple-400">15%</div>
-            <div className="text-sm text-gray-400">Max Commission</div>
-          </div>
-        </div>
-
-        {/* Search and Filters */}
-        <div className="mb-8 space-y-4">
-          <div className="flex gap-2">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <Input
-                placeholder="Search merchandise..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-gray-800 border-gray-700 text-white"
-              />
-            </div>
-            <Button
-              onClick={fetchMerchandise}
-              className="bg-transparent border border-red-600 text-red-400 hover:bg-red-600/10 hover:border-red-500 hover:text-red-300 transition-all duration-200"
-            >
-              <Search className="h-4 w-4" />
-            </Button>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-              <SelectTrigger className="w-40 bg-gray-800 border-gray-700 text-white">
-                <Filter className="h-4 w-4 mr-2" />
-                <SelectValue placeholder="Category" />
-              </SelectTrigger>
-              <SelectContent className="bg-gray-800 border-gray-700">
-                <SelectItem value="all" className="text-white">
-                  All Categories
-                </SelectItem>
-                {categories.map((category) => (
-                  <SelectItem key={category} value={category} className="text-white">
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            <Select value={selectedNetwork} onValueChange={setSelectedNetwork}>
-              <SelectTrigger className="w-40 bg-gray-800 border-gray-700 text-white">
-                <ExternalLink className="h-4 w-4 mr-2" />
-                <SelectValue placeholder="Partner" />
-              </SelectTrigger>
-              <SelectContent className="bg-gray-800 border-gray-700">
-                <SelectItem value="all" className="text-white">
-                  All Partners
-                </SelectItem>
-                {networks.map((network) => (
-                  <SelectItem key={network} value={network} className="text-white">
-                    {network.charAt(0).toUpperCase() + network.slice(1)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            <Button
-              onClick={fetchAffiliateProducts}
-              variant="outline"
-              className="bg-transparent border border-gray-600 text-gray-400 hover:bg-gray-600/10 hover:border-gray-500 hover:text-gray-300 transition-all duration-200"
-            >
-              Apply Filters
-            </Button>
-          </div>
-        </div>
 
         {/* Content Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-3 bg-gray-900/50 mb-6">
-            <TabsTrigger value="team-store" className="flex items-center gap-2">
+            <TabsTrigger value="team-store" className="flex items-center gap-2 data-[state=active]:bg-gradient-to-b data-[state=active]:from-green-600 data-[state=active]:to-green-800 data-[state=active]:text-green-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-green-400/50 data-[state=active]:backdrop-blur-sm text-green-400 hover:text-green-300 hover:bg-green-400/10">
               <ShoppingBag className="h-4 w-4" />
-              Team Store
+              Shop Team
             </TabsTrigger>
-            <TabsTrigger value="partner-deals" className="flex items-center gap-2">
+            <TabsTrigger value="partner-deals" className="flex items-center gap-2 data-[state=active]:bg-gradient-to-b data-[state=active]:from-green-600 data-[state=active]:to-green-800 data-[state=active]:text-green-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-green-400/50 data-[state=active]:backdrop-blur-sm text-green-400 hover:text-green-300 hover:bg-green-400/10">
               <ExternalLink className="h-4 w-4" />
-              Partner Deals
+              Shop Driver
             </TabsTrigger>
-            <TabsTrigger value="trending" className="flex items-center gap-2">
+            <TabsTrigger value="trending" className="flex items-center gap-2 data-[state=active]:bg-gradient-to-b data-[state=active]:from-green-600 data-[state=active]:to-green-800 data-[state=active]:text-green-400 data-[state=active]:shadow-lg data-[state=active]:scale-105 data-[state=active]:border data-[state=active]:border-green-400/50 data-[state=active]:backdrop-blur-sm text-green-400 hover:text-green-300 hover:bg-green-400/10">
               <TrendingUp className="h-4 w-4" />
-              Trending
+              Shop Brand
             </TabsTrigger>
           </TabsList>
+
+          {/* Search and Filters */}
+          <div className="mb-8 space-y-4">
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  placeholder="Search merchandise..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 bg-gray-800 border-gray-700 text-white"
+                />
+              </div>
+              <Button
+                onClick={fetchMerchandise}
+                className="bg-transparent border border-green-600 text-green-400 hover:bg-green-600/10 hover:border-green-500 hover:text-green-300 transition-all duration-200"
+              >
+                <Search className="h-4 w-4" />
+              </Button>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                <SelectTrigger className="w-40 bg-gray-800 border-gray-700 text-white">
+                  <Filter className="h-4 w-4 mr-2" />
+                  <SelectValue placeholder="Category" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-800 border-gray-700">
+                  <SelectItem value="all" className="text-white">
+                    All Categories
+                  </SelectItem>
+                  {categories.map((category) => (
+                    <SelectItem key={category} value={category} className="text-white">
+                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Select value={selectedNetwork} onValueChange={setSelectedNetwork}>
+                <SelectTrigger className="w-40 bg-gray-800 border-gray-700 text-white">
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  <SelectValue placeholder="Partner" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-800 border-gray-700">
+                  <SelectItem value="all" className="text-white">
+                    All Partners
+                  </SelectItem>
+                  {networks.map((network) => (
+                    <SelectItem key={network} value={network} className="text-white">
+                      {network.charAt(0).toUpperCase() + network.slice(1)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Button
+                onClick={fetchAffiliateProducts}
+                variant="outline"
+                className="bg-transparent border border-gray-600 text-gray-400 hover:bg-gray-600/10 hover:border-gray-500 hover:text-gray-300 transition-all duration-200"
+              >
+                Apply Filters
+              </Button>
+            </div>
+          </div>
 
           <TabsContent value="team-store" className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold text-white">Team Merchandise</h2>
-              <Badge className="bg-red-600 text-white">Official Team Gear</Badge>
+              <Badge className="bg-green-600 text-green-400">Official Team Gear</Badge>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {teamMerchandise.map((product) => (
@@ -227,7 +208,7 @@ export default function Merchandise() {
           <TabsContent value="partner-deals" className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold text-white">Partner Products</h2>
-              <Badge className="bg-blue-600 text-white">Affiliate Partners</Badge>
+              <Badge className="bg-green-600 text-green-400">Affiliate Partners</Badge>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {affiliateProducts.map((product) => (
@@ -244,7 +225,7 @@ export default function Merchandise() {
           <TabsContent value="trending" className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold text-white">Trending Items</h2>
-              <Badge className="bg-orange-600 text-white">Hot Deals</Badge>
+              <Badge className="bg-green-600 text-green-400">Hot Deals</Badge>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {[...teamMerchandise, ...affiliateProducts]

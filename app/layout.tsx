@@ -2,7 +2,6 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Orbitron, Rajdhani } from "next/font/google"
 import "./globals.css"
-import Navigation from "@/components/navigation"
 import MobileNavigation from "@/components/mobile-navigation"
 import Footer from "@/components/footer"
 
@@ -62,7 +61,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${orbitron.variable} ${rajdhani.variable} font-rajdhani antialiased`}>
-        <Navigation />
         <div className="min-h-screen bg-black">
           <div className="pb-16 md:pb-0">{children}</div>
         </div>

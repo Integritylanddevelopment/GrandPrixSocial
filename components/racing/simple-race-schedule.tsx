@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Calendar, MapPin, Clock, Flag, Trophy, Zap } from "lucide-react"
+import { Calendar, MapPin, Clock, Flag, Trophy, Zap, CircuitBoard } from "lucide-react"
 import { f1Schedule2025 } from "@/lib/race-schedule-data"
 import { format, parseISO, isFuture, isPast } from "date-fns"
 
@@ -27,7 +27,7 @@ export default function SimpleRaceSchedule() {
   const tabs = [
     { id: "upcoming", label: "Upcoming", icon: Calendar },
     { id: "sprint", label: "Sprint Weekends", icon: Zap },
-    { id: "all", label: "Full Season", icon: Trophy },
+    { id: "all", label: "Full Season", icon: CircuitBoard },
   ]
 
   const filteredRaces = getFilteredRaces()
@@ -35,30 +35,11 @@ export default function SimpleRaceSchedule() {
   const sprintCount = f1Schedule2025.filter((race) => race.isSprint).length
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-red-900/20">
+    <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-red-950">
       <div className="container mx-auto px-4 py-6 max-w-6xl">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">F1 2025 Race Schedule</h1>
-          <p className="text-gray-400">Complete Formula 1 calendar with race times and circuit information</p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-red-400">24</div>
-            <div className="text-sm text-gray-400">Total Races</div>
-          </div>
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-orange-400">{sprintCount}</div>
-            <div className="text-sm text-gray-400">Sprint Weekends</div>
-          </div>
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-green-400">Next</div>
-            <div className="text-sm text-gray-400">{nextRace.name.replace(" Grand Prix", " GP")}</div>
-          </div>
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-blue-400">{format(parseISO(nextRace.date), "MMM d")}</div>
-            <div className="text-sm text-gray-400">Race Date</div>
-          </div>
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl font-bold mb-2 font-orbitron text-red-400" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' }}>F1 2025 Race Schedule</h1>
+          <p className="text-gray-400 font-rajdhani">Complete Formula 1 calendar with race times and circuit information</p>
         </div>
 
         <div className="w-full">
@@ -69,8 +50,8 @@ export default function SimpleRaceSchedule() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-colors ${
-                    activeTab === tab.id ? "bg-red-600 text-white" : "text-gray-400 hover:text-white hover:bg-gray-800"
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-all duration-200 ${
+                    activeTab === tab.id ? "glass-red text-red-400 shadow-lg scale-105 border border-red-400/50" : "text-red-400 hover:text-red-300 hover:bg-red-400/10"
                   }`}
                 >
                   <Icon className="h-4 w-4" />

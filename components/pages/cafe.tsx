@@ -42,31 +42,13 @@ export default function Cafe() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-red-900/20">
+    <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-red-950">
       <div className="container mx-auto px-4 py-6 max-w-4xl">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">The F1 Café</h1>
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl font-bold mb-2 font-orbitron text-yellow-400" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' }}>The F1 Café</h1>
           <p className="text-gray-400">Connect with fellow F1 fans and share your passion for racing</p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-red-400">24</div>
-            <div className="text-sm text-gray-400">Community Posts</div>
-          </div>
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-orange-400">500+</div>
-            <div className="text-sm text-gray-400">Active Members</div>
-          </div>
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-green-400">Live</div>
-            <div className="text-sm text-gray-400">Race Weekend</div>
-          </div>
-          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
-            <div className="text-2xl font-bold text-blue-400">24/7</div>
-            <div className="text-sm text-gray-400">Community Chat</div>
-          </div>
-        </div>
 
         <div className="w-full">
           <div className="flex bg-gray-900/50 rounded-lg p-1 mb-6">
@@ -76,12 +58,14 @@ export default function Cafe() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-colors ${
-                    activeTab === tab.id ? "bg-red-600 text-white" : "text-gray-400 hover:text-white hover:bg-gray-800"
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-all duration-200 ${
+                    activeTab === tab.id 
+                      ? "glass-yellow text-yellow-400 shadow-lg scale-105 border border-yellow-400/50" 
+                      : "text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10"
                   }`}
                 >
-                  <Icon className="h-4 w-4" />
-                  {tab.label}
+                  <Icon className="h-4 w-4 text-yellow-400" />
+                  <span className="font-semibold text-yellow-400">{tab.label}</span>
                 </button>
               )
             })}
