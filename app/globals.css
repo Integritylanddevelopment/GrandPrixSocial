@@ -337,6 +337,22 @@
   .f1-flex-start {
     @apply flex items-center justify-start;
   }
+
+  /* Glass morphism effects */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-button {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    @apply px-4 py-2 rounded-lg transition-all duration-200 hover:bg-white/20;
+  }
 }
 
 @layer utilities {
@@ -350,6 +366,20 @@
 
   .font-orbitron {
     font-family: var(--font-orbitron), monospace;
+  }
+
+  .font-f1 {
+    font-family: var(--font-orbitron), monospace;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .text-chrome {
+    background: linear-gradient(180deg, #ffffff 0%, #c0c0c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   .text-racing-red {
