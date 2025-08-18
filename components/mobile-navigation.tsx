@@ -22,6 +22,35 @@ export default function MobileNavigation() {
   const pathname = usePathname()
   const [isExpanded, setIsExpanded] = useState(false)
 
+  // Get the current page theme color
+  const getPageThemeColor = () => {
+    if (pathname === "/cafe") return "yellow"
+    if (pathname === "/paddock-talk") return "blue"
+    if (pathname === "/teams") return "purple"
+    if (pathname === "/merchandise") return "green"
+    if (pathname === "/calendar") return "red"
+    return "white" // default
+  }
+
+  const themeColor = getPageThemeColor()
+  
+  const getThemeClasses = (color: string) => {
+    switch (color) {
+      case "yellow":
+        return "text-yellow-400 hover:bg-yellow-400/20"
+      case "blue":
+        return "text-blue-400 hover:bg-blue-400/20"
+      case "purple":
+        return "text-purple-400 hover:bg-purple-400/20"
+      case "green":
+        return "text-green-400 hover:bg-green-400/20"
+      case "red":
+        return "text-red-400 hover:bg-red-400/20"
+      default:
+        return "text-white hover:bg-white/20"
+    }
+  }
+
   // Hide mobile navigation on home page
   if (pathname === "/") {
     return null
@@ -51,11 +80,11 @@ export default function MobileNavigation() {
       {pathname !== "/" && (
         <Link
           href="/"
-          className="fixed bottom-6 left-6 z-[9999] w-16 h-16 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl hover:bg-black/30 transition-all duration-300"
+          className={`fixed bottom-6 left-6 z-[9999] w-16 h-16 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 ${getThemeClasses(themeColor)}`}
           onClick={handleNavClick}
         >
-          <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
         </Link>
       )}
@@ -63,9 +92,9 @@ export default function MobileNavigation() {
       {/* Menu Toggle Button */}
       <button
         onClick={handleNavExpand}
-        className="fixed bottom-6 right-6 z-[9999] w-16 h-16 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl hover:bg-black/30 transition-all duration-300"
+        className={`fixed bottom-6 right-6 z-[9999] w-16 h-16 bg-black/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 ${getThemeClasses(themeColor)}`}
       >
-        <svg className={cn("w-8 h-8 text-white transition-transform duration-300", isExpanded && "rotate-45")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className={cn("w-8 h-8 transition-transform duration-300", isExpanded && "rotate-45")} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
         </svg>
       </button>

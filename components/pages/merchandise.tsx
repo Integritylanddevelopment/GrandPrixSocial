@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge"
 import { Search, Filter, ShoppingBag, ExternalLink, TrendingUp } from "lucide-react"
 import ShopIcon from "@/components/icons/shop-icon"
+import { AuthButtons } from "@/components/auth/auth-buttons"
 
 export default function Merchandise() {
   const [teamMerchandise, setTeamMerchandise] = useState([])
@@ -112,6 +113,11 @@ export default function Merchandise() {
             <ShopIcon className="text-green-400" width={48} height={48} />
           </div>
           <p className="text-gray-400 font-rajdhani">Official team gear and partner products with exclusive discounts</p>
+        </div>
+
+        {/* Auth Buttons */}
+        <div className="mb-6">
+          <AuthButtons themeColor="green" />
         </div>
 
 

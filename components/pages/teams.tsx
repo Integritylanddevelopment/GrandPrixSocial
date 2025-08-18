@@ -35,8 +35,9 @@ import {
   Shield,
   Flame,
 } from "lucide-react"
+import { AuthButtons } from "@/components/auth/auth-buttons"
 
-export function Teams() {
+export default function Teams() {
   const [activeTab, setActiveTab] = useState("")
   const [searchTerm, setSearchTerm] = useState("")
   const [showHowToPlay, setShowHowToPlay] = useState(false)
@@ -369,13 +370,19 @@ export function Teams() {
               every aspect of Formula 1 racing
             </p>
 
-            <div className="flex flex-wrap justify-center gap-4 mt-6">
+          </div>
+
+          {/* Auth Buttons */}
+          <div className="mb-6">
+            <AuthButtons themeColor="purple" />
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-4 mt-6">
               <Dialog open={showHowToPlay} onOpenChange={setShowHowToPlay}>
                 <DialogTrigger asChild>
-                  <Button className="bg-transparent border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 hover:border-purple-400 hover:text-purple-300 px-8 py-4 text-lg font-bold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
-                    <HelpCircle className="w-6 h-6 mr-3" />
+                  <button className="text-purple-400 hover:text-purple-300 px-4 py-2 text-lg font-rajdhani font-medium transition-all duration-200">
                     How We Play
-                  </Button>
+                  </button>
                 </DialogTrigger>
                 <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-gradient-to-br from-slate-900 via-purple-950/50 to-purple-950/50 border-2 border-purple-500/30 backdrop-blur-sm">
                   <DialogHeader>
@@ -519,10 +526,9 @@ export function Teams() {
 
               <Dialog open={showRules} onOpenChange={setShowRules}>
                 <DialogTrigger asChild>
-                  <Button className="bg-transparent border-2 border-purple-500 text-purple-400 hover:bg-purple-500/10 hover:border-purple-400 hover:text-purple-300 px-8 py-4 text-lg font-bold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
-                    <BookOpen className="w-6 h-6 mr-3" />
+                  <button className="text-purple-400 hover:text-purple-300 px-4 py-2 text-lg font-rajdhani font-medium transition-all duration-200">
                     Rules & Regulations
-                  </Button>
+                  </button>
                 </DialogTrigger>
                 <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto bg-gradient-to-br from-slate-900 via-purple-950/50 to-purple-950/50 border-2 border-purple-500/30 backdrop-blur-sm">
                   <DialogHeader>

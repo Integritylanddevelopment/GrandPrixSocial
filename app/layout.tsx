@@ -4,6 +4,7 @@ import { Orbitron, Rajdhani } from "next/font/google"
 import "./globals.css"
 import MobileNavigation from "@/components/mobile-navigation"
 import Footer from "@/components/footer"
+import { AuthProvider } from "@/components/auth/auth-context"
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -61,11 +62,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${orbitron.variable} ${rajdhani.variable} font-rajdhani antialiased`}>
-        <div className="min-h-screen bg-black">
-          <div className="pb-16 md:pb-0">{children}</div>
-        </div>
-        <MobileNavigation />
-        <Footer />
+        <AuthProvider>
+          <div className="min-h-screen bg-black">
+            <div className="pb-16 md:pb-0">{children}</div>
+          </div>
+          <MobileNavigation />
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   )

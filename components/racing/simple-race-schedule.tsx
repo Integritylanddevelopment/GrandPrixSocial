@@ -5,6 +5,7 @@ import { Calendar, MapPin, Clock, Flag, Trophy, Zap, CircuitBoard } from "lucide
 import RacesIcon from "@/components/icons/races-icon"
 import { f1Schedule2025 } from "@/lib/race-schedule-data"
 import { format, parseISO, isFuture, isPast } from "date-fns"
+import { AuthButtons } from "@/components/auth/auth-buttons"
 
 export default function SimpleRaceSchedule() {
   const [activeTab, setActiveTab] = useState("")
@@ -45,6 +46,11 @@ export default function SimpleRaceSchedule() {
             <RacesIcon className="text-red-400" width={48} height={48} />
           </div>
           <p className="text-gray-400 font-rajdhani">Complete Formula 1 calendar with race times and circuit information</p>
+        </div>
+
+        {/* Auth Buttons */}
+        <div className="mb-6">
+          <AuthButtons themeColor="red" />
         </div>
 
         <div className="w-full">

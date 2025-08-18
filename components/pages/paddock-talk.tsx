@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import NewsIcon from "@/components/icons/news-icon"
+import { AuthButtons } from "@/components/auth/auth-buttons"
 
 export default function PaddockTalk() {
   const [activeTab, setActiveTab] = useState("")
@@ -80,31 +81,11 @@ export default function PaddockTalk() {
           <p className="text-gray-400 font-rajdhani">
             AI-powered F1 news with real-time updates from the paddock
           </p>
-          <div className="flex justify-between items-center absolute top-6 left-6 right-6">
-            <div className="relative max-w-md">
-              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">🔍</span>
-              <input
-                placeholder="Search F1 news..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                inputMode="search"
-                className="w-full pl-10 pr-4 py-2 bg-transparent border-2 border-blue-500 text-blue-400 placeholder-blue-400/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans focus:bg-blue-500/10"
-                onFocus={(e) => {
-                  if (document.activeElement !== e.target) {
-                    e.target.blur()
-                  }
-                }}
-              />
-            </div>
-            <div className="flex gap-2">
-              <button className="flex items-center gap-2 px-4 py-2 bg-transparent border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400 hover:text-blue-300 rounded-lg transition-all duration-200 font-sans font-medium">
-                ↻ Refresh
-              </button>
-              <button className="flex items-center gap-2 px-4 py-2 bg-transparent border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400 hover:text-blue-300 rounded-lg transition-all duration-200 font-sans font-medium">
-                📡 Subscribe
-              </button>
-            </div>
-          </div>
+        </div>
+
+        {/* Auth Buttons */}
+        <div className="mb-6">
+          <AuthButtons themeColor="blue" />
         </div>
 
 
@@ -125,6 +106,32 @@ export default function PaddockTalk() {
             ))}
           </div>
 
+          {/* Search and Action Buttons */}
+          <div className="flex justify-between items-center mb-6 px-4">
+            <div className="relative max-w-md">
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">🔍</span>
+              <input
+                placeholder="Search F1 news..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                inputMode="search"
+                className="w-full pl-10 pr-4 py-2 bg-transparent border-2 border-blue-500 text-blue-400 placeholder-blue-400/70 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-rajdhani focus:bg-blue-500/10"
+                onFocus={(e) => {
+                  if (document.activeElement !== e.target) {
+                    e.target.blur()
+                  }
+                }}
+              />
+            </div>
+            <div className="flex gap-2">
+              <button className="flex items-center gap-2 px-4 py-2 bg-transparent border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400 hover:text-blue-300 rounded-lg transition-all duration-200 font-rajdhani font-medium">
+                ↻ Refresh
+              </button>
+              <button className="flex items-center gap-2 px-4 py-2 bg-transparent border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400 hover:text-blue-300 rounded-lg transition-all duration-200 font-rajdhani font-medium">
+                📡 Subscribe
+              </button>
+            </div>
+          </div>
 
           {activeTab && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
