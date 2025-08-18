@@ -1,0 +1,276 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import { ProductCard } from "@/components/merchandise/product-card"
+import { AffiliateGateway } from "@/components/merchandise/affiliate-gateway"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Badge } from "@/components/ui/badge"
+import { Search, Filter, ShoppingBag, ExternalLink, TrendingUp } from "lucide-react"
+
+export default function Merchandise() {
+  const [teamMerchandise, setTeamMerchandise] = useState([])
+  const [affiliateProducts, setAffiliateProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedNetwork, setSelectedNetwork] = useState("")
+  const [showGateway, setShowGateway] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState(null)
+  const [activeTab, setActiveTab] = useState("team-store")
+
+  useEffect(() => {
+    fetchMerchandise()
+    fetchAffiliateProducts()
+  }, [])
+
+  const fetchMerchandise = async () => {
+    try {
+      const params = new URLSearchParams()
+      if (searchQuery) params.append("search", searchQuery)
+      if (selectedCategory && selectedCategory !== "all") params.append("category", selectedCategory)
+
+      const response = await fetch(`/api/merchandise?${params}`)
+      if (response.ok) {
+        const data = await response.json()
+        setTeamMerchandise(data.merchandise)
+      }
+    } catch (error) {
+      console.error("Error fetching merchandise:", error)
+    }
+  }
+
+  const fetchAffiliateProducts = async () => {
+    try {
+      const params = new URLSearchParams()
+      if (selectedCategory && selectedCategory !== "all") params.append("category", selectedCategory)
+      if (selectedNetwork && selectedNetwork !== "all") params.append("network", selectedNetwork)
+
+      const response = await fetch(`/api/affiliates?${params}`)
+      if (response.ok) {
+        const data = await response.json()
+        setAffiliateProducts(data.products)
+      }
+    } catch (error) {
+      console.error("Error fetching affiliate products:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleAffiliateClick = async (productId: string, affiliateUrl: string) => {
+    const product = affiliateProducts.find((p) => p.id === productId)
+    if (product) {
+      setSelectedProduct(product)
+      setShowGateway(true)
+    }
+  }
+
+  const handleGatewayProceed = async () => {
+    if (selectedProduct) {
+      // Track the affiliate click
+      await fetch("/api/affiliates/redirect", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productId: selectedProduct.id,
+          affiliateUrl: selectedProduct.affiliateUrl,
+          userId: "current-user", // Replace with actual user ID
+        }),
+      })
+
+      // Redirect to affiliate URL
+      window.open(selectedProduct.affiliateUrl, "_blank")
+      setShowGateway(false)
+    }
+  }
+
+  const categories = ["apparel", "accessories", "collectibles", "team-gear", "luxury"]
+  const networks = ["fueler", "fuel-for-fans", "f1-store", "motorsport-merch", "racing-republic"]
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-red-900/20 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500 mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading F1 merchandise...</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-red-900/20">
+      <div className="container mx-auto px-4 py-6 max-w-7xl">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-white mb-2">F1 Merchandise Store</h1>
+          <p className="text-gray-400">Official team gear and partner products with exclusive discounts</p>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
+            <div className="text-2xl font-bold text-red-400">{teamMerchandise.length}</div>
+            <div className="text-sm text-gray-400">Team Items</div>
+          </div>
+          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
+            <div className="text-2xl font-bold text-blue-400">{affiliateProducts.length}</div>
+            <div className="text-sm text-gray-400">Partner Products</div>
+          </div>
+          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
+            <div className="text-2xl font-bold text-green-400">5</div>
+            <div className="text-sm text-gray-400">Partner Networks</div>
+          </div>
+          <div className="bg-gray-900/50 rounded-lg p-4 text-center">
+            <div className="text-2xl font-bold text-purple-400">15%</div>
+            <div className="text-sm text-gray-400">Max Commission</div>
+          </div>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-4">
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input
+                placeholder="Search merchandise..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 bg-gray-800 border-gray-700 text-white"
+              />
+            </div>
+            <Button
+              onClick={fetchMerchandise}
+              className="bg-transparent border border-red-600 text-red-400 hover:bg-red-600/10 hover:border-red-500 hover:text-red-300 transition-all duration-200"
+            >
+              <Search className="h-4 w-4" />
+            </Button>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <SelectTrigger className="w-40 bg-gray-800 border-gray-700 text-white">
+                <Filter className="h-4 w-4 mr-2" />
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent className="bg-gray-800 border-gray-700">
+                <SelectItem value="all" className="text-white">
+                  All Categories
+                </SelectItem>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category} className="text-white">
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Select value={selectedNetwork} onValueChange={setSelectedNetwork}>
+              <SelectTrigger className="w-40 bg-gray-800 border-gray-700 text-white">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                <SelectValue placeholder="Partner" />
+              </SelectTrigger>
+              <SelectContent className="bg-gray-800 border-gray-700">
+                <SelectItem value="all" className="text-white">
+                  All Partners
+                </SelectItem>
+                {networks.map((network) => (
+                  <SelectItem key={network} value={network} className="text-white">
+                    {network.charAt(0).toUpperCase() + network.slice(1)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Button
+              onClick={fetchAffiliateProducts}
+              variant="outline"
+              className="bg-transparent border border-gray-600 text-gray-400 hover:bg-gray-600/10 hover:border-gray-500 hover:text-gray-300 transition-all duration-200"
+            >
+              Apply Filters
+            </Button>
+          </div>
+        </div>
+
+        {/* Content Tabs */}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-3 bg-gray-900/50 mb-6">
+            <TabsTrigger value="team-store" className="flex items-center gap-2">
+              <ShoppingBag className="h-4 w-4" />
+              Team Store
+            </TabsTrigger>
+            <TabsTrigger value="partner-deals" className="flex items-center gap-2">
+              <ExternalLink className="h-4 w-4" />
+              Partner Deals
+            </TabsTrigger>
+            <TabsTrigger value="trending" className="flex items-center gap-2">
+              <TrendingUp className="h-4 w-4" />
+              Trending
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="team-store" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-white">Team Merchandise</h2>
+              <Badge className="bg-red-600 text-white">Official Team Gear</Badge>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {teamMerchandise.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="partner-deals" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-white">Partner Products</h2>
+              <Badge className="bg-blue-600 text-white">Affiliate Partners</Badge>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {affiliateProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  isAffiliate={true}
+                  onAffiliateClick={handleAffiliateClick}
+                />
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="trending" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-white">Trending Items</h2>
+              <Badge className="bg-orange-600 text-white">Hot Deals</Badge>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {[...teamMerchandise, ...affiliateProducts]
+                .sort((a, b) => (b.rating || 0) - (a.rating || 0))
+                .slice(0, 8)
+                .map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    isAffiliate={!!product.network}
+                    onAffiliateClick={handleAffiliateClick}
+                  />
+                ))}
+            </div>
+          </TabsContent>
+        </Tabs>
+
+        {/* Affiliate Gateway Modal */}
+        {showGateway && selectedProduct && (
+          <AffiliateGateway
+            product={selectedProduct}
+            onClose={() => setShowGateway(false)}
+            onProceed={handleGatewayProceed}
+          />
+        )}
+      </div>
+    </div>
+  )
+}

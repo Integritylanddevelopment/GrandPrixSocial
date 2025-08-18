@@ -1,0 +1,27 @@
+node_modules
+dist
+.DS_Store
+server/public
+vite.config.ts.*
+*.tar.gz
+
+# Logs
+*.log
+f1_ai_processor.log
+f1_social_monitor.log
+scripts/daily_content.log
+scripts/f1_ai_processor.log
+scripts/f1_social_monitor.log
+
+# Cache directories
+__pycache__/
+.cache/
+.config/
+.local/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

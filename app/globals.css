@@ -1,0 +1,497 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Fixed @custom-variant syntax to use semicolon instead of curly braces */
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Added F1 racing color variables */
+  --racing-red: #dc2626;
+  --racing-blue: #2563eb;
+  --racing-gold: #f59e0b;
+  --racing-silver: #9ca3af;
+  --racing-ferrari: #dc143c;
+  --racing-mercedes: #00d2be;
+  --racing-mclaren: #ff8700;
+  --racing-redbull: #0600ef;
+
+  /* Added F1 font families */
+  --font-orbitron: "Orbitron";
+  --font-rajdhani: "Rajdhani";
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Adding proper F1 font families */
+  --font-orbitron: var(--font-orbitron);
+  --font-rajdhani: var(--font-rajdhani);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    /* Using Rajdhani as default font instead of font-sans (Inter) */
+    @apply font-rajdhani antialiased bg-background text-foreground;
+    background: linear-gradient(135deg, #000000 0%, #1a0a0a 50%, #000000 100%);
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .racing-gradient {
+    @apply bg-gradient-to-r from-red-600 to-blue-700;
+  }
+
+  .team-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Enhanced mobile navigation positioning to prevent keyboard interference and lock to bottom */
+  .mobile-nav-locked {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Prevent keyboard from affecting position */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* Lock to bottom even with virtual keyboard */
+    bottom: max(env(safe-area-inset-bottom), 0px) !important;
+  }
+
+  /* iOS-specific fixes to prevent keyboard displacement */
+  @supports (-webkit-touch-callout: none) {
+    .mobile-nav-locked {
+      position: fixed !important;
+      bottom: env(safe-area-inset-bottom, 0px) !important;
+      /* Prevent iOS Safari from moving the nav when keyboard appears */
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Safe area support for devices with home indicators */
+  .pb-safe {
+    padding-bottom: max(env(safe-area-inset-bottom), 0.75rem);
+  }
+
+  /* Enhanced mobile navigation positioning to prevent keyboard interference */
+  .mobile-nav-fixed {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Prevent keyboard from affecting position */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Added mobile-optimized and f1-tile classes for consistent styling */
+  .mobile-optimized {
+    @apply bg-gradient-to-br from-gray-900 via-black to-red-900/20 pb-20;
+  }
+
+  .f1-tile {
+    @apply bg-gray-900/50 border border-gray-700 rounded-lg backdrop-blur-sm;
+  }
+
+  .mobile-card {
+    @apply bg-gray-900/60 border border-gray-700 rounded-lg p-4 backdrop-blur-sm;
+  }
+
+  .mobile-btn {
+    @apply flex items-center justify-center rounded-lg font-medium transition-colors duration-200 touch-manipulation;
+  }
+
+  .hero-title {
+    @apply text-2xl font-bold text-white;
+  }
+
+  .subheading {
+    @apply text-lg font-semibold text-white;
+  }
+
+  .text-base-plus {
+    @apply text-base text-gray-300;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Comprehensive F1 button system - removed btn-f1-base dependency */
+  .btn-f1-red {
+    @apply bg-transparent border-2 border-red-500 text-red-400 font-medium rounded-lg px-4 py-2 transition-all duration-200 font-rajdhani hover:bg-red-500/10 hover:border-red-400 hover:text-red-300;
+  }
+
+  .btn-f1-blue {
+    @apply bg-transparent border-2 border-blue-500 text-blue-400 font-medium rounded-lg px-4 py-2 transition-all duration-200 font-rajdhani hover:bg-blue-500/10 hover:border-blue-400 hover:text-blue-300;
+  }
+
+  .btn-f1-green {
+    @apply bg-transparent border-2 border-green-500 text-green-400 font-medium rounded-lg px-4 py-2 transition-all duration-200 font-rajdhani hover:bg-green-500/10 hover:border-green-400 hover:text-green-300;
+  }
+
+  .btn-f1-yellow {
+    @apply bg-transparent border-2 border-yellow-500 text-yellow-400 font-medium rounded-lg px-4 py-2 transition-all duration-200 font-rajdhani hover:bg-yellow-500/10 hover:border-yellow-400 hover:text-yellow-300;
+  }
+
+  .btn-f1-ferrari {
+    @apply bg-transparent border-2 border-red-600 text-red-400 font-medium rounded-lg px-4 py-2 transition-all duration-200 font-rajdhani hover:bg-red-600/10 hover:border-red-500 hover:text-red-300;
+  }
+
+  .btn-f1-mercedes {
+    @apply bg-transparent border-2 border-cyan-500 text-cyan-400 font-medium rounded-lg px-4 py-2 transition-all duration-200 font-rajdhani hover:bg-cyan-500/10 hover:border-cyan-400 hover:text-cyan-300;
+  }
+
+  .btn-f1-mclaren {
+    @apply bg-transparent border-2 border-orange-500 text-orange-400 font-medium rounded-lg px-4 py-2 transition-all duration-200 font-rajdhani hover:bg-orange-500/10 hover:border-orange-400 hover:text-orange-300;
+  }
+
+  .btn-f1-redbull {
+    @apply bg-transparent border-2 border-blue-600 text-blue-400 font-medium rounded-lg px-4 py-2 transition-all duration-200 font-rajdhani hover:bg-blue-600/10 hover:border-blue-500 hover:text-blue-300;
+  }
+
+  /* Typography system - consistent fonts throughout */
+  .f1-heading-xl {
+    @apply text-4xl font-bold font-orbitron text-white;
+  }
+
+  .f1-heading-lg {
+    @apply text-3xl font-bold font-orbitron text-white;
+  }
+
+  .f1-heading-md {
+    @apply text-2xl font-semibold font-orbitron text-white;
+  }
+
+  .f1-heading-sm {
+    @apply text-xl font-medium font-orbitron text-white;
+  }
+
+  .f1-body-lg {
+    @apply text-lg font-rajdhani text-gray-300;
+  }
+
+  .f1-body-md {
+    @apply text-base font-rajdhani text-gray-300;
+  }
+
+  .f1-body-sm {
+    @apply text-sm font-rajdhani text-gray-400;
+  }
+
+  /* Layout system - consistent alignment and spacing */
+  .f1-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .f1-section {
+    @apply py-12 space-y-8;
+  }
+
+  /* Fixed f1-card to use direct CSS instead of @apply team-card */
+  .f1-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    @apply rounded-lg p-6 space-y-4;
+  }
+
+  .f1-grid {
+    @apply grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .f1-flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .f1-flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  .f1-flex-start {
+    @apply flex items-center justify-start;
+  }
+}
+
+@layer utilities {
+  /* Nuclear-level prevention of ALL solid background buttons globally */
+  button:not(.btn-f1-red):not(.btn-f1-blue):not(.btn-f1-green):not(.btn-f1-yellow):not(.btn-f1-ferrari):not(
+      .btn-f1-mercedes
+    ):not(.btn-f1-mclaren):not(.btn-f1-redbull),
+  .bg-red-500,
+  .bg-red-600,
+  .bg-red-700,
+  .bg-blue-500,
+  .bg-blue-600,
+  .bg-blue-700,
+  .bg-green-500,
+  .bg-green-600,
+  .bg-green-700,
+  .bg-yellow-500,
+  .bg-yellow-600,
+  .bg-yellow-700,
+  .bg-primary,
+  .bg-secondary,
+  .bg-destructive {
+    background-color: transparent !important;
+    border: 2px solid currentColor !important;
+    color: inherit !important;
+  }
+
+  /* Force ALL buttons to use F1 styling with proper CSS properties */
+  button {
+    background-color: transparent !important;
+    border: 2px solid #ef4444 !important;
+    color: #f87171 !important;
+    font-weight: 500 !important;
+    border-radius: 0.5rem !important;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.2s !important;
+    font-family: var(--font-rajdhani) !important;
+  }
+
+  button:hover {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+    border-color: #f87171 !important;
+    color: #fca5a5 !important;
+  }
+
+  /* Force ALL headings to be center-aligned with Orbitron font */
+  h1,
+  .h1 {
+    font-size: 2.25rem !important;
+    font-weight: 700 !important;
+    font-family: var(--font-orbitron) !important;
+    color: white !important;
+    text-align: center !important;
+  }
+
+  h2,
+  .h2 {
+    font-size: 1.875rem !important;
+    font-weight: 700 !important;
+    font-family: var(--font-orbitron) !important;
+    color: white !important;
+    text-align: center !important;
+  }
+
+  h3,
+  .h3 {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    font-family: var(--font-orbitron) !important;
+    color: white !important;
+    text-align: center !important;
+  }
+
+  h4,
+  .h4 {
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    font-family: var(--font-orbitron) !important;
+    color: white !important;
+    text-align: center !important;
+  }
+
+  /* Force page titles and section headings to be center-aligned */
+  .page-title,
+  .section-title,
+  [class*="title"],
+  [class*="heading"] {
+    text-align: center !important;
+    font-family: var(--font-orbitron) !important;
+  }
+
+  p,
+  .p {
+    @apply text-base font-rajdhani text-gray-300;
+  }
+
+  /* Comprehensive Lucide-only icon enforcement system */
+  /* LUCIDE ICONS ONLY - NO EXCEPTIONS */
+  /* Prevent ALL emoji usage site-wide */
+  * {
+    font-variant-emoji: text !important;
+    -webkit-font-feature-settings: "liga" off !important;
+    font-feature-settings: "liga" off !important;
+  }
+
+  /* Hide emoji characters completely */
+  *:not(input):not(textarea) {
+    font-family: var(--font-rajdhani), "Lucide", sans-serif !important;
+  }
+
+  /* Prevent Font Awesome, Material Icons, and other icon fonts */
+  .fa,
+  .fas,
+  .far,
+  .fal,
+  .fab,
+  .material-icons,
+  .material-icons-outlined,
+  .icon,
+  .iconify,
+  .feather {
+    display: none !important;
+  }
+
+  /* Force Lucide icon styling */
+  .lucide {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    stroke-width: 2 !important;
+  }
+
+  /* Global emoji prevention - hide all Unicode emoji ranges */
+  *::before,
+  *::after {
+    content: none !important;
+  }
+}
+
+@keyframes race-line {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-racing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+  }
+}
