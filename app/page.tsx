@@ -25,17 +25,17 @@ export default function HomePage() {
             The ultimate social platform for Formula 1 fans. Connect, compete, and celebrate the world of racing.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <Badge variant="secondary" className="bg-red-600/20 text-red-400 border-red-500/30">
-              <Zap className="w-4 h-4 mr-1" />
-              Live F1 Updates
+            <Badge variant="secondary" className="bg-red-600/20 text-red-400 border-red-500/30 text-base py-2 px-4">
+              <Zap className="w-4 h-4 mr-2" />
+              Fantasy F1 Community
             </Badge>
-            <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
-              <Users className="w-4 h-4 mr-1" />
-              Team Communities
+            <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30 text-base py-2 px-4">
+              <Users className="w-4 h-4 mr-2" />
+              F1 News and Updates
             </Badge>
-            <Badge variant="secondary" className="bg-green-600/20 text-green-400 border-green-500/30">
-              <Trophy className="w-4 h-4 mr-1" />
-              Racing Tournaments
+            <Badge variant="secondary" className="bg-green-600/20 text-green-400 border-green-500/30 text-base py-2 px-4">
+              <Trophy className="w-4 h-4 mr-2" />
+              Race Day Times and Channels
             </Badge>
           </div>
         </div>
