@@ -115,15 +115,15 @@ export default function Cafe() {
                       </div>
                       <p className="text-gray-300 mb-4">{post.content}</p>
                       <div className="flex items-center gap-6 text-gray-400">
-                        <button className="flex items-center gap-2 hover:text-red-400 transition-colors">
+                        <button className="flex items-center gap-2 hover:text-yellow-400 transition-colors">
                           <Heart className="h-4 w-4" />
                           {post.likes}
                         </button>
-                        <button className="flex items-center gap-2 hover:text-blue-400 transition-colors">
+                        <button className="flex items-center gap-2 hover:text-yellow-400 transition-colors">
                           <MessageCircle className="h-4 w-4" />
                           {post.comments}
                         </button>
-                        <button className="flex items-center gap-2 hover:text-green-400 transition-colors">
+                        <button className="flex items-center gap-2 hover:text-yellow-400 transition-colors">
                           <Share2 className="h-4 w-4" />
                           Share
                         </button>

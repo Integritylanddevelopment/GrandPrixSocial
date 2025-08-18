@@ -4032,6 +4032,13 @@
       }
     }
   }
+  .hover\:text-yellow-400 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-yellow-400);
+      }
+    }
+  }
   .hover\:underline {
     &:hover {
       @media (hover: hover) {
