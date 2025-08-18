@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
 import { Search, Filter, ShoppingBag, ExternalLink, TrendingUp } from "lucide-react"
+import ShopIcon from "@/components/icons/shop-icon"
 
 export default function Merchandise() {
   const [teamMerchandise, setTeamMerchandise] = useState([])
@@ -105,7 +106,11 @@ export default function Merchandise() {
       <div className="container mx-auto px-4 py-6 max-w-7xl">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold mb-2 font-orbitron text-green-400" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' }}>F1 Merchandise Store</h1>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <ShopIcon className="text-green-400" width={48} height={48} />
+            <h1 className="text-4xl font-bold font-orbitron text-green-400" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' }}>F1 Merchandise Store</h1>
+            <ShopIcon className="text-green-400" width={48} height={48} />
+          </div>
           <p className="text-gray-400 font-rajdhani">Official team gear and partner products with exclusive discounts</p>
         </div>
 

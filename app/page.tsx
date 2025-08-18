@@ -1,8 +1,10 @@
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Flag, Newspaper, ShoppingBag, Gamepad2, Zap, Users, Trophy, Calendar } from "lucide-react"
+import { Flag, Gamepad2, Zap, Users, Trophy, Calendar } from "lucide-react"
 import CafeIcon from "@/components/icons/cafe-icon"
+import NewsIcon from "@/components/icons/news-icon"
+import ShopIcon from "@/components/icons/shop-icon"
 
 export default function HomePage() {
   return (
@@ -68,7 +70,7 @@ export default function HomePage() {
               <CardContent className="p-6 text-center">
                 <h3 className="text-xl font-bold text-blue-400 mb-4 font-orbitron">Paddock Talk</h3>
                 <div className="bg-blue-500/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500/30 transition-colors">
-                  <Newspaper className="w-8 h-8 text-blue-400" />
+                  <NewsIcon className="text-blue-400" width={32} height={32} />
                 </div>
                 <p className="text-gray-400 text-sm mb-4 font-rajdhani">Latest F1 news & AI insights</p>
                 <div className="flex justify-center gap-2">
@@ -89,7 +91,7 @@ export default function HomePage() {
               <CardContent className="p-6 text-center">
                 <h3 className="text-xl font-bold text-green-400 mb-4 font-orbitron">Merchandise</h3>
                 <div className="bg-green-500/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-green-500/30 transition-colors">
-                  <ShoppingBag className="w-8 h-8 text-green-400" />
+                  <ShopIcon className="text-green-400" width={32} height={32} />
                 </div>
                 <p className="text-gray-400 text-sm mb-4 font-rajdhani">F1 gear & team collectibles</p>
                 <div className="flex justify-center gap-2">

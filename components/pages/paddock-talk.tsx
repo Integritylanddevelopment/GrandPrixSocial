@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import NewsIcon from "@/components/icons/news-icon"
 
 export default function PaddockTalk() {
   const [activeTab, setActiveTab] = useState("")
@@ -71,7 +72,11 @@ export default function PaddockTalk() {
     <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-red-950">
       <div className="py-6">
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold mb-2 font-orbitron text-blue-400" style={{ filter: 'drop-shadow(0 0 10px rgba(59, 130, 246, 0.5))' }}>Paddock Talk</h1>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <NewsIcon className="text-blue-400" width={48} height={48} />
+            <h1 className="text-4xl font-bold font-orbitron text-blue-400" style={{ filter: 'drop-shadow(0 0 10px rgba(59, 130, 246, 0.5))' }}>Paddock Talk</h1>
+            <NewsIcon className="text-blue-400" width={48} height={48} />
+          </div>
           <p className="text-gray-400 font-rajdhani">
             AI-powered F1 news with real-time updates from the paddock
           </p>
