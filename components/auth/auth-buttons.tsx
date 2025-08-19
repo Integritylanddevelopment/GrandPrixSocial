@@ -1,10 +1,9 @@
 "use client"
 
-import { useState } from "react"
-import { AuthModal } from "./auth-modal"
 import { useAuth } from "./auth-context"
 import { Button } from "@/components/ui/button"
 import { LogOut, User } from "lucide-react"
+import Link from "next/link"
 
 interface AuthButtonsProps {
   themeColor?: "yellow" | "blue" | "purple" | "green" | "red"
@@ -12,8 +11,6 @@ interface AuthButtonsProps {
 }
 
 export function AuthButtons({ themeColor = "purple", className = "" }: AuthButtonsProps) {
-  const [showAuthModal, setShowAuthModal] = useState(false)
-  const [authMode, setAuthMode] = useState<"signin" | "signup">("signin")
   const { user, loading, signOut } = useAuth()
 
   const getThemeClasses = (color: string) => {
@@ -31,16 +28,6 @@ export function AuthButtons({ themeColor = "purple", className = "" }: AuthButto
       default:
         return "text-purple-400 hover:text-purple-300 hover:bg-purple-400/10"
     }
-  }
-
-  const handleSignUp = () => {
-    setAuthMode("signup")
-    setShowAuthModal(true)
-  }
-
-  const handleSignIn = () => {
-    setAuthMode("signin")
-    setShowAuthModal(true)
   }
 
   if (loading) {
@@ -81,27 +68,19 @@ export function AuthButtons({ themeColor = "purple", className = "" }: AuthButto
 
   // User is not signed in - show sign up/sign in buttons
   return (
-    <>
-      <div className={`flex justify-center gap-6 ${className}`}>
-        <button
-          onClick={handleSignUp}
-          className={`px-4 py-2 text-lg font-rajdhani font-medium transition-all duration-200 ${getThemeClasses(themeColor)}`}
-        >
-          Sign Up
-        </button>
-        <button
-          onClick={handleSignIn}
-          className={`px-4 py-2 text-lg font-rajdhani font-medium transition-all duration-200 ${getThemeClasses(themeColor)}`}
-        >
-          Sign In
-        </button>
-      </div>
-      
-      <AuthModal
-        isOpen={showAuthModal}
-        onClose={() => setShowAuthModal(false)}
-        initialMode={authMode}
-      />
-    </>
+    <div className={`flex justify-center gap-6 ${className}`}>
+      <Link
+        href="/auth/signup"
+        className={`px-4 py-2 text-lg font-rajdhani font-medium transition-all duration-200 ${getThemeClasses(themeColor)}`}
+      >
+        Sign Up
+      </Link>
+      <Link
+        href="/auth/login"
+        className={`px-4 py-2 text-lg font-rajdhani font-medium transition-all duration-200 ${getThemeClasses(themeColor)}`}
+      >
+        Sign In
+      </Link>
+    </div>
   )
 }

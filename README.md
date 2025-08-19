@@ -18,11 +18,11 @@ A comprehensive Formula 1 social platform built with Next.js 15, featuring real-
 - **Multi-Platform Posting** - Create and schedule posts across platforms
 - **F1 Content Sharing** - Share race highlights, driver updates, and team news
 
-### Gaming & Fantasy
-- **Fantasy F1 League** - Build your dream team and compete
-- **Racing Challenges** - Weekly and seasonal competitions
+### Fantasy Formula
+- **Fantasy Formula Leagues** - Build your dream F1 team and compete
+- **Driver & Team Selection** - Strategic lineup building within budget
 - **Leaderboards** - Track your performance against other fans
-- **Tournaments** - Special events and competitions
+- **Seasonal Competitions** - Long-term fantasy championships
 
 ### Merchandise & Affiliate
 - **F1 Store Integration** - Official team merchandise

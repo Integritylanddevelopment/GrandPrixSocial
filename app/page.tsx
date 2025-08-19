@@ -27,7 +27,7 @@ export default function HomePage() {
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <Badge variant="secondary" className="bg-red-600/20 text-red-400 border-red-500/30 text-base py-2 px-4">
               <Zap className="w-4 h-4 mr-2" />
-              Fantasy F1 Community
+              Fantasy Formula Community
             </Badge>
             <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30 text-base py-2 px-4">
               <Users className="w-4 h-4 mr-2" />
@@ -53,6 +53,7 @@ export default function HomePage() {
                   <CafeIcon className="text-yellow-400" width={32} height={32} />
                 </div>
                 <p className="text-gray-400 text-sm mb-4 font-rajdhani">Connect with F1 fans worldwide</p>
+                <p className="text-xs text-gray-500 font-rajdhani">contact: social@grandprixsocial.com</p>
                 <div className="flex justify-center gap-2">
                   <Badge variant="outline" className="text-xs border-yellow-500/30 text-yellow-400">
                     Social Feed
@@ -74,12 +75,35 @@ export default function HomePage() {
                   <NewsIcon className="text-blue-400" width={32} height={32} />
                 </div>
                 <p className="text-gray-400 text-sm mb-4 font-rajdhani">Latest F1 news & AI insights</p>
+                <p className="text-xs text-gray-500 font-rajdhani">contact: news@grandprixsocial.com</p>
                 <div className="flex justify-center gap-2">
                   <Badge variant="outline" className="text-xs border-blue-500/30 text-blue-400">
                     Breaking News
                   </Badge>
                   <Badge variant="outline" className="text-xs border-blue-500/30 text-blue-400">
                     AI Analysis
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+
+          {/* Fantasy Formula */}
+          <Link href="/fantasy">
+            <Card className="group hover:scale-105 transition-all duration-300 glass-purple hover:border-purple-400">
+              <CardContent className="p-6 text-center">
+                <h3 className="text-xl font-bold text-purple-400 mb-4 font-orbitron">Fantasy Formula</h3>
+                <div className="bg-purple-500/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-500/30 transition-colors">
+                  <Gamepad2 className="w-8 h-8 text-purple-400" />
+                </div>
+                <p className="text-gray-400 text-sm mb-4 font-rajdhani">Build your F1 dream team</p>
+                <p className="text-xs text-gray-500 font-rajdhani">contact: fantasyformula@grandprixsocial.com</p>
+                <div className="flex justify-center gap-2">
+                  <Badge variant="outline" className="text-xs border-purple-500/30 text-purple-400">
+                    Leagues
+                  </Badge>
+                  <Badge variant="outline" className="text-xs border-purple-500/30 text-purple-400">
+                    Strategy
                   </Badge>
                 </div>
               </CardContent>
@@ -95,6 +119,7 @@ export default function HomePage() {
                   <ShopIcon className="text-green-400" width={32} height={32} />
                 </div>
                 <p className="text-gray-400 text-sm mb-4 font-rajdhani">F1 gear & team collectibles</p>
+                <p className="text-xs text-gray-500 font-rajdhani">contact: merch@grandprixsocial.com</p>
                 <div className="flex justify-center gap-2">
                   <Badge variant="outline" className="text-xs border-green-500/30 text-green-400">
                     Team Gear
@@ -107,32 +132,11 @@ export default function HomePage() {
             </Card>
           </Link>
 
-          {/* Gaming/Teams */}
-          <Link href="/teams">
-            <Card className="group hover:scale-105 transition-all duration-300 glass-purple hover:border-purple-400">
-              <CardContent className="p-6 text-center">
-                <h3 className="text-xl font-bold text-purple-400 mb-4 font-orbitron">Teams</h3>
-                <div className="bg-purple-500/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-500/30 transition-colors">
-                  <Gamepad2 className="w-8 h-8 text-purple-400" />
-                </div>
-                <p className="text-gray-400 text-sm mb-4 font-rajdhani">Join teams & compete</p>
-                <div className="flex justify-center gap-2">
-                  <Badge variant="outline" className="text-xs border-purple-500/30 text-purple-400">
-                    Tournaments
-                  </Badge>
-                  <Badge variant="outline" className="text-xs border-purple-500/30 text-purple-400">
-                    Challenges
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-
-          {/* Races */}
+          {/* Race Schedule */}
           <Link href="/calendar">
             <Card className="group hover:scale-105 transition-all duration-300 glass-red hover:border-red-400">
               <CardContent className="p-6 text-center">
-                <h3 className="text-xl font-bold text-red-400 mb-4 font-orbitron">Races</h3>
+                <h3 className="text-xl font-bold text-red-400 mb-4 font-orbitron">Race Schedule</h3>
                 <div className="bg-red-500/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-red-500/30 transition-colors">
                   <RacesIcon className="text-red-400" width={32} height={32} />
                 </div>

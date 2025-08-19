@@ -8,7 +8,7 @@ import { UserNav } from "@/components/auth/user-nav"
 const navigationItems = [
   { name: "F1 Café", href: "/cafe" },
   { name: "Paddock Talk", href: "/paddock-talk" },
-  { name: "Teams", href: "/teams" },
+  { name: "Fantasy Formula", href: "/fantasy" },
   { name: "Merchandise", href: "/merchandise" },
   { name: "Race Schedule", href: "/calendar" },
 ]

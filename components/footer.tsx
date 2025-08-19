@@ -33,8 +33,8 @@ export default function Footer() {
               <Link href="/paddock-talk" className="block text-gray-400 hover:text-white transition-colors text-sm">
                 Paddock Talk
               </Link>
-              <Link href="/teams" className="block text-gray-400 hover:text-white transition-colors text-sm">
-                Teams & Gaming
+              <Link href="/fantasy" className="block text-gray-400 hover:text-white transition-colors text-sm">
+                Fantasy Formula
               </Link>
               <Link href="/merchandise" className="block text-gray-400 hover:text-white transition-colors text-sm">
                 Merchandise

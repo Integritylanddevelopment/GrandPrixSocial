@@ -17,7 +17,7 @@ function SubmitButton() {
     <Button
       type="submit"
       disabled={pending}
-      className="w-full bg-transparent border border-red-600 text-red-400 hover:bg-red-600/10 hover:border-red-500 hover:text-red-300 py-6 text-lg font-medium rounded-lg h-[60px] transition-all duration-200"
+      className="w-full bg-gradient-to-r from-blue-600/20 to-blue-500/20 backdrop-blur-sm border border-blue-500/50 text-blue-400 hover:from-blue-600/30 hover:to-blue-500/30 hover:border-blue-400 hover:text-blue-300 py-6 text-lg font-bold font-orbitron rounded-lg h-[60px] transition-all duration-200 shadow-lg shadow-blue-500/20"
     >
       {pending ? (
         <>
@@ -43,10 +43,10 @@ export default function LoginForm() {
   }, [state, router])
 
   return (
-    <div className="w-full max-w-md space-y-8">
+    <div className="w-full max-w-md space-y-8 bg-black/40 backdrop-blur-md border border-blue-500/20 rounded-2xl p-8">
       <div className="space-y-2 text-center">
-        <h1 className="text-4xl font-semibold tracking-tight text-white">Welcome to Grand Prix Social</h1>
-        <p className="text-lg text-gray-400">Sign in to join the F1 community</p>
+        <h1 className="text-4xl font-bold font-orbitron tracking-tight" style={{ background: 'linear-gradient(to right, #60a5fa, #FF1801)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Welcome Back</h1>
+        <p className="text-lg text-gray-300 font-rajdhani">Sign in to join the F1 community</p>
       </div>
 
       <form action={formAction} className="space-y-6">
@@ -56,7 +56,7 @@ export default function LoginForm() {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-300 font-rajdhani">
               Email
             </label>
             <Input
@@ -65,11 +65,11 @@ export default function LoginForm() {
               type="email"
               placeholder="you@example.com"
               required
-              className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
+              className="bg-black/30 backdrop-blur-sm border-gray-700 text-white placeholder:text-gray-500 focus:border-blue-500 transition-colors"
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-300">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-300 font-rajdhani">
               Password
             </label>
             <Input
@@ -77,16 +77,16 @@ export default function LoginForm() {
               name="password"
               type="password"
               required
-              className="bg-gray-800 border-gray-700 text-white"
+              className="bg-black/30 backdrop-blur-sm border-gray-700 text-white focus:border-blue-500 transition-colors"
             />
           </div>
         </div>
 
         <SubmitButton />
 
-        <div className="text-center text-gray-400">
+        <div className="text-center text-gray-400 font-rajdhani">
           Don't have an account?{" "}
-          <Link href="/auth/signup" className="text-red-400 hover:text-red-300 hover:underline">
+          <Link href="/auth/signup" className="text-red-400 hover:text-red-300 hover:underline font-semibold">
             Sign up
           </Link>
         </div>

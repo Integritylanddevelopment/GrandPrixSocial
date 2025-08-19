@@ -13,7 +13,7 @@ import { useState } from "react"
 const mobileNavItems = [
   { name: "F1 Café", href: "/cafe", icon: CafeIcon, color: "yellow" },
   { name: "F1 News", href: "/paddock-talk", icon: NewsIcon, color: "blue" },
-  { name: "Fantasy F1", href: "/teams", icon: Trophy, color: "purple" },
+  { name: "Fantasy Formula", href: "/fantasy", icon: Trophy, color: "purple" },
   { name: "F1 Merch", href: "/merchandise", icon: ShopIcon, color: "green" },
   { name: "F1 Schedule", href: "/calendar", icon: RacesIcon, color: "red" },
 ]
@@ -26,7 +26,7 @@ export default function MobileNavigation() {
   const getPageThemeColor = () => {
     if (pathname === "/cafe") return "yellow"
     if (pathname === "/paddock-talk") return "blue"
-    if (pathname === "/teams") return "purple"
+    if (pathname === "/fantasy") return "purple"
     if (pathname === "/merchandise") return "green"
     if (pathname === "/calendar") return "red"
     return "white" // default

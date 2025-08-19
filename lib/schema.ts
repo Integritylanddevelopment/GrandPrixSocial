@@ -14,7 +14,23 @@ export const users = pgTable("users", {
   teamId: varchar("team_id"),
   favoriteDriver: text("favorite_driver"),
   favoriteTeam: text("favorite_team"),
+  
+  // AI Consent & Privacy Settings
+  aiConsentGiven: boolean("ai_consent_given").notNull().default(false),
+  aiConsentDate: timestamp("ai_consent_date"),
+  aiConsentVersion: text("ai_consent_version").default("1.0"),
+  dataRetentionPeriod: text("data_retention_period").default("30days"), // 30days, 6months, 2years
+  aiFeatures: jsonb("ai_features").default({
+    contentPersonalization: false,
+    socialMatching: false,
+    interfaceCustomization: false,
+    behaviorTracking: false,
+    analyticsInsights: false,
+    marketingCommunications: false
+  }),
+  
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 })
 
 export const teams = pgTable("teams", {

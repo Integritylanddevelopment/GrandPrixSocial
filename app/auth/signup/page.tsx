@@ -13,7 +13,7 @@ export default async function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-600 via-gray-900 to-black flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-red-900/20 to-slate-900 flex items-center justify-center p-4">
       <SignUpForm />
     </div>
   )

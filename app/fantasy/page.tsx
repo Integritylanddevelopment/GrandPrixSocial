@@ -66,7 +66,7 @@ export default function FantasyPage() {
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-white mb-2">Fantasy F1</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">Fantasy Formula</h1>
           <p className="text-gray-400">Build your dream team and compete with other F1 fans</p>
         </div>
 
@@ -76,10 +76,10 @@ export default function FantasyPage() {
               Browse Leagues
             </TabsTrigger>
             <TabsTrigger value="create-team" className="text-white data-[state=active]:bg-gray-800">
-              Create Team
+              Build Team
             </TabsTrigger>
             <TabsTrigger value="my-teams" className="text-white data-[state=active]:bg-gray-800">
-              My Teams
+              My Lineups
             </TabsTrigger>
           </TabsList>
 
@@ -178,10 +178,10 @@ export default function FantasyPage() {
               <CardContent className="p-8 text-center">
                 <div className="text-gray-400 mb-4">
                   <Trophy className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                  <p>You haven't created any fantasy teams yet.</p>
+                  <p>You haven't created any fantasy lineups yet.</p>
                 </div>
                 <Button className="bg-transparent border border-blue-600 text-blue-400 hover:bg-blue-600/10 hover:border-blue-500 hover:text-blue-300 transition-all duration-200">
-                  Create Your First Team
+                  Build Your First Lineup
                 </Button>
               </CardContent>
             </Card>
