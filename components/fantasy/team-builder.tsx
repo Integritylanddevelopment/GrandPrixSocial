@@ -85,86 +85,89 @@ export default function TeamBuilder({ budget = 100000000, maxDrivers = 5 }: Team
 
   if (loading) {
     return (
-      <Card className="bg-gray-900 border-gray-800">
-        <CardContent className="p-6">
-          <div className="text-center text-white">Loading drivers...</div>
-        </CardContent>
-      </Card>
+      <div className="flex justify-center py-12">
+        <Card className="glass-purple border-purple-500 max-w-md">
+          <CardContent className="p-6">
+            <div className="text-center text-purple-400 font-orbitron">Loading drivers...</div>
+          </CardContent>
+        </Card>
+      </div>
     )
   }
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-4xl mx-auto space-y-6">
       {/* Team Summary */}
-      <Card className="bg-gradient-to-r from-blue-600 to-purple-600 border-blue-700">
-        <CardHeader>
-          <CardTitle className="text-white">Your Fantasy Team</CardTitle>
+      <Card className="glass-purple border-purple-500">
+        <CardHeader className="text-center">
+          <CardTitle className="text-white font-orbitron text-2xl">Build Your Fantasy Team</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div>
+          <div className="max-w-md mx-auto">
             <Input
               placeholder="Enter team name..."
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
-              className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+              className="bg-gray-800 border-purple-500 text-white placeholder:text-gray-400 font-rajdhani text-center"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4 text-white">
+          <div className="grid grid-cols-2 gap-4 text-white text-center">
             <div>
-              <div className="text-sm opacity-80">Drivers Selected</div>
-              <div className="text-2xl font-bold">
+              <div className="text-sm text-gray-300 font-rajdhani">Drivers Selected</div>
+              <div className="text-2xl font-bold text-purple-400 font-orbitron">
                 {selectedDrivers.length}/{maxDrivers}
               </div>
             </div>
             <div>
-              <div className="text-sm opacity-80">Remaining Budget</div>
-              <div className="text-2xl font-bold">{formatBudget(remainingBudget)}</div>
+              <div className="text-sm text-gray-300 font-rajdhani">Remaining Budget</div>
+              <div className="text-2xl font-bold text-purple-400 font-orbitron">{formatBudget(remainingBudget)}</div>
             </div>
           </div>
 
           <div>
-            <div className="flex justify-between text-white text-sm mb-2">
+            <div className="flex justify-between text-white text-sm mb-2 font-rajdhani">
               <span>Budget Used</span>
               <span>{budgetUsed.toFixed(1)}%</span>
             </div>
-            <Progress value={budgetUsed} className="h-2" />
+            <Progress value={budgetUsed} className="h-2 bg-gray-800">
+              <div className="h-full bg-gradient-to-r from-purple-600 to-purple-400 rounded-full transition-all" style={{width: `${budgetUsed}%`}} />
+            </Progress>
           </div>
         </CardContent>
       </Card>
 
       {/* Selected Drivers */}
       {selectedDrivers.length > 0 && (
-        <Card className="bg-gray-900 border-gray-800">
-          <CardHeader>
-            <CardTitle className="text-white">Selected Drivers</CardTitle>
+        <Card className="glass-purple border-purple-500">
+          <CardHeader className="text-center">
+            <CardTitle className="text-white font-orbitron">Your Selected Drivers</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {selectedDrivers.map((driver) => (
               <div
                 key={driver.id}
-                className="flex items-center gap-4 p-3 bg-gray-800 rounded-lg border-l-4"
-                style={{ borderLeftColor: driver.teamColor }}
+                className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-lg border border-purple-500/30"
               >
                 <Image
                   src={driver.imageUrl || "/placeholder.svg"}
                   alt={`${driver.firstName} ${driver.lastName}`}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
+                  width={50}
+                  height={50}
+                  className="rounded-full border-2 border-purple-400"
                 />
                 <div className="flex-1">
-                  <div className="text-white font-semibold">
+                  <div className="text-white font-semibold font-rajdhani">
                     {driver.firstName} {driver.lastName}
                   </div>
-                  <div className="text-gray-400 text-sm">{driver.team}</div>
+                  <div className="text-gray-400 text-sm font-rajdhani">{driver.team}</div>
                 </div>
-                <div className="text-white font-mono">{formatPrice(driver.price)}</div>
+                <div className="text-purple-400 font-bold font-orbitron">{formatPrice(driver.price)}</div>
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={() => removeDriver(driver)}
-                  className="bg-transparent border border-red-600 text-red-400 hover:bg-red-600/10 hover:border-red-500 hover:text-red-300 transition-all duration-200"
+                  className="border-red-500 text-red-400 hover:bg-red-500/10 hover:border-red-400"
                 >
                   <Minus className="w-4 h-4" />
                 </Button>
@@ -175,9 +178,9 @@ export default function TeamBuilder({ budget = 100000000, maxDrivers = 5 }: Team
       )}
 
       {/* Available Drivers */}
-      <Card className="bg-gray-900 border-gray-800">
-        <CardHeader>
-          <CardTitle className="text-white">Available Drivers</CardTitle>
+      <Card className="glass-purple border-purple-500">
+        <CardHeader className="text-center">
+          <CardTitle className="text-white font-orbitron">Available Drivers</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {drivers.map((driver) => {
@@ -206,22 +209,22 @@ export default function TeamBuilder({ budget = 100000000, maxDrivers = 5 }: Team
 
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-white font-semibold">
+                    <span className="text-white font-semibold font-rajdhani">
                       {driver.firstName} {driver.lastName}
                     </span>
                     <Badge variant="outline" style={{ borderColor: driver.teamColor, color: driver.teamColor }}>
                       #{driver.number}
                     </Badge>
                   </div>
-                  <div className="text-gray-400 text-sm">{driver.team}</div>
+                  <div className="text-gray-400 text-sm font-rajdhani">{driver.team}</div>
                   <div className="flex items-center gap-4 mt-1">
-                    <span className="text-gray-300 text-sm">{driver.points} pts</span>
-                    <span className="text-gray-300 text-sm">{driver.popularity}% owned</span>
+                    <span className="text-gray-300 text-sm font-rajdhani">{driver.points} pts</span>
+                    <span className="text-gray-300 text-sm font-rajdhani">{driver.popularity}% owned</span>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <div className="text-white font-bold font-mono">{formatPrice(driver.price)}</div>
+                  <div className="text-purple-400 font-bold font-orbitron">{formatPrice(driver.price)}</div>
                   <div className="flex items-center gap-1 text-sm">
                     {driver.weeklyChange > 0 ? (
                       <TrendingUp className="w-3 h-3 text-green-500" />
@@ -255,9 +258,9 @@ export default function TeamBuilder({ budget = 100000000, maxDrivers = 5 }: Team
 
       {/* Save Team Button */}
       {selectedDrivers.length === maxDrivers && teamName.trim() && (
-        <Card className="bg-green-900 border-green-700">
+        <Card className="glass-purple border-purple-500">
           <CardContent className="p-4">
-            <Button className="w-full bg-transparent border border-green-600 text-green-400 hover:bg-green-600/10 hover:border-green-500 hover:text-green-300 transition-all duration-200">
+            <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-rajdhani transition-all duration-200">
               Save Team: {teamName}
             </Button>
           </CardContent>
