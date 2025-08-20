@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import TeamBuilder from "@/components/fantasy/team-builder"
-import { Trophy, Users, DollarSign, HelpCircle, BookOpen, Car } from "lucide-react"
+import { Trophy, Users, DollarSign, HelpCircle, BookOpen, Car, Target, Settings, TrendingUp } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import AuthButtons from "@/components/auth/auth-buttons"
 
@@ -27,6 +26,7 @@ interface FantasyLeague {
 export default function FantasyPage() {
   const [leagues, setLeagues] = useState<FantasyLeague[]>([])
   const [loading, setLoading] = useState(true)
+  const [activeTab, setActiveTab] = useState("leagues")
 
   useEffect(() => {
     const fetchLeagues = async () => {
@@ -71,7 +71,7 @@ export default function FantasyPage() {
         {/* Header with Title and Icons */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-6 mb-6">
-            <Car className="w-12 h-12 text-purple-400" />
+            <Trophy className="w-12 h-12 text-purple-400" />
             <h1 className="f1-heading-xl md:text-6xl">
               <span className="bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400 bg-clip-text text-transparent">
                 Fantasy Formula
@@ -82,7 +82,7 @@ export default function FantasyPage() {
           
           {/* Subtitle */}
           <p className="f1-body-lg max-w-3xl mx-auto mb-8">
-            Build your dream F1 team and compete with other fans in the ultimate fantasy racing experience
+            Build your dream F1 team and compete with other fans<br className="sm:hidden" /> in the ultimate fantasy racing experience
           </p>
           
           {/* Auth Buttons */}
@@ -91,23 +91,26 @@ export default function FantasyPage() {
           </div>
         </div>
 
-        {/* Rules and Strategy Buttons */}
+        {/* All Navigation Tabs in One Line */}
         <div className="text-center mb-12">
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4 flex-wrap">
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500/10">
-                  <HelpCircle className="w-4 h-4 mr-2" />
+                <button className="flex items-center gap-2 px-4 py-2 text-purple-400 font-rajdhani font-medium transition-all duration-200 hover:text-purple-300 hover:bg-purple-400/10 rounded-lg border-2 border-transparent hover:border-purple-400/50">
+                  <HelpCircle className="w-4 h-4" />
                   How to Play
-                </Button>
+                </button>
               </DialogTrigger>
-              <DialogContent className="glass-purple border-purple-500 max-w-2xl">
+              <DialogContent className="w-full max-w-2xl bg-black/40 backdrop-blur-md border border-purple-500/20 rounded-2xl">
                 <DialogHeader>
                   <DialogTitle className="text-purple-400 font-orbitron">Fantasy Formula Rules</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4 text-gray-300">
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">🏎️ Team Building</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Car className="w-5 h-5 text-purple-400" />
+                      <h3 className="text-lg font-semibold text-white">Team Building</h3>
+                    </div>
                     <ul className="space-y-1 text-sm">
                       <li>• Select 2 drivers and 1 constructor within budget</li>
                       <li>• Each team has a $100M salary cap</li>
@@ -117,7 +120,10 @@ export default function FantasyPage() {
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">🏆 Scoring System</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Trophy className="w-5 h-5 text-purple-400" />
+                      <h3 className="text-lg font-semibold text-white">Scoring System</h3>
+                    </div>
                     <ul className="space-y-1 text-sm">
                       <li>• Race finish position points (25, 18, 15, 12, 10, 8, 6, 4, 2, 1)</li>
                       <li>• Fastest lap bonus: +2 points</li>
@@ -128,7 +134,10 @@ export default function FantasyPage() {
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">🎮 League Types</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Users className="w-5 h-5 text-purple-400" />
+                      <h3 className="text-lg font-semibold text-white">League Types</h3>
+                    </div>
                     <ul className="space-y-1 text-sm">
                       <li>• <strong>Season-long:</strong> Pick team once, score all season</li>
                       <li>• <strong>Race-by-race:</strong> New lineup each Grand Prix</li>
@@ -143,18 +152,21 @@ export default function FantasyPage() {
             
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500/10">
-                  <BookOpen className="w-4 h-4 mr-2" />
+                <button className="flex items-center gap-2 px-4 py-2 text-purple-400 font-rajdhani font-medium transition-all duration-200 hover:text-purple-300 hover:bg-purple-400/10 rounded-lg border-2 border-transparent hover:border-purple-400/50">
+                  <BookOpen className="w-4 h-4" />
                   Strategy Guide
-                </Button>
+                </button>
               </DialogTrigger>
-              <DialogContent className="glass-purple border-purple-500 max-w-2xl">
+              <DialogContent className="w-full max-w-2xl bg-black/40 backdrop-blur-md border border-purple-500/20 rounded-2xl">
                 <DialogHeader>
                   <DialogTitle className="text-purple-400 font-orbitron">Winning Strategies</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4 text-gray-300">
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">💡 Driver Selection Tips</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Target className="w-5 h-5 text-purple-400" />
+                      <h3 className="text-lg font-semibold text-white">Driver Selection Tips</h3>
+                    </div>
                     <ul className="space-y-1 text-sm">
                       <li>• Mix safe picks (consistent points) with high-risk/reward drivers</li>
                       <li>• Consider track-specific performance history</li>
@@ -164,7 +176,10 @@ export default function FantasyPage() {
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">🏗️ Constructor Strategy</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Settings className="w-5 h-5 text-purple-400" />
+                      <h3 className="text-lg font-semibold text-white">Constructor Strategy</h3>
+                    </div>
                     <ul className="space-y-1 text-sm">
                       <li>• Top teams (Red Bull, Ferrari, Mercedes) score consistently</li>
                       <li>• Mid-field teams can offer value at specific tracks</li>
@@ -174,7 +189,10 @@ export default function FantasyPage() {
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">📊 Budget Management</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <TrendingUp className="w-5 h-5 text-purple-400" />
+                      <h3 className="text-lg font-semibold text-white">Budget Management</h3>
+                    </div>
                     <ul className="space-y-1 text-sm">
                       <li>• Don't spend everything on two expensive drivers</li>
                       <li>• Look for mid-tier drivers outperforming their price</li>
@@ -185,30 +203,44 @@ export default function FantasyPage() {
                 </div>
               </DialogContent>
             </Dialog>
+            
+            {/* Tab buttons */}
+            <button 
+              onClick={() => setActiveTab("leagues")}
+              className={`px-4 py-2 font-rajdhani font-medium transition-all duration-200 rounded-lg border-2 ${
+                activeTab === "leagues" 
+                  ? "text-purple-300 bg-purple-400/20 border-purple-400" 
+                  : "text-purple-400 border-transparent hover:text-purple-300 hover:bg-purple-400/10 hover:border-purple-400/50"
+              }`}>
+              Browse Leagues
+            </button>
+            <button 
+              onClick={() => setActiveTab("create-team")}
+              className={`px-4 py-2 font-rajdhani font-medium transition-all duration-200 rounded-lg border-2 ${
+                activeTab === "create-team" 
+                  ? "text-purple-300 bg-purple-400/20 border-purple-400" 
+                  : "text-purple-400 border-transparent hover:text-purple-300 hover:bg-purple-400/10 hover:border-purple-400/50"
+              }`}>
+              Build Team
+            </button>
+            <button 
+              onClick={() => setActiveTab("my-teams")}
+              className={`px-4 py-2 font-rajdhani font-medium transition-all duration-200 rounded-lg border-2 ${
+                activeTab === "my-teams" 
+                  ? "text-purple-300 bg-purple-400/20 border-purple-400" 
+                  : "text-purple-400 border-transparent hover:text-purple-300 hover:bg-purple-400/10 hover:border-purple-400/50"
+              }`}>
+              My Lineups
+            </button>
           </div>
         </div>
 
-        <Tabs defaultValue="leagues" className="space-y-6">
-          <div className="flex justify-center">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+          <div className="hidden">
             <TabsList className="glass-purple border-purple-500">
-              <TabsTrigger 
-                value="leagues" 
-                className="glass-purple font-rajdhani"
-              >
-                Browse Leagues
-              </TabsTrigger>
-              <TabsTrigger 
-                value="create-team" 
-                className="glass-purple font-rajdhani"
-              >
-                Build Team
-              </TabsTrigger>
-              <TabsTrigger 
-                value="my-teams" 
-                className="glass-purple font-rajdhani"
-              >
-                My Lineups
-              </TabsTrigger>
+              <TabsTrigger value="leagues" className="glass-purple font-rajdhani">Browse Leagues</TabsTrigger>
+              <TabsTrigger value="create-team" className="glass-purple font-rajdhani">Build Team</TabsTrigger>
+              <TabsTrigger value="my-teams" className="glass-purple font-rajdhani">My Lineups</TabsTrigger>
             </TabsList>
           </div>
 
@@ -216,7 +248,7 @@ export default function FantasyPage() {
             {/* Sample Featured Leagues */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Featured League 1 */}
-              <Card className="glass-purple border-purple-500 hover:border-purple-400 transition-all duration-300">
+              <Card className="glass-purple hover:border-purple-400 transition-all duration-300">
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <Trophy className="w-6 h-6 text-purple-400" />
@@ -251,14 +283,14 @@ export default function FantasyPage() {
                     </Badge>
                   </div>
 
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-rajdhani transition-all duration-200">
+                  <button className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-rajdhani rounded-lg transition-all duration-200">
                     Join League
-                  </Button>
+                  </button>
                 </CardContent>
               </Card>
 
               {/* Featured League 2 */}
-              <Card className="glass-purple border-purple-500 hover:border-purple-400 transition-all duration-300">
+              <Card className="glass-purple hover:border-purple-400 transition-all duration-300">
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <Users className="w-6 h-6 text-purple-400" />
@@ -296,14 +328,14 @@ export default function FantasyPage() {
                     </Badge>
                   </div>
 
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-rajdhani transition-all duration-200">
+                  <button className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-rajdhani rounded-lg transition-all duration-200">
                     Join League
-                  </Button>
+                  </button>
                 </CardContent>
               </Card>
 
               {/* Featured League 3 */}
-              <Card className="glass-purple border-purple-500 hover:border-purple-400 transition-all duration-300">
+              <Card className="glass-purple hover:border-purple-400 transition-all duration-300">
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <DollarSign className="w-6 h-6 text-purple-400" />
@@ -341,9 +373,9 @@ export default function FantasyPage() {
                     </Badge>
                   </div>
 
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-rajdhani transition-all duration-200">
+                  <button className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-rajdhani rounded-lg transition-all duration-200">
                     Join League
-                  </Button>
+                  </button>
                 </CardContent>
               </Card>
             </div>
@@ -354,16 +386,16 @@ export default function FantasyPage() {
           </TabsContent>
 
           <TabsContent value="my-teams">
-            <Card className="glass-purple border-purple-500">
+            <Card className="glass-purple">
               <CardContent className="p-8 text-center">
                 <div className="text-gray-300 mb-6">
                   <Trophy className="w-12 h-12 mx-auto mb-4 text-purple-400 opacity-75" />
                   <h3 className="text-xl font-semibold text-white font-orbitron mb-2">No Lineups Yet</h3>
                   <p className="font-rajdhani">You haven't created any fantasy lineups yet. Build your first team to get started!</p>
                 </div>
-                <Button className="bg-purple-600 hover:bg-purple-700 text-white font-rajdhani transition-all duration-200">
+                <button className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-rajdhani rounded-lg transition-all duration-200">
                   Build Your First Lineup
-                </Button>
+                </button>
               </CardContent>
             </Card>
           </TabsContent>
