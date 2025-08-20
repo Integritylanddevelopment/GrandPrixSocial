@@ -10,6 +10,7 @@ export default function SocialMediaPage() {
         </div>
 
         <SocialDashboard />
+        
       </div>
     </div>
   )
