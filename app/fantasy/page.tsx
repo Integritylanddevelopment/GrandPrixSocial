@@ -68,24 +68,32 @@ export default function FantasyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-red-900/20 to-slate-900">
       <div className="container mx-auto px-4 py-8">
-        {/* Auth Buttons */}
-        <div className="flex justify-center mb-8">
-          <AuthButtons />
-        </div>
-
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold font-orbitron mb-4">
-            <span className="bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400 bg-clip-text text-transparent">
-              Fantasy Formula
-            </span>
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-rajdhani">
+        {/* Header with Title and Icons */}
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-6 mb-6">
+            <div className="text-4xl">🏎️</div>
+            <h1 className="text-4xl md:text-6xl font-bold font-orbitron">
+              <span className="bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400 bg-clip-text text-transparent">
+                Fantasy Formula
+              </span>
+            </h1>
+            <div className="text-4xl">🏆</div>
+          </div>
+          
+          {/* Subtitle */}
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-rajdhani mb-8">
             Build your dream F1 team and compete with other fans in the ultimate fantasy racing experience
           </p>
           
-          {/* Rules Button */}
-          <div className="flex justify-center gap-4 mt-6">
+          {/* Auth Buttons */}
+          <div className="flex justify-center mb-8">
+            <AuthButtons />
+          </div>
+        </div>
+
+        {/* Rules and Strategy Buttons */}
+        <div className="text-center mb-12">
+          <div className="flex justify-center gap-4">
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="outline" className="border-purple-500 text-purple-400 hover:bg-purple-500/10">
