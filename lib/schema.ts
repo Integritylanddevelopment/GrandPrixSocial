@@ -764,3 +764,111 @@ export const teamMembersRelations = relations(teamMembers, ({ one }) => ({
     references: [users.id],
   }),
 }))
+
+// Post likes table
+export const postLikes = pgTable("post_likes", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  postId: varchar("post_id").notNull(),
+  userId: varchar("user_id").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+})
+
+// Post comments table  
+export const postComments = pgTable("post_comments", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  postId: varchar("post_id").notNull(),
+  userId: varchar("user_id").notNull(),
+  content: text("content").notNull(),
+  parentCommentId: varchar("parent_comment_id"), // for nested comments
+  likes: integer("likes").default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+})
+
+// Comment likes table
+export const commentLikes = pgTable("comment_likes", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  commentId: varchar("comment_id").notNull(),
+  userId: varchar("user_id").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+})
+
+// Insert schemas
+export const insertPostLikeSchema = createInsertSchema(postLikes).omit({
+  id: true,
+  createdAt: true,
+})
+
+export const insertPostCommentSchema = createInsertSchema(postComments).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+})
+
+export const insertCommentLikeSchema = createInsertSchema(commentLikes).omit({
+  id: true,
+  createdAt: true,
+})
+
+// Types
+export type PostLike = typeof postLikes.$inferSelect
+export type InsertPostLike = z.infer<typeof insertPostLikeSchema>
+
+export type PostComment = typeof postComments.$inferSelect  
+export type InsertPostComment = z.infer<typeof insertPostCommentSchema>
+
+export type CommentLike = typeof commentLikes.$inferSelect
+export type InsertCommentLike = z.infer<typeof insertCommentLikeSchema>
+
+// Extended types
+export type PostCommentWithAuthor = PostComment & {
+  author: User
+  isLiked?: boolean
+}
+
+export type PostWithDetails = Post & {
+  author: User
+  team?: Team
+  isLiked?: boolean
+  userComments?: PostCommentWithAuthor[]
+}
+
+// Relations
+export const postLikesRelations = relations(postLikes, ({ one }) => ({
+  post: one(posts, {
+    fields: [postLikes.postId],
+    references: [posts.id],
+  }),
+  user: one(users, {
+    fields: [postLikes.userId],
+    references: [users.id],
+  }),
+}))
+
+export const postCommentsRelations = relations(postComments, ({ one, many }) => ({
+  post: one(posts, {
+    fields: [postComments.postId],
+    references: [posts.id],
+  }),
+  author: one(users, {
+    fields: [postComments.userId],
+    references: [users.id],
+  }),
+  parentComment: one(postComments, {
+    fields: [postComments.parentCommentId],
+    references: [postComments.id],
+  }),
+  replies: many(postComments),
+  likes: many(commentLikes),
+}))
+
+export const commentLikesRelations = relations(commentLikes, ({ one }) => ({
+  comment: one(postComments, {
+    fields: [commentLikes.commentId],
+    references: [postComments.id],
+  }),
+  user: one(users, {
+    fields: [commentLikes.userId],
+    references: [users.id],
+  }),
+}))

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Calendar, MapPin, Clock, Flag, Trophy, Zap, CircuitBoard } from "lucide-react"
+import { Calendar, MapPin, Clock, Flag, Trophy, Zap, CircuitBoard, Tv, Youtube, Share2, ExternalLink } from "lucide-react"
 import RacesIcon from "@/components/icons/races-icon"
 import { f1Schedule2025 } from "@/lib/race-schedule-data"
 import { format, parseISO, isFuture, isPast } from "date-fns"
@@ -9,6 +9,30 @@ import { AuthButtons } from "@/components/auth/auth-buttons"
 
 export default function SimpleRaceSchedule() {
   const [activeTab, setActiveTab] = useState("")
+
+  const shareToSocial = (platform: string, race: any) => {
+    const raceUrl = `${window.location.origin}/calendar#race-${race.id}`
+    const raceText = `🏁 ${race.name} - ${format(parseISO(race.date), "MMMM do, yyyy")} at ${race.time} ${race.timezone}. ${race.circuit}, ${race.location}. #F1 #Formula1 #${race.name.replace(/\s+/g, '')}`
+    
+    switch (platform) {
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(raceUrl)}&quote=${encodeURIComponent(raceText)}`, '_blank')
+        break
+      case 'twitter':
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(raceText)}&url=${encodeURIComponent(raceUrl)}`, '_blank')
+        break
+      case 'instagram':
+        // Instagram doesn't support direct URL sharing, so we copy to clipboard
+        navigator.clipboard.writeText(`${raceText} ${raceUrl}`)
+        alert('Race info copied to clipboard! Paste it in your Instagram post or story.')
+        break
+      case 'tiktok':
+        // TikTok doesn't support direct URL sharing, so we copy to clipboard  
+        navigator.clipboard.writeText(`${raceText} ${raceUrl}`)
+        alert('Race info copied to clipboard! Paste it in your TikTok post.')
+        break
+    }
+  }
 
   const getFilteredRaces = () => {
     switch (activeTab) {
@@ -127,13 +151,80 @@ export default function SimpleRaceSchedule() {
                         </div>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <button
-                        onClick={() => window.open(race.liveStreamOptions.f1tv, "_blank")}
-                        className="px-4 py-2 bg-transparent border border-red-600 text-red-400 hover:bg-red-600/10 hover:border-red-500 hover:text-red-300 rounded-md transition-colors"
-                      >
-                        Watch Live
-                      </button>
+                    <div className="text-right space-y-3">
+                      {/* Viewing Options */}
+                      <div className="flex flex-col gap-2">
+                        <div className="text-sm text-gray-400 font-rajdhani">Watch Live:</div>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => window.open(race.liveStreamOptions.f1tv, "_blank")}
+                            className="flex items-center gap-1 px-3 py-1 bg-red-600/20 border border-red-600/50 text-red-400 hover:bg-red-600/30 hover:border-red-500 hover:text-red-300 rounded text-xs transition-colors"
+                          >
+                            <Tv className="h-3 w-3" />
+                            F1 TV
+                          </button>
+                          {race.liveStreamOptions.espn && (
+                            <button
+                              onClick={() => window.open(race.liveStreamOptions.espn, "_blank")}
+                              className="flex items-center gap-1 px-3 py-1 bg-blue-600/20 border border-blue-600/50 text-blue-400 hover:bg-blue-600/30 hover:border-blue-500 hover:text-blue-300 rounded text-xs transition-colors"
+                            >
+                              <ExternalLink className="h-3 w-3" />
+                              ESPN
+                            </button>
+                          )}
+                          {race.liveStreamOptions.skyf1 && (
+                            <button
+                              onClick={() => window.open(race.liveStreamOptions.skyf1, "_blank")}
+                              className="flex items-center gap-1 px-3 py-1 bg-gray-600/20 border border-gray-600/50 text-gray-400 hover:bg-gray-600/30 hover:border-gray-500 hover:text-gray-300 rounded text-xs transition-colors"
+                            >
+                              <Tv className="h-3 w-3" />
+                              Sky F1
+                            </button>
+                          )}
+                          <button
+                            onClick={() => window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(race.name + ' 2025 live')}`, "_blank")}
+                            className="flex items-center gap-1 px-3 py-1 bg-red-600/20 border border-red-600/50 text-red-400 hover:bg-red-600/30 hover:border-red-500 hover:text-red-300 rounded text-xs transition-colors"
+                          >
+                            <Youtube className="h-3 w-3" />
+                            YouTube
+                          </button>
+                        </div>
+                      </div>
+                      
+                      {/* Sharing Options */}
+                      <div className="flex flex-col gap-2">
+                        <div className="text-sm text-gray-400 font-rajdhani">Share:</div>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => shareToSocial('facebook', race)}
+                            className="flex items-center gap-1 px-3 py-1 bg-blue-600/20 border border-blue-600/50 text-blue-400 hover:bg-blue-600/30 hover:border-blue-500 hover:text-blue-300 rounded text-xs transition-colors"
+                          >
+                            <Share2 className="h-3 w-3" />
+                            Facebook
+                          </button>
+                          <button
+                            onClick={() => shareToSocial('twitter', race)}
+                            className="flex items-center gap-1 px-3 py-1 bg-gray-800/20 border border-gray-600/50 text-gray-400 hover:bg-gray-800/30 hover:border-gray-500 hover:text-gray-300 rounded text-xs transition-colors"
+                          >
+                            <Share2 className="h-3 w-3" />
+                            X
+                          </button>
+                          <button
+                            onClick={() => shareToSocial('instagram', race)}
+                            className="flex items-center gap-1 px-3 py-1 bg-pink-600/20 border border-pink-600/50 text-pink-400 hover:bg-pink-600/30 hover:border-pink-500 hover:text-pink-300 rounded text-xs transition-colors"
+                          >
+                            <Share2 className="h-3 w-3" />
+                            Instagram
+                          </button>
+                          <button
+                            onClick={() => shareToSocial('tiktok', race)}
+                            className="flex items-center gap-1 px-3 py-1 bg-gray-900/20 border border-gray-700/50 text-gray-300 hover:bg-gray-900/30 hover:border-gray-600 hover:text-white rounded text-xs transition-colors"
+                          >
+                            <Share2 className="h-3 w-3" />
+                            TikTok
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
