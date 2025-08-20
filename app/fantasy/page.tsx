@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import TeamBuilder from "@/components/fantasy/team-builder"
-import { Trophy, Users, DollarSign, HelpCircle, BookOpen } from "lucide-react"
+import { Trophy, Users, DollarSign, HelpCircle, BookOpen, Car } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import AuthButtons from "@/components/auth/auth-buttons"
 
@@ -71,17 +71,17 @@ export default function FantasyPage() {
         {/* Header with Title and Icons */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-6 mb-6">
-            <div className="text-4xl">🏎️</div>
-            <h1 className="text-4xl md:text-6xl font-bold font-orbitron">
+            <Car className="w-12 h-12 text-purple-400" />
+            <h1 className="f1-heading-xl md:text-6xl">
               <span className="bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400 bg-clip-text text-transparent">
                 Fantasy Formula
               </span>
             </h1>
-            <div className="text-4xl">🏆</div>
+            <Trophy className="w-12 h-12 text-purple-400" />
           </div>
           
           {/* Subtitle */}
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto font-rajdhani mb-8">
+          <p className="f1-body-lg max-w-3xl mx-auto mb-8">
             Build your dream F1 team and compete with other fans in the ultimate fantasy racing experience
           </p>
           
@@ -101,7 +101,7 @@ export default function FantasyPage() {
                   How to Play
                 </Button>
               </DialogTrigger>
-              <DialogContent className="glass border-gray-800 max-w-2xl">
+              <DialogContent className="glass-purple border-purple-500 max-w-2xl">
                 <DialogHeader>
                   <DialogTitle className="text-purple-400 font-orbitron">Fantasy Formula Rules</DialogTitle>
                 </DialogHeader>
@@ -148,7 +148,7 @@ export default function FantasyPage() {
                   Strategy Guide
                 </Button>
               </DialogTrigger>
-              <DialogContent className="glass border-gray-800 max-w-2xl">
+              <DialogContent className="glass-purple border-purple-500 max-w-2xl">
                 <DialogHeader>
                   <DialogTitle className="text-purple-400 font-orbitron">Winning Strategies</DialogTitle>
                 </DialogHeader>
@@ -190,22 +190,22 @@ export default function FantasyPage() {
 
         <Tabs defaultValue="leagues" className="space-y-6">
           <div className="flex justify-center">
-            <TabsList className="glass border-gray-800 bg-gray-900/50">
+            <TabsList className="glass-purple border-purple-500">
               <TabsTrigger 
                 value="leagues" 
-                className="text-gray-300 data-[state=active]:bg-purple-600 data-[state=active]:text-white font-rajdhani"
+                className="glass-purple font-rajdhani"
               >
                 Browse Leagues
               </TabsTrigger>
               <TabsTrigger 
                 value="create-team" 
-                className="text-gray-300 data-[state=active]:bg-purple-600 data-[state=active]:text-white font-rajdhani"
+                className="glass-purple font-rajdhani"
               >
                 Build Team
               </TabsTrigger>
               <TabsTrigger 
                 value="my-teams" 
-                className="text-gray-300 data-[state=active]:bg-purple-600 data-[state=active]:text-white font-rajdhani"
+                className="glass-purple font-rajdhani"
               >
                 My Lineups
               </TabsTrigger>
@@ -220,7 +220,7 @@ export default function FantasyPage() {
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <Trophy className="w-6 h-6 text-purple-400" />
-                    <CardTitle className="text-white font-orbitron">Grand Prix Champions</CardTitle>
+                    <CardTitle className="f1-heading-sm">Grand Prix Champions</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
