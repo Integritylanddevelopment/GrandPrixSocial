@@ -1,7 +1,8 @@
-import EmbeddedCheckout from '@/components/merchandise/embedded-checkout'
+import HybridCheckout from '@/components/merchandise/hybrid-checkout'
+import { instantAffiliateProducts, instantPartnerConfig } from '@/data/instant-affiliate-products'
 
-// Sample F1 merchandise data - replace with real API calls
-const sampleProducts = [
+// Using instant approval affiliate products
+const sampleProducts = instantAffiliateProducts.slice(0, 8) // Show first 8 products
   {
     id: 'gpbox-001',
     name: 'Max Verstappen Championship Cap',
@@ -108,86 +109,102 @@ export default function MerchandisePage() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold font-orbitron mb-4">
-            <span className="bg-gradient-to-r from-red-400 via-yellow-400 to-red-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400 bg-clip-text text-transparent">
               F1 Merchandise Store
             </span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto font-rajdhani">
-            Shop official Formula 1 merchandise from our trusted partners. 
-            Stay on Grand Prix Social while we handle the purchase through our affiliate network.
+            Shop F1 merchandise from Amazon, ClickBank, and top retailers. 
+            Stay on Grand Prix Social while our partners handle secure payments.
           </p>
         </div>
 
         {/* Store Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="glass p-6 rounded-lg border border-gray-800 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+          <div className="glass-purple p-6 rounded-lg border border-purple-500 text-center">
             <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-white font-bold">✓</span>
+              <span className="text-white font-bold">🚀</span>
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Stay on Our Site</h3>
-            <p className="text-gray-400 text-sm">
-              Complete purchases without leaving Grand Prix Social. Seamless checkout experience.
+            <h3 className="text-lg font-semibold text-white font-rajdhani mb-2">Instant Access</h3>
+            <p className="text-gray-400 text-sm font-rajdhani">
+              Live affiliate partnerships - no approval waiting period required.
             </p>
           </div>
           
-          <div className="glass p-6 rounded-lg border border-gray-800 text-center">
+          <div className="glass-purple p-6 rounded-lg border border-purple-500 text-center">
+            <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-white font-bold">🛒</span>
+            </div>
+            <h3 className="text-lg font-semibold text-white font-rajdhani mb-2">Stay Here</h3>
+            <p className="text-gray-400 text-sm font-rajdhani">
+              Shop without leaving our site. Partners handle all payments securely.
+            </p>
+          </div>
+          
+          <div className="glass-purple p-6 rounded-lg border border-purple-500 text-center">
             <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-white font-bold">🛡️</span>
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Secure Payments</h3>
-            <p className="text-gray-400 text-sm">
-              All payments processed securely through our encrypted payment system.
+            <h3 className="text-lg font-semibold text-white font-rajdhani mb-2">Secure Partners</h3>
+            <p className="text-gray-400 text-sm font-rajdhani">
+              Amazon, ClickBank, Fiverr - trusted platforms handle your payments.
             </p>
           </div>
           
-          <div className="glass p-6 rounded-lg border border-gray-800 text-center">
-            <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-white font-bold">🏆</span>
+          <div className="glass-purple p-6 rounded-lg border border-purple-500 text-center">
+            <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-white font-bold">💰</span>
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Earn Points</h3>
-            <p className="text-gray-400 text-sm">
-              Earn Grand Prix Social points with every purchase for exclusive rewards.
+            <h3 className="text-lg font-semibold text-white font-rajdhani mb-2">Best Prices</h3>
+            <p className="text-gray-400 text-sm font-rajdhani">
+              Direct from major retailers - competitive pricing and fast shipping.
             </p>
           </div>
         </div>
 
-        {/* Embedded Merchandise Store */}
-        <EmbeddedCheckout
+        {/* Hybrid Merchandise Store */}
+        <HybridCheckout
           products={sampleProducts}
-          partnerId="multi-partner"
           onPurchase={handlePurchase}
         />
 
-        {/* Partner Information */}
-        <div className="mt-16 glass p-6 rounded-lg border border-gray-800">
-          <h2 className="text-2xl font-bold text-white mb-6 text-center">Our Trusted Partners</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">GP</span>
+        {/* Instant Signup Guide */}
+        <div className="mt-16 glass-purple p-8 rounded-lg border border-purple-500">
+          <h2 className="text-3xl font-bold text-white font-orbitron mb-6 text-center">
+            🚀 Ready to Start Your Own Affiliate Program?
+          </h2>
+          <p className="text-gray-300 font-rajdhani text-center mb-8 max-w-3xl mx-auto">
+            Join the same instant-approval affiliate programs we use! Start earning commissions today without waiting for approvals.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {Object.entries(instantPartnerConfig)
+              .filter(([_, config]) => config.instant)
+              .map(([key, config]) => (
+              <div key={key} className="bg-gray-800/50 rounded-lg p-4 text-center">
+                <h3 className="text-white font-semibold font-rajdhani mb-2">{config.name}</h3>
+                <p className="text-gray-400 text-sm font-rajdhani mb-3">{config.description}</p>
+                <div className="text-xs text-gray-500 mb-4 font-rajdhani">
+                  <div>Commission: {config.commission}</div>
+                  <div>Minimum: {config.paymentMinimum}</div>
+                </div>
+                <a 
+                  href={config.signupUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full bg-purple-600 hover:bg-purple-700 text-white text-sm font-rajdhani py-2 px-4 rounded transition-colors"
+                >
+                  Sign Up Free
+                </a>
               </div>
-              <div>
-                <h3 className="text-white font-semibold">TheGPBox</h3>
-                <p className="text-gray-400 text-sm">Motorsport Marketplace - 4% Commission</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">F1</span>
-              </div>
-              <div>
-                <h3 className="text-white font-semibold">F1 Official Store</h3>
-                <p className="text-gray-400 text-sm">Official Formula 1 Merchandise - 5% Commission</p>
-              </div>
-            </div>
+            ))}
           </div>
           
-          <div className="mt-6 p-4 bg-gray-800/50 rounded-lg">
-            <p className="text-gray-300 text-sm text-center">
-              <strong>How it works:</strong> When you purchase through our store, 
-              we earn a small commission from our partners at no extra cost to you. 
-              This helps support Grand Prix Social and keep our platform free for all F1 fans!
+          <div className="mt-8 p-6 bg-gray-800/30 rounded-lg">
+            <p className="text-gray-300 text-sm text-center font-rajdhani">
+              <strong className="text-purple-400">How it works:</strong> These are the exact same affiliate programs powering our store. 
+              Sign up instantly, get your affiliate links, and start earning commissions on F1 merchandise, courses, and services. 
+              No approval waiting period - start promoting immediately!
             </p>
           </div>
         </div>
