@@ -19,7 +19,7 @@ interface Product {
   category: string
   inStock: boolean
   fastShipping: boolean
-  partner: 'amazon' | 'gpbox' | 'f1store' | 'ebay' | 'fanatics'
+  partner: 'amazon' | 'clickbank' | 'shareasale' | 'fiverr' | 'systeme' | 'gpbox' | 'f1store' | 'ebay' | 'fanatics'
   affiliateUrl: string
   description: string
   embedType: 'iframe' | 'popup' | 'redirect'
@@ -38,6 +38,38 @@ const partnerInfo = {
     commission: "1-10%",
     color: "bg-orange-500",
     description: "Massive F1 Product Selection",
+    instant: true
+  },
+  clickbank: {
+    name: "ClickBank",
+    logo: "/partners/clickbank-logo.png", 
+    commission: "50-75%",
+    color: "bg-green-600",
+    description: "Digital F1 Products",
+    instant: true
+  },
+  shareasale: {
+    name: "ShareASale",
+    logo: "/partners/shareasale-logo.png",
+    commission: "5-15%", 
+    color: "bg-blue-700",
+    description: "Affiliate Network",
+    instant: true
+  },
+  fiverr: {
+    name: "Fiverr",
+    logo: "/partners/fiverr-logo.png",
+    commission: "$150 CPA",
+    color: "bg-green-500",
+    description: "F1 Design Services",
+    instant: true
+  },
+  systeme: {
+    name: "Systeme.io",
+    logo: "/partners/systeme-logo.png",
+    commission: "30%",
+    color: "bg-indigo-600",
+    description: "Marketing Platform",
     instant: true
   },
   gpbox: {

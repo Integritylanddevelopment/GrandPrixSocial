@@ -84,3 +84,5 @@ export function AuthButtons({ themeColor = "purple", className = "" }: AuthButto
     </div>
   )
 }
+
+export default AuthButtons

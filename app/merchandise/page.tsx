@@ -3,6 +3,9 @@ import { instantAffiliateProducts, instantPartnerConfig } from '@/data/instant-a
 
 // Using instant approval affiliate products
 const sampleProducts = instantAffiliateProducts.slice(0, 8) // Show first 8 products
+
+// Old products removed - using instantAffiliateProducts instead
+const oldProducts = [
   {
     id: 'gpbox-001',
     name: 'Max Verstappen Championship Cap',
@@ -98,11 +101,6 @@ const sampleProducts = instantAffiliateProducts.slice(0, 8) // Show first 8 prod
 ]
 
 export default function MerchandisePage() {
-  const handlePurchase = (product: any) => {
-    console.log('Product purchased:', product)
-    // Handle post-purchase actions (analytics, user points, etc.)
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-red-900/20 to-slate-900">
       <div className="container mx-auto px-4 py-8">
@@ -165,7 +163,6 @@ export default function MerchandisePage() {
         {/* Hybrid Merchandise Store */}
         <HybridCheckout
           products={sampleProducts}
-          onPurchase={handlePurchase}
         />
 
         {/* Instant Signup Guide */}
