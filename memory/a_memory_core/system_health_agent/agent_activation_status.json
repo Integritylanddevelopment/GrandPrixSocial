@@ -1,0 +1,241 @@
+{
+  "activation_time": "2025-06-25T07:26:03.611867",
+  "total_agents": 37,
+  "agent_status": {
+    "memory_core_log_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:53.774283",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory/a_memory_core/memory_core_log_agent/memory_core_log_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/memory/a_memory_core/memory_core_log_agent/memory_core_log_agent.py\", line 21, in <module>\n    from watchdog.observe"
+    },
+    "builder_api_sync_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:50.559484",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_api_sync_agent/builder_api_sync_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_api_sync_agent/builder_api_sync_agent.py\", line 3, in <module>\n    import ope"
+    },
+    "builder_feedback_logger_agent": {
+      "status": "active",
+      "start_time": "2025-06-25T07:25:50.659892",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_feedback_logger_agent/builder_feedback_logger_agent.py"
+    },
+    "builder_git_sync_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:50.760410",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_git_sync_agent/builder_git_sync_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_git_sync_agent/builder_git_sync_agent.py\", line 4, in <module>\n    import ope"
+    },
+    "builder_logstream_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:50.862891",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_logstream_agent/builder_logstream_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_logstream_agent/builder_logstream_agent.py\", line 33, in <module>\n    main()\n"
+    },
+    "builder_log_export_agent": {
+      "status": "running",
+      "start_time": "2025-06-25T07:25:53.472561",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_log_export_agent/builder_log_export_agent.py"
+    },
+    "builder_secret_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:51.065763",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_secret_agent/builder_secret_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_secret_agent/builder_secret_agent.py\", line 72, in <module>\n    main()\n  File"
+    },
+    "builder_test_openai_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:51.167034",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_test_openai_agent/builder_test_openai_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_gui_agents/builder_test_openai_agent/builder_test_openai_agent.py\", line 2, in <module>\n    impo"
+    },
+    "builder_log_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:53.573149",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_logs/builder_log_agent/builder_log_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_logs/builder_log_agent/builder_log_agent.py\", line 21, in <module>\n    from watchdog.observers i"
+    },
+    "builder_log_coordinator_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:53.673770",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_logs/builder_log_coordinator_agent/builder_log_coordinator_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/builder_gui/builder_logs/builder_log_coordinator_agent/builder_log_coordinator_agent.py\", line 21, in <module>\n    f"
+    },
+    "memory_log_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:53.874861",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_log_agent/memory_log_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_log_agent/memory_log_agent.py\", line 21, in <module>\n    from watchdog.observers import Observe"
+    },
+    "echo_collector_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:53.975428",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/logs/echo_logs/echo_collector_agent/echo_collector_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/logs/echo_logs/echo_collector_agent/echo_collector_agent.py\", line 25, in <module>\n    from watchdog.observers impor"
+    },
+    "log_orchestrator_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:54.078649",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/logs/log_orchestrator_agent/log_orchestrator_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/logs/log_orchestrator_agent/log_orchestrator_agent.py\", line 29, in <module>\n    import schedule\nModuleNotFoundError"
+    },
+    "schema_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:54.179181",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/logs/schema/schema_agent/schema_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/logs/schema/schema_agent/schema_agent.py\", line 32, in <module>\n    from watchdog.observers import Observer\nModuleNo"
+    },
+    "system_log_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:54.279677",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/logs/system_logs/system_log_agent/system_log_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/logs/system_logs/system_log_agent/system_log_agent.py\", line 19, in <module>\n    from watchdog.observers import Obse"
+    },
+    "memory_agent_registry_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:56.382261",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory/a_memory_core/memory_agent_registry_agent/memory_agent_registry_agent.py",
+      "error": "  File \"/mnt/d/ActiveProjects/commandcore-helper/memory/a_memory_core/memory_agent_registry_agent/memory_agent_registry_agent.py\", line 63\n    self.state = self._create_default_state()    def _create_"
+    },
+    "memory_agent_router_agent": {
+      "status": "active",
+      "start_time": "2025-06-25T07:25:56.484753",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory/a_memory_core/memory_agent_router_agent/memory_agent_router_agent.py"
+    },
+    "memory_context_router_agent": {
+      "status": "active",
+      "start_time": "2025-06-25T07:25:56.587000",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory/a_memory_core/memory_context_router_agent/memory_context_router_agent.py"
+    },
+    "memory_indexer_agent": {
+      "status": "active",
+      "start_time": "2025-06-25T07:25:56.687487",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory/a_memory_core/memory_indexer_agent/memory_indexer_agent.py"
+    },
+    "memory_logic_enforcer_agent": {
+      "status": "running",
+      "start_time": "2025-06-25T07:25:56.788028",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory/a_memory_core/memory_logic_enforcer_agent/memory_logic_enforcer_agent.py"
+    },
+    "memory_orchestrator_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:56.888431",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory/a_memory_core/memory_orchestrator_agent/memory_orchestrator_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/memory/a_memory_core/memory_orchestrator_agent/memory_orchestrator_agent.py\", line 10, in <module>\n    from watchdog"
+    },
+    "test_memory_orchestrator_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:56.989479",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory_agents/test_memory_orchestrator_agent/test_memory_orchestrator_agent.py",
+      "error": "WARNING:root:NumPy not available - using fallback similarity calculations\nWARNING:root:OpenAI not available - using fallback tag generation\nWARNING:root:Could not import MemoryOrchestratorAgent - mock"
+    },
+    "memory_router_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:57.089894",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory/a_memory_core/memory_router_agent/memory_router_agent.py",
+      "error": "WARNING:root:NumPy not available - using fallback similarity calculations\nWARNING:root:OpenAI not available - using fallback tag generation\nTraceback (most recent call last):\n  File \"/mnt/d/ActiveProj"
+    },
+    "context_injection_agent": {
+      "status": "active",
+      "start_time": "2025-06-25T07:25:57.191148",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory_agents/context_injection_agent/context_injection_agent.py"
+    },
+    "memory_promotion_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:57.293336",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/z_archives/memory_agents_backups/2025-06-20_10-03/memory_decay_agent_old/memory_promotion_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/z_archives/memory_agents_backups/2025-06-20_10-03/memory_decay_agent_old/memory_promotion_agent.py\", line 25, in <mo"
+    },
+    "memory_recall_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:57.393808",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_recall_agent/memory_recall_agent.py",
+      "error": "  File \"/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_recall_agent/memory_recall_agent.py\", line 101\n    logging.info(f\"MemoryRecallAgent initialized - Version 2.0\")    def get_current"
+    },
+    "memory_renamer_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:57.494263",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_renamer_agent/memory_renamer_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_renamer_agent/memory_renamer_agent.py\", line 23, in <module>\n    from openai import OpenAI\nModu"
+    },
+    "memory_script_extractor_agent": {
+      "status": "active",
+      "start_time": "2025-06-25T07:25:57.595745",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_script_extractor_agent/memory_script_extractor_agent.py"
+    },
+    "memory_search_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:57.696729",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_search_agent/memory_search_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_search_agent/memory_search_agent.py\", line 27, in <module>\n    import numpy as np\nModuleNotFoun"
+    },
+    "memory_summarizer_agent": {
+      "status": "active",
+      "start_time": "2025-06-25T07:25:57.797626",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_summarizer_agent/memory_summarizer_agent.py"
+    },
+    "memory_tag_insight_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:57.899166",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_tag_insight_agent/memory_tag_insight_agent.py",
+      "error": "  File \"/mnt/d/ActiveProjects/commandcore-helper/memory_agents/memory_tag_insight_agent/memory_tag_insight_agent.py\", line 109\n    self.load_state()\nIndentationError: unexpected indent\n"
+    },
+    "readme_agent": {
+      "status": "active",
+      "start_time": "2025-06-25T07:25:58.000058",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/logs/readme/readme_agent/readme_agent.py"
+    },
+    "script_agent": {
+      "status": "active",
+      "start_time": "2025-06-25T07:25:58.100850",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/logs/scripts/script_agent/script_agent.py"
+    },
+    "test_agent": {
+      "status": "active",
+      "start_time": "2025-06-25T07:25:58.201435",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/os_agents/agent_core/agent_test/logic/test_agent.py"
+    },
+    "specstory_healthcheck_agent": {
+      "status": "active",
+      "start_time": "2025-06-25T07:25:58.302237",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/os_agents/agent_core/specstory1_healthcheck_agent/specstory_healthcheck_agent.py"
+    },
+    "localization_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:58.403163",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/os_agents/agent_fleet/Marketing/localization_agent/logic/localization_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/os_agents/agent_fleet/Marketing/localization_agent/logic/localization_agent.py\", line 1, in <module>\n    from agent_"
+    },
+    "support_agent": {
+      "status": "error",
+      "start_time": "2025-06-25T07:25:58.503791",
+      "path": "/mnt/d/ActiveProjects/commandcore-helper/os_agents/agent_fleet/Technology/support_agent/logic/support_agent.py",
+      "error": "Traceback (most recent call last):\n  File \"/mnt/d/ActiveProjects/commandcore-helper/os_agents/agent_fleet/Technology/support_agent/logic/support_agent.py\", line 1, in <module>\n    from chatgpt_organiz"
+    }
+  },
+  "summary": {
+    "active": 11,
+    "running": 2,
+    "failed": 0,
+    "error": 24,
+    "success_rate": 35.13513513513514
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:08.398273",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:15:50.844563",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:15:50.844563",
+    "file_path": "memory\\a_memory_core\\system_health_agent\\agent_activation_status.json"
+  }
+}

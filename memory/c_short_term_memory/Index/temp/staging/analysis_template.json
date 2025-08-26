@@ -1,0 +1,187 @@
+{
+  "analysis_template": {
+    "analysis_id": "",
+    "timestamp": "",
+    "analysis_type": "content_indexing_analysis",
+    "source_content": {
+      "file_path": "",
+      "content_hash": "",
+      "content_length": 0,
+      "content_type": "",
+      "encoding": "utf-8",
+      "language": ""
+    },
+    "content_analysis": {
+      "structure_analysis": {
+        "document_structure": "",
+        "hierarchy_depth": 0,
+        "section_count": 0,
+        "paragraph_count": 0,
+        "heading_structure": []
+      },
+      "linguistic_analysis": {
+        "language_detected": "",
+        "complexity_level": "",
+        "vocabulary_richness": 0.0,
+        "technical_terminology_density": 0.0,
+        "readability_score": 0.0
+      },
+      "topic_analysis": {
+        "primary_topics": [],
+        "secondary_topics": [],
+        "topic_confidence_scores": {},
+        "conceptual_density": 0.0,
+        "topic_coherence": 0.0
+      },
+      "semantic_analysis": {
+        "key_concepts": [],
+        "semantic_density": 0.0,
+        "information_entropy": 0.0,
+        "conceptual_relationships": [],
+        "embedding_potential": 0.0
+      }
+    },
+    "indexing_assessment": {
+      "search_potential": {
+        "searchability_score": 0.0,
+        "query_relevance_potential": 0.0,
+        "information_retrieval_value": 0.0,
+        "cross_reference_potential": 0.0
+      },
+      "embedding_feasibility": {
+        "embedding_quality_potential": 0.0,
+        "chunking_strategy": "",
+        "vector_representation_suitability": 0.0,
+        "semantic_preservation": 0.0
+      },
+      "indexing_challenges": {
+        "structural_complexity": false,
+        "language_ambiguity": false,
+        "technical_specificity": false,
+        "content_sparsity": false
+      }
+    },
+    "optimization_recommendations": {
+      "recommended_strategy": "",
+      "preprocessing_steps": [],
+      "chunking_approach": "",
+      "embedding_method": "",
+      "search_enhancement_opportunities": []
+    },
+    "quality_indicators": {
+      "content_completeness": 0.0,
+      "information_density": 0.0,
+      "search_value": 0.0,
+      "indexing_priority": "",
+      "preservation_importance": 0.0
+    },
+    "analysis_metadata": {
+      "analysis_duration_seconds": 0,
+      "algorithms_used": [],
+      "confidence_level": 0.0,
+      "validation_status": "pending",
+      "quality_score": 0.0
+    }
+  },
+  "analysis_configurations": {
+    "content_type_analysis": {
+      "technical": {
+        "focus_areas": [
+          "terminology",
+          "structure",
+          "technical_depth"
+        ],
+        "complexity_factors": [
+          "jargon_density",
+          "conceptual_hierarchy"
+        ],
+        "indexing_priorities": [
+          "precision",
+          "technical_relationships"
+        ]
+      },
+      "conversation": {
+        "focus_areas": [
+          "dialog_flow",
+          "context",
+          "key_points"
+        ],
+        "complexity_factors": [
+          "topic_switches",
+          "implicit_references"
+        ],
+        "indexing_priorities": [
+          "context_preservation",
+          "searchable_insights"
+        ]
+      },
+      "code": {
+        "focus_areas": [
+          "structure",
+          "functions",
+          "logic_flow"
+        ],
+        "complexity_factors": [
+          "nesting_depth",
+          "abstraction_level"
+        ],
+        "indexing_priorities": [
+          "functionality",
+          "dependencies"
+        ]
+      },
+      "documentation": {
+        "focus_areas": [
+          "hierarchy",
+          "cross_references",
+          "completeness"
+        ],
+        "complexity_factors": [
+          "depth",
+          "interconnection"
+        ],
+        "indexing_priorities": [
+          "navigability",
+          "comprehensive_coverage"
+        ]
+      }
+    },
+    "search_optimization": {
+      "keyword_extraction": "tfidf_enhanced",
+      "semantic_analysis": "embedding_based",
+      "relationship_mapping": "graph_based",
+      "relevance_scoring": "multi_factor"
+    },
+    "embedding_strategies": {
+      "technical_content": {
+        "model": "text-embedding-ada-002",
+        "chunking": "semantic_sections",
+        "preprocessing": "terminology_preservation"
+      },
+      "conversational_content": {
+        "model": "text-embedding-ada-002",
+        "chunking": "dialog_turns",
+        "preprocessing": "context_preservation"
+      },
+      "general_content": {
+        "model": "text-embedding-ada-002",
+        "chunking": "adaptive_length",
+        "preprocessing": "standard_normalization"
+      }
+    }
+  },
+  "last_updated": "01-19_06-45PM",
+  "analysis_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.552022",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

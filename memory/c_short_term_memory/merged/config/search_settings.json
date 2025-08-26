@@ -1,0 +1,61 @@
+{
+  "search_algorithms": [
+    "content_similarity",
+    "semantic_search",
+    "relationship_search",
+    "merged_content_search"
+  ],
+  "default_algorithm": "content_similarity",
+  "similarity_search": {
+    "content_threshold": 0.7,
+    "semantic_threshold": 0.6,
+    "temporal_weight": 0.3,
+    "max_results": 30
+  },
+  "relationship_search": {
+    "connection_strength_threshold": 0.5,
+    "max_relationship_depth": 3,
+    "include_weak_connections": false
+  },
+  "merged_content_search": {
+    "search_merged_groups": true,
+    "include_source_references": true,
+    "highlight_merge_reasons": true,
+    "max_results": 25
+  },
+  "caching": {
+    "cache_search_results": true,
+    "cache_expiry_hours": 12,
+    "max_cached_queries": 500
+  },
+  "result_formatting": {
+    "include_merge_metadata": true,
+    "show_source_files": true,
+    "highlight_similarities": true,
+    "group_by_merge_topic": true
+  },
+  "performance": {
+    "search_timeout_seconds": 45,
+    "concurrent_searches": 2,
+    "use_cached_similarities": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.734158",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:26.498722",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:26.498722",
+    "file_path": "memory\\c_short_term_memory\\merged\\config\\search_settings.json"
+  }
+}

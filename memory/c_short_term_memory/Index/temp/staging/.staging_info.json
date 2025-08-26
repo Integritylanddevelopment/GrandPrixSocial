@@ -1,0 +1,37 @@
+{
+  "staging_info": {
+    "purpose": "Pre-processing staging area",
+    "workflow": "Files waiting for batch processing",
+    "created": "06-20_12-00PM"
+  },
+  "staging_types": {
+    "batch_queue": "Files queued for batch indexing",
+    "validation_queue": "Files awaiting validation",
+    "priority_queue": "High-priority files for immediate processing",
+    "retry_queue": "Files that failed processing and need retry"
+  },
+  "batch_settings": {
+    "batch_size": 50,
+    "batch_trigger_count": 25,
+    "batch_timeout_minutes": 60,
+    "priority_processing": true
+  },
+  "organization": {
+    "sort_by_priority": true,
+    "fifo_within_priority": true,
+    "max_staging_time_hours": 12,
+    "cleanup_completed_batches": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.544895",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

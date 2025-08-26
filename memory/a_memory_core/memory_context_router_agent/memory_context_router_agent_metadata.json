@@ -1,0 +1,76 @@
+{
+  "agent_name": "memory_context_router_agent",
+  "version": "2.0.0",
+  "description": "Injects relevant memory context into user prompts by searching across memory buckets and semantic tags",
+  "author": "CommandCore Memory System",
+  "created": "2025-06-19",
+  "last_updated": "2025-06-19",
+  "status": "active",
+  "priority": "high",
+  "auto_start": true,
+  "dependencies": [
+    "memory_agent_core",
+    "memory system buckets (b_long_term_memory, f_semantic, d_working_memory)"
+  ],
+  "capabilities": [
+    "semantic_search",
+    "context_injection",
+    "memory_retrieval",
+    "content_summarization",
+    "multi_source_search"
+  ],
+  "inputs": [
+    "user_prompt (str)",
+    "chat_index.json",
+    "memory bucket files"
+  ],
+  "outputs": [
+    "context_injected_prompt (dict)",
+    "context_routing.log",
+    "agent_interactions.log"
+  ],
+  "entry_point": "memory_context_router_agent.py",
+  "main_function": "main",
+  "inject_function": "inject_memory_context",
+  "category": "context_enhancement",
+  "tags": [
+    "context",
+    "memory_injection",
+    "semantic_search",
+    "prompt_enhancement"
+  ],
+  "configuration": {
+    "max_context_chars": 3000,
+    "max_matches": 50,
+    "max_files_per_search": 10,
+    "enable_performance_tracking": true
+  },
+  "search_sources": [
+    "chat_index.json",
+    "semantic_memory bucket",
+    "working_memory bucket",
+    "long_term_memory bucket"
+  ],
+  "performance_requirements": {
+    "max_context_injection_time_ms": 2000,
+    "target_success_rate": 90,
+    "max_context_size_chars": 5000
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:06.657371",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:17.049957",
+    "file_path": "memory\\a_memory_core\\memory_context_router_agent\\memory_context_router_agent_metadata.json"
+  }
+}

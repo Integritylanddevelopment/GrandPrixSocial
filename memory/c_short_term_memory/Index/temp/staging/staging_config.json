@@ -1,0 +1,75 @@
+{
+  "staging_config": {
+    "index_staging_settings": {
+      "auto_stage_threshold": 10,
+      "staging_timeout_hours": 3,
+      "max_staging_files": 100,
+      "priority_staging": true,
+      "content_pre_analysis": true,
+      "indexability_assessment": true
+    },
+    "organization": {
+      "group_by_content_type": true,
+      "group_by_size": true,
+      "group_by_recency": true,
+      "max_group_size": 15,
+      "cross_group_relationship_detection": true
+    },
+    "index_candidate_detection": {
+      "content_quality": 0.7,
+      "indexing_priority": "recency_importance",
+      "search_potential": 0.75,
+      "batch_compatibility": true,
+      "embedding_feasibility": true
+    },
+    "staging_workflow": {
+      "auto_advance_to_processing": true,
+      "require_manual_approval": false,
+      "batch_staging": true,
+      "priority_queue": true,
+      "staging_validation": true
+    },
+    "data_preparation": {
+      "normalize_content": true,
+      "extract_metadata": true,
+      "assess_indexability": true,
+      "identify_relationships": true,
+      "prepare_embedding_chunks": true
+    },
+    "content_analysis": {
+      "language_detection": true,
+      "topic_identification": true,
+      "structure_analysis": true,
+      "search_potential_assessment": true,
+      "relationship_mapping": true
+    }
+  },
+  "quality_assurance": {
+    "validate_staging_criteria": true,
+    "check_indexing_feasibility": true,
+    "assess_search_value": true,
+    "verify_content_integrity": true,
+    "staging_confidence_threshold": 0.75
+  },
+  "performance_optimization": {
+    "batch_size_optimization": true,
+    "resource_allocation": "dynamic",
+    "parallel_staging": true,
+    "cache_analysis_results": true,
+    "adaptive_thresholds": true
+  },
+  "last_updated": "01-19_06-45PM",
+  "config_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.594298",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

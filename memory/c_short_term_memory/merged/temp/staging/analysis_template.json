@@ -1,0 +1,136 @@
+{
+  "analysis_template": {
+    "analysis_id": "",
+    "timestamp": "",
+    "analysis_type": "content_similarity_analysis",
+    "source_content": {
+      "file_path": "",
+      "content_hash": "",
+      "content_length": 0,
+      "content_type": "",
+      "encoding": "utf-8"
+    },
+    "content_analysis": {
+      "topic_extraction": {
+        "primary_topics": [],
+        "secondary_topics": [],
+        "topic_confidence_scores": {},
+        "topic_relationships": []
+      },
+      "semantic_analysis": {
+        "content_embeddings": [],
+        "semantic_keywords": [],
+        "conceptual_themes": [],
+        "sentiment_analysis": {
+          "overall_sentiment": "neutral",
+          "sentiment_score": 0.0,
+          "emotional_indicators": []
+        }
+      },
+      "structural_analysis": {
+        "content_sections": [],
+        "information_density": 0.0,
+        "readability_score": 0.0,
+        "content_complexity": "medium"
+      },
+      "temporal_analysis": {
+        "timestamp_extracted": "",
+        "time_references": [],
+        "temporal_context": "",
+        "chronological_position": ""
+      }
+    },
+    "similarity_metrics": {
+      "content_similarity": {
+        "semantic_similarity": 0.0,
+        "lexical_similarity": 0.0,
+        "structural_similarity": 0.0,
+        "topic_overlap": 0.0
+      },
+      "metadata_similarity": {
+        "temporal_proximity": 0.0,
+        "author_consistency": false,
+        "context_similarity": 0.0,
+        "tag_overlap": 0.0
+      },
+      "relationship_strength": {
+        "direct_references": 0,
+        "implicit_connections": 0,
+        "conversation_continuity": 0.0,
+        "contextual_relevance": 0.0
+      }
+    },
+    "merge_assessment": {
+      "merge_recommendation": "none",
+      "merge_confidence": 0.0,
+      "merge_benefits": [],
+      "merge_risks": [],
+      "optimal_merge_strategy": "",
+      "estimated_merge_quality": 0.0
+    },
+    "quality_indicators": {
+      "content_completeness": 0.0,
+      "information_value": 0.0,
+      "uniqueness_score": 0.0,
+      "preservation_priority": "medium",
+      "search_relevance": 0.0
+    },
+    "analysis_metadata": {
+      "analysis_duration_seconds": 0,
+      "algorithms_used": [],
+      "confidence_level": 0.0,
+      "validation_status": "pending",
+      "quality_score": 0.0
+    }
+  },
+  "analysis_configurations": {
+    "similarity_algorithms": {
+      "semantic": "cosine_similarity",
+      "lexical": "jaccard_similarity",
+      "structural": "edit_distance",
+      "topic": "lda_comparison"
+    },
+    "quality_thresholds": {
+      "minimum_similarity": 0.65,
+      "high_confidence": 0.85,
+      "merge_recommendation": 0.75,
+      "content_quality": 0.7
+    },
+    "analysis_depth": {
+      "quick": {
+        "semantic_analysis": false,
+        "topic_extraction": true,
+        "similarity_calculation": true,
+        "quality_assessment": false
+      },
+      "standard": {
+        "semantic_analysis": true,
+        "topic_extraction": true,
+        "similarity_calculation": true,
+        "quality_assessment": true
+      },
+      "comprehensive": {
+        "semantic_analysis": true,
+        "topic_extraction": true,
+        "similarity_calculation": true,
+        "quality_assessment": true,
+        "relationship_analysis": true,
+        "temporal_analysis": true
+      }
+    }
+  },
+  "last_updated": "01-19_06-45PM",
+  "analysis_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.961180",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

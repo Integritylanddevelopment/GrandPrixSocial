@@ -1,0 +1,91 @@
+{
+  "agent_name": "memory_agent_router_agent",
+  "version": "2.0.0",
+  "description": "Routes queries to appropriate memory agents based on keywords and agent registry",
+  "author": "CommandCore Memory System",
+  "created": "2025-06-19",
+  "last_updated": "2025-06-19",
+  "status": "active",
+  "priority": "high",
+  "auto_start": true,
+  "dependencies": [
+    "memory_agent_core",
+    "memory_agent_registry_agent"
+  ],
+  "capabilities": [
+    "query_routing",
+    "agent_selection",
+    "keyword_matching",
+    "performance_tracking",
+    "route_logging"
+  ],
+  "inputs": [
+    "query (str)",
+    "agent_registry.json"
+  ],
+  "outputs": [
+    "agent response (str)",
+    "memory_agent_routes.log",
+    "agent_interactions.log"
+  ],
+  "entry_point": "memory_agent_router_agent.py",
+  "main_function": "main",
+  "route_function": "route_query",
+  "category": "routing",
+  "tags": [
+    "routing",
+    "memory_agents",
+    "query_handling",
+    "coordination"
+  ],
+  "configuration": {
+    "default_timeout_seconds": 30,
+    "max_query_length": 1000,
+    "enable_performance_tracking": true,
+    "log_all_routes": true
+  },
+  "routing_patterns": {
+    "search_keywords": [
+      "search",
+      "find",
+      "lookup",
+      "query",
+      "retrieve"
+    ],
+    "recall_keywords": [
+      "recall",
+      "remember",
+      "previous",
+      "history"
+    ],
+    "summary_keywords": [
+      "summarize",
+      "overview",
+      "digest",
+      "brief"
+    ],
+    "maintenance_keywords": [
+      "decay",
+      "archive",
+      "clean",
+      "organize"
+    ]
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:06.412433",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:17.858036",
+    "file_path": "memory\\a_memory_core\\memory_agent_router_agent\\memory_agent_router_agent.meta.json"
+  }
+}

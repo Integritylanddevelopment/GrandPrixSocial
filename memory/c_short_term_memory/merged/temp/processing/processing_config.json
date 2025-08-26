@@ -1,0 +1,55 @@
+{
+  "processing_config": {
+    "merge_processing_settings": {
+      "max_concurrent_files": 5,
+      "processing_timeout_minutes": 30,
+      "auto_cleanup_hours": 24,
+      "merge_priority_queue": true,
+      "similarity_threshold": 0.75,
+      "content_analysis_depth": "full"
+    },
+    "file_handling": {
+      "temp_file_prefix": "merge_processing_",
+      "backup_during_processing": true,
+      "atomic_operations": true,
+      "error_isolation": true,
+      "partial_merge_recovery": true
+    },
+    "merge_criteria": {
+      "content_similarity": 0.8,
+      "timestamp_proximity_hours": 2,
+      "topic_overlap_threshold": 0.65,
+      "author_matching": true,
+      "context_continuity": true
+    },
+    "quality_control": {
+      "validate_before_merge": true,
+      "preserve_original_metadata": true,
+      "content_integrity_check": true,
+      "relationship_validation": true,
+      "merge_confidence_minimum": 0.7
+    },
+    "performance": {
+      "batch_size": 10,
+      "memory_limit_mb": 512,
+      "parallel_processing": true,
+      "cache_intermediate_results": true,
+      "optimize_for_speed": false
+    }
+  },
+  "monitoring": {
+    "log_level": "INFO",
+    "track_processing_time": true,
+    "alert_on_errors": true,
+    "performance_metrics": true,
+    "success_rate_tracking": true
+  },
+  "last_updated": "01-19_06-45PM",
+  "config_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.914129",
+    "evolution_count": 1,
+    "improvements": []
+  }
+}

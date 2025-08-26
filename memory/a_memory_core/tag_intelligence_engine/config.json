@@ -1,0 +1,89 @@
+{
+  "schema_version": "2.0",
+  "created": "06-20_08-30AM",
+  "meta": {
+    "description": "Tag Intelligence Engine Configuration",
+    "authority_level": "TAG_INTELLIGENCE",
+    "version": "2.0"
+  },
+  "ai_settings": {
+    "openai": {
+      "model": "gpt-3.5-turbo",
+      "embedding_model": "text-embedding-ada-002",
+      "max_tokens": 100,
+      "temperature": 0.3,
+      "timeout": 30,
+      "retry_attempts": 3
+    },
+    "fallback_enabled": true,
+    "cache_embeddings": true,
+    "cache_duration_hours": 24
+  },
+  "tag_generation": {
+    "max_tags_per_content": 8,
+    "min_tag_length": 2,
+    "max_tag_length": 50,
+    "exclude_common_words": true,
+    "enable_compound_tags": true,
+    "semantic_threshold": 0.7
+  },
+  "similarity_settings": {
+    "cosine_threshold": 0.8,
+    "merge_threshold": 0.95,
+    "relationship_threshold": 0.75,
+    "use_numpy": true,
+    "precision_digits": 3
+  },
+  "effectiveness_tracking": {
+    "learning_rate": 0.1,
+    "min_usage_for_scoring": 3,
+    "effectiveness_decay_rate": 0.02,
+    "performance_review_interval_days": 7
+  },
+  "optimization": {
+    "auto_optimize": true,
+    "optimization_interval_hours": 24,
+    "min_effectiveness_threshold": 0.2,
+    "max_database_size": 10000,
+    "cleanup_unused_tags_days": 30
+  },
+  "logging": {
+    "level": "INFO",
+    "file_logging": true,
+    "performance_logging": true,
+    "error_tracking": true,
+    "debug_mode": false
+  },
+  "memory_integration": {
+    "memory_buckets": [
+      "working",
+      "short_term",
+      "long_term",
+      "semantic",
+      "episodic",
+      "procedural"
+    ],
+    "cross_bucket_tagging": true,
+    "bucket_specific_tags": true,
+    "tag_propagation": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:08.678575",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:16.299756",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:16.299756",
+    "file_path": "memory\\a_memory_core\\tag_intelligence_engine\\config.json"
+  }
+}

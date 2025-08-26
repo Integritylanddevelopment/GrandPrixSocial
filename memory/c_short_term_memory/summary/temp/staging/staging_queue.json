@@ -1,0 +1,88 @@
+{
+  "staging_queue": {
+    "ready_for_staging": [],
+    "awaiting_analysis": [],
+    "pending_classification": [],
+    "validation_queue": [],
+    "total_staging_items": 0
+  },
+  "staging_groups": {
+    "active_groups": [],
+    "completed_groups": [],
+    "group_formation_rules": {
+      "max_group_size": 12,
+      "min_content_similarity": 0.6,
+      "content_type_consistency": true,
+      "complexity_compatibility": true,
+      "batch_processing_optimization": true
+    }
+  },
+  "content_preparation": {
+    "analysis_candidates": [],
+    "classification_results": {},
+    "complexity_assessment": {},
+    "readability_scores": {},
+    "summary_feasibility": {}
+  },
+  "staging_workflow": {
+    "auto_advance_threshold": 0.85,
+    "manual_review_threshold": 0.65,
+    "reject_threshold": 0.45,
+    "batch_staging_size": 8,
+    "staging_timeout_hours": 6
+  },
+  "content_routing": {
+    "route_by_type": {
+      "technical": "technical_summarizer",
+      "conversation": "dialog_summarizer",
+      "narrative": "story_summarizer",
+      "code": "code_summarizer",
+      "mixed": "hybrid_summarizer"
+    },
+    "route_by_complexity": {
+      "simple": "fast_summarizer",
+      "medium": "standard_summarizer",
+      "complex": "comprehensive_summarizer"
+    },
+    "route_by_length": {
+      "short": "extractive_summarizer",
+      "medium": "hybrid_summarizer",
+      "long": "hierarchical_summarizer"
+    }
+  },
+  "quality_gates": {
+    "content_validation": true,
+    "metadata_completeness": true,
+    "readability_check": true,
+    "structure_verification": true,
+    "summary_potential_assessment": true
+  },
+  "performance_optimization": {
+    "batch_optimization": true,
+    "resource_balancing": true,
+    "adaptive_processing": true,
+    "cache_utilization": true,
+    "load_distribution": true
+  },
+  "staging_metrics": {
+    "average_staging_time": 0,
+    "success_rate": 0.0,
+    "throughput_per_hour": 0,
+    "quality_score": 0.0,
+    "efficiency_indicators": []
+  },
+  "last_updated": "01-19_06-45PM",
+  "queue_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.220393",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

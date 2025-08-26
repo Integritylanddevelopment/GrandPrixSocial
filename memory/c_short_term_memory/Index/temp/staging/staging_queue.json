@@ -1,0 +1,88 @@
+{
+  "staging_queue": {
+    "ready_for_staging": [],
+    "awaiting_analysis": [],
+    "pending_indexing": [],
+    "validation_queue": [],
+    "total_staging_items": 0
+  },
+  "staging_groups": {
+    "active_groups": [],
+    "completed_groups": [],
+    "group_formation_rules": {
+      "max_group_size": 15,
+      "content_type_consistency": true,
+      "temporal_proximity": true,
+      "topic_similarity": 0.7,
+      "batch_optimization": true
+    }
+  },
+  "content_preparation": {
+    "analysis_candidates": [],
+    "indexability_assessment": {},
+    "embedding_readiness": {},
+    "search_potential": {},
+    "relationship_mapping": {}
+  },
+  "staging_workflow": {
+    "auto_advance_threshold": 0.8,
+    "manual_review_threshold": 0.6,
+    "reject_threshold": 0.4,
+    "batch_staging_size": 12,
+    "staging_timeout_hours": 3
+  },
+  "content_routing": {
+    "route_by_type": {
+      "technical": "technical_indexer",
+      "conversation": "dialog_indexer",
+      "code": "code_indexer",
+      "documentation": "doc_indexer",
+      "mixed": "universal_indexer"
+    },
+    "route_by_complexity": {
+      "simple": "fast_indexer",
+      "medium": "standard_indexer",
+      "complex": "comprehensive_indexer"
+    },
+    "route_by_search_value": {
+      "high_value": "priority_indexer",
+      "standard_value": "standard_indexer",
+      "archive_value": "archive_indexer"
+    }
+  },
+  "quality_gates": {
+    "content_validation": true,
+    "metadata_completeness": true,
+    "indexability_check": true,
+    "search_value_verification": true,
+    "embedding_potential_assessment": true
+  },
+  "indexing_optimization": {
+    "embedding_batch_optimization": true,
+    "search_path_optimization": true,
+    "relationship_detection": true,
+    "topic_clustering": true,
+    "relevance_scoring_preparation": true
+  },
+  "staging_metrics": {
+    "average_staging_time": 0,
+    "success_rate": 0.0,
+    "throughput_per_hour": 0,
+    "quality_score": 0.0,
+    "indexing_potential_score": 0.0
+  },
+  "last_updated": "01-19_06-45PM",
+  "queue_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.611945",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

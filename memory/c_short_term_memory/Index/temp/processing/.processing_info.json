@@ -1,0 +1,30 @@
+{
+  "processing_info": {
+    "purpose": "Active file processing workspace",
+    "workflow": "Files being indexed, analyzed, or transformed",
+    "created": "06-20_12-00PM"
+  },
+  "process_stages": {
+    "intake": "New files received for processing",
+    "analysis": "Files undergoing content analysis",
+    "indexing": "Files being added to index",
+    "completion": "Processing complete, ready for storage"
+  },
+  "file_lifecycle": {
+    "max_processing_time_minutes": 30,
+    "retry_attempts": 3,
+    "error_handling": "Move to error subfolder",
+    "success_handling": "Move to indexed_content storage"
+  },
+  "monitoring": {
+    "track_processing_time": true,
+    "log_all_operations": true,
+    "alert_on_stuck_files": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.421813",
+    "evolution_count": 1,
+    "improvements": []
+  }
+}

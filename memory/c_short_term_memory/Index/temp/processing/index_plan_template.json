@@ -1,0 +1,119 @@
+{
+  "index_plan_template": {
+    "plan_id": "",
+    "creation_timestamp": "",
+    "index_group": {
+      "source_files": [],
+      "target_index_name": "",
+      "indexing_strategy": "semantic_enhanced",
+      "estimated_completion_time": ""
+    },
+    "content_analysis": {
+      "content_type": "",
+      "content_complexity": "",
+      "content_length": 0,
+      "language_detected": "",
+      "search_potential_score": 0.0
+    },
+    "indexing_criteria": {
+      "embedding_generation": true,
+      "tag_extraction_count": 10,
+      "metadata_enrichment": true,
+      "relationship_mapping": true,
+      "search_optimization": true
+    },
+    "indexing_operations": {
+      "content_preparation": "normalize_and_chunk",
+      "embedding_method": "ada_002_optimized",
+      "tag_extraction_strategy": "ai_enhanced",
+      "metadata_processing": "comprehensive",
+      "search_path_creation": "optimized"
+    },
+    "expected_outcomes": {
+      "index_segments_created": 0,
+      "embeddings_generated": 0,
+      "tags_extracted": 0,
+      "search_paths_optimized": 0,
+      "relevance_score_target": 0.8
+    },
+    "validation_checklist": {
+      "content_integrity": false,
+      "embedding_quality": false,
+      "search_optimization": false,
+      "metadata_completeness": false,
+      "index_consistency": false
+    },
+    "rollback_plan": {
+      "backup_locations": [],
+      "rollback_procedure": [],
+      "recovery_validation": [],
+      "rollback_triggers": []
+    }
+  },
+  "plan_templates": {
+    "comprehensive_index": {
+      "auto_execute": true,
+      "validation_level": "comprehensive",
+      "backup_required": true,
+      "manual_review": false,
+      "embedding_quality_threshold": 0.85,
+      "search_optimization_level": "maximum"
+    },
+    "standard_index": {
+      "auto_execute": true,
+      "validation_level": "standard",
+      "backup_required": true,
+      "manual_review": false,
+      "embedding_quality_threshold": 0.75,
+      "search_optimization_level": "standard"
+    },
+    "quick_index": {
+      "auto_execute": true,
+      "validation_level": "basic",
+      "backup_required": false,
+      "manual_review": false,
+      "embedding_quality_threshold": 0.65,
+      "search_optimization_level": "basic"
+    }
+  },
+  "content_type_strategies": {
+    "technical": {
+      "strategy": "technical_indexer",
+      "preserve_terminology": true,
+      "enhance_search_precision": true,
+      "tag_technical_concepts": true
+    },
+    "conversation": {
+      "strategy": "dialog_indexer",
+      "preserve_context": true,
+      "extract_key_points": true,
+      "map_conversation_flow": true
+    },
+    "code": {
+      "strategy": "code_indexer",
+      "preserve_structure": true,
+      "index_functions": true,
+      "map_dependencies": true
+    },
+    "documentation": {
+      "strategy": "doc_indexer",
+      "preserve_hierarchy": true,
+      "enhance_searchability": true,
+      "cross_reference": true
+    }
+  },
+  "last_updated": "01-19_06-45PM",
+  "template_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.465965",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

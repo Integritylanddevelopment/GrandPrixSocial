@@ -1,0 +1,72 @@
+{
+  "search_algorithms": [
+    "keyword",
+    "fuzzy",
+    "semantic",
+    "metadata"
+  ],
+  "default_algorithm": "keyword",
+  "keyword_search": {
+    "case_sensitive": false,
+    "whole_words_only": false,
+    "max_results": 50,
+    "min_score_threshold": 1
+  },
+  "fuzzy_search": {
+    "max_edit_distance": 2,
+    "min_similarity": 0.6,
+    "max_results": 30
+  },
+  "semantic_search": {
+    "enabled": false,
+    "embedding_model": "text-embedding-ada-002",
+    "similarity_threshold": 0.7,
+    "max_results": 20
+  },
+  "metadata_search": {
+    "searchable_fields": [
+      "file_type",
+      "size",
+      "last_modified",
+      "tags",
+      "source"
+    ],
+    "date_range_search": true,
+    "size_range_search": true
+  },
+  "caching": {
+    "cache_search_results": true,
+    "cache_expiry_hours": 24,
+    "max_cached_queries": 1000
+  },
+  "result_formatting": {
+    "include_snippets": true,
+    "snippet_length": 200,
+    "highlight_matches": true,
+    "sort_by_relevance": true
+  },
+  "performance": {
+    "search_timeout_seconds": 30,
+    "concurrent_searches": 3,
+    "index_search_first": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.278427",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:24.889578",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:24.889578",
+    "file_path": "memory\\c_short_term_memory\\Index\\config\\search_settings.json"
+  }
+}

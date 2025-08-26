@@ -1,0 +1,30 @@
+{
+  "agent_name": "memory_router_agent",
+  "version": "1.0",
+  "author": "CommandCore Team",
+  "last_updated": "2025-06-16",
+  "dependencies": [
+    "os",
+    "datetime",
+    "memory_summarizer_agent",
+    "memory_indexer_agent"
+  ],
+  "description": "This agent routes memory content to appropriate buckets based on tags and auto-routing logic.",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:08.249428",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:50.540788",
+    "file_path": "memory\\a_memory_core\\memory_router_agent\\memory_router_agent_metadata.json"
+  }
+}

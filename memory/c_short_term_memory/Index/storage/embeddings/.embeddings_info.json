@@ -1,0 +1,42 @@
+{
+  "embeddings_info": {
+    "purpose": "Local embedding storage for indexed content",
+    "created": "06-20_12-00PM",
+    "model": "text-embedding-ada-002",
+    "dimensions": 1536
+  },
+  "storage_format": {
+    "file_format": "JSON",
+    "compression": true,
+    "encoding": "utf-8"
+  },
+  "organization": {
+    "by_hash": true,
+    "naming_pattern": "{content_hash}.json",
+    "metadata_included": true
+  },
+  "settings": {
+    "auto_cleanup_days": 90,
+    "duplicate_detection": true,
+    "vector_validation": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.390701",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:42.167997",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:42.167997",
+    "file_path": "memory\\c_short_term_memory\\Index\\storage\\embeddings\\.embeddings_info.json"
+  }
+}

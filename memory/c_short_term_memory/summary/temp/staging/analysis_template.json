@@ -1,0 +1,201 @@
+{
+  "analysis_template": {
+    "analysis_id": "",
+    "timestamp": "",
+    "analysis_type": "content_summarization_analysis",
+    "source_content": {
+      "file_path": "",
+      "content_hash": "",
+      "content_length": 0,
+      "content_type": "",
+      "encoding": "utf-8",
+      "language": ""
+    },
+    "content_analysis": {
+      "structure_analysis": {
+        "document_structure": "",
+        "section_count": 0,
+        "paragraph_count": 0,
+        "sentence_count": 0,
+        "heading_hierarchy": []
+      },
+      "linguistic_analysis": {
+        "language_detected": "",
+        "readability_score": 0.0,
+        "complexity_level": "",
+        "vocabulary_richness": 0.0,
+        "sentence_complexity": 0.0
+      },
+      "topic_analysis": {
+        "primary_topics": [],
+        "secondary_topics": [],
+        "topic_confidence_scores": {},
+        "topic_distribution": {},
+        "conceptual_themes": []
+      },
+      "semantic_analysis": {
+        "content_embeddings": [],
+        "key_concepts": [],
+        "semantic_density": 0.0,
+        "information_entropy": 0.0,
+        "conceptual_relationships": []
+      }
+    },
+    "summarization_assessment": {
+      "summary_potential": {
+        "compression_feasibility": 0.0,
+        "information_preservation": 0.0,
+        "coherence_maintainability": 0.0,
+        "key_point_extractability": 0.0
+      },
+      "optimal_strategy": {
+        "recommended_approach": "",
+        "compression_ratio": 0.0,
+        "key_points_target": 0,
+        "quality_expectation": 0.0
+      },
+      "challenges_identified": {
+        "structural_complexity": false,
+        "topic_diversity": false,
+        "technical_terminology": false,
+        "contextual_dependencies": false
+      }
+    },
+    "quality_indicators": {
+      "content_completeness": 0.0,
+      "information_density": 0.0,
+      "structural_coherence": 0.0,
+      "summarization_value": 0.0,
+      "preservation_priority": ""
+    },
+    "processing_recommendations": {
+      "recommended_strategy": "",
+      "preprocessing_steps": [],
+      "compression_target": 0.0,
+      "quality_focus_areas": [],
+      "potential_challenges": []
+    },
+    "analysis_metadata": {
+      "analysis_duration_seconds": 0,
+      "algorithms_used": [],
+      "confidence_level": 0.0,
+      "validation_status": "pending",
+      "quality_score": 0.0
+    }
+  },
+  "analysis_configurations": {
+    "content_type_analysis": {
+      "technical": {
+        "focus_areas": [
+          "terminology",
+          "structure",
+          "logic_flow"
+        ],
+        "complexity_factors": [
+          "technical_depth",
+          "jargon_density"
+        ],
+        "preservation_priorities": [
+          "key_concepts",
+          "relationships"
+        ]
+      },
+      "conversation": {
+        "focus_areas": [
+          "dialog_flow",
+          "context",
+          "participants"
+        ],
+        "complexity_factors": [
+          "topic_switches",
+          "implicit_references"
+        ],
+        "preservation_priorities": [
+          "main_points",
+          "conclusions"
+        ]
+      },
+      "narrative": {
+        "focus_areas": [
+          "story_arc",
+          "characters",
+          "events"
+        ],
+        "complexity_factors": [
+          "timeline",
+          "character_development"
+        ],
+        "preservation_priorities": [
+          "plot_points",
+          "outcomes"
+        ]
+      },
+      "code": {
+        "focus_areas": [
+          "logic",
+          "functions",
+          "structure"
+        ],
+        "complexity_factors": [
+          "nesting_depth",
+          "abstraction_level"
+        ],
+        "preservation_priorities": [
+          "core_logic",
+          "interfaces"
+        ]
+      }
+    },
+    "quality_assessment": {
+      "readability_metrics": [
+        "flesch_kincaid",
+        "automated_readability"
+      ],
+      "coherence_metrics": [
+        "topic_consistency",
+        "flow_analysis"
+      ],
+      "information_metrics": [
+        "density",
+        "uniqueness",
+        "relevance"
+      ],
+      "structure_metrics": [
+        "organization",
+        "hierarchy",
+        "completeness"
+      ]
+    },
+    "summarization_strategies": {
+      "extractive": {
+        "sentence_ranking": "importance_score",
+        "selection_criteria": "coverage_diversity",
+        "preservation_method": "original_sentences"
+      },
+      "abstractive": {
+        "generation_approach": "template_guided",
+        "creativity_level": "conservative",
+        "style_preservation": "maintain_tone"
+      },
+      "hybrid": {
+        "balance_ratio": 0.6,
+        "integration_method": "seamless_blend",
+        "optimization_target": "quality_compression"
+      }
+    }
+  },
+  "last_updated": "01-19_06-45PM",
+  "analysis_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.197589",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

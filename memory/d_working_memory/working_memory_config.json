@@ -1,0 +1,199 @@
+{
+  "working_memory_config": {
+    "system_identity": "Dynamic Cognitive Workspace for CommandCore OS",
+    "version": "2.0_dynamic_preserving",
+    "optimization_target": "soft_ephemerality_hard_preservation",
+    "last_updated": "06-21_03-30PM",
+    "philosophy": "Let Working Memory be the breath of the system \u2014 here, then gone \u2014 but let every breath leave behind a heartbeat in the archive."
+  },
+  "dynamic_structure": {
+    "active_workspace": {
+      "primary_storage": "redis_ram",
+      "backup_storage": "json_files",
+      "ttl_management": "intelligent_expiry",
+      "auto_cleanup": true
+    },
+    "preservation_system": {
+      "archive_before_expiry": true,
+      "summary_compression": true,
+      "promotion_detection": true,
+      "immutable_audit": true
+    }
+  },
+  "performance_specifications": {
+    "target_response_time_ms": 1,
+    "max_acceptable_latency_ms": 5,
+    "concurrent_access_limit": 50,
+    "memory_allocation_mb": 2048,
+    "cache_strategy": "aggressive_in_memory",
+    "persistence_strategy": "dynamic_ttl_with_archival"
+  },
+  "cognitive_workspace": {
+    "active_thoughts": {
+      "max_concurrent_thoughts": 20,
+      "thought_lifetime_minutes": 60,
+      "auto_decay_enabled": true,
+      "priority_preservation": true
+    },
+    "context_management": {
+      "context_window_size": 32000,
+      "context_refresh_interval_seconds": 30,
+      "relevance_threshold": 0.75,
+      "auto_context_injection": true
+    },
+    "reasoning_support": {
+      "reasoning_scratch_space_mb": 512,
+      "concurrent_reasoning_threads": 8,
+      "reasoning_state_persistence": "session_duration",
+      "logic_chain_tracking": true
+    }
+  },
+  "session_management": {
+    "session_settings": {
+      "auto_session_creation": true,
+      "session_timeout_minutes": 120,
+      "session_state_versioning": true,
+      "cross_session_learning": false
+    },
+    "state_persistence": {
+      "persist_active_thoughts": true,
+      "persist_reasoning_chains": true,
+      "persist_context_injections": false,
+      "persist_agent_coordination": false
+    },
+    "cleanup_policies": {
+      "auto_cleanup_on_session_end": true,
+      "preserve_important_insights": true,
+      "archive_threshold_hours": 24,
+      "permanent_deletion_threshold_days": 7
+    }
+  },
+  "real_time_cache": {
+    "cache_configuration": {
+      "primary_cache": "in_memory_hash_map",
+      "secondary_cache": "redis_optional",
+      "cache_size_mb": 1024,
+      "eviction_policy": "lru_with_priority",
+      "write_through_enabled": false
+    },
+    "access_patterns": {
+      "read_optimization": "sub_millisecond",
+      "write_optimization": "immediate_consistency",
+      "concurrent_access": "lock_free_reads",
+      "conflict_resolution": "last_write_wins"
+    },
+    "data_structures": {
+      "thoughts_index": "hash_map_with_timestamps",
+      "context_index": "priority_queue",
+      "agent_state_index": "concurrent_hash_map",
+      "reasoning_chains": "linked_list_with_branches"
+    }
+  },
+  "context_injection": {
+    "injection_strategies": {
+      "relevance_based": {
+        "enabled": true,
+        "weight": 0.4,
+        "semantic_similarity_threshold": 0.7
+      },
+      "recency_based": {
+        "enabled": true,
+        "weight": 0.3,
+        "time_decay_factor": 0.8
+      },
+      "importance_based": {
+        "enabled": true,
+        "weight": 0.3,
+        "importance_threshold": 0.75
+      }
+    },
+    "memory_source_integration": {
+      "short_term_memory": {
+        "enabled": true,
+        "max_injections_per_request": 5,
+        "cache_duration_minutes": 15
+      },
+      "semantic_memory": {
+        "enabled": true,
+        "max_injections_per_request": 3,
+        "cache_duration_minutes": 30
+      },
+      "procedural_memory": {
+        "enabled": true,
+        "max_injections_per_request": 2,
+        "cache_duration_minutes": 60
+      },
+      "episodic_memory": {
+        "enabled": true,
+        "max_injections_per_request": 4,
+        "cache_duration_minutes": 10
+      }
+    }
+  },
+  "agent_coordination": {
+    "coordination_settings": {
+      "agent_workspace_sharing": true,
+      "concurrent_agent_access": true,
+      "agent_thought_isolation": false,
+      "cross_agent_reasoning": true
+    },
+    "communication_protocols": {
+      "message_passing": "lock_free_queues",
+      "state_sharing": "shared_memory_segments",
+      "conflict_resolution": "priority_based_arbitration",
+      "coordination_overhead_target_ms": 0.5
+    },
+    "workspace_allocation": {
+      "per_agent_workspace_mb": 64,
+      "shared_workspace_mb": 256,
+      "dynamic_allocation": true,
+      "garbage_collection": "real_time_incremental"
+    }
+  },
+  "quality_assurance": {
+    "real_time_validation": {
+      "data_integrity_checks": "lightweight_checksums",
+      "consistency_validation": "eventual_consistency",
+      "performance_monitoring": "continuous_profiling",
+      "error_detection": "anomaly_based"
+    },
+    "failover_mechanisms": {
+      "cache_fallback": "persistent_storage_fallback",
+      "performance_degradation": "graceful_degradation",
+      "memory_pressure": "priority_based_eviction",
+      "agent_failure": "workspace_isolation"
+    }
+  },
+  "monitoring": {
+    "performance_metrics": {
+      "response_time_percentiles": [
+        50,
+        90,
+        95,
+        99
+      ],
+      "throughput_measurements": "requests_per_second",
+      "memory_utilization": "real_time_tracking",
+      "cache_hit_rates": "per_operation_tracking"
+    },
+    "health_indicators": {
+      "system_responsiveness": "sub_5ms_threshold",
+      "memory_pressure": "below_80_percent",
+      "cache_efficiency": "above_90_percent_hit_rate",
+      "agent_coordination": "below_1ms_overhead"
+    }
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:04.981653",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:15:54.441652",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:15:54.441652",
+    "file_path": "memory\\d_working_memory\\working_memory_config.json"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "test_user_123": {
+    "successful_combinations": [],
+    "driver_constructor_pairs": {
+      "Max Verstappen_Red Bull Racing": {
+        "selections": 2,
+        "total_score": 156,
+        "average_score": 78.0
+      }
+    },
+    "prediction_patterns": {
+      "willRain": {
+        "true": 0,
+        "false": 2
+      },
+      "willSafetyCar": {
+        "true": 2,
+        "false": 0
+      },
+      "poleSitterWins": {
+        "true": 2,
+        "false": 0
+      },
+      "leadersFinishPoints": {
+        "true": 2,
+        "false": 0
+      },
+      "moreThan2DNFs": {
+        "true": 0,
+        "false": 2
+      },
+      "raceUnderScheduledLaps": {
+        "true": 0,
+        "false": 2
+      }
+    },
+    "performance_trends": [
+      {
+        "race_id": "dutch_gp_2024",
+        "score": 78,
+        "timestamp": "2025-08-26T14:00:34.529678",
+        "budget_used": 85000000
+      },
+      {
+        "race_id": "dutch_gp_2024",
+        "score": 78,
+        "timestamp": "2025-08-26T14:08:23.501765",
+        "budget_used": 85000000
+      }
+    ]
+  }
+}

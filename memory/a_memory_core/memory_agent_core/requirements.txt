@@ -1,0 +1,2 @@
+# requirements.txt for memory_agent_core
+# Auto-generated advanced component

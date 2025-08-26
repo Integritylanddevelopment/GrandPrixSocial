@@ -1,0 +1,40 @@
+{
+  "trigger_conditions": [
+    "New .log files appear in memory_core folders",
+    "Hourly archival check"
+  ],
+  "collection_logic": {
+    "watch_directory": "../",
+    "file_pattern": "*.log",
+    "collection_method": "copy_with_timestamp"
+  },
+  "storage_logic": {
+    "hot_storage": "Recent logs (last 7 days)",
+    "cold_storage": "Archived logs (older than 7 days)",
+    "naming_format": "{timestamp}_{agent_name}_{original_filename}"
+  },
+  "coordination_logic": {
+    "echo_handoff": "Echo Collector monitors hot_storage/",
+    "state_tracking": "Simple JSON state file",
+    "error_handling": "Log errors, continue processing"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:07.102154",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:39.016787",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:39.016787",
+    "file_path": "memory\\a_memory_core\\memory_core_log_agent\\memory_core_log_agent_logic.json"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "grandprix_main": {
+    "project_id": "grandprix_main",
+    "name": "Grand Prix Social",
+    "local_path": "D:\\ActiveProjects\\GrandPrixSocial",
+    "remote_url": "https://github.com/Integritylanddevelopment/GrandPrixSocial.git",
+    "branch": "main",
+    "sync_enabled": true,
+    "last_sync": null,
+    "credentials": null,
+    "vercel_project_id": "grandprix-social",
+    "vercel_token": "VERCEL_TOKEN_PLACEHOLDER",
+    "check_deployment": true
+  }
+}

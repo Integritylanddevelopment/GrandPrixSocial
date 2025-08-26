@@ -1,0 +1,72 @@
+{
+  "agent_name": "memory_agent_router_agent",
+  "purpose": "Central routing system for directing queries to appropriate memory agents",
+  "scope": "Query routing and agent coordination within the memory system",
+  "responsibilities": {
+    "primary": [
+      "Analyze incoming queries for routing decisions",
+      "Match queries to appropriate memory agents using keywords",
+      "Execute selected agents and return results",
+      "Track routing performance and statistics"
+    ],
+    "secondary": [
+      "Monitor agent availability and status",
+      "Provide fallback routing when primary agents fail",
+      "Generate routing analytics and reports"
+    ]
+  },
+  "file_structure": {
+    "main_script": "memory_agent_router_agent.py",
+    "metadata": "memory_agent_router_agent.meta.json",
+    "state": "memory_agent_router_agent_state.json",
+    "logic": "logic.json",
+    "logs": {
+      "routes": "memory_agent_routes.log",
+      "interactions": "agent_interactions.log"
+    }
+  },
+  "routing_strategy": {
+    "method": "keyword_based",
+    "fallback": "default_search_agent",
+    "load_balancing": false,
+    "priority_routing": true
+  },
+  "dependencies": {
+    "required": [
+      "memory_agent_core (for registry access)",
+      "memory_agent_registry_agent (for agent discovery)"
+    ],
+    "optional": [
+      "All memory agents (routing targets)"
+    ]
+  },
+  "integration_points": [
+    "memory_agent_core (registry consumer)",
+    "All memory agents (execution targets)",
+    "External query sources (API, CLI, other agents)"
+  ],
+  "performance_requirements": {
+    "max_route_time_ms": 500,
+    "target_success_rate": 95,
+    "concurrent_routes": 10
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:06.421210",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:16.476788",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:16.476788",
+    "file_path": "memory\\a_memory_core\\memory_agent_router_agent\\memory_agent_router_agent_manifest.json"
+  }
+}

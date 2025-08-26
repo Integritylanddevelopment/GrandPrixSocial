@@ -1,0 +1,48 @@
+{
+  "working_memory_registry": {
+    "system_version": "2.0_dynamic",
+    "last_updated": "06-21_03-30PM",
+    "philosophy": "Soft Ephemerality, Hard Preservation",
+    "active_sessions": {},
+    "ttl_configuration": {
+      "default_session_ttl_minutes": 120,
+      "context_cache_ttl_minutes": 60,
+      "reasoning_thread_ttl_minutes": 90,
+      "agent_zone_ttl_minutes": 30
+    },
+    "preservation_settings": {
+      "auto_archive_before_expiry": true,
+      "summary_before_archive": true,
+      "promote_to_memory_types": [
+        "procedural",
+        "semantic",
+        "episodic"
+      ],
+      "audit_all_transitions": true
+    }
+  },
+  "current_activity": {
+    "active_session_count": 0,
+    "pending_archival_count": 0,
+    "promotion_queue_count": 0
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.283037",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:37.430338",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:37.430338",
+    "file_path": "memory\\d_working_memory\\metadata\\session_registry.json"
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "agent_name": "memory_orchestrator_agent",
+  "version": "2.0",
+  "core_logic_version": "2.0",
+  "authority_level": "COORDINATION",
+  "builder_signature": "Stephen Alexander - 06-19_02-15PM",
+  "manifest": {
+    "primary_purpose": "Central coordination hub for CommandCore Memory System",
+    "orchestration_scope": "SYSTEM_WIDE",
+    "autonomous_operation": true,
+    "manual_intervention_required": false,
+    "coordination_method": "PRIORITY_BASED_EXECUTION"
+  },
+  "core_functions": [
+    {
+      "function": "orchestrate_agents_by_priority",
+      "description": "Execute all agents in priority order with dependency resolution",
+      "triggers": [
+        "scheduled",
+        "manual",
+        "health_check"
+      ],
+      "authority": "COORDINATION"
+    },
+    {
+      "function": "coordinate_agent_communication",
+      "description": "Facilitate communication between agents through inbox system",
+      "triggers": [
+        "agent_request",
+        "cross_agent_coordination"
+      ],
+      "authority": "COORDINATION"
+    },
+    {
+      "function": "validate_core_logic_compliance",
+      "description": "Ensure core logic document integrity before orchestration",
+      "triggers": [
+        "pre_orchestration",
+        "startup"
+      ],
+      "authority": "VALIDATION"
+    },
+    {
+      "function": "escalate_to_enforcement",
+      "description": "Escalate critical agent failures to enforcement system",
+      "triggers": [
+        "critical_agent_failure"
+      ],
+      "authority": "ESCALATION"
+    },
+    {
+      "function": "monitor_system_health",
+      "description": "Continuous monitoring and health assessment",
+      "triggers": [
+        "continuous",
+        "scheduled"
+      ],
+      "authority": "MONITORING"
+    }
+  ],
+  "orchestration_protocols": {
+    "execution_model": "PRIORITY_BASED",
+    "dependency_handling": "STRICT_VALIDATION",
+    "failure_response": {
+      "non_critical_agents": "CONTINUE_ORCHESTRATION",
+      "critical_agents": "STOP_AND_ESCALATE"
+    },
+    "timeout_management": {
+      "agent_execution_timeout": 300,
+      "enforcement_escalation_timeout": 60
+    },
+    "coordination_features": {
+      "agent_locking": true,
+      "communication_inbox": true,
+      "conflict_resolution": "QUEUE_BASED",
+      "state_persistence": true
+    }
+  },
+  "agent_registry_management": {
+    "registry_source": "INTERNAL_CONFIGURATION",
+    "priority_levels": "1_TO_8",
+    "dependency_types": [
+      "HARD_DEPENDENCIES",
+      "SOFT_DEPENDENCIES"
+    ],
+    "criticality_classification": [
+      "CRITICAL",
+      "NON_CRITICAL"
+    ],
+    "agent_types": [
+      "enforcement",
+      "core",
+      "intelligence",
+      "utility"
+    ]
+  },
+  "monitoring_capabilities": {
+    "health_assessment": {
+      "system_wide_health": true,
+      "individual_agent_status": true,
+      "dependency_validation": true,
+      "performance_metrics": true
+    },
+    "reporting": {
+      "orchestration_reports": true,
+      "health_status_reports": true,
+      "execution_logs": true,
+      "coordination_audit_trail": true
+    },
+    "alerts": {
+      "critical_failures": true,
+      "enforcement_escalations": true,
+      "coordination_conflicts": true,
+      "compliance_violations": true
+    }
+  },
+  "integration_requirements": {
+    "memory_logic_enforcer_agent": "CRITICAL_DEPENDENCY",
+    "core_logic_document": "MANDATORY_VALIDATION",
+    "tag_intelligence_engine": "COORDINATION_AWARE",
+    "agent_communication_protocol": "INBOX_BASED",
+    "builder_authorization": "REQUIRED_FOR_REGISTRY_CHANGES"
+  },
+  "performance_standards": {
+    "orchestration_cycle_time": "UNDER_10_MINUTES",
+    "agent_coordination_latency": "UNDER_5_SECONDS",
+    "health_monitoring_frequency": "EVERY_30_MINUTES",
+    "error_recovery_time": "IMMEDIATE",
+    "state_persistence": "REAL_TIME"
+  },
+  "compliance_requirements": {
+    "core_logic_aligned": true,
+    "timestamp_format_compliant": true,
+    "autonomous_operation": true,
+    "ai_tagging_coordinated": true,
+    "enforcement_integrated": true,
+    "builder_authorized": true
+  },
+  "tags": [
+    "#orchestration",
+    "#coordination",
+    "#systemhealth",
+    "#corelogic",
+    "#builderintent",
+    "#neverdelete",
+    "#aitagged"
+  ],
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:08.032667",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "last_updated": "2025-07-30T23:15:56.884062",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:15:56.884062",
+    "file_path": "memory\\a_memory_core\\memory_orchestrator_agent\\memory_orchestrator_agent_manifest.json"
+  }
+}

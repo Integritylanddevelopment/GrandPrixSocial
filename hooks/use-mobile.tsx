@@ -22,23 +22,25 @@ export function useMobile(): MobileDetection {
   })
 
   useEffect(() => {
-    if (typeof window === "undefined") return
-
     const updateDetection = () => {
       const width = window.innerWidth
       const height = window.innerHeight
 
+      // Device detection based on screen width
       const isMobile = width < 768
       const isTablet = width >= 768 && width < 1024
       const isDesktop = width >= 1024
 
+      // Orientation detection
       const orientation = height > width ? "portrait" : "landscape"
 
+      // Device type priority: mobile > tablet > desktop
       let deviceType: "mobile" | "tablet" | "desktop" = "desktop"
       if (isMobile) deviceType = "mobile"
       else if (isTablet) deviceType = "tablet"
 
-      const userAgent = typeof navigator !== "undefined" ? navigator.userAgent.toLowerCase() : ""
+      // Enhanced mobile detection using user agent
+      const userAgent = navigator.userAgent.toLowerCase()
       const isMobileUA = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/.test(userAgent)
 
       setDetection({
@@ -51,8 +53,10 @@ export function useMobile(): MobileDetection {
       })
     }
 
+    // Initial detection
     updateDetection()
 
+    // Listen for resize events
     window.addEventListener("resize", updateDetection)
     window.addEventListener("orientationchange", updateDetection)
 
@@ -65,27 +69,26 @@ export function useMobile(): MobileDetection {
   return detection
 }
 
+// Global mobile utilities
 export const mobileUtils = {
+  // Check if touch device
   isTouchDevice: () => {
-    if (typeof window === "undefined") return false
     return "ontouchstart" in window || navigator.maxTouchPoints > 0
   },
 
-  getViewport: () => {
-    if (typeof window === "undefined") return { width: 1024, height: 768 }
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    }
-  },
+  // Get viewport dimensions
+  getViewport: () => ({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  }),
 
+  // Check if device supports hover
   supportsHover: () => {
-    if (typeof window === "undefined") return true
     return window.matchMedia("(hover: hover)").matches
   },
 
+  // Get device pixel ratio
   getPixelRatio: () => {
-    if (typeof window === "undefined") return 1
     return window.devicePixelRatio || 1
   },
 }

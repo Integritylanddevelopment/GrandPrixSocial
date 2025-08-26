@@ -1,0 +1,43 @@
+{
+  "agent_id": "memory_core_log_agent",
+  "agent_name": "Memory Core Log Agent",
+  "version": "1.0",
+  "description": "Simple agent that collects all Memory Core agent logs and centralizes them for echo collection",
+  "priority": "low",
+  "status": "active",
+  "created": "06-22_08-35AM",
+  "last_updated": "06-22_08-35AM",
+  "owner": "CommandCore OS",
+  "license": "CommandCore OS License Agreement \u2014 Version 2025.06.11-A \u2014 \u00a9 2025 Stephen Alexander. All rights reserved.",
+  "dependencies": [
+    "watchdog"
+  ],
+  "functionality": [
+    "Monitor memory_core folders for log files",
+    "Copy logs to hot_storage for recent access",
+    "Archive old logs to cold_storage",
+    "Simple file-based state tracking"
+  ],
+  "coordination": {
+    "input_source": "memory_core/*/agent_interactions.log",
+    "output_destination": "hot_storage/ and cold_storage/",
+    "coordination_method": "file_watching"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:07.139211",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:30.541924",
+    "file_path": "memory\\a_memory_core\\memory_core_log_agent\\memory_core_log_agent_metadata.json"
+  }
+}

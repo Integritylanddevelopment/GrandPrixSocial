@@ -1,0 +1,82 @@
+{
+  "staging_status": {
+    "staged_files": [],
+    "staging_groups": [],
+    "ready_for_processing": 0,
+    "awaiting_validation": 0,
+    "staging_queue_size": 0,
+    "estimated_processing_time": null
+  },
+  "index_candidates": {
+    "candidate_groups": [],
+    "high_priority_indexes": 0,
+    "standard_priority_indexes": 0,
+    "low_priority_indexes": 0,
+    "pending_review": 0,
+    "auto_approved": 0
+  },
+  "content_classification": {
+    "technical_content": 0,
+    "conversational_content": 0,
+    "code_content": 0,
+    "documentation": 0,
+    "mixed_content": 0,
+    "unclassified_content": 0
+  },
+  "staging_metrics": {
+    "average_content_quality": 0.0,
+    "average_staging_time_minutes": 0,
+    "staging_success_rate": 0.0,
+    "indexability_assessment_accuracy": 0.0,
+    "search_potential_score": 0.0
+  },
+  "content_analysis": {
+    "total_content_analyzed": 0,
+    "languages_detected": [],
+    "topics_identified": [],
+    "relationship_patterns": {},
+    "embedding_readiness": []
+  },
+  "validation_results": {
+    "passed_validation": 0,
+    "failed_validation": 0,
+    "validation_warnings": 0,
+    "validation_errors": [],
+    "last_validation_run": null
+  },
+  "staging_workflow": {
+    "auto_staging_enabled": true,
+    "manual_review_required": false,
+    "batch_staging_active": false,
+    "priority_processing": false,
+    "staging_pipeline_status": "ready"
+  },
+  "resource_utilization": {
+    "staging_throughput": 0,
+    "analysis_speed": 0,
+    "memory_usage_mb": 0,
+    "cache_efficiency": 0.0,
+    "bottleneck_detection": []
+  },
+  "quality_gates": {
+    "content_completeness_check": true,
+    "indexability_validation": true,
+    "search_potential_verification": true,
+    "metadata_validation": true,
+    "embedding_feasibility_check": true
+  },
+  "last_updated": "01-19_06-45PM",
+  "status_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.629165",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

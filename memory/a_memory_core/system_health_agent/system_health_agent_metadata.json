@@ -1,0 +1,61 @@
+{
+  "agent_name": "system_health_agent",
+  "version": "1.0",
+  "author": "CommandCore OS",
+  "last_updated": "06-25_07-37AM",
+  "authority_level": "SYSTEM_MAINTENANCE",
+  "core_logic_version": "2.0",
+  "dependencies": [
+    "os",
+    "sys",
+    "json",
+    "subprocess",
+    "importlib",
+    "logging",
+    "threading",
+    "time",
+    "datetime",
+    "pathlib"
+  ],
+  "description": "Comprehensive system health monitoring and automatic repair agent for CommandCore OS. Manages dependency installation, component verification, agent integrity checks, and system maintenance.",
+  "capabilities": [
+    "Dependency checking and installation",
+    "Critical component verification",
+    "Agent integrity validation",
+    "Automatic system repair",
+    "Health score calculation",
+    "Continuous monitoring",
+    "Environment management",
+    "Package installation"
+  ],
+  "protected_scope": [
+    "Virtual environment integrity",
+    "Core dependencies",
+    "Agent file integrity",
+    "System components"
+  ],
+  "tags": [
+    "#systemhealth",
+    "#maintenance",
+    "#dependencies",
+    "#monitoring",
+    "#builderintent"
+  ],
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:08.617032",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:25.330811",
+    "file_path": "memory\\a_memory_core\\system_health_agent\\system_health_agent_metadata.json"
+  }
+}

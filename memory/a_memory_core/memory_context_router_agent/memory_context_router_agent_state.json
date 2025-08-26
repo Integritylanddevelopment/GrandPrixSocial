@@ -1,0 +1,49 @@
+{
+  "total_context_requests": 0,
+  "successful_injections": 0,
+  "failed_injections": 0,
+  "last_context_injection": "",
+  "context_sources_used": {},
+  "performance_metrics": {
+    "average_context_time_ms": 0,
+    "last_context_time_ms": 0,
+    "average_context_size_chars": 0
+  },
+  "search_statistics": {
+    "semantic_searches": 0,
+    "tag_matches_found": 0,
+    "files_processed": 0
+  },
+  "error_count": 0,
+  "last_error": "",
+  "session_data": {
+    "start_time": "",
+    "uptime_hours": 0,
+    "requests_per_hour": 0
+  },
+  "content_statistics": {
+    "working_memory_hits": 0,
+    "semantic_memory_hits": 0,
+    "long_term_memory_hits": 0,
+    "chat_index_hits": 0
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:06.670033",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:38.311575",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:38.311575",
+    "file_path": "memory\\a_memory_core\\memory_context_router_agent\\memory_context_router_agent_state.json"
+  }
+}

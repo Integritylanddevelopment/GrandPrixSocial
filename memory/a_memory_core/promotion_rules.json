@@ -1,0 +1,19 @@
+{
+  "working_to_longterm": {
+    "threshold_days": 7,
+    "criteria": [
+      "tagged",
+      "referenced_3_times",
+      "marked_important"
+    ],
+    "auto_promote": true
+  },
+  "session_to_episodic": {
+    "threshold_hours": 24,
+    "criteria": [
+      "session_complete",
+      "tagged"
+    ],
+    "auto_promote": true
+  }
+}

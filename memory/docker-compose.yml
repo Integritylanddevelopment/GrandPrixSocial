@@ -1,0 +1,226 @@
+version: '3.8'
+
+services:
+  # Redis for caching and session storage
+  redis:
+    image: redis:7-alpine
+    container_name: gps-memory-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+          cpus: '0.5'
+        reservations:
+          memory: 32M
+          cpus: '0.1'
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # PostgreSQL for structured data storage
+  postgres:
+    image: postgres:15-alpine
+    container_name: gps-memory-postgres
+    environment:
+      POSTGRES_DB: memory_system
+      POSTGRES_USER: memory_user
+      POSTGRES_PASSWORD: memory_secure_password_2024
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/init-db:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.5'
+        reservations:
+          memory: 64M
+          cpus: '0.1'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U memory_user -d memory_system"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Memory System Core
+  memory-system:
+    build: .
+    container_name: gps-memory-core
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    environment:
+      # Database connections
+      REDIS_URL: redis://redis:6379
+      DATABASE_URL: postgresql://memory_user:memory_secure_password_2024@postgres:5432/memory_system
+      
+      # Memory system config
+      MEMORY_ROOT: /app/memory
+      LOG_LEVEL: INFO
+      PYTHONPATH: /app/memory
+      PYTHONUNBUFFERED: 1
+      
+      # AI API keys (these should be set in .env file)
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      
+      # Memory system specific
+      MEMORY_PRESERVATION_MODE: true
+      MEMORY_AUTO_PROMOTION: true
+      MEMORY_CACHE_TTL: 3600
+      MEMORY_MAX_WORKING_FILES: 1000
+      
+    ports:
+      - "8080:8080"  # Main memory API
+      - "8081:8081"  # Health/monitoring
+      - "8082:8082"  # WebSocket for real-time updates
+    volumes:
+      # Persistent memory storage
+      - memory_data:/app/memory/data
+      - memory_logs:/app/memory/logs
+      - memory_cache:/app/memory/cache
+      
+      # Memory type persistence
+      - semantic_memory:/app/memory/f_semantic
+      - procedural_memory:/app/memory/e_procedural  
+      - episodic_memory:/app/memory/g_episodic
+      - working_memory:/app/memory/d_working_memory
+      - longterm_memory:/app/memory/b_long_term_memory
+      - shortterm_memory:/app/memory/c_short_term_memory
+      
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '1.0'
+        reservations:
+          memory: 256M
+          cpus: '0.2'
+    healthcheck:
+      test: ["CMD", "python", "config/health_check.py"]
+      interval: 60s
+      timeout: 30s
+      retries: 3
+      start_period: 120s
+
+  # Memory API Gateway (optional - for external access)
+  memory-api:
+    image: nginx:alpine
+    container_name: gps-memory-api
+    depends_on:
+      - memory-system
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./docker/ssl:/etc/nginx/ssl:ro
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 32M
+          cpus: '0.25'
+        reservations:
+          memory: 16M
+          cpus: '0.05'
+
+  # Monitoring and Metrics
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: gps-memory-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.5'
+        reservations:
+          memory: 64M
+          cpus: '0.1'
+
+  # Log aggregation
+  grafana:
+    image: grafana/grafana:latest
+    container_name: gps-memory-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin123
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./docker/grafana:/etc/grafana/provisioning
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+        reservations:
+          memory: 128M
+          cpus: '0.1'
+
+volumes:
+  # Database volumes
+  redis_data:
+    driver: local
+  postgres_data:
+    driver: local
+    
+  # Memory system volumes
+  memory_data:
+    driver: local
+  memory_logs:
+    driver: local
+  memory_cache:
+    driver: local
+    
+  # Memory type volumes  
+  semantic_memory:
+    driver: local
+  procedural_memory:
+    driver: local
+  episodic_memory:
+    driver: local
+  working_memory:
+    driver: local
+  longterm_memory:
+    driver: local
+  shortterm_memory:
+    driver: local
+    
+  # Monitoring volumes
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  default:
+    name: gps-memory-network
+    driver: bridge

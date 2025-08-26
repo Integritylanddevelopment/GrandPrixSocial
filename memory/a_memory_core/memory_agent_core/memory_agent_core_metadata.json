@@ -1,0 +1,64 @@
+{
+  "agent_name": "memory_agent_core",
+  "version": "2.0.0",
+  "description": "Core memory management system that coordinates all memory agents and enforces memory policies",
+  "author": "CommandCore Memory System",
+  "created": "2025-06-19",
+  "last_updated": "2025-06-19",
+  "status": "active",
+  "priority": "critical",
+  "dependencies": [
+    "memory_indexer_agent",
+    "memory_router_agent",
+    "memory_orchestrator_agent"
+  ],
+  "capabilities": [
+    "memory_validation",
+    "tag_enforcement",
+    "bucket_routing",
+    "file_size_enforcement",
+    "agent_coordination",
+    "violation_tracking",
+    "interaction_logging"
+  ],
+  "configuration": {
+    "auto_start": true,
+    "monitoring_enabled": true,
+    "logging_level": "INFO",
+    "max_retries": 3,
+    "heartbeat_interval": 30
+  },
+  "file_patterns": {
+    "watches": [
+      "memory/**/*.txt",
+      "memory/**/*.md"
+    ],
+    "ignores": [
+      "**/*.tmp",
+      "**/*.bak"
+    ]
+  },
+  "api_endpoints": {
+    "save_memory": "/api/memory/save",
+    "load_memory": "/api/memory/load",
+    "validate_tags": "/api/memory/validate",
+    "get_registry": "/api/memory/registry"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:05.802376",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:24.941054",
+    "file_path": "memory\\a_memory_core\\memory_agent_core\\memory_agent_core_metadata.json"
+  }
+}

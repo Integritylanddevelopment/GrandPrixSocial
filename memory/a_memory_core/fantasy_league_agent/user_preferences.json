@@ -1,0 +1,30 @@
+{
+  "test_user_123": {
+    "favorite_drivers": {
+      "Max Verstappen": 4,
+      "Lando Norris": 2
+    },
+    "favorite_constructors": {
+      "Red Bull Racing": 2
+    },
+    "risk_tolerance": "medium",
+    "budget_strategy": "balanced",
+    "prediction_accuracy": 0.0,
+    "selection_history": [
+      {
+        "race_id": "dutch_gp_2024",
+        "timestamp": "2025-08-26T14:00:34.529678",
+        "budget_used": 85000000,
+        "primary_driver": "Max Verstappen",
+        "constructor": "Red Bull Racing"
+      },
+      {
+        "race_id": "dutch_gp_2024",
+        "timestamp": "2025-08-26T14:08:23.500766",
+        "budget_used": 85000000,
+        "primary_driver": "Max Verstappen",
+        "constructor": "Red Bull Racing"
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "system": {
+    "name": "Merged Memory System",
+    "version": "2.0",
+    "last_updated": "06-20_12-15PM"
+  },
+  "merging": {
+    "auto_merge": true,
+    "merge_patterns": [
+      "*.md",
+      "*.txt",
+      "*.json"
+    ],
+    "similarity_threshold": 0.7,
+    "merge_strategies": [
+      "content_similarity",
+      "temporal_proximity",
+      "topic_clustering"
+    ],
+    "max_merge_group_size": 10
+  },
+  "monitoring": {
+    "watch_directories": [
+      "../Index",
+      "../../../memory_agents"
+    ],
+    "scan_interval_seconds": 120,
+    "auto_organize": true
+  },
+  "storage": {
+    "merged_content_path": "../storage/merged_content",
+    "embeddings_path": "../storage/embeddings",
+    "cache_path": "../storage/cache",
+    "backup_path": "../storage/backups"
+  },
+  "maintenance": {
+    "cleanup_temp_files": true,
+    "archive_old_logs": true,
+    "optimize_merges": true,
+    "retention_days": 120,
+    "auto_maintenance_schedule": "daily"
+  },
+  "performance": {
+    "max_concurrent_processes": 3,
+    "cache_size_limit_mb": 300,
+    "merge_compression": true
+  },
+  "logging": {
+    "level": "INFO",
+    "max_log_size_mb": 10,
+    "backup_count": 5,
+    "log_rotation": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.695241",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:23.701781",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:23.701781",
+    "file_path": "memory\\c_short_term_memory\\merged\\config\\merge_config.json"
+  }
+}

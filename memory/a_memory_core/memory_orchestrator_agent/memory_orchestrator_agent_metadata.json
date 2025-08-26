@@ -1,0 +1,79 @@
+{
+  "agent_name": "memory_orchestrator_agent",
+  "version": "2.0",
+  "author": "Stephen Alexander (System Builder)",
+  "last_updated": "06-19_02-15PM",
+  "authority_level": "COORDINATION",
+  "core_logic_version": "2.0",
+  "dependencies": [
+    "os",
+    "sys",
+    "json",
+    "time",
+    "logging",
+    "subprocess",
+    "threading",
+    "datetime",
+    "typing",
+    "watchdog",
+    "hashlib"
+  ],
+  "description": "Central coordination hub for the CommandCore Memory System. Orchestrates agent execution, manages dependencies, coordinates inter-agent communication, validates core logic compliance, and provides comprehensive system health monitoring and reporting.",
+  "capabilities": [
+    "Agent execution orchestration",
+    "Priority-based scheduling",
+    "Dependency resolution and validation",
+    "Inter-agent communication coordination",
+    "Real-time system health monitoring",
+    "Core logic compliance validation",
+    "Enforcement escalation management",
+    "Coordination conflict resolution",
+    "Comprehensive orchestration reporting",
+    "Autonomous system monitoring",
+    "Agent timeout and error handling",
+    "State persistence and recovery"
+  ],
+  "coordination_scope": [
+    "All memory agents (core, utility, intelligence)",
+    "System-wide health and compliance",
+    "Agent-to-agent communication",
+    "Enforcement coordination",
+    "Resource conflict resolution",
+    "Performance monitoring"
+  ],
+  "orchestration_features": [
+    "Priority-based execution order",
+    "Dependency tree resolution",
+    "Critical agent failure handling",
+    "Automatic enforcement escalation",
+    "Real-time status tracking",
+    "Comprehensive logging and reporting",
+    "Agent lock management",
+    "Communication inbox coordination"
+  ],
+  "tags": [
+    "#orchestration",
+    "#coordination",
+    "#systemhealth",
+    "#corelogic",
+    "#builderintent",
+    "#aitagged"
+  ],
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:08.056969",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:13.581359",
+    "file_path": "memory\\a_memory_core\\memory_orchestrator_agent\\memory_orchestrator_agent_metadata.json"
+  }
+}

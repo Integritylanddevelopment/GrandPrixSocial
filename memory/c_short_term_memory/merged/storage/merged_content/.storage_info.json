@@ -1,0 +1,36 @@
+{
+  "storage_info": {
+    "purpose": "Merged content storage",
+    "created": "06-20_12-15PM",
+    "version": "2.0"
+  },
+  "organization": {
+    "by_merge_group": true,
+    "by_topic": true,
+    "by_date": true
+  },
+  "structure": {
+    "merge_groups/": "Organized by merge group ID",
+    "topics/": "Organized by content topic",
+    "2025/": "Yearly organization"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.837321",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:48.763398",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:48.763398",
+    "file_path": "memory\\c_short_term_memory\\merged\\storage\\merged_content\\.storage_info.json"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Creates a Whoosh-based full-text search index from the memory directory.",
+  "inputs": [
+    "memory directory path"
+  ],
+  "outputs": [
+    "Whoosh index directory"
+  ],
+  "actions": [
+    "Read files",
+    "Index content",
+    "Generate metadata"
+  ],
+  "dependencies": [
+    "whoosh",
+    "os",
+    "shutil"
+  ],
+  "error_handling": "Archives existing index if present. Logs errors during indexing.",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:07.364181",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:47.334044",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:47.334044",
+    "file_path": "memory\\a_memory_core\\memory_indexer_agent\\memory_indexer_logic.json"
+  }
+}

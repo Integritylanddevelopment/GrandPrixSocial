@@ -1,0 +1,67 @@
+{
+  "system": {
+    "name": "Index Memory System",
+    "version": "2.0",
+    "last_updated": "06-20_12-00PM"
+  },
+  "indexing": {
+    "auto_index": true,
+    "index_patterns": [
+      "*.md",
+      "*.txt",
+      "*.json"
+    ],
+    "exclude_patterns": [
+      "*.log",
+      "*.tmp",
+      "*_backup*"
+    ],
+    "max_file_size_mb": 100,
+    "batch_size": 50
+  },
+  "monitoring": {
+    "watch_directories": [
+      "../../../b_long_term_memory/full_chat/full_chat_logs",
+      "../../../memory_agents"
+    ],
+    "scan_interval_seconds": 60,
+    "auto_organize": true
+  },
+  "storage": {
+    "indexed_content_path": "../storage/indexed_content",
+    "embeddings_path": "../storage/embeddings",
+    "cache_path": "../storage/cache",
+    "backup_path": "../storage/backups"
+  },
+  "maintenance": {
+    "cleanup_temp_files": true,
+    "archive_old_logs": true,
+    "optimize_indexes": true,
+    "retention_days": 90,
+    "auto_maintenance_schedule": "daily"
+  },
+  "performance": {
+    "max_concurrent_processes": 4,
+    "cache_size_limit_mb": 500,
+    "index_compression": true
+  },
+  "logging": {
+    "level": "INFO",
+    "max_log_size_mb": 10,
+    "backup_count": 5,
+    "log_rotation": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.278427",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:23.898777",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:23.898777",
+    "file_path": "memory\\c_short_term_memory\\Index\\config\\index_config.json"
+  }
+}

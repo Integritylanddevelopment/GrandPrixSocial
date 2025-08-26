@@ -1,0 +1,71 @@
+{
+  "file_validation": {
+    "max_file_size_bytes": 104857600,
+    "allowed_extensions": [
+      ".md",
+      ".txt",
+      ".json",
+      ".log"
+    ],
+    "required_encoding": "utf-8",
+    "min_content_length": 10
+  },
+  "content_validation": {
+    "check_empty_files": true,
+    "validate_json_syntax": true,
+    "validate_markdown_structure": true,
+    "detect_corrupted_files": true
+  },
+  "index_validation": {
+    "check_index_integrity": true,
+    "validate_file_paths": true,
+    "check_missing_files": true,
+    "verify_metadata_consistency": true
+  },
+  "quality_thresholds": {
+    "min_file_size_bytes": 50,
+    "max_empty_lines_percent": 80,
+    "min_content_density": 0.1
+  },
+  "error_handling": {
+    "skip_corrupted_files": true,
+    "log_validation_errors": true,
+    "quarantine_invalid_files": false,
+    "auto_fix_minor_issues": true
+  },
+  "health_checks": {
+    "run_on_startup": true,
+    "scheduled_validation": true,
+    "validation_frequency_hours": 24,
+    "deep_scan_frequency_days": 7
+  },
+  "compliance": {
+    "enforce_naming_conventions": true,
+    "required_metadata_fields": [
+      "timestamp",
+      "source",
+      "file_type"
+    ],
+    "validate_timestamp_format": true,
+    "timestamp_format": "%m-%d_%I-%M%p"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.302381",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:20.567025",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:20.567025",
+    "file_path": "memory\\c_short_term_memory\\Index\\config\\validation_rules.json"
+  }
+}

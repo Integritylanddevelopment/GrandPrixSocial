@@ -1,0 +1,159 @@
+{
+  "validation_template": {
+    "validation_id": "",
+    "timestamp": "",
+    "validation_type": "summary_staging_validation",
+    "content_validation": {
+      "file_integrity": {
+        "checksum_verified": false,
+        "content_readable": false,
+        "encoding_valid": false,
+        "structure_intact": false
+      },
+      "content_quality": {
+        "meaningful_content": false,
+        "sufficient_length": false,
+        "language_coherent": false,
+        "topic_identifiable": false,
+        "readability_acceptable": false
+      },
+      "metadata_validation": {
+        "timestamp_valid": false,
+        "content_type_identified": false,
+        "complexity_assessed": false,
+        "language_detected": false
+      }
+    },
+    "summary_readiness": {
+      "content_analysis": {
+        "content_type_classified": false,
+        "complexity_assessed": false,
+        "structure_analyzed": false,
+        "information_density_calculated": false
+      },
+      "summary_criteria": {
+        "length_requirements_met": false,
+        "quality_standards_met": false,
+        "summarization_feasible": false,
+        "compression_achievable": false
+      },
+      "technical_validation": {
+        "file_format_compatible": false,
+        "encoding_consistent": false,
+        "size_within_limits": false,
+        "processing_resources_available": false
+      }
+    },
+    "quality_assessment": {
+      "content_coherence": 0.0,
+      "information_value": 0.0,
+      "readability_score": 0.0,
+      "structural_integrity": 0.0,
+      "summary_potential": 0.0
+    },
+    "validation_results": {
+      "overall_score": 0.0,
+      "validation_passed": false,
+      "critical_issues": [],
+      "warnings": [],
+      "recommendations": [],
+      "next_actions": []
+    },
+    "validation_metrics": {
+      "validation_time_seconds": 0,
+      "checks_performed": 0,
+      "checks_passed": 0,
+      "checks_failed": 0,
+      "confidence_level": 0.0
+    }
+  },
+  "validation_rules": {
+    "required_checks": [
+      "file_integrity",
+      "content_quality",
+      "metadata_validation",
+      "summary_readiness"
+    ],
+    "quality_thresholds": {
+      "minimum_content_length": 150,
+      "maximum_content_length": 100000,
+      "minimum_readability_score": 0.5,
+      "minimum_coherence_score": 0.6,
+      "required_metadata_fields": [
+        "timestamp",
+        "content_type",
+        "complexity"
+      ]
+    },
+    "validation_levels": {
+      "basic": {
+        "checks": [
+          "file_integrity",
+          "content_quality"
+        ],
+        "threshold": 0.65
+      },
+      "standard": {
+        "checks": [
+          "file_integrity",
+          "content_quality",
+          "metadata_validation"
+        ],
+        "threshold": 0.75
+      },
+      "comprehensive": {
+        "checks": [
+          "file_integrity",
+          "content_quality",
+          "metadata_validation",
+          "summary_readiness"
+        ],
+        "threshold": 0.85
+      }
+    },
+    "content_type_specific": {
+      "technical": {
+        "additional_checks": [
+          "terminology_validation",
+          "structure_verification"
+        ],
+        "threshold_adjustment": 0.05
+      },
+      "conversation": {
+        "additional_checks": [
+          "dialog_flow_validation",
+          "context_preservation"
+        ],
+        "threshold_adjustment": 0.0
+      },
+      "narrative": {
+        "additional_checks": [
+          "story_coherence",
+          "tone_consistency"
+        ],
+        "threshold_adjustment": -0.05
+      },
+      "code": {
+        "additional_checks": [
+          "syntax_validation",
+          "logic_preservation"
+        ],
+        "threshold_adjustment": 0.1
+      }
+    }
+  },
+  "last_updated": "01-19_06-45PM",
+  "validation_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.264291",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

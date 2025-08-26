@@ -1,0 +1,107 @@
+{
+  "agent_manifest": {
+    "agent_id": "gui_launcher_agent",
+    "agent_type": "system_management",
+    "priority": "high",
+    "status": "active",
+    "execution_mode": "continuous",
+    "resource_requirements": {
+      "cpu": "low",
+      "memory": "minimal",
+      "disk": "logs_only",
+      "network": "local_monitoring"
+    },
+    "runtime_environment": {
+      "python_version": "3.8+",
+      "required_packages": [
+        "subprocess",
+        "threading",
+        "pathlib",
+        "logging",
+        "json",
+        "time"
+      ],
+      "optional_packages": [
+        "psutil",
+        "requests"
+      ],
+      "environment_variables": [
+        "PYTHON_PATH",
+        "ANTHROPIC_CLAUDE4_KEY"
+      ]
+    },
+    "file_structure": {
+      "main_script": "gui_launcher_agent.py",
+      "metadata": "gui_launcher_agent_metadata.json",
+      "logic": "gui_launcher_agent_logic.json",
+      "state": "gui_launcher_agent_state.json",
+      "logs": "gui_launcher_log.txt"
+    },
+    "communication_protocols": {
+      "input_channels": [
+        "command_line_args",
+        "state_file_changes",
+        "signal_handlers"
+      ],
+      "output_channels": [
+        "log_files",
+        "state_persistence",
+        "process_monitoring"
+      ],
+      "message_formats": [
+        "json_state",
+        "log_entries",
+        "process_signals"
+      ]
+    },
+    "operational_parameters": {
+      "startup_timeout": 30,
+      "monitoring_interval": 30,
+      "restart_delay": 5,
+      "max_restart_attempts": 10,
+      "health_check_timeout": 10,
+      "log_rotation": "daily",
+      "state_backup_interval": "on_change"
+    },
+    "security_considerations": {
+      "process_isolation": true,
+      "privilege_escalation": false,
+      "network_access": "local_only",
+      "file_system_access": "project_directory_only"
+    },
+    "monitoring_and_alerting": {
+      "health_metrics": [
+        "process_uptime",
+        "restart_count",
+        "memory_usage",
+        "response_time"
+      ],
+      "alert_conditions": [
+        "repeated_crashes",
+        "startup_failures",
+        "resource_exhaustion",
+        "dependency_errors"
+      ],
+      "reporting_frequency": "every_5_minutes"
+    }
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:05.027379",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:07.917346",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:07.917346",
+    "file_path": "memory\\a_memory_core\\gui_launcher_agent\\gui_launcher_agent_manifest.json"
+  }
+}

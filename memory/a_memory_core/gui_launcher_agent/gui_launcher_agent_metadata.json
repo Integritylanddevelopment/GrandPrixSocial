@@ -1,0 +1,70 @@
+{
+  "agent_name": "gui_launcher_agent",
+  "version": "1.0.0",
+  "description": "Manages web GUI server startup, health monitoring, and auto-restart functionality",
+  "author": "CommandCore OS",
+  "created_date": "2025-06-25",
+  "last_modified": "2025-06-25",
+  "dependencies": [
+    "subprocess",
+    "threading",
+    "pathlib",
+    "logging",
+    "json"
+  ],
+  "capabilities": [
+    "Web server management",
+    "Process monitoring",
+    "Auto-restart functionality",
+    "Health checks",
+    "Dependency validation",
+    "State persistence"
+  ],
+  "interfaces": {
+    "input": [
+      "start_command",
+      "stop_command",
+      "status_request",
+      "restart_command"
+    ],
+    "output": [
+      "server_status",
+      "health_reports",
+      "error_notifications",
+      "startup_confirmations"
+    ]
+  },
+  "configuration": {
+    "auto_restart": true,
+    "monitoring_interval": 30,
+    "restart_delay": 5,
+    "max_restart_attempts": 10
+  },
+  "tags": [
+    "gui",
+    "launcher",
+    "web-server",
+    "monitoring",
+    "auto-restart",
+    "health-check",
+    "system-management"
+  ],
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:05.034911",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "last_updated": "2025-07-30T23:16:25.067535",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:25.067535",
+    "file_path": "memory\\a_memory_core\\gui_launcher_agent\\gui_launcher_agent_metadata.json"
+  }
+}

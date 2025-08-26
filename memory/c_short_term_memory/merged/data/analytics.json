@@ -1,0 +1,50 @@
+{
+  "usage_analytics": {
+    "total_merge_operations": 0,
+    "merge_success_rate": 0,
+    "most_merged_topics": [],
+    "merge_patterns": {}
+  },
+  "content_analytics": {
+    "merge_type_distribution": {},
+    "topic_clustering_effectiveness": {},
+    "temporal_merge_patterns": {},
+    "similarity_score_distribution": {}
+  },
+  "merge_insights": {
+    "optimal_merge_times": [],
+    "content_relationship_strength": 0,
+    "merge_efficiency_trends": {},
+    "information_preservation_rate": 0
+  },
+  "system_insights": {
+    "merge_bottlenecks": [],
+    "performance_trends": {},
+    "storage_optimization_opportunities": [],
+    "relationship_discovery_patterns": {}
+  },
+  "recommendations": {
+    "merge_optimization_suggestions": [],
+    "content_organization_improvements": [],
+    "performance_enhancement_tips": []
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.765185",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:36.544850",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:36.544850",
+    "file_path": "memory\\c_short_term_memory\\merged\\data\\analytics.json"
+  }
+}

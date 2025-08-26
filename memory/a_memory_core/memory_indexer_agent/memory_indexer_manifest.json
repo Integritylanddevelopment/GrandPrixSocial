@@ -1,0 +1,67 @@
+{
+  "agent_name": "Memory Indexer Agent",
+  "version": "2.0",
+  "agent_type": "core",
+  "priority": 2,
+  "authority_level": "critical",
+  "capabilities": [
+    "full_text_search_indexing",
+    "whoosh_integration",
+    "memory_content_analysis",
+    "ai_tag_generation",
+    "semantic_vector_storage",
+    "index_optimization"
+  ],
+  "dependencies": [
+    "whoosh",
+    "tag_intelligence_engine",
+    "openai",
+    "memory_logic_enforcer_agent"
+  ],
+  "input_sources": [
+    "b_long_term_memory",
+    "c_working_memory",
+    "d_semantic_memory",
+    "e_archived_memory"
+  ],
+  "output_targets": [
+    "memory_index.json",
+    "tag_database",
+    "search_metrics"
+  ],
+  "integration_points": [
+    "memory_orchestrator_agent",
+    "memory_context_router_agent",
+    "memory_search_agent",
+    "tag_intelligence_engine"
+  ],
+  "coordination_requirements": [
+    "must_run_after_logic_enforcer",
+    "provides_index_for_search_agents",
+    "updates_tag_intelligence_database"
+  ],
+  "performance_metrics": {
+    "files_indexed": 0,
+    "tags_generated": 0,
+    "index_size_mb": 0,
+    "avg_indexing_time_ms": 0
+  },
+  "last_updated": "06-20_10-15AM",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:07.384110",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:20.328113",
+    "file_path": "memory\\a_memory_core\\memory_indexer_agent\\memory_indexer_manifest.json"
+  }
+}

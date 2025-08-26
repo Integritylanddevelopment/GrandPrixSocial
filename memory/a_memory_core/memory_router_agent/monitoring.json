@@ -1,0 +1,30 @@
+{
+  "agent_id": "memory_router_agent",
+  "monitoring": {
+    "enabled": true,
+    "metrics_collection": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_tracking": true,
+    "uptime_monitoring": true
+  },
+  "alerts": {
+    "error_threshold": 5,
+    "response_time_threshold": 1000,
+    "memory_threshold": 0.8,
+    "cpu_threshold": 0.8
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:08.287149",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:48.961062",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:48.961062",
+    "file_path": "memory\\a_memory_core\\memory_router_agent\\monitoring.json"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "routing_logic": {
+    "keyword_matching": {
+      "strategy": "best_match",
+      "case_sensitive": false,
+      "partial_match": true,
+      "minimum_confidence": 0.7
+    },
+    "agent_selection": {
+      "prefer_active_agents": true,
+      "fallback_strategy": "default_search",
+      "load_balancing": false,
+      "priority_based": true
+    },
+    "query_preprocessing": {
+      "normalize_whitespace": true,
+      "remove_stopwords": false,
+      "stemming": false,
+      "max_length": 1000
+    }
+  },
+  "performance_tracking": {
+    "track_route_times": true,
+    "track_success_rates": true,
+    "track_agent_usage": true,
+    "performance_window_hours": 24
+  },
+  "error_handling": {
+    "retry_failed_routes": false,
+    "timeout_seconds": 30,
+    "fallback_to_search": true,
+    "log_errors": true
+  },
+  "routing_rules": {
+    "search_patterns": [
+      "search",
+      "find",
+      "lookup",
+      "query",
+      "retrieve",
+      "get"
+    ],
+    "recall_patterns": [
+      "recall",
+      "remember",
+      "what did",
+      "previous",
+      "before",
+      "history"
+    ],
+    "summary_patterns": [
+      "summarize",
+      "summary",
+      "overview",
+      "digest",
+      "brief",
+      "what's this about"
+    ],
+    "maintenance_patterns": [
+      "decay",
+      "archive",
+      "promote",
+      "clean up",
+      "expire",
+      "old"
+    ],
+    "organization_patterns": [
+      "merge",
+      "combine",
+      "consolidate",
+      "organize",
+      "structure"
+    ],
+    "analysis_patterns": [
+      "analyze",
+      "insights",
+      "patterns",
+      "trends",
+      "statistics"
+    ]
+  },
+  "agent_priorities": {
+    "memory_search_agent": "high",
+    "memory_recall_agent": "high",
+    "memory_summarizer_agent": "medium",
+    "memory_indexer_agent": "medium",
+    "memory_decay_agent": "low",
+    "memory_merger_agent": "low"
+  },
+  "timestamp_format": "%m-%d_%I-%M%p",
+  "lastUpdated": "2025-06-19",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:06.360194",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:16.348623",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:16.348623",
+    "file_path": "memory\\a_memory_core\\memory_agent_router_agent\\logic.json"
+  }
+}

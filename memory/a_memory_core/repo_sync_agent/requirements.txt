@@ -1,0 +1,17 @@
+# Grand Prix Social Repository Sync Agent Requirements
+
+# Core dependencies
+requests>=2.31.0
+pathlib>=1.0.1
+
+# Development dependencies
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Optional dependencies for advanced features
+gitpython>=3.1.31  # Enhanced Git operations
+watchdog>=3.0.0    # File system monitoring for auto-sync
+schedule>=1.2.0    # Scheduled sync operations
+
+# Memory system integration
+# No additional dependencies required - uses built-in json and file operations

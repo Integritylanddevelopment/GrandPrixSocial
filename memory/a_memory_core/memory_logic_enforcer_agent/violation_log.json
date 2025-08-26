@@ -1,0 +1,1362 @@
+[
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_06-26PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-15PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-18PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-19PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-21PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-23PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "d:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-24PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-29PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-19_07-53PM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py: os.remove(",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_agent.py",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_state.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Memory agent missing AI tagging integration: D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  },
+  {
+    "timestamp": "06-20_08-00AM",
+    "type": "FILE_COMPLIANCE",
+    "details": "Forbidden deletion operation in D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json: decay",
+    "file_path": "D:\\ActiveProjects\\commandcore-helper\\memory_agents\\test_memory_orchestrator_agent\\test_memory_orchestrator_violation_log.json",
+    "severity": "MEDIUM",
+    "enforcer_version": "2.0"
+  }
+]

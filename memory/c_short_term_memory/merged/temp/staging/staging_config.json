@@ -1,0 +1,61 @@
+{
+  "staging_config": {
+    "merge_staging_settings": {
+      "auto_stage_threshold": 3,
+      "staging_timeout_hours": 4,
+      "max_staging_files": 50,
+      "priority_staging": true,
+      "relationship_pre_analysis": true,
+      "content_preview_generation": true
+    },
+    "organization": {
+      "group_by_similarity": true,
+      "group_by_timestamp": true,
+      "group_by_topic": true,
+      "max_group_size": 8,
+      "cross_group_analysis": true
+    },
+    "merge_candidate_detection": {
+      "semantic_similarity": 0.75,
+      "temporal_proximity": "2_hours",
+      "topic_coherence": 0.7,
+      "author_consistency": true,
+      "conversation_continuity": true
+    },
+    "staging_workflow": {
+      "auto_advance_to_processing": true,
+      "require_manual_approval": false,
+      "batch_staging": true,
+      "priority_queue": true,
+      "staging_validation": true
+    },
+    "data_preparation": {
+      "normalize_timestamps": true,
+      "extract_metadata": true,
+      "generate_embeddings": true,
+      "calculate_relationships": true,
+      "prepare_merge_plan": true
+    }
+  },
+  "quality_assurance": {
+    "validate_staging_criteria": true,
+    "check_merge_feasibility": true,
+    "assess_content_quality": true,
+    "verify_relationships": true,
+    "staging_confidence_threshold": 0.65
+  },
+  "last_updated": "01-19_06-45PM",
+  "config_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.976661",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

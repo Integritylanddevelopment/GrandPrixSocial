@@ -1,0 +1,58 @@
+{
+  "agent_state": {
+    "status": "idle",
+    "last_started": null,
+    "start_count": 0,
+    "crash_count": 0,
+    "auto_restart": true,
+    "server_process_id": null,
+    "server_port": null,
+    "last_health_check": null,
+    "health_status": "unknown",
+    "restart_attempts": 0,
+    "max_restart_attempts": 10,
+    "monitoring_active": false,
+    "dependencies_validated": false,
+    "python_executable": null,
+    "environment_validated": false,
+    "error_log": [],
+    "performance_metrics": {
+      "average_startup_time": 0,
+      "total_uptime": 0,
+      "last_restart_time": null,
+      "memory_usage": 0,
+      "cpu_usage": 0
+    },
+    "configuration": {
+      "monitoring_interval": 30,
+      "restart_delay": 5,
+      "health_check_timeout": 10,
+      "log_level": "INFO",
+      "auto_restart_enabled": true,
+      "port_range_start": 8080,
+      "port_range_end": 8090
+    },
+    "last_updated": null,
+    "agent_version": "1.0.0"
+  },
+  "status": "stopped",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:05.051132",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:28.583077",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:28.583077",
+    "file_path": "memory\\a_memory_core\\gui_launcher_agent\\gui_launcher_agent_state.json"
+  }
+}

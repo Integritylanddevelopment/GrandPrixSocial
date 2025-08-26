@@ -1,0 +1,164 @@
+{
+  "error_handling": {
+    "error_categories": {
+      "processing_errors": {
+        "content_parsing_failed": {
+          "severity": "medium",
+          "retry_strategy": "alternative_parser",
+          "max_retries": 2,
+          "escalation": "manual_review"
+        },
+        "embedding_generation_failed": {
+          "severity": "high",
+          "retry_strategy": "api_retry_with_backoff",
+          "max_retries": 3,
+          "escalation": "fallback_embeddings"
+        },
+        "index_creation_failed": {
+          "severity": "high",
+          "retry_strategy": "rebuild_index",
+          "max_retries": 2,
+          "escalation": "manual_intervention"
+        },
+        "search_optimization_failed": {
+          "severity": "medium",
+          "retry_strategy": "basic_optimization",
+          "max_retries": 2,
+          "escalation": "skip_optimization"
+        }
+      },
+      "content_errors": {
+        "content_too_large": {
+          "severity": "medium",
+          "retry_strategy": "chunked_processing",
+          "max_retries": 1,
+          "escalation": "hierarchical_indexing"
+        },
+        "content_corrupted": {
+          "severity": "high",
+          "retry_strategy": "content_repair",
+          "max_retries": 2,
+          "escalation": "exclude_content"
+        },
+        "encoding_issues": {
+          "severity": "low",
+          "retry_strategy": "encoding_conversion",
+          "max_retries": 3,
+          "escalation": "default_encoding"
+        },
+        "language_detection_failed": {
+          "severity": "low",
+          "retry_strategy": "default_language",
+          "max_retries": 1,
+          "escalation": "proceed_with_default"
+        }
+      },
+      "embedding_errors": {
+        "api_rate_limit": {
+          "severity": "medium",
+          "retry_strategy": "exponential_backoff",
+          "max_retries": 5,
+          "escalation": "queue_for_later"
+        },
+        "embedding_quality_low": {
+          "severity": "medium",
+          "retry_strategy": "improve_content_prep",
+          "max_retries": 2,
+          "escalation": "accept_with_warning"
+        },
+        "dimension_mismatch": {
+          "severity": "high",
+          "retry_strategy": "regenerate_embedding",
+          "max_retries": 1,
+          "escalation": "exclude_from_index"
+        },
+        "api_connection_failed": {
+          "severity": "critical",
+          "retry_strategy": "connection_retry",
+          "max_retries": 3,
+          "escalation": "offline_mode"
+        }
+      },
+      "search_errors": {
+        "index_corruption": {
+          "severity": "critical",
+          "retry_strategy": "rebuild_index",
+          "max_retries": 1,
+          "escalation": "restore_from_backup"
+        },
+        "search_path_optimization_failed": {
+          "severity": "low",
+          "retry_strategy": "basic_paths",
+          "max_retries": 1,
+          "escalation": "proceed_without_optimization"
+        },
+        "relevance_scoring_failed": {
+          "severity": "medium",
+          "retry_strategy": "fallback_scoring",
+          "max_retries": 2,
+          "escalation": "basic_scoring"
+        }
+      }
+    },
+    "recovery_procedures": {
+      "auto_recovery": {
+        "enabled": true,
+        "max_auto_retries": 3,
+        "recovery_delay_seconds": 30,
+        "success_threshold": 0.75
+      },
+      "embedding_recovery": {
+        "fallback_methods": [
+          "cached_embeddings",
+          "simplified_embeddings",
+          "keyword_fallback"
+        ],
+        "quality_adjustment": "progressive_degradation",
+        "minimum_acceptable_quality": 0.6,
+        "preserve_search_functionality": true
+      },
+      "index_recovery": {
+        "backup_restoration": true,
+        "partial_index_rebuild": true,
+        "incremental_recovery": true,
+        "consistency_validation": true
+      },
+      "manual_intervention": {
+        "notification_channels": [
+          "log",
+          "alert",
+          "queue"
+        ],
+        "escalation_timeout_minutes": 20,
+        "required_approvals": 1,
+        "recovery_validation": true
+      }
+    },
+    "monitoring": {
+      "error_tracking": true,
+      "search_impact_assessment": true,
+      "recovery_success_rate": true,
+      "embedding_quality_degradation": true,
+      "alert_thresholds": {
+        "error_rate_percent": 5,
+        "critical_errors_per_hour": 2,
+        "embedding_failures_percent": 10,
+        "search_degradation_percent": 8
+      }
+    }
+  },
+  "last_updated": "01-19_06-45PM",
+  "error_handling_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.438827",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "agent_id": "repo_sync_agent",
+  "name": "Repository Sync Agent",
+  "type": "core_system",
+  "status": "active",
+  "capabilities": [
+    "bidirectional_sync",
+    "conflict_resolution",
+    "cherry_pick_download",
+    "auto_sync",
+    "memory_integration"
+  ],
+  "endpoints": {
+    "sync": "memory_integration.py",
+    "status": "memory_integration.py status",
+    "auto_sync": "auto_sync.py"
+  },
+  "memory_integration": true,
+  "priority": "high",
+  "initialized": 1755622901.2121887
+}

@@ -1,0 +1,67 @@
+{
+  "merge_validation": {
+    "min_similarity_threshold": 0.6,
+    "max_merge_group_size": 15,
+    "validate_merge_quality": true,
+    "prevent_over_merging": true
+  },
+  "content_validation": {
+    "check_content_integrity": true,
+    "validate_merge_logic": true,
+    "detect_duplicate_merges": true,
+    "preserve_source_attribution": true
+  },
+  "quality_thresholds": {
+    "min_merge_benefit_score": 0.5,
+    "max_information_loss": 0.2,
+    "min_coherence_score": 0.7
+  },
+  "merge_rules": {
+    "require_topic_overlap": true,
+    "preserve_temporal_context": true,
+    "maintain_source_traceability": true,
+    "avoid_circular_merges": true
+  },
+  "error_handling": {
+    "rollback_failed_merges": true,
+    "log_merge_conflicts": true,
+    "quarantine_problematic_content": false,
+    "auto_resolve_minor_conflicts": true
+  },
+  "health_checks": {
+    "validate_merged_content": true,
+    "check_merge_consistency": true,
+    "monitor_merge_performance": true,
+    "scheduled_validation_hours": 12
+  },
+  "compliance": {
+    "enforce_merge_metadata": true,
+    "required_merge_fields": [
+      "merge_timestamp",
+      "source_files",
+      "merge_reason",
+      "similarity_score"
+    ],
+    "validate_timestamp_format": true,
+    "timestamp_format": "%m-%d_%I-%M%p"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.746155",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:20.421612",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:20.421612",
+    "file_path": "memory\\c_short_term_memory\\merged\\config\\validation_rules.json"
+  }
+}

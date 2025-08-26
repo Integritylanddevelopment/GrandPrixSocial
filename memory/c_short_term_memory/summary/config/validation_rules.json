@@ -1,0 +1,46 @@
+{
+  "validation_rules": {
+    "summary_quality": {
+      "min_length": 50,
+      "max_length": 500,
+      "coherence_threshold": 0.8,
+      "relevance_threshold": 0.7
+    },
+    "content_integrity": {
+      "no_truncated_sentences": true,
+      "proper_grammar": true,
+      "logical_flow": true,
+      "key_points_included": true
+    },
+    "metadata_requirements": {
+      "timestamp_present": true,
+      "source_file_tracked": true,
+      "tags_generated": true,
+      "confidence_score": true
+    },
+    "cross_reference": {
+      "related_summaries": true,
+      "topic_clustering": true,
+      "duplicate_detection": true
+    }
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.028310",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:38.828827",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:38.828827",
+    "file_path": "memory\\c_short_term_memory\\summary\\config\\validation_rules.json"
+  }
+}

@@ -1,0 +1,73 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.coverage
+.pytest_cache
+*.egg-info
+dist
+build
+
+# Virtual environments
+venv
+env
+.venv
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/*.log
+a_memory_core/logs/*.log
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Docker
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml
+
+# Documentation (optional)
+docs/
+README.md
+
+# Large data files
+*.db
+*.sqlite
+*.sqlite3
+data/
+cache/
+
+# Secrets
+secrets/
+certs/
+ssl/
+
+# Node modules (if any)
+node_modules/
+npm-debug.log*

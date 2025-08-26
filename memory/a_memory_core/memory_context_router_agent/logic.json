@@ -1,0 +1,243 @@
+{
+  "context_injection_logic": {
+    "search_strategy": {
+      "semantic_matching": true,
+      "keyword_extraction": true,
+      "fuzzy_matching": false,
+      "case_sensitive": false,
+      "minimum_relevance_score": 0.3
+    },
+    "content_sources": {
+      "priority_order": [
+        "working_memory",
+        "semantic_memory",
+        "long_term_memory",
+        "chat_index"
+      ],
+      "max_sources_per_request": 4,
+      "enable_cross_source_correlation": true
+    },
+    "summarization": {
+      "max_context_chars": 3000,
+      "preserve_key_sections": true,
+      "include_metadata": true,
+      "truncation_strategy": "intelligent"
+    }
+  },
+  "performance_optimization": {
+    "cache_search_results": false,
+    "lazy_load_content": true,
+    "parallel_search": false,
+    "search_timeout_ms": 5000
+  },
+  "content_filtering": {
+    "exclude_patterns": [
+      "__pycache__",
+      "*.tmp",
+      "*.bak"
+    ],
+    "include_extensions": [
+      ".txt",
+      ".md",
+      ".json"
+    ],
+    "max_file_size_kb": 500,
+    "skip_empty_files": true
+  },
+  "context_enhancement": {
+    "add_source_metadata": true,
+    "include_relevance_scores": false,
+    "preserve_file_structure": true,
+    "add_timestamps": true
+  },
+  "error_handling": {
+    "graceful_degradation": true,
+    "fallback_to_partial_context": true,
+    "retry_failed_searches": false,
+    "log_search_failures": true
+  },
+  "search_patterns": {
+    "exact_match_weight": 1.0,
+    "partial_match_weight": 0.7,
+    "semantic_match_weight": 0.5,
+    "filename_match_weight": 0.8,
+    "ai_tag_weight": 0.9,
+    "structured_tag_weight": 0.8,
+    "compound_tag_weight": 0.85
+  },
+  "ai_tagging_system": {
+    "enabled": true,
+    "tag_generation_model": "gpt-3.5-turbo",
+    "embedding_model": "text-embedding-ada-002",
+    "max_tags_per_file": 8,
+    "min_semantic_similarity": 0.7,
+    "tag_learning_enabled": true,
+    "auto_tag_consolidation": true,
+    "tag_effectiveness_tracking": true
+  },
+  "tag_schema": {
+    "format": "hybrid_structured_semantic",
+    "structured_categories": {
+      "type": [
+        "conversation",
+        "code",
+        "error",
+        "solution",
+        "planning",
+        "research"
+      ],
+      "intent": [
+        "debug",
+        "learn",
+        "implement",
+        "fix",
+        "optimize",
+        "document"
+      ],
+      "priority": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ],
+      "domain": [
+        "frontend",
+        "backend",
+        "database",
+        "deployment",
+        "testing",
+        "design"
+      ],
+      "complexity": [
+        "simple",
+        "moderate",
+        "complex",
+        "expert"
+      ]
+    },
+    "semantic_generation": {
+      "content_analysis_depth": "deep",
+      "context_window_chars": 2000,
+      "include_code_analysis": true,
+      "include_error_patterns": true,
+      "include_solution_patterns": true
+    },
+    "tag_compression": {
+      "abbreviate_common_tags": true,
+      "use_json_format": true,
+      "max_tag_length": 20
+    }
+  },
+  "tag_intelligence": {
+    "learning_mechanism": "usage_feedback",
+    "tag_evolution_enabled": true,
+    "similarity_threshold": 0.8,
+    "auto_merge_similar_tags": true,
+    "tag_suggestion_enabled": true,
+    "effectiveness_tracking": {
+      "track_retrieval_success": true,
+      "track_user_feedback": true,
+      "min_usage_count_for_learning": 3
+    }
+  },
+  "dynamic_tag_updates": {
+    "propagation_enabled": true,
+    "update_related_files": true,
+    "batch_update_threshold": 10,
+    "update_frequency": "real_time",
+    "backup_before_updates": true
+  },
+  "memory_buckets": {
+    "working_memory": {
+      "path": "memory/d_working_memory",
+      "priority": "high",
+      "max_lines_per_file": 25
+    },
+    "semantic_memory": {
+      "path": "memory/f_semantic",
+      "priority": "high",
+      "max_lines_per_file": 50
+    },
+    "long_term_memory": {
+      "path": "memory/b_long_term_memory",
+      "priority": "medium",
+      "max_lines_per_file": 100
+    },
+    "chat_index": {
+      "path": "memory/b_long_term_memory/full_chat",
+      "priority": "medium",
+      "max_lines_per_file": 50
+    }
+  },
+  "semantic_search_integration": {
+    "enabled": true,
+    "search_methods": [
+      "embedding_similarity",
+      "keyword_expansion",
+      "tag_traversal"
+    ],
+    "embedding_cache_enabled": true,
+    "embedding_cache_ttl_hours": 24,
+    "query_expansion": {
+      "enabled": true,
+      "max_expanded_terms": 5,
+      "synonym_lookup": true,
+      "context_aware_expansion": true
+    },
+    "tag_based_retrieval": {
+      "enabled": true,
+      "max_tag_depth": 3,
+      "cross_tag_correlation": true,
+      "temporal_tag_weighting": true,
+      "tag_relationship_mapping": true
+    }
+  },
+  "context_injection_pipeline": {
+    "stages": [
+      "query_analysis",
+      "tag_extraction",
+      "semantic_search",
+      "relevance_ranking",
+      "context_assembly",
+      "feedback_collection"
+    ],
+    "query_analysis": {
+      "extract_intent": true,
+      "identify_domain": true,
+      "detect_urgency": true,
+      "analyze_complexity": true
+    },
+    "relevance_ranking": {
+      "use_multiple_signals": true,
+      "signals": [
+        "semantic_similarity",
+        "tag_match",
+        "recency",
+        "effectiveness_history"
+      ],
+      "combine_method": "weighted_average",
+      "learning_enabled": true
+    }
+  },
+  "timestamp_format": "%m-%d_%I-%M%p",
+  "lastUpdated": "2025-06-19",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:06.578807",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:15:55.085643",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:15:55.085643",
+    "file_path": "memory\\a_memory_core\\memory_context_router_agent\\logic.json"
+  }
+}

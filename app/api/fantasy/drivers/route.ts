@@ -1,6 +1,46 @@
 import { NextResponse } from "next/server"
+import { f1Api } from "@/lib/f1-api"
 
-// Mock fantasy driver prices
+// Base prices for each position in championship
+const getBasePriceByPosition = (position: number): number => {
+  const basePrices = [
+    35000000, // P1 - $35M
+    28000000, // P2 - $28M
+    22000000, // P3 - $22M
+    18000000, // P4 - $18M
+    15000000, // P5 - $15M
+    13000000, // P6 - $13M
+    11000000, // P7 - $11M
+    9000000,  // P8 - $9M
+    7000000,  // P9 - $7M
+    6000000,  // P10 - $6M
+  ]
+  
+  if (position <= 10) {
+    return basePrices[position - 1]
+  }
+  
+  // For positions 11-20, calculate based on decreasing value
+  return Math.max(3000000, 6000000 - ((position - 10) * 300000))
+}
+
+// Calculate fantasy price based on performance
+const calculateFantasyPrice = (driver: any, standing: any): number => {
+  const basePrice = getBasePriceByPosition(standing.championshipPosition || 20)
+  const pointsMultiplier = Math.max(0.8, 1 + (standing.points / 1000))
+  const winsMultiplier = Math.max(1, 1 + (standing.wins * 0.1))
+  
+  return Math.round(basePrice * pointsMultiplier * winsMultiplier)
+}
+
+// Generate weekly price change (mock for now, but could be based on recent performance)
+const generateWeeklyChange = (currentPrice: number, recentForm: number = Math.random()): number => {
+  const maxChange = currentPrice * 0.1 // Max 10% change
+  const change = (recentForm - 0.5) * 2 * maxChange
+  return Math.round(change)
+}
+
+// Mock fantasy driver prices (fallback if API fails)
 const mockFantasyDrivers = [
   {
     id: "1",
@@ -118,8 +158,70 @@ const mockFantasyDrivers = [
 
 export async function GET() {
   try {
-    return NextResponse.json(mockFantasyDrivers)
+    // Try to fetch live F1 data
+    const [driverStandings, constructorData] = await Promise.all([
+      f1Api.getDriverStandings(),
+      f1Api.getConstructors(),
+    ])
+
+    if (driverStandings.length === 0) {
+      // Fallback to mock data if live data is unavailable
+      return NextResponse.json(mockFantasyDrivers)
+    }
+
+    // Map constructor data for easy lookup
+    const constructors = constructorData.reduce((acc: any, constructor: any) => {
+      acc[constructor.constructorId] = constructor
+      return acc
+    }, {})
+
+    // Generate fantasy drivers from live data
+    const fantasyDrivers = driverStandings.map((standing: any, index: number) => {
+      const driver = standing.driver
+      const constructorId = standing.constructors?.[0]?.constructorId
+      const constructor = constructors[constructorId]
+      
+      // Team color mapping (could be enhanced with more teams)
+      const teamColors: { [key: string]: string } = {
+        "red_bull": "#0600EF",
+        "ferrari": "#DC143C", 
+        "mercedes": "#00D2BE",
+        "mclaren": "#FF8700",
+        "aston_martin": "#006F62",
+        "alpine": "#0090FF",
+        "williams": "#005AFF",
+        "alphatauri": "#2B4562",
+        "alfa": "#900000",
+        "haas": "#FFFFFF",
+        "racing_point": "#F596C8",
+        "renault": "#FFF500"
+      }
+
+      const fantasyPrice = calculateFantasyPrice(driver, standing)
+      const weeklyChange = generateWeeklyChange(fantasyPrice)
+      
+      return {
+        id: driver.driverId,
+        number: Number.parseInt(driver.permanentNumber || "0"),
+        firstName: driver.givenName,
+        lastName: driver.familyName,
+        team: constructor?.name || standing.constructors?.[0]?.name || "Unknown",
+        teamColor: teamColors[constructorId] || "#888888",
+        price: fantasyPrice,
+        weeklyChange: weeklyChange,
+        popularity: Math.floor(Math.random() * 40) + 20, // Mock popularity 20-60%
+        points: Number.parseInt(standing.points || "0"),
+        wins: Number.parseInt(standing.wins || "0"),
+        averagePoints: Number.parseInt(standing.points || "0") / Math.max(1, index + 1),
+        championshipPosition: Number.parseInt(standing.position || "0"),
+        imageUrl: `/f1-drivers/${driver.driverId}.jpg`, // Could be enhanced with actual images
+      }
+    })
+
+    return NextResponse.json(fantasyDrivers)
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch fantasy drivers" }, { status: 500 })
+    console.error("Fantasy drivers API error:", error)
+    // Return mock data as fallback
+    return NextResponse.json(mockFantasyDrivers)
   }
 }

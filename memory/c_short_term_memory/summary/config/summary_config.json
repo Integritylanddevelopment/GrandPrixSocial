@@ -1,0 +1,38 @@
+{
+  "summary_processing": {
+    "max_summary_length": 500,
+    "min_summary_length": 50,
+    "summarization_model": "gpt-3.5-turbo",
+    "quality_threshold": 0.85,
+    "auto_validation": true
+  },
+  "file_management": {
+    "summary_retention_days": 365,
+    "backup_frequency": "daily",
+    "cleanup_threshold": 1000
+  },
+  "integration": {
+    "memory_summarizer_agent": true,
+    "cross_reference_enabled": true,
+    "search_indexing": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.022591",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:43.946568",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:43.946568",
+    "file_path": "memory\\c_short_term_memory\\summary\\config\\summary_config.json"
+  }
+}

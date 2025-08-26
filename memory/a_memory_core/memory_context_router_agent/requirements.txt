@@ -1,0 +1,2 @@
+# requirements.txt for memory_context_router_agent
+# Auto-generated advanced component

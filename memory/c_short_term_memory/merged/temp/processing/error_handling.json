@@ -1,0 +1,132 @@
+{
+  "error_handling": {
+    "error_categories": {
+      "processing_errors": {
+        "file_access_denied": {
+          "severity": "high",
+          "retry_strategy": "exponential_backoff",
+          "max_retries": 3,
+          "escalation": "manual_intervention"
+        },
+        "content_corruption": {
+          "severity": "critical",
+          "retry_strategy": "none",
+          "max_retries": 0,
+          "escalation": "immediate_alert"
+        },
+        "memory_overflow": {
+          "severity": "high",
+          "retry_strategy": "reduce_batch_size",
+          "max_retries": 2,
+          "escalation": "system_adjustment"
+        },
+        "timeout_exceeded": {
+          "severity": "medium",
+          "retry_strategy": "increase_timeout",
+          "max_retries": 2,
+          "escalation": "performance_review"
+        }
+      },
+      "merge_errors": {
+        "similarity_calculation_failed": {
+          "severity": "medium",
+          "retry_strategy": "fallback_algorithm",
+          "max_retries": 2,
+          "escalation": "skip_merge"
+        },
+        "content_conflict": {
+          "severity": "medium",
+          "retry_strategy": "manual_resolution",
+          "max_retries": 1,
+          "escalation": "human_review"
+        },
+        "metadata_mismatch": {
+          "severity": "low",
+          "retry_strategy": "metadata_repair",
+          "max_retries": 3,
+          "escalation": "log_warning"
+        },
+        "relationship_validation_failed": {
+          "severity": "medium",
+          "retry_strategy": "rebuild_relationships",
+          "max_retries": 2,
+          "escalation": "quality_review"
+        }
+      },
+      "system_errors": {
+        "storage_unavailable": {
+          "severity": "critical",
+          "retry_strategy": "wait_and_retry",
+          "max_retries": 5,
+          "escalation": "system_alert"
+        },
+        "api_connection_failed": {
+          "severity": "high",
+          "retry_strategy": "exponential_backoff",
+          "max_retries": 3,
+          "escalation": "fallback_mode"
+        },
+        "configuration_error": {
+          "severity": "high",
+          "retry_strategy": "reload_config",
+          "max_retries": 1,
+          "escalation": "admin_notification"
+        }
+      }
+    },
+    "recovery_procedures": {
+      "auto_recovery": {
+        "enabled": true,
+        "max_auto_retries": 3,
+        "recovery_delay_seconds": 30,
+        "success_threshold": 0.8
+      },
+      "manual_intervention": {
+        "notification_channels": [
+          "log",
+          "alert"
+        ],
+        "escalation_timeout_minutes": 15,
+        "required_approvals": 1,
+        "recovery_validation": true
+      },
+      "system_fallback": {
+        "fallback_modes": [
+          "safe_mode",
+          "minimal_processing"
+        ],
+        "fallback_triggers": [
+          "critical_errors",
+          "resource_exhaustion"
+        ],
+        "fallback_duration_hours": 1,
+        "auto_resume": true
+      }
+    },
+    "monitoring": {
+      "error_tracking": true,
+      "performance_impact": true,
+      "recovery_success_rate": true,
+      "trend_analysis": true,
+      "alert_thresholds": {
+        "error_rate_percent": 5,
+        "critical_errors_per_hour": 3,
+        "recovery_failure_percent": 10
+      }
+    }
+  },
+  "last_updated": "01-19_06-45PM",
+  "error_handling_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.871598",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

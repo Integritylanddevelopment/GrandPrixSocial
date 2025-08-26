@@ -1,0 +1,119 @@
+{
+  "validation_template": {
+    "validation_id": "",
+    "timestamp": "",
+    "validation_type": "staging_validation",
+    "content_validation": {
+      "file_integrity": {
+        "checksum_verified": false,
+        "content_readable": false,
+        "encoding_valid": false,
+        "structure_intact": false
+      },
+      "content_quality": {
+        "meaningful_content": false,
+        "sufficient_length": false,
+        "language_coherent": false,
+        "topic_identifiable": false
+      },
+      "metadata_validation": {
+        "timestamp_valid": false,
+        "author_identified": false,
+        "tags_present": false,
+        "relationships_defined": false
+      }
+    },
+    "merge_readiness": {
+      "similarity_analysis": {
+        "content_similarity_calculated": false,
+        "topic_overlap_assessed": false,
+        "temporal_proximity_checked": false,
+        "relationship_strength_measured": false
+      },
+      "merge_criteria": {
+        "similarity_threshold_met": false,
+        "quality_standards_met": false,
+        "conflict_analysis_complete": false,
+        "merge_benefit_validated": false
+      },
+      "technical_validation": {
+        "file_format_compatible": false,
+        "encoding_consistent": false,
+        "size_within_limits": false,
+        "processing_resources_available": false
+      }
+    },
+    "validation_results": {
+      "overall_score": 0.0,
+      "validation_passed": false,
+      "critical_issues": [],
+      "warnings": [],
+      "recommendations": [],
+      "next_actions": []
+    },
+    "validation_metrics": {
+      "validation_time_seconds": 0,
+      "checks_performed": 0,
+      "checks_passed": 0,
+      "checks_failed": 0,
+      "confidence_level": 0.0
+    }
+  },
+  "validation_rules": {
+    "required_checks": [
+      "file_integrity",
+      "content_quality",
+      "metadata_validation",
+      "merge_readiness"
+    ],
+    "quality_thresholds": {
+      "minimum_content_length": 100,
+      "minimum_similarity_score": 0.65,
+      "maximum_file_size_mb": 10,
+      "required_metadata_fields": [
+        "timestamp",
+        "content_type"
+      ]
+    },
+    "validation_levels": {
+      "basic": {
+        "checks": [
+          "file_integrity",
+          "content_quality"
+        ],
+        "threshold": 0.7
+      },
+      "standard": {
+        "checks": [
+          "file_integrity",
+          "content_quality",
+          "metadata_validation"
+        ],
+        "threshold": 0.8
+      },
+      "comprehensive": {
+        "checks": [
+          "file_integrity",
+          "content_quality",
+          "metadata_validation",
+          "merge_readiness"
+        ],
+        "threshold": 0.9
+      }
+    }
+  },
+  "last_updated": "01-19_06-45PM",
+  "validation_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.008007",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

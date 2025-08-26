@@ -1,0 +1,68 @@
+{
+  "agent_discovery_rules": {
+    "required_files": [
+      "*.py"
+    ],
+    "optional_files": [
+      "*_metadata.json",
+      "*.meta.json",
+      "*_state.json"
+    ],
+    "scan_directories": [
+      "memory_agents",
+      "memory/a_memory_core"
+    ],
+    "exclude_patterns": [
+      "__pycache__",
+      "*.pyc",
+      "*.tmp"
+    ]
+  },
+  "registry_validation": {
+    "require_main_function": true,
+    "validate_metadata": true,
+    "check_dependencies": true,
+    "verify_module_path": true
+  },
+  "status_management": {
+    "default_status": "active",
+    "allowed_statuses": [
+      "active",
+      "inactive",
+      "maintenance",
+      "error"
+    ],
+    "auto_detect_health": true
+  },
+  "performance_tracking": {
+    "track_scan_times": true,
+    "monitor_error_rates": true,
+    "log_performance_metrics": true
+  },
+  "update_policies": {
+    "auto_update_on_change": true,
+    "preserve_manual_settings": true,
+    "backup_registry_on_update": false
+  },
+  "timestamp_format": "%m-%d_%I-%M%p",
+  "lastUpdated": "2025-06-19",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:06.156950",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:30.235949",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:30.235949",
+    "file_path": "memory\\a_memory_core\\memory_agent_registry_agent\\logic.json"
+  }
+}

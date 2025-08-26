@@ -1,0 +1,124 @@
+{
+  "system_config": {
+    "version": "2.0.0",
+    "environment": "development",
+    "auto_start_enabled": true,
+    "monitoring_enabled": true,
+    "debug_mode": false,
+    "timestamp_format": "%m-%d_%I-%M%p"
+  },
+  "logging": {
+    "level": "INFO",
+    "console_output": true,
+    "file_logging": true,
+    "max_log_size_mb": 50,
+    "backup_count": 5,
+    "log_rotation": true
+  },
+  "memory_buckets": {
+    "b_long_term_memory": {
+      "enabled": true,
+      "max_files": 1000,
+      "max_size_per_file_kb": 500,
+      "retention_days": 365,
+      "auto_cleanup": false
+    },
+    "c_short_term_memory": {
+      "enabled": true,
+      "max_files": 100,
+      "max_size_per_file_kb": 200,
+      "retention_days": 7,
+      "auto_cleanup": true
+    },
+    "d_working_memory": {
+      "enabled": true,
+      "max_files": 50,
+      "max_size_per_file_kb": 100,
+      "retention_days": 1,
+      "auto_cleanup": true
+    },
+    "e_procedural": {
+      "enabled": true,
+      "max_files": 200,
+      "max_size_per_file_kb": 1000,
+      "retention_days": 180,
+      "auto_cleanup": false
+    },
+    "f_semantic": {
+      "enabled": true,
+      "max_files": 500,
+      "max_size_per_file_kb": 300,
+      "retention_days": 365,
+      "auto_cleanup": false
+    },
+    "g_episodic": {
+      "enabled": true,
+      "max_files": 300,
+      "max_size_per_file_kb": 800,
+      "retention_days": 90,
+      "auto_cleanup": false
+    }
+  },
+  "agent_priorities": {
+    "memory_agent_core": "critical",
+    "memory_indexer_agent": "high",
+    "memory_orchestrator_agent": "high",
+    "memory_router_agent": "medium",
+    "context_injection_agent": "medium",
+    "memory_search_agent": "medium",
+    "memory_renamer_agent": "low",
+    "memory_summarizer_agent": "low"
+  },
+  "performance_settings": {
+    "max_concurrent_agents": 5,
+    "agent_timeout_seconds": 30,
+    "memory_usage_limit_mb": 256,
+    "cpu_usage_limit_percent": 25,
+    "heartbeat_interval_seconds": 30
+  },
+  "validation_rules": {
+    "enforce_tag_validation": true,
+    "require_all_tag_types": true,
+    "allow_empty_content": false,
+    "max_tag_length": 100,
+    "min_content_length": 10
+  },
+  "auto_maintenance": {
+    "enabled": true,
+    "cleanup_schedule": "daily",
+    "index_rebuild_schedule": "weekly",
+    "metrics_reset_schedule": "monthly",
+    "backup_schedule": "daily"
+  },
+  "security": {
+    "file_permissions": "644",
+    "directory_permissions": "755",
+    "sanitize_inputs": true,
+    "log_access_attempts": true
+  },
+  "experimental_features": {
+    "ai_powered_tagging": false,
+    "semantic_clustering": false,
+    "predictive_routing": false,
+    "auto_summarization": false
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:05.832021",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:01.791095",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:01.791095",
+    "file_path": "memory\\a_memory_core\\memory_agent_core\\memory_core_config.json"
+  }
+}

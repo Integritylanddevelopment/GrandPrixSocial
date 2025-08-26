@@ -1,0 +1,75 @@
+{
+  "agent_name": "memory_context_router_agent",
+  "purpose": "Enhance user prompts by injecting relevant memory context from multiple memory sources",
+  "scope": "Context enhancement and memory retrieval across all memory buckets",
+  "responsibilities": {
+    "primary": [
+      "Search for relevant context based on user prompts",
+      "Retrieve content from multiple memory sources",
+      "Summarize and inject context into user prompts",
+      "Track context injection performance and statistics"
+    ],
+    "secondary": [
+      "Optimize search relevance across memory buckets",
+      "Provide context source metadata",
+      "Monitor memory access patterns"
+    ]
+  },
+  "file_structure": {
+    "main_script": "memory_context_router_agent.py",
+    "metadata": "memory_context_router_agent_metadata.json",
+    "state": "memory_context_router_agent_state.json",
+    "logic": "logic.json",
+    "additional_logic": "memory_context_router_agent_logic.json",
+    "logs": {
+      "interactions": "agent_interactions.log",
+      "context_routing": "context_routing.log"
+    }
+  },
+  "memory_sources": {
+    "primary": [
+      "memory/d_working_memory (recent context)",
+      "memory/f_semantic (factual knowledge)",
+      "memory/b_long_term_memory (historical context)"
+    ],
+    "secondary": [
+      "chat_index.json (conversation tags)",
+      "memory/g_episodic (event context)"
+    ]
+  },
+  "search_capabilities": {
+    "semantic_matching": "Match user intent with stored content",
+    "keyword_extraction": "Extract key terms from prompts",
+    "multi_source_search": "Search across multiple memory buckets",
+    "content_summarization": "Condense relevant context for injection"
+  },
+  "integration_points": [
+    "All memory buckets (content source)",
+    "memory_agent_core (coordination)",
+    "External prompt systems (context enhancement)"
+  ],
+  "performance_targets": {
+    "max_context_injection_time": "2 seconds",
+    "context_relevance_accuracy": "90%",
+    "memory_source_coverage": "4+ buckets"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:06.648603",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:11.311786",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:11.311786",
+    "file_path": "memory\\a_memory_core\\memory_context_router_agent\\memory_context_router_agent_manifest.json"
+  }
+}

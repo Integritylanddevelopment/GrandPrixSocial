@@ -63,18 +63,106 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
+    const { action } = body
 
-    // In production, this would create a new league in the database
+    if (action === "join") {
+      // Join an existing league
+      const { leagueId, userId, teamId } = body
+      
+      // In production, this would add the user to the league in the database
+      const joinResult = {
+        success: true,
+        leagueId,
+        userId,
+        teamId,
+        message: "Successfully joined league",
+        joinedAt: new Date().toISOString(),
+      }
+      
+      return NextResponse.json(joinResult)
+    }
+    
+    if (action === "leave") {
+      // Leave a league
+      const { leagueId, userId } = body
+      
+      const leaveResult = {
+        success: true,
+        leagueId,
+        userId,
+        message: "Successfully left league",
+        leftAt: new Date().toISOString(),
+      }
+      
+      return NextResponse.json(leaveResult)
+    }
+
+    // Create a new league (default behavior)
     const newLeague = {
       id: Math.random().toString(36).substr(2, 9),
       ...body,
       currentParticipants: 1,
-      prizePool: body.entryFee || 0,
+      prizePool: body.entryFee * 1 || 0,
       createdAt: new Date().toISOString(),
+      status: "active",
+      transfersEnabled: true,
+      transferBudget: body.budget * 0.1 || 10000000, // 10% of total budget for transfers
     }
 
     return NextResponse.json(newLeague, { status: 201 })
   } catch (error) {
-    return NextResponse.json({ error: "Failed to create fantasy league" }, { status: 500 })
+    console.error("Fantasy league operation error:", error)
+    return NextResponse.json({ error: "Failed to perform league operation" }, { status: 500 })
+  }
+}
+
+export async function PUT(request: Request) {
+  try {
+    const body = await request.json()
+    const { leagueId, settings, action } = body
+    
+    if (action === "update_settings") {
+      // Update league settings (admin only in production)
+      const updatedSettings = {
+        leagueId,
+        settings,
+        updatedAt: new Date().toISOString(),
+        message: "League settings updated successfully"
+      }
+      
+      return NextResponse.json(updatedSettings)
+    }
+    
+    if (action === "start_season") {
+      // Start the fantasy season
+      const seasonStart = {
+        leagueId,
+        status: "active",
+        seasonStarted: true,
+        startedAt: new Date().toISOString(),
+        message: "Fantasy season started"
+      }
+      
+      return NextResponse.json(seasonStart)
+    }
+    
+    if (action === "end_season") {
+      // End the fantasy season and calculate final standings
+      const seasonEnd = {
+        leagueId,
+        status: "completed",
+        seasonEnded: true,
+        endedAt: new Date().toISOString(),
+        finalStandingsCalculated: true,
+        message: "Fantasy season ended and final standings calculated"
+      }
+      
+      return NextResponse.json(seasonEnd)
+    }
+    
+    return NextResponse.json({ error: "Invalid action" }, { status: 400 })
+  } catch (error) {
+    console.error("Fantasy league update error:", error)
+    return NextResponse.json({ error: "Failed to update league" }, { status: 500 })
   }
 }

@@ -1,0 +1,2 @@
+# requirements.txt for memory_logic_enforcer_agent
+# Auto-generated advanced component

@@ -1,0 +1,65 @@
+{
+  "processing_info": {
+    "purpose": "Active summarization processing workspace",
+    "description": "Handles the execution of summarization operations with quality control, error handling, and performance optimization.",
+    "version": "2.0",
+    "last_updated": "01-19_06-45PM"
+  },
+  "key_capabilities": {
+    "summarization_engines": [
+      "Extractive summarizer",
+      "Abstractive summarizer",
+      "Hybrid summarizer",
+      "Template-based summarizer",
+      "Hierarchical summarizer"
+    ],
+    "content_processing": [
+      "Multi-format content support",
+      "Adaptive compression ratios",
+      "Quality optimization",
+      "Metadata preservation",
+      "Error recovery"
+    ]
+  },
+  "configuration_files": {
+    "processing_config.json": "Main processing configuration and strategies",
+    "processing_status.json": "Real-time processing status and metrics",
+    "processing_queue.json": "Queue management and prioritization",
+    "summary_plan_template.json": "Template for summarization plans",
+    "error_handling.json": "Comprehensive error handling and recovery"
+  },
+  "processing_workflow": [
+    "Receive content from staging queue",
+    "Select optimal summarization strategy",
+    "Execute summarization with quality monitoring",
+    "Validate results against quality thresholds",
+    "Handle errors with recovery procedures",
+    "Output finalized summaries to storage"
+  ],
+  "quality_assurance": {
+    "validation_steps": [
+      "Content coherence check",
+      "Information preservation validation",
+      "Compression ratio verification",
+      "Readability assessment",
+      "Key points extraction validation"
+    ],
+    "quality_thresholds": {
+      "minimum_quality_score": 0.7,
+      "target_compression_ratio": 0.3,
+      "readability_threshold": 0.5
+    }
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.090088",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

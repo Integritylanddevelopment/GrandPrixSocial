@@ -1,0 +1,164 @@
+{
+  "error_handling": {
+    "error_categories": {
+      "processing_errors": {
+        "content_parsing_failed": {
+          "severity": "medium",
+          "retry_strategy": "alternative_parser",
+          "max_retries": 2,
+          "escalation": "manual_review"
+        },
+        "summary_generation_failed": {
+          "severity": "high",
+          "retry_strategy": "fallback_strategy",
+          "max_retries": 3,
+          "escalation": "strategy_adjustment"
+        },
+        "compression_target_missed": {
+          "severity": "low",
+          "retry_strategy": "adjust_parameters",
+          "max_retries": 2,
+          "escalation": "accept_deviation"
+        },
+        "quality_threshold_unmet": {
+          "severity": "medium",
+          "retry_strategy": "enhance_processing",
+          "max_retries": 2,
+          "escalation": "manual_enhancement"
+        }
+      },
+      "content_errors": {
+        "content_too_short": {
+          "severity": "low",
+          "retry_strategy": "skip_processing",
+          "max_retries": 0,
+          "escalation": "log_skip"
+        },
+        "content_too_long": {
+          "severity": "medium",
+          "retry_strategy": "chunked_processing",
+          "max_retries": 1,
+          "escalation": "hierarchical_summary"
+        },
+        "content_corrupted": {
+          "severity": "high",
+          "retry_strategy": "content_repair",
+          "max_retries": 2,
+          "escalation": "exclude_content"
+        },
+        "language_detection_failed": {
+          "severity": "low",
+          "retry_strategy": "default_language",
+          "max_retries": 1,
+          "escalation": "proceed_with_default"
+        }
+      },
+      "quality_errors": {
+        "coherence_validation_failed": {
+          "severity": "medium",
+          "retry_strategy": "improve_coherence",
+          "max_retries": 2,
+          "escalation": "accept_with_warning"
+        },
+        "information_loss_excessive": {
+          "severity": "high",
+          "retry_strategy": "reduce_compression",
+          "max_retries": 2,
+          "escalation": "preserve_original"
+        },
+        "readability_degraded": {
+          "severity": "medium",
+          "retry_strategy": "enhance_readability",
+          "max_retries": 2,
+          "escalation": "accept_degradation"
+        },
+        "key_points_insufficient": {
+          "severity": "low",
+          "retry_strategy": "extract_more_points",
+          "max_retries": 1,
+          "escalation": "proceed_with_fewer"
+        }
+      },
+      "system_errors": {
+        "memory_exhaustion": {
+          "severity": "critical",
+          "retry_strategy": "reduce_batch_size",
+          "max_retries": 2,
+          "escalation": "sequential_processing"
+        },
+        "storage_unavailable": {
+          "severity": "critical",
+          "retry_strategy": "wait_and_retry",
+          "max_retries": 5,
+          "escalation": "system_alert"
+        },
+        "summarizer_engine_timeout": {
+          "severity": "high",
+          "retry_strategy": "increase_timeout",
+          "max_retries": 2,
+          "escalation": "fallback_engine"
+        }
+      }
+    },
+    "recovery_procedures": {
+      "auto_recovery": {
+        "enabled": true,
+        "max_auto_retries": 3,
+        "recovery_delay_seconds": 15,
+        "success_threshold": 0.75
+      },
+      "quality_recovery": {
+        "fallback_strategies": [
+          "extractive",
+          "template_based",
+          "rule_based"
+        ],
+        "quality_adjustment": "progressive_relaxation",
+        "minimum_acceptable_quality": 0.6,
+        "preserve_content_integrity": true
+      },
+      "performance_recovery": {
+        "resource_optimization": true,
+        "batch_size_adjustment": "dynamic",
+        "processing_timeout_extension": true,
+        "load_balancing": true
+      },
+      "manual_intervention": {
+        "notification_channels": [
+          "log",
+          "alert",
+          "queue"
+        ],
+        "escalation_timeout_minutes": 10,
+        "required_approvals": 1,
+        "recovery_validation": true
+      }
+    },
+    "monitoring": {
+      "error_tracking": true,
+      "quality_impact_assessment": true,
+      "recovery_success_rate": true,
+      "performance_degradation": true,
+      "alert_thresholds": {
+        "error_rate_percent": 8,
+        "critical_errors_per_hour": 2,
+        "quality_failures_percent": 15,
+        "recovery_failure_percent": 12
+      }
+    }
+  },
+  "last_updated": "01-19_06-45PM",
+  "error_handling_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.121663",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

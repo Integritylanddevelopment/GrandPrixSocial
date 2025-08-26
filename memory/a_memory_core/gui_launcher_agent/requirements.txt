@@ -1,0 +1,2 @@
+# requirements.txt for gui_launcher_agent
+# Auto-generated advanced component

@@ -1,0 +1,120 @@
+{
+  "agent_name": "memory_orchestrator_agent",
+  "version": "2.0",
+  "agent_type": "coordination",
+  "authority_level": "COORDINATION",
+  "description": "Central coordination hub for all memory agents. Manages execution order, dependencies, communication, core logic compliance, and system-wide health monitoring.",
+  "logic": {
+    "core_logic_reference": "core_logic.md (Version 2.0)",
+    "orchestration_scope": "SYSTEM_WIDE",
+    "coordination_capabilities": [
+      "agent_execution_management",
+      "dependency_resolution",
+      "priority_based_scheduling",
+      "inter_agent_communication",
+      "enforcement_escalation",
+      "system_health_monitoring",
+      "compliance_validation"
+    ],
+    "agent_registry": {
+      "memory_logic_enforcer_agent": {
+        "priority": 1,
+        "type": "enforcement",
+        "dependencies": [],
+        "critical": true
+      },
+      "memory_indexer_agent": {
+        "priority": 2,
+        "type": "core",
+        "dependencies": [
+          "memory_logic_enforcer_agent"
+        ],
+        "critical": true
+      },
+      "memory_context_router_agent": {
+        "priority": 3,
+        "type": "core",
+        "dependencies": [
+          "memory_indexer_agent"
+        ],
+        "critical": true
+      },
+      "memory_tag_insight_agent": {
+        "priority": 4,
+        "type": "intelligence",
+        "dependencies": [
+          "memory_context_router_agent"
+        ],
+        "critical": false
+      },
+      "memory_search_agent": {
+        "priority": 5,
+        "type": "utility",
+        "dependencies": [
+          "memory_context_router_agent"
+        ],
+        "critical": false
+      },
+      "memory_summarizer_agent": {
+        "priority": 6,
+        "type": "utility",
+        "dependencies": [
+          "memory_indexer_agent"
+        ],
+        "critical": false
+      },
+      "memory_merger_agent": {
+        "priority": 7,
+        "type": "utility",
+        "dependencies": [
+          "memory_summarizer_agent"
+        ],
+        "critical": false
+      },
+      "memory_renamer_agent": {
+        "priority": 8,
+        "type": "utility",
+        "dependencies": [],
+        "critical": false
+      }
+    },
+    "orchestration_protocols": {
+      "execution_timeout": 300,
+      "inter_agent_pause": 2,
+      "dependency_validation": true,
+      "critical_agent_failure_stops_orchestration": true,
+      "enforcement_escalation_enabled": true,
+      "coordination_conflict_resolution": "QUEUE_BASED"
+    },
+    "monitoring_settings": {
+      "default_health_check_interval": 30,
+      "log_retention_limit": 1000,
+      "report_generation": true,
+      "real_time_status_tracking": true
+    }
+  },
+  "integration": {
+    "core_logic_enforcer": "MANDATORY_VALIDATION",
+    "tag_intelligence_engine": "COORDINATION_AWARE",
+    "agent_communication": "INBOX_BASED",
+    "builder_authorization": "STEPHEN_ALEXANDER"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:08.023037",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "last_updated": "2025-07-30T23:16:00.611067",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:00.611067",
+    "file_path": "memory\\a_memory_core\\memory_orchestrator_agent\\memory_orchestrator_agent_logic.json"
+  }
+}

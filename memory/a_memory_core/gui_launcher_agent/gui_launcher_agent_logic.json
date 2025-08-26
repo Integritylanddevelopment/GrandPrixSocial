@@ -1,0 +1,154 @@
+{
+  "agent_logic": {
+    "name": "GUI Launcher Agent Logic",
+    "version": "1.0.0",
+    "description": "Logic flow for managing web GUI server lifecycle",
+    "decision_tree": {
+      "startup": {
+        "condition": "agent_initialized",
+        "actions": [
+          "check_dependencies",
+          "validate_environment",
+          "find_python_executable",
+          "start_gui_server",
+          "begin_monitoring"
+        ],
+        "success_state": "server_running",
+        "failure_state": "startup_failed"
+      },
+      "monitoring": {
+        "condition": "server_running",
+        "actions": [
+          "check_process_health",
+          "validate_server_response",
+          "log_status",
+          "handle_crashes"
+        ],
+        "frequency": "every_30_seconds",
+        "success_state": "healthy",
+        "failure_state": "restart_required"
+      },
+      "restart": {
+        "condition": "server_crashed OR restart_requested",
+        "actions": [
+          "stop_existing_process",
+          "wait_restart_delay",
+          "check_dependencies",
+          "start_gui_server",
+          "increment_restart_counter"
+        ],
+        "success_state": "server_running",
+        "failure_state": "restart_failed"
+      },
+      "shutdown": {
+        "condition": "stop_requested OR max_restarts_exceeded",
+        "actions": [
+          "stop_monitoring",
+          "terminate_server_process",
+          "cleanup_resources",
+          "save_final_state"
+        ],
+        "success_state": "stopped",
+        "failure_state": "shutdown_error"
+      }
+    },
+    "error_handling": {
+      "dependency_missing": {
+        "action": "log_error_and_exit",
+        "retry": false
+      },
+      "python_not_found": {
+        "action": "try_alternative_executables",
+        "retry": true,
+        "max_attempts": 3
+      },
+      "port_unavailable": {
+        "action": "find_alternative_port",
+        "retry": true,
+        "port_range": "8080-8090"
+      },
+      "server_crash": {
+        "action": "auto_restart",
+        "retry": true,
+        "max_attempts": 10,
+        "delay": 5
+      }
+    },
+    "state_transitions": {
+      "idle": [
+        "starting",
+        "error"
+      ],
+      "starting": [
+        "running",
+        "startup_failed"
+      ],
+      "running": [
+        "monitoring",
+        "stopping",
+        "crashed"
+      ],
+      "monitoring": [
+        "running",
+        "restart_required",
+        "stopping"
+      ],
+      "restart_required": [
+        "starting",
+        "restart_failed"
+      ],
+      "crashed": [
+        "starting",
+        "stopped"
+      ],
+      "stopping": [
+        "stopped",
+        "shutdown_error"
+      ],
+      "stopped": [
+        "starting"
+      ],
+      "startup_failed": [
+        "starting",
+        "stopped"
+      ],
+      "restart_failed": [
+        "stopped"
+      ],
+      "shutdown_error": [
+        "stopped"
+      ]
+    }
+  },
+  "performance_metrics": {
+    "startup_time": "target_under_5_seconds",
+    "monitoring_overhead": "minimal_cpu_usage",
+    "restart_time": "target_under_10_seconds",
+    "memory_usage": "track_and_limit"
+  },
+  "integration_points": {
+    "memory_orchestrator": "health_reports",
+    "web_gui": "process_management",
+    "system_health_agent": "dependency_validation",
+    "log_agents": "error_reporting"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:05.005989",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:15:59.436164",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:15:59.436164",
+    "file_path": "memory\\a_memory_core\\gui_launcher_agent\\gui_launcher_agent_logic.json"
+  }
+}

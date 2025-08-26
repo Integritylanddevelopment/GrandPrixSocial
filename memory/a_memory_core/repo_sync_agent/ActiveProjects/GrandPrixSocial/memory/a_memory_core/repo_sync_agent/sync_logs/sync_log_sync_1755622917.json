@@ -1,0 +1,13 @@
+{
+  "sync_id": "sync_1755622917",
+  "project_id": "grandprix_main",
+  "timestamp": 1755622917.8082893,
+  "duration": 0.0,
+  "success": false,
+  "message": "Repository configuration or remote URL not found",
+  "files_changed": 0,
+  "conflicts": [],
+  "branch": null,
+  "commit_hash": null,
+  "memory_integration": true
+}

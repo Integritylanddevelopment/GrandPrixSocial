@@ -1,0 +1,14 @@
+2025-06-25 09:45:38,404 - INFO - GUI Launcher Agent initialized
+2025-06-25 09:45:38,404 - INFO - GUI Launcher Agent starting...
+2025-06-25 09:45:40,259 - INFO - Starting GUI server: D:\ActiveProjects\commandcore-helper\.venv\Scripts\python.exe D:\ActiveProjects\commandcore-helper\web_neural_gui.py
+2025-06-25 09:45:42,264 - ERROR - GUI server failed to start
+2025-06-25 09:45:42,264 - ERROR - Failed to start GUI server
+2025-06-25 09:45:42,264 - INFO - GUI server stopped
+2025-08-26 14:00:34,528 - INFO - GUI Launcher Agent initialized
+2025-08-26 14:00:34,529 - INFO - GUI Launcher Agent starting...
+2025-08-26 14:00:34,529 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library, python-dotenv library
+2025-08-26 14:00:34,529 - ERROR - Failed to start GUI server
+2025-08-26 14:08:23,466 - INFO - GUI Launcher Agent initialized
+2025-08-26 14:08:23,466 - INFO - GUI Launcher Agent starting...
+2025-08-26 14:08:23,467 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library, python-dotenv library
+2025-08-26 14:08:23,467 - ERROR - Failed to start GUI server

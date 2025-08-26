@@ -1,0 +1,39 @@
+{
+  "search_optimization": {
+    "enabled": true,
+    "index_summaries": true,
+    "embedding_generation": true,
+    "cross_reference_links": true
+  },
+  "quality_settings": {
+    "grammar_check": true,
+    "coherence_validation": true,
+    "length_validation": true,
+    "relevance_scoring": true
+  },
+  "validation_rules": {
+    "min_confidence": 0.7,
+    "max_processing_time": 300,
+    "required_keywords_present": true,
+    "duplicate_detection": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.012882",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:16:43.654924",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:43.654924",
+    "file_path": "memory\\c_short_term_memory\\summary\\config\\search_settings.json"
+  }
+}

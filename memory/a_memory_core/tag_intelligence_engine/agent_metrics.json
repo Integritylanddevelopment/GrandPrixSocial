@@ -1,0 +1,77 @@
+{
+  "schema_version": "2.0",
+  "created": "06-20_08-30AM",
+  "last_updated": "06-20_08-30AM",
+  "meta": {
+    "description": "Tag Intelligence Engine Performance Metrics",
+    "authority_level": "TAG_INTELLIGENCE",
+    "version": "2.0"
+  },
+  "performance": {
+    "ai_generation": {
+      "total_requests": 0,
+      "successful_requests": 0,
+      "failed_requests": 0,
+      "avg_response_time": 0.0,
+      "tokens_used": 0,
+      "cost_tracking": 0.0
+    },
+    "embedding_generation": {
+      "total_embeddings": 0,
+      "avg_generation_time": 0.0,
+      "cache_hits": 0,
+      "cache_misses": 0
+    },
+    "similarity_calculations": {
+      "total_calculations": 0,
+      "avg_calculation_time": 0.0,
+      "numpy_calculations": 0,
+      "fallback_calculations": 0
+    }
+  },
+  "accuracy": {
+    "tag_relevance": {
+      "user_ratings": [],
+      "avg_relevance_score": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0
+    },
+    "semantic_similarity": {
+      "human_validation": [],
+      "accuracy_score": 0.0,
+      "correlation_coefficient": 0.0
+    }
+  },
+  "optimization": {
+    "database_optimizations": 0,
+    "tags_merged": 0,
+    "tags_removed": 0,
+    "performance_improvements": [],
+    "last_optimization": null
+  },
+  "errors": {
+    "api_errors": [],
+    "processing_errors": [],
+    "file_io_errors": [],
+    "import_errors": []
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:08.648956",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:18.327878",
+    "file_path": "memory\\a_memory_core\\tag_intelligence_engine\\agent_metrics.json"
+  }
+}

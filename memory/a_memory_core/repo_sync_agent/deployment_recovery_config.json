@@ -1,0 +1,95 @@
+{
+  "auto_recovery_system": {
+    "enabled": true,
+    "version": "1.0.0",
+    "max_retry_attempts": 3,
+    "silent_mode": true,
+    "claude_integration": true
+  },
+  "deployment_monitoring": {
+    "vercel_api_enabled": true,
+    "check_interval_seconds": 30,
+    "max_deployment_wait_minutes": 10,
+    "build_timeout_minutes": 5,
+    "error_log_collection": true,
+    "build_step_tracking": true
+  },
+  "retry_configuration": {
+    "attempt_1": {
+      "delay_minutes": 2,
+      "error_analysis_required": true,
+      "auto_fix_enabled": true,
+      "claude_consultation": true
+    },
+    "attempt_2": {
+      "delay_minutes": 3,
+      "enhanced_error_analysis": true,
+      "pattern_matching": true,
+      "dependency_check": true
+    },
+    "attempt_3": {
+      "delay_minutes": 5,
+      "comprehensive_analysis": true,
+      "configuration_review": true,
+      "last_chance_fixes": true
+    }
+  },
+  "notification_settings": {
+    "success_notifications": {
+      "enabled": true,
+      "include_build_stats": true,
+      "include_deployment_url": true,
+      "include_commit_info": true
+    },
+    "failure_notifications": {
+      "silent_until_attempt": 3,
+      "detailed_error_history": true,
+      "suggested_fixes": true,
+      "escalation_required": true
+    }
+  },
+  "claude_auto_fix": {
+    "enabled": true,
+    "error_types_supported": [
+      "typescript_errors",
+      "import_missing",
+      "syntax_errors",
+      "dependency_conflicts",
+      "build_configuration",
+      "environment_variables"
+    ],
+    "fix_patterns": {
+      "typescript": {
+        "type_errors": "add_explicit_types",
+        "interface_errors": "update_interface_definitions", 
+        "import_errors": "fix_import_paths"
+      },
+      "build_errors": {
+        "module_not_found": "check_and_fix_imports",
+        "compilation_failed": "analyze_and_fix_syntax",
+        "dependency_missing": "update_package_json"
+      }
+    }
+  },
+  "error_logging": {
+    "store_in_memory": true,
+    "memory_location": "d_working_memory/active/deployment_recovery_log.md",
+    "long_term_storage": "b_long_term_memory/deployment_failures/",
+    "pattern_learning": true,
+    "success_rate_tracking": true
+  },
+  "integration_endpoints": {
+    "vercel_api": "https://api.vercel.com/v6/deployments",
+    "github_api": "https://api.github.com/repos/Integritylanddevelopment/GrandPrixSocial",
+    "orchestrator_inbox": "../memory_orchestrator_agent/orchestrator_inbox.json",
+    "claude_communication": "../context_injection_agent/"
+  },
+  "current_deployment": {
+    "deployment_id": null,
+    "commit_hash": null,
+    "attempt_count": 0,
+    "status": "idle",
+    "last_error": null,
+    "recovery_in_progress": false
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "auto_sync_settings": {
+    "enabled": true,
+    "sync_threshold": {
+      "files_changed": 5,
+      "minutes_elapsed": 30,
+      "significant_changes": true
+    },
+    "commit_triggers": [
+      "UI components updated",
+      "Database schema changes", 
+      "New features added",
+      "Bug fixes implemented",
+      "Configuration changes"
+    ],
+    "auto_commit_patterns": {
+      "feature_updates": "Feature: {description}",
+      "bug_fixes": "Fix: {description}",
+      "ui_updates": "UI: {description}",
+      "config_changes": "Config: {description}",
+      "general": "Update: {description}"
+    },
+    "deployment_integration": {
+      "vercel_auto_deploy": true,
+      "post_push_webhook": true,
+      "notify_on_deploy": true
+    },
+    "exclude_patterns": [
+      "memory/**",
+      "*.log",
+      ".env*",
+      "node_modules/**",
+      ".next/**"
+    ]
+  }
+}

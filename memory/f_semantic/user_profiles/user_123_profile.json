@@ -1,0 +1,35 @@
+{
+  "user_id": "user_123",
+  "created_at": "08-26_02-00PM",
+  "f1_preferences": {
+    "favorite_teams": [
+      "ferrari"
+    ],
+    "favorite_drivers": [
+      "verstappen"
+    ],
+    "content_interests": []
+  },
+  "behavior_patterns": {
+    "page_preferences": {
+      "/cafe": {
+        "visits": 2,
+        "avg_engagement": 0.6000000000000001,
+        "last_visit": "08-26_02-08PM"
+      },
+      "/paddock-talk": {
+        "visits": 2,
+        "avg_engagement": 0.75,
+        "last_visit": "08-26_02-08PM"
+      }
+    },
+    "engagement_style": "unknown",
+    "activity_level": "low"
+  },
+  "personalization": {
+    "consent_given": false,
+    "recommendations_enabled": false,
+    "privacy_level": "high"
+  },
+  "last_updated": "08-26_02-08PM"
+}

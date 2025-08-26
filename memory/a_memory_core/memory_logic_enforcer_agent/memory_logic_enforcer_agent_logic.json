@@ -1,0 +1,91 @@
+{
+  "agent_name": "memory_logic_enforcer_agent",
+  "version": "2.0",
+  "agent_type": "core_enforcement",
+  "authority_level": "ABSOLUTE",
+  "description": "Primary enforcement agent for CommandCore Memory System governance, AI tagging standards, timestamp compliance, and comprehensive core logic validation.",
+  "logic": {
+    "core_logic_reference": "core_logic.md (Version 2.0)",
+    "enforcement_scope": "SYSTEM_WIDE",
+    "protected_tags": [
+      "#neverdelete",
+      "#corelogic",
+      "#builderintent",
+      "#systemcritical",
+      "#aitagged"
+    ],
+    "protected_directories": [
+      "a_memory_core",
+      "memory_logic_enforcer_agent",
+      "tag_intelligence_engine.py"
+    ],
+    "mandatory_timestamp_format": "%m-%d_%I-%M%p",
+    "prohibited_timestamp_formats": [
+      "%Y-%m-%d %H:%M:%S",
+      "%Y-%m-%d",
+      "%Y%m%d",
+      "%H:%M:%S",
+      "%m/%d",
+      "datetime.now().isoformat()"
+    ],
+    "forbidden_deletion_patterns": [
+      "os.remove(",
+      "os.unlink(",
+      "shutil.rmtree(",
+      "pathlib.Path().unlink(",
+      ".delete()",
+      "rm -",
+      "del ",
+      "TTL|expire|lifetime|decay",
+      "auto_clean|cleanup|purge"
+    ],
+    "prohibited_manual_triggers": [
+      "input(",
+      "raw_input(",
+      "click.prompt(",
+      "tkinter.",
+      "GUI.*button",
+      "manual.*trigger"
+    ],
+    "required_ai_tag_components": [
+      "structured_tags",
+      "semantic_tags",
+      "tag_dna",
+      "effectiveness_score"
+    ],
+    "enforcement_capabilities": [
+      "timestamp_validation",
+      "ai_tagging_compliance",
+      "agent_autonomy_validation",
+      "memory_protection_enforcement",
+      "schema_management_validation",
+      "auto_correction",
+      "violation_logging",
+      "agent_action_blocking"
+    ]
+  },
+  "integration": {
+    "tag_intelligence_engine": "REQUIRED",
+    "core_logic_monitoring": "CONTINUOUS",
+    "violation_response": "AUTOMATIC",
+    "builder_authorization": "STEPHEN_ALEXANDER"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:07.686129",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "last_updated": "2025-07-30T23:16:11.374362",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:11.374362",
+    "file_path": "memory\\a_memory_core\\memory_logic_enforcer_agent\\memory_logic_enforcer_agent_logic.json"
+  }
+}

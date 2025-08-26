@@ -1,0 +1,119 @@
+{
+  "summary_plan_template": {
+    "plan_id": "",
+    "creation_timestamp": "",
+    "summary_group": {
+      "source_files": [],
+      "target_filename": "",
+      "summary_strategy": "hybrid",
+      "estimated_completion_time": ""
+    },
+    "content_analysis": {
+      "content_type": "",
+      "content_complexity": "",
+      "content_length": 0,
+      "language_detected": "",
+      "readability_score": 0.0
+    },
+    "summary_criteria": {
+      "target_compression_ratio": 0.3,
+      "key_points_count": 5,
+      "preserve_structure": true,
+      "maintain_coherence": true,
+      "summary_confidence": 0.0
+    },
+    "summary_operations": {
+      "content_preparation": "normalize_and_clean",
+      "extraction_method": "importance_weighted",
+      "generation_strategy": "template_guided",
+      "quality_enhancement": "enabled",
+      "metadata_preservation": "essential_only"
+    },
+    "expected_outcomes": {
+      "summary_length": 0,
+      "compression_achieved": 0.0,
+      "key_points_extracted": 0,
+      "quality_score_target": 0.8,
+      "readability_improvement": 0.0
+    },
+    "validation_checklist": {
+      "content_coherence": false,
+      "information_preservation": false,
+      "readability_standards": false,
+      "compression_targets": false,
+      "quality_thresholds": false
+    },
+    "rollback_plan": {
+      "backup_locations": [],
+      "rollback_procedure": [],
+      "recovery_validation": [],
+      "rollback_triggers": []
+    }
+  },
+  "plan_templates": {
+    "high_quality_summary": {
+      "auto_execute": true,
+      "validation_level": "comprehensive",
+      "backup_required": true,
+      "manual_review": false,
+      "compression_ratio": 0.25,
+      "quality_threshold": 0.85
+    },
+    "standard_summary": {
+      "auto_execute": true,
+      "validation_level": "standard",
+      "backup_required": true,
+      "manual_review": false,
+      "compression_ratio": 0.3,
+      "quality_threshold": 0.75
+    },
+    "quick_summary": {
+      "auto_execute": true,
+      "validation_level": "basic",
+      "backup_required": false,
+      "manual_review": false,
+      "compression_ratio": 0.4,
+      "quality_threshold": 0.65
+    }
+  },
+  "content_type_strategies": {
+    "technical": {
+      "strategy": "extractive",
+      "preserve_terminology": true,
+      "maintain_structure": true,
+      "compression_ratio": 0.35
+    },
+    "conversation": {
+      "strategy": "hybrid",
+      "preserve_context": true,
+      "maintain_flow": true,
+      "compression_ratio": 0.25
+    },
+    "narrative": {
+      "strategy": "abstractive",
+      "preserve_story": true,
+      "maintain_tone": true,
+      "compression_ratio": 0.2
+    },
+    "code": {
+      "strategy": "structured",
+      "preserve_logic": true,
+      "maintain_syntax": false,
+      "compression_ratio": 0.45
+    }
+  },
+  "last_updated": "01-19_06-45PM",
+  "template_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.178880",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

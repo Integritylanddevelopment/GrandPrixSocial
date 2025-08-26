@@ -1,0 +1,62 @@
+{
+  "staging_queue": {
+    "ready_for_staging": [],
+    "awaiting_analysis": [],
+    "pending_grouping": [],
+    "validation_queue": [],
+    "total_staging_items": 0
+  },
+  "staging_groups": {
+    "active_groups": [],
+    "completed_groups": [],
+    "group_formation_rules": {
+      "max_group_size": 8,
+      "min_similarity_threshold": 0.65,
+      "temporal_window_hours": 2,
+      "topic_coherence_required": true,
+      "author_consistency_preferred": true
+    }
+  },
+  "candidate_analysis": {
+    "merge_candidates": [],
+    "similarity_matrix": {},
+    "relationship_map": {},
+    "confidence_scores": {},
+    "analysis_results": []
+  },
+  "staging_workflow": {
+    "auto_advance_threshold": 0.8,
+    "manual_review_threshold": 0.6,
+    "reject_threshold": 0.4,
+    "batch_staging_size": 5,
+    "staging_timeout_hours": 4
+  },
+  "quality_gates": {
+    "content_validation": true,
+    "metadata_completeness": true,
+    "relationship_verification": true,
+    "merge_feasibility_check": true,
+    "final_approval_required": false
+  },
+  "staging_metrics": {
+    "average_staging_time": 0,
+    "success_rate": 0.0,
+    "throughput_per_hour": 0,
+    "quality_score": 0.0,
+    "bottleneck_indicators": []
+  },
+  "last_updated": "01-19_06-45PM",
+  "queue_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.984573",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

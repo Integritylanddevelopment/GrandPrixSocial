@@ -1,0 +1,78 @@
+{
+  "agent_name": "system_health_agent",
+  "version": "1.0",
+  "type": "system_maintenance",
+  "status": "active",
+  "last_updated": "06-25_07-37AM",
+  "manifest": {
+    "entry_point": "system_health_agent.py",
+    "main_function": "main",
+    "execution_modes": [
+      "single_check",
+      "repair_mode",
+      "continuous_monitoring"
+    ],
+    "command_line_args": {
+      "monitor": "Start continuous monitoring",
+      "repair": "Run system repair",
+      "default": "Single health check"
+    },
+    "files": {
+      "system_health_agent.py": "Main agent executable",
+      "system_health_agent_metadata.json": "Agent metadata",
+      "system_health_agent_logic.json": "Agent logic definition",
+      "system_health_agent_state.json": "Current agent state",
+      "system_health_agent_manifest.json": "This manifest file",
+      "latest_health_report.json": "Most recent health report"
+    },
+    "outputs": {
+      "health_reports": "JSON health status reports",
+      "system_health.log": "Agent operation logs",
+      "repair_logs": "Dependency installation logs"
+    },
+    "interfaces": {
+      "orchestrator": "Responds to memory_orchestrator_agent calls",
+      "command_line": "Direct execution support",
+      "file_system": "Health report file generation"
+    },
+    "permissions": {
+      "read": [
+        "entire_project_structure"
+      ],
+      "write": [
+        "health_reports",
+        "logs"
+      ],
+      "execute": [
+        "pip_install",
+        "dependency_checks"
+      ],
+      "network": [
+        "package_downloads"
+      ]
+    }
+  },
+  "deployment": {
+    "auto_start": false,
+    "orchestrator_managed": true,
+    "continuous_mode": false,
+    "repair_on_startup": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:08.609897",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:16.738775",
+    "file_path": "memory\\a_memory_core\\system_health_agent\\system_health_agent_manifest.json"
+  }
+}

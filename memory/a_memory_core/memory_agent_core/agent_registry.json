@@ -1,0 +1,161 @@
+{
+  "memory_agent_core": {
+    "agent_name": "memory_agent_core",
+    "status": "active",
+    "version": "2.0.0",
+    "last_execution": "",
+    "priority": "critical",
+    "module_path": "memory.a_memory_core.memory_agent_core.memory_agent_core",
+    "auto_start": true,
+    "dependencies": [],
+    "capabilities": [
+      "coordination",
+      "validation",
+      "routing"
+    ],
+    "execution_count": 0,
+    "average_execution_time_ms": 0,
+    "last_error": "",
+    "health_status": "healthy"
+  },
+  "memory_indexer_agent": {
+    "agent_name": "memory_indexer_agent",
+    "status": "active",
+    "version": "1.0.0",
+    "last_execution": "",
+    "priority": "high",
+    "module_path": "memory.a_memory_core.memory_indexer_agent.memory_indexer_agent",
+    "auto_start": true,
+    "dependencies": [
+      "memory_agent_core"
+    ],
+    "capabilities": [
+      "indexing",
+      "search_optimization"
+    ],
+    "execution_count": 0,
+    "average_execution_time_ms": 0,
+    "last_error": "",
+    "health_status": "healthy"
+  },
+  "memory_orchestrator_agent": {
+    "agent_name": "memory_orchestrator_agent",
+    "status": "active",
+    "version": "1.0.0",
+    "last_execution": "",
+    "priority": "high",
+    "module_path": "memory.a_memory_core.memory_orchestrator_agent.memory_orchestrator_agent",
+    "auto_start": true,
+    "dependencies": [
+      "memory_agent_core"
+    ],
+    "capabilities": [
+      "orchestration",
+      "workflow_management"
+    ],
+    "execution_count": 0,
+    "average_execution_time_ms": 0,
+    "last_error": "",
+    "health_status": "healthy"
+  },
+  "memory_router_agent": {
+    "agent_name": "memory_router_agent",
+    "status": "active",
+    "version": "1.0.0",
+    "last_execution": "",
+    "priority": "medium",
+    "module_path": "memory.a_memory_core.memory_router_agent.memory_router_agent",
+    "auto_start": true,
+    "dependencies": [
+      "memory_agent_core"
+    ],
+    "capabilities": [
+      "routing",
+      "traffic_management"
+    ],
+    "execution_count": 0,
+    "average_execution_time_ms": 0,
+    "last_error": "",
+    "health_status": "healthy"
+  },
+  "context_injection_agent": {
+    "agent_name": "context_injection_agent",
+    "status": "active",
+    "version": "1.0.0",
+    "last_execution": "",
+    "priority": "medium",
+    "module_path": "memory_agents.context_injection_agent.context_injection_agent",
+    "auto_start": false,
+    "dependencies": [
+      "memory_agent_core"
+    ],
+    "capabilities": [
+      "context_injection",
+      "memory_enhancement"
+    ],
+    "execution_count": 0,
+    "average_execution_time_ms": 0,
+    "last_error": "",
+    "health_status": "healthy"
+  },
+  "memory_renamer_agent": {
+    "agent_name": "memory_renamer_agent",
+    "status": "active",
+    "version": "1.0.0",
+    "last_execution": "",
+    "priority": "low",
+    "module_path": "memory_agents.memory_renamer_agent.memory_renamer_agent",
+    "auto_start": false,
+    "dependencies": [
+      "memory_agent_core"
+    ],
+    "capabilities": [
+      "file_renaming",
+      "organization"
+    ],
+    "execution_count": 0,
+    "average_execution_time_ms": 0,
+    "last_error": "",
+    "health_status": "healthy"
+  },
+  "memory_search_agent": {
+    "agent_name": "memory_search_agent",
+    "status": "active",
+    "version": "1.0.0",
+    "last_execution": "",
+    "priority": "medium",
+    "module_path": "memory_agents.memory_search_agent.memory_search_agent",
+    "auto_start": false,
+    "dependencies": [
+      "memory_agent_core",
+      "memory_indexer_agent"
+    ],
+    "capabilities": [
+      "search",
+      "retrieval"
+    ],
+    "execution_count": 0,
+    "average_execution_time_ms": 0,
+    "last_error": "",
+    "health_status": "healthy"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:05.650300",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-30T23:15:57.908653",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:15:57.908653",
+    "file_path": "memory\\a_memory_core\\memory_agent_core\\agent_registry.json"
+  }
+}

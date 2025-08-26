@@ -1,0 +1,38 @@
+{
+  "processing_info": {
+    "purpose": "Active merge processing workspace",
+    "workflow": "Files being analyzed for merge potential and actively merged",
+    "created": "06-20_12-15PM"
+  },
+  "process_stages": {
+    "similarity_analysis": "Files undergoing similarity calculation",
+    "merge_candidate_evaluation": "Potential merge candidates being evaluated",
+    "active_merging": "Files currently being merged into groups",
+    "quality_validation": "Merged content undergoing quality checks",
+    "completion": "Processing complete, ready for storage"
+  },
+  "file_lifecycle": {
+    "max_processing_time_minutes": 45,
+    "retry_attempts": 3,
+    "error_handling": "Move to error subfolder with merge conflict details",
+    "success_handling": "Move to merged_content storage with metadata"
+  },
+  "merge_specific": {
+    "similarity_threshold": 0.7,
+    "max_concurrent_merges": 3,
+    "preserve_source_attribution": true,
+    "track_merge_relationships": true
+  },
+  "monitoring": {
+    "track_merge_time": true,
+    "log_similarity_scores": true,
+    "alert_on_merge_conflicts": true,
+    "monitor_quality_scores": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.869047",
+    "evolution_count": 1,
+    "improvements": []
+  }
+}

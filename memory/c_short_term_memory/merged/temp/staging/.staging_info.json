@@ -1,0 +1,46 @@
+{
+  "staging_info": {
+    "purpose": "Pre-merge staging and analysis area",
+    "workflow": "Files awaiting merge candidate analysis and batch processing",
+    "created": "06-20_12-15PM"
+  },
+  "staging_types": {
+    "similarity_queue": "Files queued for similarity analysis",
+    "merge_candidates": "Files identified as potential merge candidates",
+    "priority_merges": "High-priority merge operations",
+    "relationship_analysis": "Files being analyzed for content relationships",
+    "retry_queue": "Files that failed merge attempts and need retry"
+  },
+  "batch_settings": {
+    "similarity_batch_size": 25,
+    "merge_batch_size": 10,
+    "batch_trigger_count": 15,
+    "batch_timeout_minutes": 90,
+    "priority_processing": true
+  },
+  "merge_criteria": {
+    "content_similarity_threshold": 0.7,
+    "temporal_proximity_weight": 0.3,
+    "topic_overlap_requirement": true,
+    "max_group_size": 10
+  },
+  "organization": {
+    "sort_by_similarity_score": true,
+    "group_by_topic": true,
+    "fifo_within_similarity_range": true,
+    "max_staging_time_hours": 18,
+    "cleanup_processed_batches": true
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.935582",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

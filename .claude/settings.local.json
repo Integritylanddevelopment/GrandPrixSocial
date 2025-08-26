@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"C:\\Users\\integ\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" --version)",
+      "Bash(\".venv\\Scripts\\python.exe\" --version)",
+      "Bash(rd:*)",
+      "Bash(winget install:*)",
+      "Bash(git clone:*)",
+      "Read(/C:\\D_Drive\\ActiveProjects\\memory-analysis\\memory/**)",
+      "Bash(mkdir:*)",
+      "Bash(xcopy:*)",
+      "mcp__sequential-thinking__sequentialthinking",
+      "Bash(python:*)",
+      "Read(/C:\\D_Drive\\ActiveProjects/**)",
+      "Bash(powershell:*)"
+    ],
+    "deny": [],
+    "ask": [],
+    "additionalDirectories": [
+      "C:\\"
+    ]
+  }
+}

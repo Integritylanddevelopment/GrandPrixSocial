@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Calendar, MapPin, Clock, Flag, Trophy, Zap, CircuitBoard, Tv, Youtube, Share2, ExternalLink } from "lucide-react"
 import RacesIcon from "@/components/icons/races-icon"
 import { f1Schedule2025 } from "@/lib/race-schedule-data"
@@ -9,6 +9,41 @@ import { AuthButtons } from "@/components/auth/auth-buttons"
 
 export default function SimpleRaceSchedule() {
   const [activeTab, setActiveTab] = useState("")
+  const [liveRaces, setLiveRaces] = useState(f1Schedule2025) // Fallback to static data
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Fetch live F1 calendar data
+  useEffect(() => {
+    const fetchF1Calendar = async () => {
+      try {
+        const response = await fetch('/api/f1/calendar')
+        if (response.ok) {
+          const liveData = await response.json()
+          // Transform API data to match your existing UI structure
+          const transformedData = liveData.map((race: any) => ({
+            id: race.round,
+            name: race.raceName || race.name,
+            date: race.raceDateTime || race.date,
+            time: race.schedule?.race ? new Date(race.schedule.race).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : race.time,
+            timezone: race.timezone || 'UTC',
+            circuit: race.circuit?.circuitName || race.circuit,
+            location: race.circuit?.location ? `${race.circuit.location.locality}, ${race.circuit.location.country}` : race.location,
+            country: race.circuit?.location?.country || race.country,
+            flag: race.flag || '🏁',
+            season: race.season || '2024'
+          }))
+          setLiveRaces(transformedData)
+        }
+      } catch (error) {
+        console.log('Using static race data as fallback')
+        // Keep existing static data as fallback
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchF1Calendar()
+  }, [])
 
   const shareToSocial = (platform: string, race: any) => {
     const raceUrl = `${window.location.origin}/calendar#race-${race.id}`
@@ -37,17 +72,17 @@ export default function SimpleRaceSchedule() {
   const getFilteredRaces = () => {
     switch (activeTab) {
       case "upcoming":
-        return f1Schedule2025.filter((race) => isFuture(parseISO(race.date))).slice(0, 5)
+        return liveRaces.filter((race) => isFuture(parseISO(race.date))).slice(0, 5)
       case "sprint":
-        return f1Schedule2025.filter((race) => race.isSprint)
+        return liveRaces.filter((race) => race.isSprint)
       default:
-        return f1Schedule2025
+        return liveRaces
     }
   }
 
   const getNextRace = () => {
-    const upcomingRaces = f1Schedule2025.filter((race) => isFuture(parseISO(race.date)))
-    return upcomingRaces.length > 0 ? upcomingRaces[0] : f1Schedule2025[0]
+    const upcomingRaces = liveRaces.filter((race) => isFuture(parseISO(race.date)))
+    return upcomingRaces.length > 0 ? upcomingRaces[0] : liveRaces[0]
   }
 
   const tabs = [
@@ -58,7 +93,7 @@ export default function SimpleRaceSchedule() {
 
   const filteredRaces = getFilteredRaces()
   const nextRace = getNextRace()
-  const sprintCount = f1Schedule2025.filter((race) => race.isSprint).length
+  const sprintCount = liveRaces.filter((race) => race.isSprint).length
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-red-950">

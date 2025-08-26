@@ -1,0 +1,87 @@
+{
+  "merge_plan_template": {
+    "plan_id": "",
+    "creation_timestamp": "",
+    "merge_group": {
+      "source_files": [],
+      "target_filename": "",
+      "merge_strategy": "semantic_priority",
+      "estimated_completion_time": ""
+    },
+    "content_analysis": {
+      "content_similarity_score": 0.0,
+      "topic_overlap_percentage": 0.0,
+      "temporal_proximity_hours": 0,
+      "author_consistency": false,
+      "conversation_continuity": false
+    },
+    "merge_criteria": {
+      "similarity_threshold_met": false,
+      "temporal_criteria_met": false,
+      "content_quality_sufficient": false,
+      "relationship_strength": 0.0,
+      "merge_confidence": 0.0
+    },
+    "merge_operations": {
+      "content_merge_method": "chronological_weave",
+      "metadata_preservation": "all_sources",
+      "relationship_handling": "strengthen_connections",
+      "duplicate_resolution": "smart_deduplication",
+      "quality_enhancement": true
+    },
+    "expected_outcomes": {
+      "merged_content_size": 0,
+      "relationship_count": 0,
+      "tag_consolidation": [],
+      "metadata_enrichment": [],
+      "search_improvement": 0.0
+    },
+    "validation_checklist": {
+      "content_integrity": false,
+      "metadata_completeness": false,
+      "relationship_accuracy": false,
+      "search_optimization": false,
+      "quality_standards": false
+    },
+    "rollback_plan": {
+      "backup_locations": [],
+      "rollback_procedure": [],
+      "recovery_validation": [],
+      "rollback_triggers": []
+    }
+  },
+  "plan_templates": {
+    "high_confidence_merge": {
+      "auto_execute": true,
+      "validation_level": "standard",
+      "backup_required": true,
+      "manual_review": false
+    },
+    "medium_confidence_merge": {
+      "auto_execute": false,
+      "validation_level": "enhanced",
+      "backup_required": true,
+      "manual_review": true
+    },
+    "low_confidence_merge": {
+      "auto_execute": false,
+      "validation_level": "comprehensive",
+      "backup_required": true,
+      "manual_review": true
+    }
+  },
+  "last_updated": "01-19_06-45PM",
+  "template_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.884317",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

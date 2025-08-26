@@ -1,0 +1,70 @@
+{
+  "processing_queue": {
+    "high_priority": [],
+    "normal_priority": [],
+    "low_priority": [],
+    "batch_operations": [],
+    "total_queue_size": 0
+  },
+  "queue_management": {
+    "auto_prioritization": true,
+    "priority_factors": {
+      "content_length": 0.2,
+      "content_quality": 0.3,
+      "temporal_relevance": 0.25,
+      "user_importance": 0.25
+    },
+    "max_queue_size": 150,
+    "queue_processing_order": "priority_weighted",
+    "batch_processing_enabled": true
+  },
+  "summary_operations": {
+    "pending_summaries": [],
+    "summary_groups": [],
+    "summary_strategies": {
+      "content_analysis": "comprehensive",
+      "key_extraction": "importance_weighted",
+      "compression_method": "adaptive",
+      "quality_optimization": "enabled"
+    }
+  },
+  "processing_rules": {
+    "max_concurrent_operations": 5,
+    "timeout_minutes": 20,
+    "retry_failed_operations": true,
+    "max_retries": 3,
+    "error_escalation": true
+  },
+  "content_routing": {
+    "route_by_type": true,
+    "route_by_length": true,
+    "route_by_complexity": true,
+    "specialized_processors": {
+      "technical_content": "tech_summarizer",
+      "conversation": "dialog_summarizer",
+      "narrative": "story_summarizer",
+      "code": "code_summarizer"
+    }
+  },
+  "quality_assurance": {
+    "pre_processing_validation": true,
+    "in_process_monitoring": true,
+    "post_processing_verification": true,
+    "quality_gate_threshold": 0.75,
+    "auto_quality_enhancement": true
+  },
+  "monitoring": {
+    "track_processing_time": true,
+    "log_queue_changes": true,
+    "alert_on_queue_overflow": true,
+    "performance_analytics": true
+  },
+  "last_updated": "01-19_06-45PM",
+  "queue_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.154104",
+    "evolution_count": 1,
+    "improvements": []
+  }
+}

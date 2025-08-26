@@ -1,0 +1,33 @@
+{
+  "folder": "summary",
+  "last_updated": "06/17 - 07:17PM",
+  "summarized_entries": 60,
+  "log_files": [
+    "summary_log.md",
+    "summary_log.json",
+    "summary_log.yaml"
+  ],
+  "formats": [
+    "md",
+    "json",
+    "yaml"
+  ],
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:10.253509",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "version": "1.0.0",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:52.186151",
+    "file_path": "memory\\c_short_term_memory\\summary\\manifest.json"
+  }
+}

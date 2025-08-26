@@ -1,0 +1,124 @@
+{
+  "temp_folder_info": {
+    "folder_purpose": "Summary Processing Pipeline Temporary Workspace",
+    "description": "Comprehensive temporary processing system for the Summary Assistant Librarian, handling content summarization workflow from staging through final processing.",
+    "version": "2.0",
+    "last_updated": "01-19_06-45PM"
+  },
+  "processing_pipeline": {
+    "staging": {
+      "purpose": "Content preparation and validation for summarization",
+      "key_features": [
+        "Content type classification",
+        "Quality assessment",
+        "Readability analysis",
+        "Summarization feasibility evaluation",
+        "Batch grouping and optimization"
+      ],
+      "configuration_files": [
+        "staging_config.json",
+        "staging_status.json",
+        "staging_queue.json",
+        "validation_template.json",
+        "analysis_template.json"
+      ]
+    },
+    "processing": {
+      "purpose": "Active content summarization and quality optimization",
+      "key_features": [
+        "Multi-strategy summarization",
+        "Content compression optimization",
+        "Quality enhancement",
+        "Error handling and recovery",
+        "Performance monitoring"
+      ],
+      "configuration_files": [
+        "processing_config.json",
+        "processing_status.json",
+        "processing_queue.json",
+        "summary_plan_template.json",
+        "error_handling.json"
+      ]
+    }
+  },
+  "workflow_integration": {
+    "memory_core_coordination": {
+      "triggered_by": "Memory Summarizer Agent",
+      "coordinates_with": [
+        "Memory Indexer Agent",
+        "Memory Context Router Agent"
+      ],
+      "reports_to": "Memory Orchestrator Agent",
+      "outputs_to": "summary/storage/"
+    },
+    "processing_flow": [
+      "Content arrives in staging area",
+      "Validation and analysis performed",
+      "Content classified and grouped",
+      "Processing queue prioritization",
+      "Summarization execution",
+      "Quality validation",
+      "Storage and indexing"
+    ]
+  },
+  "system_capabilities": {
+    "content_types_supported": [
+      "Technical documentation",
+      "Conversational content",
+      "Narrative content",
+      "Code content",
+      "Mixed content types"
+    ],
+    "summarization_strategies": [
+      "Extractive summarization",
+      "Abstractive summarization",
+      "Hybrid summarization",
+      "Template-based summarization",
+      "Hierarchical summarization"
+    ],
+    "quality_features": [
+      "Adaptive compression ratios",
+      "Content coherence validation",
+      "Information preservation metrics",
+      "Readability optimization",
+      "Key point extraction"
+    ]
+  },
+  "performance_specifications": {
+    "processing_capacity": {
+      "max_concurrent_files": 8,
+      "batch_processing_size": 15,
+      "memory_limit_mb": 768,
+      "timeout_minutes": 20
+    },
+    "quality_targets": {
+      "minimum_quality_threshold": 0.7,
+      "default_compression_ratio": 0.3,
+      "key_points_range": "3-15",
+      "readability_improvement": "enabled"
+    }
+  },
+  "monitoring_and_alerts": {
+    "health_monitoring": "comprehensive",
+    "performance_tracking": "real_time",
+    "error_tracking": "detailed",
+    "quality_analytics": "continuous",
+    "alert_thresholds": {
+      "error_rate_percent": 8,
+      "quality_failures_percent": 15,
+      "processing_delays_minutes": 25
+    }
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.077583",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  }
+}

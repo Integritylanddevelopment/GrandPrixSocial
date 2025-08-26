@@ -1,0 +1,75 @@
+{
+  "processing_config": {
+    "summary_processing_settings": {
+      "max_concurrent_files": 8,
+      "processing_timeout_minutes": 20,
+      "auto_cleanup_hours": 12,
+      "summary_priority_queue": true,
+      "compression_ratio_default": 0.3,
+      "content_analysis_depth": "comprehensive"
+    },
+    "file_handling": {
+      "temp_file_prefix": "summary_processing_",
+      "backup_during_processing": true,
+      "atomic_operations": true,
+      "error_isolation": true,
+      "partial_summary_recovery": true
+    },
+    "summary_criteria": {
+      "minimum_content_length": 100,
+      "maximum_content_length": 50000,
+      "target_compression_ratio": 0.3,
+      "key_points_count": 5,
+      "preserve_original_structure": true
+    },
+    "quality_control": {
+      "validate_before_summarizing": true,
+      "preserve_original_metadata": true,
+      "content_integrity_check": true,
+      "summary_coherence_validation": true,
+      "minimum_quality_threshold": 0.7
+    },
+    "summarization_strategies": {
+      "extractive": {
+        "enabled": true,
+        "weight": 0.4,
+        "sentence_selection": "importance_ranking",
+        "preserve_order": true
+      },
+      "abstractive": {
+        "enabled": true,
+        "weight": 0.6,
+        "generation_method": "template_based",
+        "creativity_level": "medium"
+      },
+      "hybrid": {
+        "enabled": true,
+        "weight": 1.0,
+        "combine_ratio": 0.7,
+        "optimization": "quality_focused"
+      }
+    },
+    "performance": {
+      "batch_size": 15,
+      "memory_limit_mb": 768,
+      "parallel_processing": true,
+      "cache_summaries": true,
+      "optimize_for_quality": true
+    }
+  },
+  "monitoring": {
+    "log_level": "INFO",
+    "track_processing_time": true,
+    "alert_on_errors": true,
+    "performance_metrics": true,
+    "summary_quality_tracking": true
+  },
+  "last_updated": "01-19_06-45PM",
+  "config_version": "2.0",
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:11.148527",
+    "evolution_count": 1,
+    "improvements": []
+  }
+}

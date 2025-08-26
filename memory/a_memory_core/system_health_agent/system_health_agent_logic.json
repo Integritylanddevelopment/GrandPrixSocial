@@ -1,0 +1,86 @@
+{
+  "agent_name": "system_health_agent",
+  "version": "1.0",
+  "agent_type": "system_maintenance",
+  "authority_level": "SYSTEM_MAINTENANCE",
+  "description": "Comprehensive health monitoring and automatic repair logic for CommandCore OS ecosystem.",
+  "logic": {
+    "required_dependencies": {
+      "watchdog": "File system monitoring for agents",
+      "anthropic": "Claude API integration",
+      "openai": "OpenAI API integration",
+      "speechrecognition": "Voice input for GUI",
+      "python-dotenv": "Environment variable management",
+      "requests": "HTTP requests for APIs",
+      "psutil": "System monitoring",
+      "schedule": "Task scheduling for agents",
+      "pathlib": "Enhanced path handling"
+    },
+    "critical_components": [
+      "memory/a_memory_core",
+      "builder_gui",
+      "logs",
+      ".env"
+    ],
+    "health_thresholds": {
+      "excellent": 90,
+      "good": 75,
+      "fair": 60,
+      "poor": 40,
+      "critical": 0
+    },
+    "integrity_checks": [
+      "has_main_function",
+      "has_imports",
+      "has_class_definition"
+    ],
+    "auto_repair_enabled": true,
+    "install_timeout_seconds": 120,
+    "monitoring_interval_minutes": 30
+  },
+  "operations": {
+    "dependency_management": {
+      "check_imports": "Validate all required dependencies are importable",
+      "install_missing": "Automatically install missing packages",
+      "use_venv": "Prefer virtual environment for installations"
+    },
+    "component_verification": {
+      "check_existence": "Verify critical files and directories exist",
+      "validate_structure": "Ensure proper directory structure",
+      "check_permissions": "Validate read/write access"
+    },
+    "agent_integrity": {
+      "syntax_validation": "Basic Python syntax checking",
+      "structure_analysis": "Verify agent has required components",
+      "calculate_score": "Generate integrity percentage"
+    },
+    "health_reporting": {
+      "consolidate_logs": "Single JSON log file per agent",
+      "calculate_overall": "System-wide health score",
+      "generate_recommendations": "Automated repair suggestions"
+    }
+  },
+  "integration": {
+    "orchestrator_communication": "Reports to memory_orchestrator_agent",
+    "dependency_isolation": "Uses virtual environment when available",
+    "non_blocking": "Never blocks system startup"
+  },
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:08.595355",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "last_updated": "2025-07-30T23:16:07.203558",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:07.203558",
+    "file_path": "memory\\a_memory_core\\system_health_agent\\system_health_agent_logic.json"
+  }
+}

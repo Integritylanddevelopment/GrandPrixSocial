@@ -1,0 +1,30 @@
+{
+  "agent_name": "Memory Indexer Agent",
+  "version": "1.0",
+  "author": "CommandCore Team",
+  "date_created": "2025-06-16",
+  "purpose": "To create a Whoosh-based full-text search index from the memory directory.",
+  "tags": [
+    "memory",
+    "indexing",
+    "Whoosh"
+  ],
+  "autonomous_evolution": {
+    "enabled": true,
+    "last_evolved": "2025-07-30T23:14:07.389625",
+    "evolution_count": 1,
+    "improvements": []
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_checks": true,
+    "performance_tracking": true,
+    "error_reporting": true
+  },
+  "last_updated": "2025-07-30T23:16:52.617490",
+  "metadata": {
+    "auto_improved": true,
+    "improvement_date": "2025-07-30T23:16:52.617490",
+    "file_path": "memory\\a_memory_core\\memory_indexer_agent\\memory_indexer_metadata.json"
+  }
+}
