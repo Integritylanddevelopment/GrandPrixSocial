@@ -29,4 +29,11 @@ __pycache__/
 # Next.js build output
 .next/
 *.next
-memory/
+
+# Memory system is now synced to cloud - exclude sensitive files  
+memory/**/*.log
+memory/**/logs/
+memory/**/*_temp.json
+memory/**/cache/
+# Exclude chat logs with potential secrets
+memory/b_long_term_memory/full_chat/full_chat_logs/
