@@ -375,7 +375,7 @@ Timestamp: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(sync_report['times
 Action: {sync_report['action'].upper()}
 Commit: {sync_report['commit_hash']} - {sync_report['commit_message']}
 Files Changed: {sync_report['files_synced']} ({sync_report['significance']} significance)
-Git Push: {'✓ VERIFIED' if sync_report['push_verified'] else '✗ FAILED'}
+Git Push: {'VERIFIED' if sync_report['push_verified'] else 'FAILED'}
 Deployment: {sync_report['deployment_status']['status'].upper()} - {sync_report['deployment_status']['message']}
 """
             
