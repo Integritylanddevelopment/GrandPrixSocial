@@ -19,10 +19,11 @@ async function getCommentsFile(articleId: string) {
 
 export async function GET(
   request: Request,
-  { params }: { params: { articleId: string } }
+  { params }: { params: Promise<{ articleId: string }> }
 ) {
   try {
-    const commentsFile = await getCommentsFile(params.articleId)
+    const { articleId } = await params
+    const commentsFile = await getCommentsFile(articleId)
     
     try {
       const data = await fs.readFile(commentsFile, 'utf-8')
@@ -52,11 +53,12 @@ export async function GET(
 
 export async function POST(
   request: Request,
-  { params }: { params: { articleId: string } }
+  { params }: { params: Promise<{ articleId: string }> }
 ) {
   try {
+    const { articleId } = await params
     const newComment = await request.json()
-    const commentsFile = await getCommentsFile(params.articleId)
+    const commentsFile = await getCommentsFile(articleId)
     
     let comments = []
     try {

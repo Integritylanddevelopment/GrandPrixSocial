@@ -183,8 +183,8 @@ export default function ArticleDetail({ article, onClose }: ArticleDetailProps) 
             </div>
           </div>
 
-          {/* Article Image */}
-          {article.imageUrl && (
+          {/* Article Image - Temporarily disabled */}
+          {false && article.imageUrl && (
             <div className="mb-6">
               <img 
                 src={article.imageUrl} 

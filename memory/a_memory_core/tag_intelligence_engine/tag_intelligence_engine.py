@@ -97,6 +97,22 @@ class TagIntelligenceEngine:
         else:
             self.openai_client = None
             self.ai_enabled = False
+        
+        # Context document monitoring integration
+        self.context_document_path = Path("C:/D_Drive/ActiveProjects/GrandPrixSocial/memory/CLAUDE.md")
+        self.should_monitor_context = True
+        
+        # Import context monitor for integration
+        try:
+            sys.path.append(str(Path(self.base_path).parent / "context_document_monitor_agent"))
+            from context_document_monitor_agent import ContextDocumentMonitor
+            self.context_monitor = ContextDocumentMonitor()
+            self.context_integration_enabled = True
+            logging.info("Context document monitoring integration enabled")
+        except ImportError as e:
+            self.context_monitor = None
+            self.context_integration_enabled = False
+            logging.warning(f"Context monitoring integration disabled: {e}")
             
         # Load data
         self.tag_dna = self.load_tag_dna()

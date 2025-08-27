@@ -12,7 +12,8 @@
       "mcp__sequential-thinking__sequentialthinking",
       "Bash(python:*)",
       "Read(/C:\\D_Drive\\ActiveProjects/**)",
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "mcp__puppeteer__puppeteer_screenshot"
     ],
     "deny": [],
     "ask": [],

@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 import path from 'path'
+import { F1ImageScraper } from './f1-image-scraper'
 
 // Complete F1 News System - Real RSS scraping + AI processing
 export class CompleteF1NewsSystem {
@@ -45,6 +46,7 @@ export class CompleteF1NewsSystem {
   private readonly dataDir = path.join(process.cwd(), 'data', 'news')
   private readonly scrapedFile = path.join(this.dataDir, 'scraped-posts.json')
   private readonly processedFile = path.join(this.dataDir, 'processed-articles.json')
+  private readonly imageScraper = new F1ImageScraper()
 
   constructor() {
     this.ensureDataDirectory()
@@ -568,15 +570,8 @@ Always write 4-6 substantial paragraphs (minimum 800 words) with proper journali
   }
 
   private generatePlaceholderImage(category: string): string {
-    // F1-specific images from Unsplash with proper search terms
-    const f1ImageMap = {
-      'breaking': 'https://images.unsplash.com/photo-1583900985737-6d0495555783?w=800&h=400&fit=crop&q=80', // F1 car racing
-      'driver-news': 'https://images.unsplash.com/photo-1599950755346-a3e58f84ca63?w=800&h=400&fit=crop&q=80', // F1 driver helmet
-      'team-news': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop&q=80', // F1 garage/pit
-      'technical': 'https://images.unsplash.com/photo-1558957497-0b934b4f2e79?w=800&h=400&fit=crop&q=80', // F1 car closeup
-      'championship': 'https://images.unsplash.com/photo-1564422137569-85d939e22263?w=800&h=400&fit=crop&q=80', // F1 podium/celebration
-      'general': 'https://images.unsplash.com/photo-1583900985737-6d0495555783?w=800&h=400&fit=crop&q=80' // F1 racing action
-    }
+    // Temporarily disabled - will add proper F1 images later
+    return ''
     
     return f1ImageMap[category] || f1ImageMap['general']
   }
@@ -722,12 +717,15 @@ Always write 4-6 substantial paragraphs (minimum 800 words) with proper journali
     
     try {
       // Step 1: Scrape all RSS feeds
-      await this.scrapeAllRSSFeeds()
+      const scrapedPosts = await this.scrapeAllRSSFeeds()
       
-      // Step 2: Process with AI
+      // Step 2: Scrape and tag images from all posts (stored separately)
+      await this.imageScraper.scrapeImagesFromPosts(scrapedPosts)
+      
+      // Step 3: Process with AI
       await this.processAllContent()
       
-      // Step 3: Return latest articles
+      // Step 4: Return latest articles
       const articles = await this.loadProcessedArticles()
       
       console.log(`✅ Pipeline complete! Generated ${articles.length} total articles`)

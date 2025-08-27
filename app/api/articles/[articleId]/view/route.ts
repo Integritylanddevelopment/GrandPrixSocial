@@ -19,10 +19,11 @@ async function getViewsFile(articleId: string) {
 
 export async function POST(
   request: Request,
-  { params }: { params: { articleId: string } }
+  { params }: { params: Promise<{ articleId: string }> }
 ) {
   try {
-    const viewsFile = await getViewsFile(params.articleId)
+    const { articleId } = await params
+    const viewsFile = await getViewsFile(articleId)
     
     let viewData = { views: 0, lastViewed: new Date().toISOString() }
     
@@ -54,10 +55,11 @@ export async function POST(
 
 export async function GET(
   request: Request,
-  { params }: { params: { articleId: string } }
+  { params }: { params: Promise<{ articleId: string }> }
 ) {
   try {
-    const viewsFile = await getViewsFile(params.articleId)
+    const { articleId } = await params
+    const viewsFile = await getViewsFile(articleId)
     
     try {
       const data = await fs.readFile(viewsFile, 'utf-8')

@@ -46,14 +46,14 @@ export default function PaddockTalk() {
       const transferResponse = await fetch("/api/news/search?category=driver-news&limit=50")
       const transferData = await transferResponse.json()
 
-      // Merge with existing data to maintain persistence
-      setNewsData(prev => ({
-        breaking: [...(breakingData.results || []), ...prev.breaking].slice(0, 100), // Keep latest 100
-        trending: [...(trendingResult.trending || []), ...prev.trending].slice(0, 100),
-        tech: [...(techData.results || []), ...prev.tech].slice(0, 100),
-        gossip: [...(gossipData.results || []), ...prev.gossip].slice(0, 100),
-        transfers: [...(transferData.results || []), ...prev.transfers].slice(0, 100)
-      }))
+      // Set fresh data - articles should persist from API/database
+      setNewsData({
+        breaking: breakingData.results || [],
+        trending: trendingResult.trending || [],
+        tech: techData.results || [],
+        gossip: gossipData.results || [],
+        transfers: transferData.results || []
+      })
 
       setLastUpdated(new Date())
       setLoading(false)
