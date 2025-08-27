@@ -10,7 +10,7 @@
     "credentials": null,
     "vercel_project_id": "prj_dIgPyjUY0HRFYw3cYKOxTrAPQsaZ",
     "vercel_team_id": "team_qd9zTuDQ41euDNXJwHVVPocq",
-    "vercel_token": null,
+    "vercel_token": "${VERCEL_TOKEN}",
     "check_deployment": true
   }
 }
