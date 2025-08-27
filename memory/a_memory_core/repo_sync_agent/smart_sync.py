@@ -387,34 +387,52 @@ class SmartSyncAgent:
             deployment_state = latest_deployment.get('state', 'UNKNOWN')
             deployment_url = latest_deployment.get('url', '')
             
-            # Monitor deployment progress
-            max_wait = 900  # 15 minutes
-            wait_time = 0
+            # Monitor deployment progress - NO TIMEOUT, wait until completion or error
+            logger.info(f"Starting deployment monitoring - will wait indefinitely until completion or error")
+            start_time = time.time()
             
-            while wait_time < max_wait and deployment_state in ['BUILDING', 'QUEUED', 'INITIALIZING']:
-                time.sleep(10)
-                wait_time += 10
+            while deployment_state in ['BUILDING', 'QUEUED', 'INITIALIZING', 'UNKNOWN']:
+                time.sleep(15)  # Check every 15 seconds
+                elapsed = int(time.time() - start_time)
+                logger.info(f"Monitoring deployment for {elapsed}s - state: {deployment_state}")
                 
                 # Check deployment status
-                status_response = requests.get(
-                    f'https://api.vercel.com/v13/deployments/{deployment_id}?teamId={team_id}',
-                    headers=headers,
-                    timeout=30
-                )
+                try:
+                    status_response = requests.get(
+                        f'https://api.vercel.com/v13/deployments/{deployment_id}?teamId={team_id}',
+                        headers=headers,
+                        timeout=30
+                    )
+                    
+                    if status_response.status_code == 200:
+                        deployment_data = status_response.json()
+                        deployment_state = deployment_data.get('state', 'UNKNOWN')
+                        logger.info(f"Deployment state: {deployment_state}")
+                        
+                        # If still building states, continue loop
+                        if deployment_state in ['BUILDING', 'QUEUED', 'INITIALIZING']:
+                            continue
+                        # If we get READY or ERROR, we'll break out of loop
+                        elif deployment_state in ['READY', 'ERROR']:
+                            break
+                        # For any other unknown state, keep checking
+                    else:
+                        logger.warning(f"API response code: {status_response.status_code}, continuing to monitor...")
+                        
+                except Exception as e:
+                    logger.warning(f"API check failed: {e}, continuing to monitor...")
                 
-                if status_response.status_code == 200:
-                    deployment_data = status_response.json()
-                    deployment_state = deployment_data.get('state', 'UNKNOWN')
-                    logger.info(f"Deployment state: {deployment_state}")
-                
-            # Return final status
+            # Calculate final build duration
+            build_duration = int(time.time() - start_time)
+            
+            # Return final status - NO MORE TIMEOUT CASES
             if deployment_state == 'READY':
                 return {
                     "started": True,
                     "status": "ready",
                     "deployment_id": deployment_id,
                     "url": f"https://{deployment_url}",
-                    "build_duration": wait_time,
+                    "build_duration": build_duration,
                     "message": "Build completed successfully"
                 }
             elif deployment_state == 'ERROR':
@@ -427,15 +445,22 @@ class SmartSyncAgent:
                     "message": "Build failed - fetching logs for Claude to fix",
                     "dashboard_url": f"https://vercel.com/dashboard/deployments/{deployment_id}",
                     "build_logs": build_logs,
-                    "needs_claude_fix": True
+                    "needs_claude_fix": True,
+                    "build_duration": build_duration
                 }
             else:
+                # This should never happen with infinite loop, but fallback to error state
+                logger.error(f"Unexpected deployment state: {deployment_state}")
+                build_logs = self._fetch_build_logs(deployment_id, team_id, vercel_token)
                 return {
                     "started": True,
-                    "status": "timeout",
+                    "status": "failed", 
                     "deployment_id": deployment_id,
-                    "message": f"Build monitoring timed out - final state: {deployment_state}",
-                    "dashboard_url": f"https://vercel.com/dashboard/deployments/{deployment_id}"
+                    "message": f"Unexpected deployment state: {deployment_state}",
+                    "dashboard_url": f"https://vercel.com/dashboard/deployments/{deployment_id}",
+                    "build_logs": build_logs,
+                    "needs_claude_fix": True,
+                    "build_duration": build_duration
                 }
             
         except Exception as e:
