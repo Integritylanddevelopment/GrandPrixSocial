@@ -418,12 +418,16 @@ class SmartSyncAgent:
                     "message": "Build completed successfully"
                 }
             elif deployment_state == 'ERROR':
+                # Fetch detailed build logs for Claude to fix
+                build_logs = self._fetch_build_logs(deployment_id, team_id, vercel_token)
                 return {
                     "started": True,
                     "status": "failed",
                     "deployment_id": deployment_id,
-                    "message": "Build failed - check Vercel dashboard for details",
-                    "dashboard_url": f"https://vercel.com/dashboard/deployments/{deployment_id}"
+                    "message": "Build failed - fetching logs for Claude to fix",
+                    "dashboard_url": f"https://vercel.com/dashboard/deployments/{deployment_id}",
+                    "build_logs": build_logs,
+                    "needs_claude_fix": True
                 }
             else:
                 return {
@@ -441,6 +445,46 @@ class SmartSyncAgent:
                 "status": "error",
                 "message": f"Deployment monitoring failed: {str(e)}"
             }
+    
+    def _fetch_build_logs(self, deployment_id: str, team_id: str, vercel_token: str) -> List[str]:
+        """Fetch build logs from Vercel for failed deployments"""
+        try:
+            import requests
+            
+            headers = {
+                'Authorization': f'Bearer {vercel_token}',
+                'Content-Type': 'application/json'
+            }
+            
+            # Get deployment events/logs
+            logs_response = requests.get(
+                f'https://api.vercel.com/v2/deployments/{deployment_id}/events?teamId={team_id}',
+                headers=headers,
+                timeout=30
+            )
+            
+            if logs_response.status_code != 200:
+                logger.error(f"Failed to fetch build logs: {logs_response.status_code}")
+                return [f"Failed to fetch build logs: HTTP {logs_response.status_code}"]
+            
+            events = logs_response.json()
+            build_logs = []
+            
+            for event in events.get('logs', []):
+                if event.get('type') in ['stderr', 'stdout', 'error']:
+                    message = event.get('payload', {}).get('text', '')
+                    if message and ('error' in message.lower() or 'failed' in message.lower() or 'warn' in message.lower()):
+                        build_logs.append(f"[{event.get('type', 'log')}] {message}")
+            
+            # If no specific errors found, get general failure info
+            if not build_logs:
+                build_logs.append("Build failed but no specific error logs found. Check Vercel dashboard.")
+            
+            return build_logs[:20]  # Limit to most relevant 20 log entries
+            
+        except Exception as e:
+            logger.error(f"Error fetching build logs: {e}")
+            return [f"Error fetching build logs: {str(e)}"]
     
     def _generate_sync_report(self, sync_report: Dict):
         """Generate and log comprehensive sync report"""
@@ -519,7 +563,7 @@ Deployment: {sync_report['deployment_status']['status'].upper()} - {sync_report[
             logger.error(f"Error logging sync: {e}")
     
     def autonomous_sync_cycle(self) -> Dict:
-        """Complete autonomous sync cycle with full reporting"""
+        """Complete autonomous sync cycle - only reports final success to user"""
         try:
             logger.info("=== Starting Autonomous Sync Cycle ===")
             
@@ -527,37 +571,80 @@ Deployment: {sync_report['deployment_status']['status'].upper()} - {sync_report[
             analysis = self.analyze_changes()
             
             if "error" in analysis:
-                return {
-                    "success": False,
-                    "error": f"Git analysis failed: {analysis['error']}",
-                    "step": "git_analysis"
-                }
+                # Don't report git errors to user - these are system issues
+                logger.error(f"Git analysis failed: {analysis['error']}")
+                return {"silent_error": True, "error_type": "git_analysis", "error": analysis['error']}
             
-            # Step 2: Report current status
             logger.info(f"Git Status: {analysis['total_files']} files changed ({analysis['significance']} significance)")
             
-            # Step 3: Decide if sync is needed
+            # Step 2: Decide if sync is needed
             if not analysis.get("should_sync", False):
-                return {
-                    "success": True,
-                    "action": "no_sync_needed",
-                    "analysis": analysis,
-                    "message": "No sync required - changes don't meet criteria"
-                }
+                # Silent return - no action needed
+                return {"silent_success": True, "action": "no_sync_needed"}
             
-            # Step 4: Perform auto-sync with full monitoring
+            # Step 3: Perform sync with build monitoring loop
             logger.info("Sync criteria met - performing automatic sync...")
-            sync_result = self.perform_auto_sync()
-            
-            return sync_result
+            return self._sync_with_build_retry()
             
         except Exception as e:
             logger.error(f"Error in autonomous sync cycle: {e}")
-            return {
-                "success": False,
-                "error": str(e),
-                "step": "autonomous_cycle"
-            }
+            return {"silent_error": True, "error_type": "autonomous_cycle", "error": str(e)}
+    
+    def _sync_with_build_retry(self, max_retries: int = 3) -> Dict:
+        """Sync with automatic build error fixing - only report final success"""
+        for attempt in range(max_retries):
+            try:
+                sync_result = self.perform_auto_sync()
+                
+                # Check if build failed and needs Claude to fix
+                deployment_status = sync_result.get("deployment_status", {})
+                
+                if deployment_status.get("needs_claude_fix"):
+                    # Present build errors to Claude for fixing
+                    build_logs = deployment_status.get("build_logs", [])
+                    logger.error("Build failed - presenting errors to Claude for fixing")
+                    
+                    # This will trigger Claude to see and fix the errors
+                    print("🚨 BUILD FAILED - CLAUDE NEEDS TO FIX:")
+                    print("=" * 50)
+                    for log in build_logs:
+                        print(log)
+                    print("=" * 50)
+                    print(f"Dashboard: {deployment_status.get('dashboard_url', 'N/A')}")
+                    print("🔧 Please fix these errors and commit your changes...")
+                    
+                    # Return special status to indicate Claude needs to fix
+                    return {
+                        "claude_fix_needed": True,
+                        "build_logs": build_logs,
+                        "deployment_id": deployment_status.get("deployment_id"),
+                        "dashboard_url": deployment_status.get("dashboard_url"),
+                        "attempt": attempt + 1
+                    }
+                
+                elif deployment_status.get("status") == "ready":
+                    # SUCCESS! Report to user
+                    return {
+                        "success": True,
+                        "message": f"🎉 BUILD COMPLETED SUCCESSFULLY! Live at: {deployment_status.get('url', 'N/A')}",
+                        "url": deployment_status.get("url"),
+                        "commit_hash": sync_result.get("commit_hash"),
+                        "deployment_id": deployment_status.get("deployment_id"),
+                        "build_duration": deployment_status.get("build_duration", 0)
+                    }
+                
+                else:
+                    # Other status (timeout, etc.) - continue loop
+                    logger.warning(f"Deployment status: {deployment_status.get('status')} - retrying...")
+                    continue
+                    
+            except Exception as e:
+                logger.error(f"Sync attempt {attempt + 1} failed: {e}")
+                if attempt == max_retries - 1:
+                    return {"silent_error": True, "error_type": "sync_failed", "error": str(e)}
+        
+        # If we get here, all retries failed
+        return {"silent_error": True, "error_type": "max_retries_exceeded"}
     
     def status_report(self) -> Dict:
         """Generate status report of sync agent"""
