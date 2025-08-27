@@ -295,6 +295,27 @@ class SmartSyncAgent:
             logger.error(f"Error getting commit hash: {e}")
             return "unknown"
     
+    def _load_vercel_token(self) -> str:
+        """Load Vercel token from .env.local file"""
+        try:
+            env_path = os.path.join(self.project_path, ".env.local")
+            if not os.path.exists(env_path):
+                logger.error("No .env.local file found")
+                return None
+            
+            with open(env_path, 'r') as f:
+                for line in f:
+                    line = line.strip()
+                    if line.startswith('VERCEL_TOKEN='):
+                        return line.split('=', 1)[1].strip()
+            
+            logger.error("VERCEL_TOKEN not found in .env.local")
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error loading Vercel token: {e}")
+            return None
+    
     def _verify_push_success(self) -> Dict:
         """Verify that the push was successful"""
         try:
@@ -316,47 +337,100 @@ class SmartSyncAgent:
             return {"verified": False, "message": f"Verification error: {str(e)}"}
     
     def _monitor_vercel_deployment(self) -> Dict:
-        """Monitor Vercel deployment status"""
+        """Monitor actual Vercel deployment status via API"""
         try:
-            # Wait a moment for Vercel to detect the push
-            time.sleep(5)
+            import requests
             
-            # Check if Vercel webhook/deployment starts
-            # This is a simplified check - in production you'd use Vercel API
-            deployment_info = {
-                "started": True,
-                "status": "building",
-                "build_time": time.time(),
-                "message": "Deployment triggered by git push"
+            # Wait a moment for Vercel to detect the push
+            time.sleep(10)
+            
+            # Get Vercel token from .env.local file
+            vercel_token = self._load_vercel_token()
+            if not vercel_token:
+                return {
+                    "started": False,
+                    "status": "error",
+                    "message": "VERCEL_TOKEN not found in .env.local - cannot monitor real deployments"
+                }
+            
+            headers = {
+                'Authorization': f'Bearer {vercel_token}',
+                'Content-Type': 'application/json'
             }
             
-            # Wait up to 2 minutes for build completion indicator
-            max_wait = 120  # 2 minutes
+            # Get recent deployments for the project
+            response = requests.get(
+                'https://api.vercel.com/v6/deployments?projectId=grand-prix-social&limit=1',
+                headers=headers,
+                timeout=30
+            )
+            
+            if response.status_code != 200:
+                return {
+                    "started": False,
+                    "status": "api_error",
+                    "message": f"Vercel API error: {response.status_code}"
+                }
+            
+            deployments = response.json().get('deployments', [])
+            if not deployments:
+                return {
+                    "started": False,
+                    "status": "no_deployments",
+                    "message": "No recent deployments found"
+                }
+            
+            latest_deployment = deployments[0]
+            deployment_id = latest_deployment.get('uid')
+            deployment_state = latest_deployment.get('state', 'UNKNOWN')
+            deployment_url = latest_deployment.get('url', '')
+            
+            # Monitor deployment progress
+            max_wait = 300  # 5 minutes
             wait_time = 0
             
-            while wait_time < max_wait:
-                # Check for build completion indicators
-                # This could be enhanced with actual Vercel API calls
-                time.sleep(10)
-                wait_time += 10
+            while wait_time < max_wait and deployment_state in ['BUILDING', 'QUEUED', 'INITIALIZING']:
+                time.sleep(15)
+                wait_time += 15
                 
-                # Simulate build completion check
-                if wait_time >= 30:  # Assume build takes at least 30 seconds
-                    deployment_info.update({
-                        "status": "ready",
-                        "build_duration": wait_time,
-                        "url": "https://grand-prix-social.vercel.app",
-                        "message": "Build completed successfully"
-                    })
-                    break
-            
-            if deployment_info["status"] == "building":
-                deployment_info.update({
+                # Check deployment status
+                status_response = requests.get(
+                    f'https://api.vercel.com/v13/deployments/{deployment_id}',
+                    headers=headers,
+                    timeout=30
+                )
+                
+                if status_response.status_code == 200:
+                    deployment_data = status_response.json()
+                    deployment_state = deployment_data.get('state', 'UNKNOWN')
+                    logger.info(f"Deployment state: {deployment_state}")
+                
+            # Return final status
+            if deployment_state == 'READY':
+                return {
+                    "started": True,
+                    "status": "ready",
+                    "deployment_id": deployment_id,
+                    "url": f"https://{deployment_url}",
+                    "build_duration": wait_time,
+                    "message": "Build completed successfully"
+                }
+            elif deployment_state == 'ERROR':
+                return {
+                    "started": True,
+                    "status": "failed",
+                    "deployment_id": deployment_id,
+                    "message": "Build failed - check Vercel dashboard for details",
+                    "dashboard_url": f"https://vercel.com/dashboard/deployments/{deployment_id}"
+                }
+            else:
+                return {
+                    "started": True,
                     "status": "timeout",
-                    "message": "Build monitoring timed out - check Vercel dashboard"
-                })
-            
-            return deployment_info
+                    "deployment_id": deployment_id,
+                    "message": f"Build monitoring timed out - final state: {deployment_state}",
+                    "dashboard_url": f"https://vercel.com/dashboard/deployments/{deployment_id}"
+                }
             
         except Exception as e:
             logger.error(f"Error monitoring Vercel deployment: {e}")
@@ -382,6 +456,10 @@ Deployment: {sync_report['deployment_status']['status'].upper()} - {sync_report[
             if sync_report['deployment_status']['status'] == 'ready':
                 report_text += f"Live URL: {sync_report['deployment_status'].get('url', 'N/A')}\n"
                 report_text += f"Build Duration: {sync_report['deployment_status'].get('build_duration', 'N/A')}s\n"
+            elif sync_report['deployment_status']['status'] == 'failed':
+                report_text += f"BUILD FAILED!\n"
+                report_text += f"Dashboard: {sync_report['deployment_status'].get('dashboard_url', 'N/A')}\n"
+                report_text += f"ACTION REQUIRED: Check Vercel dashboard for error details\n"
             
             report_text += "================================\n"
             
