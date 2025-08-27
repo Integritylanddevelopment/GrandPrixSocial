@@ -388,12 +388,12 @@ class SmartSyncAgent:
             deployment_url = latest_deployment.get('url', '')
             
             # Monitor deployment progress
-            max_wait = 300  # 5 minutes
+            max_wait = 900  # 15 minutes
             wait_time = 0
             
             while wait_time < max_wait and deployment_state in ['BUILDING', 'QUEUED', 'INITIALIZING']:
-                time.sleep(15)
-                wait_time += 15
+                time.sleep(10)
+                wait_time += 10
                 
                 # Check deployment status
                 status_response = requests.get(
