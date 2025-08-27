@@ -1,7 +1,7 @@
 # Grand Prix Social Repository Sync Agent Requirements
 
 # Core dependencies  
-requests>=2.31.0
+requests>=2.32.0
 pathlib>=1.0.1
 
 # Development dependencies
