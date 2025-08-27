@@ -646,6 +646,25 @@ Deployment: {sync_report['deployment_status']['status'].upper()} - {sync_report[
         # If we get here, all retries failed
         return {"silent_error": True, "error_type": "max_retries_exceeded"}
     
+    def force_sync_cycle(self) -> Dict:
+        """Force sync and deploy even if no changes detected"""
+        try:
+            logger.info("=== Starting FORCED Autonomous Sync Cycle ===")
+            
+            # Force a commit by updating timestamp
+            timestamp_file = os.path.join(self.project_path, "DEPLOYMENT_TRIGGER.txt")
+            with open(timestamp_file, 'w') as f:
+                f.write(f"Force deployment triggered: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
+            
+            logger.info("Created deployment trigger file - forcing sync...")
+            
+            # Now run the sync with build retry loop
+            return self._sync_with_build_retry()
+            
+        except Exception as e:
+            logger.error(f"Error in forced sync cycle: {e}")
+            return {"silent_error": True, "error_type": "forced_sync_failed", "error": str(e)}
+    
     def status_report(self) -> Dict:
         """Generate status report of sync agent"""
         try:
@@ -671,7 +690,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='Smart Auto-Sync Agent')
-    parser.add_argument('action', choices=['sync', 'status', 'analyze', 'autonomous'])
+    parser.add_argument('action', choices=['sync', 'status', 'analyze', 'autonomous', 'force'])
     parser.add_argument('--project-path', help='Project directory path')
     
     args = parser.parse_args()
@@ -684,6 +703,10 @@ def main():
         
     elif args.action == 'autonomous':
         result = agent.autonomous_sync_cycle()
+        print(json.dumps(result, indent=2, default=str))
+        
+    elif args.action == 'force':
+        result = agent.force_sync_cycle()
         print(json.dumps(result, indent=2, default=str))
         
     elif args.action == 'status':
