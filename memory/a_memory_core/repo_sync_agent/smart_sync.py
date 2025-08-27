@@ -510,7 +510,7 @@ class SmartSyncAgent:
                 'Content-Type': 'application/json'
             }
             
-            # Get deployment events/logs
+            # Get deployment events/logs - this is the correct endpoint for build logs
             logs_response = requests.get(
                 f'https://api.vercel.com/v2/deployments/{deployment_id}/events?teamId={team_id}',
                 headers=headers,
@@ -519,26 +519,46 @@ class SmartSyncAgent:
             
             if logs_response.status_code != 200:
                 logger.error(f"Failed to fetch build logs: {logs_response.status_code}")
-                return [f"Failed to fetch build logs: HTTP {logs_response.status_code}"]
+                return [f"❌ Failed to fetch build logs: HTTP {logs_response.status_code}"]
             
-            events = logs_response.json()
+            response_data = logs_response.json()
             build_logs = []
             
-            for event in events.get('logs', []):
-                if event.get('type') in ['stderr', 'stdout', 'error']:
-                    message = event.get('payload', {}).get('text', '')
-                    if message and ('error' in message.lower() or 'failed' in message.lower() or 'warn' in message.lower()):
-                        build_logs.append(f"[{event.get('type', 'log')}] {message}")
+            # Handle both list and dict responses
+            events = response_data if isinstance(response_data, list) else response_data.get('events', [])
             
-            # If no specific errors found, get general failure info
+            logger.info(f"Retrieved {len(events)} log events for deployment {deployment_id}")
+            
+            # Extract all log messages, focusing on errors
+            for event in events:
+                if isinstance(event, dict):
+                    event_type = event.get('type', '')
+                    payload = event.get('payload', {})
+                    
+                    if isinstance(payload, dict):
+                        text = payload.get('text', '')
+                    else:
+                        text = str(payload)
+                    
+                    # Include all build-related logs, especially errors
+                    if text and any(keyword in text.lower() for keyword in ['error', 'failed', 'warn', 'build', 'fatal', 'exception']):
+                        timestamp = event.get('created', '')
+                        build_logs.append(f"[{event_type}] {text}")
+                    elif text and len(text.strip()) > 0:
+                        # Include other potentially useful logs
+                        build_logs.append(f"[{event_type}] {text}")
+            
+            # If no logs found, provide helpful message
             if not build_logs:
-                build_logs.append("Build failed but no specific error logs found. Check Vercel dashboard.")
+                build_logs.append("❌ Build failed but no detailed error logs found.")
+                build_logs.append(f"🔍 Check Vercel dashboard: https://vercel.com/dashboard/deployments/{deployment_id}")
             
-            return build_logs[:20]  # Limit to most relevant 20 log entries
+            # Return the most recent/relevant logs
+            return build_logs[-50:] if len(build_logs) > 50 else build_logs
             
         except Exception as e:
             logger.error(f"Error fetching build logs: {e}")
-            return [f"Error fetching build logs: {str(e)}"]
+            return [f"❌ Error fetching build logs: {str(e)}", f"🔍 Check Vercel dashboard: https://vercel.com/dashboard/deployments/{deployment_id}"]
     
     def _generate_sync_report(self, sync_report: Dict):
         """Generate and log comprehensive sync report"""
@@ -659,13 +679,13 @@ Deployment: {sync_report['deployment_status']['status'].upper()} - {sync_report[
                     logger.error("Build failed - presenting errors to Claude for fixing")
                     
                     # This will trigger Claude to see and fix the errors
-                    print("🚨 BUILD FAILED - CLAUDE NEEDS TO FIX:")
+                    print("=== BUILD FAILED - CLAUDE NEEDS TO FIX ===")
                     print("=" * 50)
                     for log in build_logs:
                         print(log)
                     print("=" * 50)
                     print(f"Dashboard: {deployment_status.get('dashboard_url', 'N/A')}")
-                    print("🔧 Please fix these errors and commit your changes...")
+                    print("Please fix these errors and commit your changes...")
                     
                     # Return special status to indicate Claude needs to fix
                     return {
