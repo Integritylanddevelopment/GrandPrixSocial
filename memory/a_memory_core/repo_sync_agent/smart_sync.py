@@ -384,19 +384,17 @@ class SmartSyncAgent:
             
             latest_deployment = deployments[0]
             deployment_id = latest_deployment.get('uid')
-            deployment_state = latest_deployment.get('state', 'UNKNOWN')
             deployment_url = latest_deployment.get('url', '')
             
-            # Monitor deployment progress - INFINITE MONITORING until READY or ERROR
-            logger.info(f"Starting deployment monitoring - will monitor indefinitely until SUCCESS (READY) or FAILURE (ERROR)")
+            # Monitor BUILD progress - only 3 states: BUILDING (yellow), SUCCESS (green), ERROR (red)
+            logger.info(f"Starting BUILD monitoring - will monitor until SUCCESS or ERROR")
             start_time = time.time()
             
-            # Keep monitoring until we get a definitive result
+            # Keep monitoring until we get SUCCESS or ERROR
             while True:
                 elapsed = int(time.time() - start_time)
-                logger.info(f"[{elapsed}s] Monitoring build - Current state: {deployment_state}")
                 
-                # Check deployment status every 10 seconds
+                # Get detailed deployment info including build status
                 try:
                     status_response = requests.get(
                         f'https://api.vercel.com/v13/deployments/{deployment_id}?teamId={team_id}',
@@ -406,30 +404,26 @@ class SmartSyncAgent:
                     
                     if status_response.status_code == 200:
                         deployment_data = status_response.json()
-                        new_state = deployment_data.get('state', 'UNKNOWN')
                         
-                        # Only log state changes to reduce noise
-                        if new_state != deployment_state:
-                            logger.info(f"[{elapsed}s] Build state changed: {deployment_state} → {new_state}")
-                            deployment_state = new_state
+                        # Check readyState for actual build completion
+                        ready_state = deployment_data.get('readyState', 'BUILDING')
+                        build_state = deployment_data.get('state', 'BUILDING')
                         
-                        # YELLOW (building) states - keep monitoring
-                        if deployment_state in ['BUILDING', 'QUEUED', 'INITIALIZING']:
-                            logger.info(f"[{elapsed}s] 🟡 BUILD IN PROGRESS - continuing to monitor...")
+                        logger.info(f"[{elapsed}s] Build status - readyState: {ready_state}, state: {build_state}")
                         
-                        # GREEN (success) state - break and report success
-                        elif deployment_state == 'READY':
-                            logger.info(f"[{elapsed}s] 🟢 BUILD SUCCESSFUL - deployment ready!")
+                        # GREEN (success) - build completed successfully
+                        if ready_state == 'READY' and build_state == 'READY':
+                            logger.info(f"[{elapsed}s] 🟢 BUILD SUCCESSFUL!")
                             break
                         
-                        # RED (error) state - break and report error
-                        elif deployment_state == 'ERROR':
-                            logger.error(f"[{elapsed}s] 🔴 BUILD FAILED - fetching error logs...")
+                        # RED (error) - build failed
+                        elif build_state == 'ERROR' or ready_state == 'ERROR':
+                            logger.error(f"[{elapsed}s] 🔴 BUILD FAILED!")
                             break
                         
-                        # UNKNOWN or other states - keep monitoring but log warning
+                        # YELLOW (building) - still in progress
                         else:
-                            logger.warning(f"[{elapsed}s] ⚪ Unknown state '{deployment_state}' - continuing to monitor...")
+                            logger.info(f"[{elapsed}s] 🟡 BUILD IN PROGRESS...")
                     
                     else:
                         logger.warning(f"[{elapsed}s] API response {status_response.status_code} - continuing to monitor...")
@@ -443,43 +437,60 @@ class SmartSyncAgent:
             # Calculate final build duration
             build_duration = int(time.time() - start_time)
             
-            # Return final status - NO MORE TIMEOUT CASES
-            if deployment_state == 'READY':
-                return {
-                    "started": True,
-                    "status": "ready",
-                    "deployment_id": deployment_id,
-                    "url": f"https://{deployment_url}",
-                    "build_duration": build_duration,
-                    "message": "Build completed successfully"
-                }
-            elif deployment_state == 'ERROR':
-                # Fetch detailed build logs for Claude to fix
-                build_logs = self._fetch_build_logs(deployment_id, team_id, vercel_token)
-                return {
-                    "started": True,
-                    "status": "failed",
-                    "deployment_id": deployment_id,
-                    "message": "Build failed - fetching logs for Claude to fix",
-                    "dashboard_url": f"https://vercel.com/dashboard/deployments/{deployment_id}",
-                    "build_logs": build_logs,
-                    "needs_claude_fix": True,
-                    "build_duration": build_duration
-                }
-            else:
-                # This should never happen with infinite loop, but fallback to error state
-                logger.error(f"Unexpected deployment state: {deployment_state}")
-                build_logs = self._fetch_build_logs(deployment_id, team_id, vercel_token)
-                return {
-                    "started": True,
-                    "status": "failed", 
-                    "deployment_id": deployment_id,
-                    "message": f"Unexpected deployment state: {deployment_state}",
-                    "dashboard_url": f"https://vercel.com/dashboard/deployments/{deployment_id}",
-                    "build_logs": build_logs,
-                    "needs_claude_fix": True,
-                    "build_duration": build_duration
-                }
+            # We only get here if build completed (success or error)
+            # Check final states from the last API response
+            try:
+                final_response = requests.get(
+                    f'https://api.vercel.com/v13/deployments/{deployment_id}?teamId={team_id}',
+                    headers=headers,
+                    timeout=30
+                )
+                
+                if final_response.status_code == 200:
+                    final_data = final_response.json()
+                    ready_state = final_data.get('readyState', 'ERROR')
+                    build_state = final_data.get('state', 'ERROR')
+                    
+                    # GREEN (success) - report success
+                    if ready_state == 'READY' and build_state == 'READY':
+                        return {
+                            "started": True,
+                            "status": "ready",
+                            "deployment_id": deployment_id,
+                            "url": f"https://{deployment_url}",
+                            "build_duration": build_duration,
+                            "message": "Build completed successfully"
+                        }
+                    
+                    # RED (error) - fetch logs and present to Claude
+                    else:
+                        build_logs = self._fetch_build_logs(deployment_id, team_id, vercel_token)
+                        return {
+                            "started": True,
+                            "status": "failed",
+                            "deployment_id": deployment_id,
+                            "message": "Build failed - presenting errors to Claude",
+                            "dashboard_url": f"https://vercel.com/dashboard/deployments/{deployment_id}",
+                            "build_logs": build_logs,
+                            "needs_claude_fix": True,
+                            "build_duration": build_duration
+                        }
+                
+            except Exception as e:
+                logger.error(f"Error getting final build status: {e}")
+            
+            # Fallback - assume error and fetch logs
+            build_logs = self._fetch_build_logs(deployment_id, team_id, vercel_token)
+            return {
+                "started": True,
+                "status": "failed",
+                "deployment_id": deployment_id,
+                "message": "Build monitoring completed - assuming error",
+                "dashboard_url": f"https://vercel.com/dashboard/deployments/{deployment_id}",
+                "build_logs": build_logs,
+                "needs_claude_fix": True,
+                "build_duration": build_duration
+            }
             
         except Exception as e:
             logger.error(f"Error monitoring Vercel deployment: {e}")
