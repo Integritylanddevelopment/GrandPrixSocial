@@ -708,6 +708,50 @@ class RepoSyncAgent:
             logger.error(f"Error checking Vercel deployment: {e}")
             return {"error": f"Failed to check deployment: {str(e)}"}
     
+    def set_vercel_environment_variables(self, config: RepoConfig, env_vars: Dict[str, str]) -> Dict:
+        """Set environment variables in Vercel project"""
+        try:
+            if not config.vercel_project_id or not config.vercel_token:
+                return {"error": "Vercel configuration missing"}
+            
+            headers = {
+                'Authorization': f'Bearer {config.vercel_token}',
+                'Content-Type': 'application/json'
+            }
+            
+            team_param = f"?teamId={config.vercel_team_id}" if config.vercel_team_id else ""
+            
+            # Set environment variables
+            results = []
+            for key, value in env_vars.items():
+                env_url = f"https://api.vercel.com/v9/projects/{config.vercel_project_id}/env{team_param}"
+                
+                env_data = {
+                    "key": key,
+                    "value": value,
+                    "type": "encrypted",
+                    "target": ["production", "preview", "development"]
+                }
+                
+                response = requests.post(env_url, headers=headers, json=env_data)
+                
+                if response.status_code in [200, 201]:
+                    results.append({"key": key, "status": "success"})
+                    logger.info(f"Set environment variable: {key}")
+                else:
+                    results.append({
+                        "key": key, 
+                        "status": "error", 
+                        "error": f"HTTP {response.status_code}: {response.text}"
+                    })
+                    logger.error(f"Failed to set {key}: {response.status_code}")
+            
+            return {"results": results}
+            
+        except Exception as e:
+            logger.error(f"Error setting environment variables: {e}")
+            return {"error": f"Failed to set environment variables: {str(e)}"}
+
     def get_deployment_failure_summary(self, project_id: str) -> str:
         """Get a summary of deployment failures for Claude to fix"""
         try:
@@ -790,7 +834,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='CommandCore OS Repository Sync Agent')
-    parser.add_argument('action', choices=['init', 'clone', 'sync-to', 'sync-from', 'status', 'list', 'cherry-pick', 'check-deployment', 'deployment-summary', 'continuous'])
+    parser.add_argument('action', choices=['init', 'clone', 'sync-to', 'sync-from', 'status', 'list', 'cherry-pick', 'check-deployment', 'deployment-summary', 'continuous', 'set-env'])
     parser.add_argument('--project-id', help='Project ID')
     parser.add_argument('--name', help='Repository name')
     parser.add_argument('--local-path', help='Local repository path')
@@ -890,6 +934,41 @@ def main():
         
         # Start continuous sync mode
         continuous_sync_mode(agent, args.project_id)
+        return
+    
+    elif args.action == 'set-env':
+        if not args.project_id:
+            print(json.dumps({"error": "Project ID required for setting environment variables"}, indent=2))
+            return
+        
+        # Set DATABASE_URL from .env.local
+        config = agent.configs.get(args.project_id)
+        if not config:
+            print(json.dumps({"error": "Project not found"}, indent=2))
+            return
+        
+        # Read DATABASE_URL from .env.local
+        import os
+        from pathlib import Path
+        
+        env_local_path = os.path.join(Path(config.local_path), '.env.local')
+        database_url = None
+        
+        if os.path.exists(env_local_path):
+            with open(env_local_path, 'r') as f:
+                for line in f:
+                    if line.startswith('DATABASE_URL='):
+                        database_url = line.split('=', 1)[1].strip().strip('"')
+                        break
+        
+        if not database_url:
+            print(json.dumps({"error": "DATABASE_URL not found in .env.local"}, indent=2))
+            return
+        
+        # Set environment variable
+        env_vars = {"DATABASE_URL": database_url}
+        result = agent.set_vercel_environment_variables(config, env_vars)
+        print(json.dumps(result, indent=2))
         return
     
     else:
