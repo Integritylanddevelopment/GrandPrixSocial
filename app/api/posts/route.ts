@@ -1,88 +1,91 @@
 import { NextResponse } from "next/server"
-import { getDb } from "@/lib/db"
-import { posts, users, teams } from "@/lib/schema"
-import { desc, eq } from "drizzle-orm"
+import { supabase } from "@/lib/supabase"
 
 export async function GET() {
   try {
-    // Check if database is properly configured
-    if (!process.env.DATABASE_URL || process.env.DATABASE_URL.includes("placeholder")) {
-      return NextResponse.json({
-        success: true,
-        posts: [],
-        message: "Database not configured - using placeholder data"
-      })
-    }
-
-    const db = getDb()
-    const allPosts = await db
-      .select({
-        id: posts.id,
-        content: posts.content,
-        images: posts.images,
-        likes: posts.likes,
-        comments: posts.comments,
-        createdAt: posts.createdAt,
-        author: {
-          id: users.id,
-          username: users.username,
-          name: users.name,
-          avatar: users.avatar,
-          favoriteTeam: users.favoriteTeam,
-        },
-        team: {
-          id: teams.id,
-          name: teams.name,
-          color: teams.color,
-          logo: teams.logo,
-        },
-      })
-      .from(posts)
-      .leftJoin(users, eq(posts.authorId, users.id))
-      .leftJoin(teams, eq(posts.teamId, teams.id))
-      .orderBy(desc(posts.createdAt))
+    const { data: posts, error } = await supabase
+      .from('posts')
+      .select(`
+        id,
+        content,
+        images,
+        likes,
+        comments,
+        created_at,
+        author:users!posts_author_id_fkey (
+          id,
+          username,
+          name,
+          avatar,
+          favorite_team
+        ),
+        team:teams!posts_team_id_fkey (
+          id,
+          name,
+          color,
+          logo
+        )
+      `)
+      .order('created_at', { ascending: false })
       .limit(50)
 
-    return NextResponse.json(allPosts)
+    if (error) {
+      console.error("Supabase error:", error)
+      
+      // Check if it's an auth error (invalid API keys)
+      if (error.message.includes('Invalid API key')) {
+        return NextResponse.json({ 
+          success: false,
+          error: "Database authentication failed. Please configure valid Supabase API keys in .env.local",
+          details: "The current Supabase API keys are invalid or expired"
+        }, { status: 500 })
+      }
+      
+      return NextResponse.json({ 
+        success: false,
+        error: "Database error: " + error.message 
+      }, { status: 500 })
+    }
+
+    return NextResponse.json(posts || [])
   } catch (error) {
     console.error("Error fetching posts:", error)
     return NextResponse.json({ 
-      success: true,
-      posts: [],
-      error: "Database connection failed - using placeholder data" 
-    }, { status: 200 })
+      success: false,
+      error: "Server error fetching posts" 
+    }, { status: 500 })
   }
 }
 
 export async function POST(request: Request) {
   try {
-    // Check if database is properly configured
-    if (!process.env.DATABASE_URL || process.env.DATABASE_URL.includes("placeholder")) {
-      return NextResponse.json({
-        success: false,
-        error: "Database not configured - posts cannot be created"
-      }, { status: 503 })
-    }
-
     const { content, images, authorId, teamId } = await request.json()
-    const db = getDb()
 
-    const newPost = await db
-      .insert(posts)
-      .values({
+    const { data: newPost, error } = await supabase
+      .from('posts')
+      .insert({
         content,
         images,
-        authorId,
-        teamId,
+        author_id: authorId,
+        team_id: teamId,
       })
-      .returning()
+      .select()
+      .single()
 
-    return NextResponse.json(newPost[0])
+    if (error) {
+      console.error("Supabase error creating post:", error)
+      return NextResponse.json({ 
+        success: false,
+        error: "Failed to create post: " + error.message 
+      }, { status: 500 })
+    }
+
+    return NextResponse.json(newPost)
   } catch (error) {
     console.error("Error creating post:", error)
     return NextResponse.json({ 
       success: false,
-      error: "Database connection failed - post could not be created" 
+      error: "Server error creating post" 
     }, { status: 500 })
   }
 }

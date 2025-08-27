@@ -12,6 +12,7 @@ export default function Cafe() {
   const [activeTab, setActiveTab] = useState("feed")
   const [posts, setPosts] = useState<PostWithDetails[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [newComment, setNewComment] = useState<{[key: string]: string}>({})
   const [showComments, setShowComments] = useState<{[key: string]: boolean}>({})
   const [comments, setComments] = useState<{[key: string]: PostCommentWithAuthor[]}>({})
@@ -24,24 +25,21 @@ export default function Cafe() {
     try {
       const response = await fetch('/api/posts')
       const data = await response.json()
-      setPosts(data)
+      
+      // Check if API returned an error
+      if (!response.ok || data.success === false) {
+        console.error('Posts API error:', data.error || 'Unknown error')
+        setError(data.error || 'Failed to load posts from database')
+        setPosts([])  // Empty array, no dummy data
+        setLoading(false)
+        return
+      }
+      
+      setPosts(Array.isArray(data) ? data : [])
     } catch (error) {
       console.error('Failed to fetch posts:', error)
-      // Fallback to dummy data
-      setPosts([
-        {
-          id: '1',
-          content: "Just watched the latest F1 highlights - what an incredible season! Who else is excited for the next race?",
-          author: { id: '1', username: "F1Fan2024", name: "F1 Fan", email: "", avatar: null },
-          createdAt: new Date(),
-          likes: 24,
-          comments: 8,
-          authorId: '1',
-          images: null,
-          teamId: null,
-          isLiked: false
-        } as PostWithDetails
-      ])
+      setError('Network error: Unable to connect to database')
+      setPosts([])  // Empty array, no dummy data
     } finally {
       setLoading(false)
     }
@@ -203,6 +201,25 @@ export default function Cafe() {
 
           {activeTab && (
             <div className="space-y-4 px-4">
+              {error && (
+                <div className="bg-red-900/50 border border-red-600 rounded-lg p-4 text-center">
+                  <h3 className="text-red-300 font-semibold mb-2">Database Configuration Required</h3>
+                  <p className="text-red-200 text-sm mb-2">{error}</p>
+                  <p className="text-red-300 text-xs">
+                    Please check Supabase API keys in .env.local or contact an administrator.
+                  </p>
+                </div>
+              )}
+              
+              {!error && posts.length === 0 && !loading && (
+                <div className="bg-gray-800/50 border border-gray-600 rounded-lg p-8 text-center">
+                  <h3 className="text-gray-300 font-semibold mb-2">No Posts Yet</h3>
+                  <p className="text-gray-400 text-sm">
+                    Be the first to share your F1 thoughts with the community!
+                  </p>
+                </div>
+              )}
+              
               {posts.map((post) => (
                 <div key={post.id} id={`post-${post.id}`} className="bg-gray-900/50 rounded-lg p-6 border border-gray-800">
                   <div className="flex items-start gap-4">
