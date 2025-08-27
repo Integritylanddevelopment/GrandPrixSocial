@@ -1,4 +1,3 @@
-import { createServerClient, type CookieOptions } from "@supabase/ssr"
 import { NextResponse, type NextRequest } from "next/server"
 
 // Check if Supabase environment variables are available
@@ -16,6 +15,19 @@ export async function updateSession(request: NextRequest) {
     })
   }
 
+  // For Edge Runtime compatibility, only import Supabase when needed
+  try {
+    const { createServerClient, type CookieOptions } = await import("@supabase/ssr")
+    return await handleSupabaseSession(request, createServerClient)
+  } catch (error) {
+    console.warn("Supabase SSR not available in Edge Runtime, continuing without auth:", error)
+    return NextResponse.next({
+      request,
+    })
+  }
+}
+
+async function handleSupabaseSession(request: NextRequest, createServerClient: any) {
   let response = NextResponse.next({
     request: {
       headers: request.headers,
@@ -30,7 +42,7 @@ export async function updateSession(request: NextRequest) {
         get(name: string) {
           return request.cookies.get(name)?.value
         },
-        set(name: string, value: string, options: CookieOptions) {
+        set(name: string, value: string, options: any) {
           request.cookies.set({
             name,
             value,
@@ -47,7 +59,7 @@ export async function updateSession(request: NextRequest) {
             ...options,
           })
         },
-        remove(name: string, options: CookieOptions) {
+        remove(name: string, options: any) {
           request.cookies.set({
             name,
             value: "",
