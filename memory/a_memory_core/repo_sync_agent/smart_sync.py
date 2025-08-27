@@ -387,16 +387,16 @@ class SmartSyncAgent:
             deployment_state = latest_deployment.get('state', 'UNKNOWN')
             deployment_url = latest_deployment.get('url', '')
             
-            # Monitor deployment progress - NO TIMEOUT, wait until completion or error
-            logger.info(f"Starting deployment monitoring - will wait indefinitely until completion or error")
+            # Monitor deployment progress - INFINITE MONITORING until READY or ERROR
+            logger.info(f"Starting deployment monitoring - will monitor indefinitely until SUCCESS (READY) or FAILURE (ERROR)")
             start_time = time.time()
             
-            while deployment_state in ['BUILDING', 'QUEUED', 'INITIALIZING', 'UNKNOWN']:
-                time.sleep(15)  # Check every 15 seconds
+            # Keep monitoring until we get a definitive result
+            while True:
                 elapsed = int(time.time() - start_time)
-                logger.info(f"Monitoring deployment for {elapsed}s - state: {deployment_state}")
+                logger.info(f"[{elapsed}s] Monitoring build - Current state: {deployment_state}")
                 
-                # Check deployment status
+                # Check deployment status every 10 seconds
                 try:
                     status_response = requests.get(
                         f'https://api.vercel.com/v13/deployments/{deployment_id}?teamId={team_id}',
@@ -406,21 +406,39 @@ class SmartSyncAgent:
                     
                     if status_response.status_code == 200:
                         deployment_data = status_response.json()
-                        deployment_state = deployment_data.get('state', 'UNKNOWN')
-                        logger.info(f"Deployment state: {deployment_state}")
+                        new_state = deployment_data.get('state', 'UNKNOWN')
                         
-                        # If still building states, continue loop
+                        # Only log state changes to reduce noise
+                        if new_state != deployment_state:
+                            logger.info(f"[{elapsed}s] Build state changed: {deployment_state} → {new_state}")
+                            deployment_state = new_state
+                        
+                        # YELLOW (building) states - keep monitoring
                         if deployment_state in ['BUILDING', 'QUEUED', 'INITIALIZING']:
-                            continue
-                        # If we get READY or ERROR, we'll break out of loop
-                        elif deployment_state in ['READY', 'ERROR']:
+                            logger.info(f"[{elapsed}s] 🟡 BUILD IN PROGRESS - continuing to monitor...")
+                        
+                        # GREEN (success) state - break and report success
+                        elif deployment_state == 'READY':
+                            logger.info(f"[{elapsed}s] 🟢 BUILD SUCCESSFUL - deployment ready!")
                             break
-                        # For any other unknown state, keep checking
+                        
+                        # RED (error) state - break and report error
+                        elif deployment_state == 'ERROR':
+                            logger.error(f"[{elapsed}s] 🔴 BUILD FAILED - fetching error logs...")
+                            break
+                        
+                        # UNKNOWN or other states - keep monitoring but log warning
+                        else:
+                            logger.warning(f"[{elapsed}s] ⚪ Unknown state '{deployment_state}' - continuing to monitor...")
+                    
                     else:
-                        logger.warning(f"API response code: {status_response.status_code}, continuing to monitor...")
+                        logger.warning(f"[{elapsed}s] API response {status_response.status_code} - continuing to monitor...")
                         
                 except Exception as e:
-                    logger.warning(f"API check failed: {e}, continuing to monitor...")
+                    logger.warning(f"[{elapsed}s] API check failed: {e} - continuing to monitor...")
+                
+                # Wait 10 seconds before next check
+                time.sleep(10)
                 
             # Calculate final build duration
             build_duration = int(time.time() - start_time)
