@@ -6,9 +6,10 @@
     "remote_url": "https://github.com/Integritylanddevelopment/GrandPrixSocial.git",
     "branch": "main",
     "sync_enabled": true,
-    "last_sync": 1756268193.9064264,
+    "last_sync": 1756269330.036042,
     "credentials": null,
-    "vercel_project_id": "Grand-Prix-Social",
+    "vercel_project_id": "prj_dIgPyjUY0HRFYw3cYKOxTrAPQsaZ",
+    "vercel_team_id": "team_qd9zTuDQ41euDNXJwHVVPocq",
     "vercel_token": "SJW02U3OSVeLFyzdSqpokZ9S",
     "check_deployment": true
   }

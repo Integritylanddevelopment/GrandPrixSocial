@@ -74,6 +74,7 @@ class RepoConfig:
     last_sync: Optional[float] = None
     credentials: Optional[Dict[str, str]] = None
     vercel_project_id: Optional[str] = None
+    vercel_team_id: Optional[str] = None
     vercel_token: Optional[str] = None
     check_deployment: bool = True
 
@@ -641,13 +642,15 @@ class RepoSyncAgent:
             if not config.vercel_project_id or not config.vercel_token:
                 return {"error": "Vercel configuration missing"}
             
+            team_param = f"&teamId={config.vercel_team_id}" if config.vercel_team_id else ""
+            
             headers = {
                 'Authorization': f'Bearer {config.vercel_token}',
                 'Content-Type': 'application/json'
             }
             
             # Get latest deployments
-            deployments_url = f"https://api.vercel.com/v6/deployments?projectId={config.vercel_project_id}&limit=5"
+            deployments_url = f"https://api.vercel.com/v6/deployments?projectId={config.vercel_project_id}&limit=5{team_param}"
             response = requests.get(deployments_url, headers=headers)
             
             if response.status_code != 200:
@@ -670,12 +673,14 @@ class RepoSyncAgent:
             # Get deployment logs if there's an error
             logs = []
             if deployment_state in ['ERROR', 'FAILED']:
-                logs_url = f"https://api.vercel.com/v2/deployments/{deployment_id}/events"
+                logs_team_param = f"?teamId={config.vercel_team_id}" if config.vercel_team_id else ""
+                logs_url = f"https://api.vercel.com/v2/deployments/{deployment_id}/events{logs_team_param}"
                 logs_response = requests.get(logs_url, headers=headers)
                 
                 if logs_response.status_code == 200:
                     logs_data = logs_response.json()
-                    for event in logs_data.get('events', []):
+                    events = logs_data if isinstance(logs_data, list) else logs_data.get('events', [])
+                    for event in events:
                         if event.get('type') == 'stderr' or 'error' in event.get('payload', {}).get('text', '').lower():
                             logs.append({
                                 'timestamp': event.get('timestamp'),
