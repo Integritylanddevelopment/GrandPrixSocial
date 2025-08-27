@@ -519,7 +519,7 @@ class SmartSyncAgent:
             
             if logs_response.status_code != 200:
                 logger.error(f"Failed to fetch build logs: {logs_response.status_code}")
-                return [f"❌ Failed to fetch build logs: HTTP {logs_response.status_code}"]
+                return [f"Failed to fetch build logs: HTTP {logs_response.status_code}"]
             
             response_data = logs_response.json()
             build_logs = []
@@ -540,9 +540,14 @@ class SmartSyncAgent:
                     else:
                         text = str(payload)
                     
+                    # Clean text of problematic Unicode characters
+                    if text:
+                        # Remove problematic Unicode characters that cause encoding issues
+                        text = text.encode('ascii', 'ignore').decode('ascii')
+                        text = text.replace('\u2713', 'OK').replace('\u2717', 'X').replace('\u26a0', 'WARNING')
+                    
                     # Include all build-related logs, especially errors
                     if text and any(keyword in text.lower() for keyword in ['error', 'failed', 'warn', 'build', 'fatal', 'exception']):
-                        timestamp = event.get('created', '')
                         build_logs.append(f"[{event_type}] {text}")
                     elif text and len(text.strip()) > 0:
                         # Include other potentially useful logs
@@ -550,15 +555,15 @@ class SmartSyncAgent:
             
             # If no logs found, provide helpful message
             if not build_logs:
-                build_logs.append("❌ Build failed but no detailed error logs found.")
-                build_logs.append(f"🔍 Check Vercel dashboard: https://vercel.com/dashboard/deployments/{deployment_id}")
+                build_logs.append("Build failed but no detailed error logs found.")
+                build_logs.append(f"Check Vercel dashboard: https://vercel.com/dashboard/deployments/{deployment_id}")
             
             # Return the most recent/relevant logs
             return build_logs[-50:] if len(build_logs) > 50 else build_logs
             
         except Exception as e:
             logger.error(f"Error fetching build logs: {e}")
-            return [f"❌ Error fetching build logs: {str(e)}", f"🔍 Check Vercel dashboard: https://vercel.com/dashboard/deployments/{deployment_id}"]
+            return [f"Error fetching build logs: {str(e)}", f"Check Vercel dashboard: https://vercel.com/dashboard/deployments/{deployment_id}"]
     
     def _generate_sync_report(self, sync_report: Dict):
         """Generate and log comprehensive sync report"""
