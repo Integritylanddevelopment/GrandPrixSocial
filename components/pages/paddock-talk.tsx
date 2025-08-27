@@ -179,7 +179,12 @@ export default function PaddockTalk() {
               ) : newsData[activeTab as keyof typeof newsData]?.length > 0 ? (
                 newsData[activeTab as keyof typeof newsData]?.map((article: any) => {
                   const publishedDate = new Date(article.publishedAt)
-                  const timeAgo = getTimeAgo(publishedDate)
+                  const formattedDate = publishedDate.toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })
                   
                   return (
                     <div
@@ -199,7 +204,7 @@ export default function PaddockTalk() {
                             {article.isLive && <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>}
                             {article.source}
                           </span>
-                          <span>{timeAgo}</span>
+                          <span>{formattedDate}</span>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">

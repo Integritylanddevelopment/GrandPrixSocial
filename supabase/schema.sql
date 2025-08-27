@@ -206,3 +206,80 @@ CREATE INDEX IF NOT EXISTS idx_news_articles_published_at ON public.news_article
 CREATE INDEX IF NOT EXISTS idx_fantasy_teams_league_id ON public.fantasy_teams(league_id);
 CREATE INDEX IF NOT EXISTS idx_f1_races_season_year ON public.f1_races(season_year);
 CREATE INDEX IF NOT EXISTS idx_f1_races_race_date ON public.f1_races(race_date);
+
+-- Social Media Posts table for F1 content scraping and processing
+CREATE TABLE IF NOT EXISTS public.social_media_posts (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  platform TEXT NOT NULL, -- "rss", "twitter", "instagram", "tiktok", "f1-api"
+  account_handle TEXT NOT NULL,
+  account_type TEXT NOT NULL, -- "news", "gossip", "driver", "team"
+  original_post_id TEXT NOT NULL UNIQUE,
+  content TEXT NOT NULL,
+  author_name TEXT,
+  published_at TIMESTAMP WITH TIME ZONE,
+  category TEXT, -- "breaking", "technical", "transfers", "gossip", "general"
+  priority TEXT, -- "breaking", "trending", "regular"
+  processed BOOLEAN DEFAULT false,
+  scraped_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Monitored accounts for scraping
+CREATE TABLE IF NOT EXISTS public.monitored_accounts (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  platform TEXT NOT NULL,
+  handle TEXT NOT NULL UNIQUE,
+  display_name TEXT,
+  account_type TEXT NOT NULL,
+  priority INTEGER DEFAULT 1,
+  is_active BOOLEAN DEFAULT true,
+  scrape_frequency INTEGER DEFAULT 60, -- minutes
+  last_scraped TIMESTAMP WITH TIME ZONE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- F1 processed content for generated articles
+CREATE TABLE IF NOT EXISTS public.f1_processed_content (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  source_post_id UUID REFERENCES public.social_media_posts(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  content TEXT NOT NULL,
+  category TEXT NOT NULL,
+  tags JSONB DEFAULT '[]'::jsonb,
+  quality_score FLOAT DEFAULT 0.0,
+  semantic_analysis JSONB,
+  generated_by TEXT DEFAULT 'qwen3',
+  published_status TEXT DEFAULT 'draft', -- "draft", "ready", "published"
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Social media posts policies
+CREATE POLICY "Social media posts are viewable by everyone" ON public.social_media_posts FOR SELECT USING (true);
+CREATE POLICY "System can insert scraped posts" ON public.social_media_posts FOR INSERT WITH CHECK (true);
+CREATE POLICY "System can update scraped posts" ON public.social_media_posts FOR UPDATE USING (true);
+
+-- Monitored accounts policies
+CREATE POLICY "Monitored accounts are viewable by everyone" ON public.monitored_accounts FOR SELECT USING (true);
+
+-- F1 processed content policies  
+CREATE POLICY "Processed content is viewable by everyone" ON public.f1_processed_content FOR SELECT USING (true);
+CREATE POLICY "System can insert processed content" ON public.f1_processed_content FOR INSERT WITH CHECK (true);
+CREATE POLICY "System can update processed content" ON public.f1_processed_content FOR UPDATE USING (true);
+
+-- Enable RLS on new tables
+ALTER TABLE public.social_media_posts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.monitored_accounts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.f1_processed_content ENABLE ROW LEVEL SECURITY;
+
+-- Indexes for performance on new tables
+CREATE INDEX IF NOT EXISTS idx_social_media_posts_processed ON public.social_media_posts(processed);
+CREATE INDEX IF NOT EXISTS idx_social_media_posts_category ON public.social_media_posts(category);
+CREATE INDEX IF NOT EXISTS idx_social_media_posts_priority ON public.social_media_posts(priority);
+CREATE INDEX IF NOT EXISTS idx_social_media_posts_published_at ON public.social_media_posts(published_at DESC);
+CREATE INDEX IF NOT EXISTS idx_monitored_accounts_platform ON public.monitored_accounts(platform);
+CREATE INDEX IF NOT EXISTS idx_monitored_accounts_active ON public.monitored_accounts(is_active);
+CREATE INDEX IF NOT EXISTS idx_f1_processed_content_status ON public.f1_processed_content(published_status);
+
+-- Triggers for updated_at on new tables
+CREATE TRIGGER f1_processed_content_updated_at BEFORE UPDATE ON public.f1_processed_content FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();

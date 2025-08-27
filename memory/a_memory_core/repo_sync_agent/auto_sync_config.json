@@ -2,9 +2,9 @@
   "auto_sync_settings": {
     "enabled": true,
     "sync_threshold": {
-      "files_changed": 5,
-      "minutes_elapsed": 30,
-      "significant_changes": true
+      "files_changed": 1,
+      "minutes_elapsed": 1,
+      "significant_changes": false
     },
     "commit_triggers": [
       "UI components updated",
@@ -19,6 +19,10 @@
       "ui_updates": "UI: {description}",
       "config_changes": "Config: {description}",
       "general": "Update: {description}"
+    },
+    "commit_attribution": {
+      "include_claude_attribution": false,
+      "co_author": ""
     },
     "deployment_integration": {
       "vercel_auto_deploy": true,

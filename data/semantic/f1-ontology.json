@@ -1,0 +1,204 @@
+{
+  "entities": {
+    "drivers": {
+      "concepts": [
+        "driver",
+        "pilot",
+        "racer",
+        "competitor"
+      ],
+      "instances": [
+        "verstappen",
+        "hamilton",
+        "leclerc",
+        "russell",
+        "perez",
+        "alonso",
+        "ocon",
+        "norris",
+        "piastri",
+        "stroll",
+        "vettel",
+        "bottas",
+        "zhou",
+        "gasly",
+        "tsunoda",
+        "magnussen",
+        "hulkenberg",
+        "albon",
+        "sargeant",
+        "de vries"
+      ],
+      "relations": [
+        "drives_for",
+        "competed_with",
+        "replaced_by",
+        "teammate_of"
+      ]
+    },
+    "teams": {
+      "concepts": [
+        "team",
+        "constructor",
+        "manufacturer",
+        "outfit"
+      ],
+      "instances": [
+        "mercedes",
+        "ferrari",
+        "red-bull",
+        "mclaren",
+        "alpine",
+        "aston-martin",
+        "williams",
+        "alphatauri",
+        "alfa-romeo",
+        "haas"
+      ],
+      "relations": [
+        "employs",
+        "competes_against",
+        "supplies_engine_to",
+        "partnership_with"
+      ]
+    },
+    "circuits": {
+      "concepts": [
+        "circuit",
+        "track",
+        "venue",
+        "course"
+      ],
+      "instances": [
+        "monaco",
+        "silverstone",
+        "spa",
+        "monza",
+        "austin",
+        "suzuka",
+        "interlagos",
+        "bahrain",
+        "jeddah",
+        "melbourne",
+        "imola",
+        "miami",
+        "barcelona",
+        "zandvoort"
+      ],
+      "relations": [
+        "hosts",
+        "located_in",
+        "lap_record_held_by",
+        "first_race_in"
+      ]
+    },
+    "technical": {
+      "concepts": [
+        "engine",
+        "chassis",
+        "aerodynamics",
+        "setup",
+        "strategy"
+      ],
+      "instances": [
+        "drs",
+        "ers",
+        "kers",
+        "hybrid",
+        "turbo",
+        "downforce",
+        "drag",
+        "pit-stop",
+        "qualifying",
+        "practice",
+        "sprint",
+        "pole-position",
+        "fastest-lap"
+      ],
+      "relations": [
+        "affects",
+        "optimized_for",
+        "regulated_by",
+        "impacts"
+      ]
+    },
+    "events": {
+      "concepts": [
+        "race",
+        "session",
+        "weekend",
+        "championship"
+      ],
+      "instances": [
+        "grand-prix",
+        "qualifying",
+        "practice",
+        "sprint-shootout",
+        "formation-lap",
+        "safety-car",
+        "red-flag",
+        "checkered-flag",
+        "podium",
+        "points"
+      ],
+      "relations": [
+        "part_of",
+        "follows",
+        "determines",
+        "contributes_to"
+      ]
+    }
+  },
+  "relationships": {
+    "hierarchical": [
+      "is_a",
+      "part_of",
+      "member_of",
+      "category_of"
+    ],
+    "temporal": [
+      "before",
+      "after",
+      "during",
+      "since",
+      "until"
+    ],
+    "causal": [
+      "causes",
+      "leads_to",
+      "results_in",
+      "influences"
+    ],
+    "competitive": [
+      "beats",
+      "outperforms",
+      "competes_with",
+      "rivals"
+    ]
+  },
+  "sentiments": {
+    "positive": [
+      "dominates",
+      "excels",
+      "achieves",
+      "breakthrough",
+      "victory",
+      "success"
+    ],
+    "negative": [
+      "struggles",
+      "fails",
+      "crashes",
+      "disappoints",
+      "penalty",
+      "retire"
+    ],
+    "neutral": [
+      "participates",
+      "competes",
+      "attempts",
+      "continues",
+      "maintains"
+    ]
+  }
+}

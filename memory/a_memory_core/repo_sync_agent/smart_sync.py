@@ -23,7 +23,7 @@ class SmartSyncAgent:
     """
     
     def __init__(self, project_path: str = None):
-        self.project_path = project_path or "D:\\ActiveProjects\\GrandPrixSocial"
+        self.project_path = project_path or "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial"
         self.config_path = os.path.join(
             self.project_path, "memory", "a_memory_core", 
             "repo_sync_agent", "auto_sync_config.json"

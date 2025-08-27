@@ -1,6 +1,6 @@
 @echo off
 echo Starting Grand Prix Social Auto-Sync Agent...
-cd /d "D:\ActiveProjects\GrandPrixSocial\memory\a_memory_core\repo_sync_agent"
+cd /d "C:\D_Drive\ActiveProjects\GrandPrixSocial\memory\a_memory_core\repo_sync_agent"
 
 echo Testing current status...
 python smart_sync.py status
