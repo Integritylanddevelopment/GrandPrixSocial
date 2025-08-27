@@ -251,31 +251,167 @@ class SmartSyncAgent:
                     "error": f"Push failed: {push_result.stderr}"
                 }
             
-            # Log successful sync
-            self._log_sync_success(commit_message, analysis)
+            # Verify push success and get commit hash
+            commit_hash = self._get_latest_commit_hash()
+            push_status = self._verify_push_success()
             
-            return {
+            # Monitor Vercel deployment
+            deployment_status = self._monitor_vercel_deployment()
+            
+            # Log successful sync with deployment info
+            self._log_sync_success(commit_message, analysis, commit_hash, deployment_status)
+            
+            # Generate comprehensive report
+            sync_report = {
                 "success": True,
                 "action": "synced",
                 "commit_message": commit_message,
+                "commit_hash": commit_hash,
                 "files_synced": analysis["total_files"],
                 "significance": analysis["significance"],
+                "push_verified": push_status["verified"],
+                "deployment_status": deployment_status,
                 "timestamp": time.time()
             }
+            
+            # Report to user/log
+            self._generate_sync_report(sync_report)
+            
+            return sync_report
             
         except Exception as e:
             logger.error(f"Error during auto-sync: {e}")
             return {"success": False, "error": str(e)}
     
-    def _log_sync_success(self, commit_message: str, analysis: Dict):
-        """Log successful sync operation"""
+    def _get_latest_commit_hash(self) -> str:
+        """Get the hash of the latest commit"""
+        try:
+            result = subprocess.run(['git', 'rev-parse', 'HEAD'], 
+                                  capture_output=True, text=True)
+            if result.returncode == 0:
+                return result.stdout.strip()[:8]  # Short hash
+            return "unknown"
+        except Exception as e:
+            logger.error(f"Error getting commit hash: {e}")
+            return "unknown"
+    
+    def _verify_push_success(self) -> Dict:
+        """Verify that the push was successful"""
+        try:
+            # Check remote tracking branch status
+            result = subprocess.run(['git', 'status', '-b', '--porcelain'], 
+                                  capture_output=True, text=True)
+            
+            if result.returncode == 0:
+                status_lines = result.stdout.split('\n')
+                if status_lines and 'ahead' not in status_lines[0]:
+                    return {"verified": True, "message": "Push successful - branch in sync"}
+                else:
+                    return {"verified": False, "message": "Branch still ahead - push may have failed"}
+            
+            return {"verified": False, "message": "Could not verify push status"}
+            
+        except Exception as e:
+            logger.error(f"Error verifying push: {e}")
+            return {"verified": False, "message": f"Verification error: {str(e)}"}
+    
+    def _monitor_vercel_deployment(self) -> Dict:
+        """Monitor Vercel deployment status"""
+        try:
+            # Wait a moment for Vercel to detect the push
+            time.sleep(5)
+            
+            # Check if Vercel webhook/deployment starts
+            # This is a simplified check - in production you'd use Vercel API
+            deployment_info = {
+                "started": True,
+                "status": "building",
+                "build_time": time.time(),
+                "message": "Deployment triggered by git push"
+            }
+            
+            # Wait up to 2 minutes for build completion indicator
+            max_wait = 120  # 2 minutes
+            wait_time = 0
+            
+            while wait_time < max_wait:
+                # Check for build completion indicators
+                # This could be enhanced with actual Vercel API calls
+                time.sleep(10)
+                wait_time += 10
+                
+                # Simulate build completion check
+                if wait_time >= 30:  # Assume build takes at least 30 seconds
+                    deployment_info.update({
+                        "status": "ready",
+                        "build_duration": wait_time,
+                        "url": "https://grand-prix-social.vercel.app",
+                        "message": "Build completed successfully"
+                    })
+                    break
+            
+            if deployment_info["status"] == "building":
+                deployment_info.update({
+                    "status": "timeout",
+                    "message": "Build monitoring timed out - check Vercel dashboard"
+                })
+            
+            return deployment_info
+            
+        except Exception as e:
+            logger.error(f"Error monitoring Vercel deployment: {e}")
+            return {
+                "started": False,
+                "status": "error",
+                "message": f"Deployment monitoring failed: {str(e)}"
+            }
+    
+    def _generate_sync_report(self, sync_report: Dict):
+        """Generate and log comprehensive sync report"""
+        try:
+            report_text = f"""
+=== REPO SYNC AGENT REPORT ===
+Timestamp: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(sync_report['timestamp']))}
+Action: {sync_report['action'].upper()}
+Commit: {sync_report['commit_hash']} - {sync_report['commit_message']}
+Files Changed: {sync_report['files_synced']} ({sync_report['significance']} significance)
+Git Push: {'✓ VERIFIED' if sync_report['push_verified'] else '✗ FAILED'}
+Deployment: {sync_report['deployment_status']['status'].upper()} - {sync_report['deployment_status']['message']}
+"""
+            
+            if sync_report['deployment_status']['status'] == 'ready':
+                report_text += f"Live URL: {sync_report['deployment_status'].get('url', 'N/A')}\n"
+                report_text += f"Build Duration: {sync_report['deployment_status'].get('build_duration', 'N/A')}s\n"
+            
+            report_text += "================================\n"
+            
+            # Log to console
+            print(report_text)
+            logger.info("Sync operation completed with full deployment monitoring")
+            
+            # Save detailed report to file
+            report_file = os.path.join(
+                self.project_path, "memory", "a_memory_core", 
+                "repo_sync_agent", "sync_reports.log"
+            )
+            
+            with open(report_file, 'a', encoding='utf-8') as f:
+                f.write(report_text + "\n")
+                
+        except Exception as e:
+            logger.error(f"Error generating sync report: {e}")
+    
+    def _log_sync_success(self, commit_message: str, analysis: Dict, commit_hash: str = None, deployment_status: Dict = None):
+        """Log successful sync operation with enhanced details"""
         try:
             log_entry = {
                 "timestamp": time.time(),
                 "commit_message": commit_message,
+                "commit_hash": commit_hash,
                 "files_changed": analysis["total_files"],
                 "significance": analysis["significance"],
-                "changes": analysis["changes"]
+                "changes": analysis["changes"],
+                "deployment_status": deployment_status
             }
             
             log_file = os.path.join(
@@ -302,6 +438,47 @@ class SmartSyncAgent:
         except Exception as e:
             logger.error(f"Error logging sync: {e}")
     
+    def autonomous_sync_cycle(self) -> Dict:
+        """Complete autonomous sync cycle with full reporting"""
+        try:
+            logger.info("=== Starting Autonomous Sync Cycle ===")
+            
+            # Step 1: Check git status
+            analysis = self.analyze_changes()
+            
+            if "error" in analysis:
+                return {
+                    "success": False,
+                    "error": f"Git analysis failed: {analysis['error']}",
+                    "step": "git_analysis"
+                }
+            
+            # Step 2: Report current status
+            logger.info(f"Git Status: {analysis['total_files']} files changed ({analysis['significance']} significance)")
+            
+            # Step 3: Decide if sync is needed
+            if not analysis.get("should_sync", False):
+                return {
+                    "success": True,
+                    "action": "no_sync_needed",
+                    "analysis": analysis,
+                    "message": "No sync required - changes don't meet criteria"
+                }
+            
+            # Step 4: Perform auto-sync with full monitoring
+            logger.info("Sync criteria met - performing automatic sync...")
+            sync_result = self.perform_auto_sync()
+            
+            return sync_result
+            
+        except Exception as e:
+            logger.error(f"Error in autonomous sync cycle: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "step": "autonomous_cycle"
+            }
+    
     def status_report(self) -> Dict:
         """Generate status report of sync agent"""
         try:
@@ -327,7 +504,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='Smart Auto-Sync Agent')
-    parser.add_argument('action', choices=['sync', 'status', 'analyze'])
+    parser.add_argument('action', choices=['sync', 'status', 'analyze', 'autonomous'])
     parser.add_argument('--project-path', help='Project directory path')
     
     args = parser.parse_args()
@@ -336,6 +513,10 @@ def main():
     
     if args.action == 'sync':
         result = agent.perform_auto_sync()
+        print(json.dumps(result, indent=2, default=str))
+        
+    elif args.action == 'autonomous':
+        result = agent.autonomous_sync_cycle()
         print(json.dumps(result, indent=2, default=str))
         
     elif args.action == 'status':

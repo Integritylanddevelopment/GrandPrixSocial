@@ -1,19 +1,22 @@
 @echo off
-echo Starting Grand Prix Social Auto-Sync Agent...
+echo Starting Grand Prix Social Autonomous Sync Agent...
 cd /d "C:\D_Drive\ActiveProjects\GrandPrixSocial\memory\a_memory_core\repo_sync_agent"
 
 echo Testing current status...
 python smart_sync.py status
 
 echo.
-echo Running auto-sync check...
-python smart_sync.py sync
+echo Running autonomous sync cycle...
+echo This will:
+echo - Check git status
+echo - Verify push completion  
+echo - Monitor Vercel deployment
+echo - Generate comprehensive report
+echo.
+python smart_sync.py autonomous
 
 echo.
-echo Auto-sync agent is now monitoring the repository.
-echo Changes will be automatically committed and pushed when:
-echo - 5+ files are modified (configurable)
-echo - Significant changes are detected
-echo - 30+ minutes have passed since last sync
+echo Autonomous sync cycle completed.
+echo Check the sync_reports.log file for detailed reports.
 echo.
 pause
