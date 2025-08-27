@@ -358,9 +358,11 @@ class SmartSyncAgent:
                 'Content-Type': 'application/json'
             }
             
-            # Get recent deployments for the project
+            # Get recent deployments for the project  
+            project_id = "prj_dIgPyjUY0HRFYw3cYKOxTrAPQsaZ"
+            team_id = "team_qd9zTuDQ41euDNXJwHVVPocq"
             response = requests.get(
-                'https://api.vercel.com/v6/deployments?projectId=grand-prix-social&limit=1',
+                f'https://api.vercel.com/v6/deployments?projectId={project_id}&teamId={team_id}&limit=1',
                 headers=headers,
                 timeout=30
             )
@@ -395,7 +397,7 @@ class SmartSyncAgent:
                 
                 # Check deployment status
                 status_response = requests.get(
-                    f'https://api.vercel.com/v13/deployments/{deployment_id}',
+                    f'https://api.vercel.com/v13/deployments/{deployment_id}?teamId={team_id}',
                     headers=headers,
                     timeout=30
                 )
