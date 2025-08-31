@@ -1,17 +1,17 @@
 import { sql, relations } from "drizzle-orm"
-import { pgTable, text, varchar, integer, timestamp, boolean, jsonb } from "drizzle-orm/pg-core"
+import { pgTable, text, uuid, integer, timestamp, boolean, jsonb } from "drizzle-orm/pg-core"
 import { createInsertSchema } from "drizzle-zod"
 import type { z } from "zod"
 
 export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey(), // Supabase auth.users.id (UUID)
   username: text("username").notNull().unique(),
   email: text("email").notNull().unique(),
   name: text("name").notNull(),
   avatar: text("avatar"),
   points: integer("points").notNull().default(0),
   rank: integer("rank").notNull().default(0),
-  teamId: varchar("team_id"),
+  teamId: uuid("team_id"),
   favoriteDriver: text("favorite_driver"),
   favoriteTeam: text("favorite_team"),
   
@@ -34,13 +34,13 @@ export const users = pgTable("users", {
 })
 
 export const teams = pgTable("teams", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull().unique(),
   description: text("description"),
   color: text("color").notNull().default("#DC2626"),
   logo: text("logo"),
-  sponsorId: varchar("sponsor_id"),
-  captainId: varchar("captain_id").notNull(),
+  sponsorId: uuid("sponsor_id"),
+  captainId: uuid("captain_id").notNull(),
   memberCount: integer("member_count").notNull().default(1),
   totalPoints: integer("total_points").notNull().default(0),
   wins: integer("wins").notNull().default(0),
@@ -52,7 +52,7 @@ export const teams = pgTable("teams", {
 })
 
 export const sponsors = pgTable("sponsors", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
   logo: text("logo").notNull(),
   brandColor: text("brand_color").notNull(),
@@ -66,18 +66,18 @@ export const sponsors = pgTable("sponsors", {
 })
 
 export const posts = pgTable("posts", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  authorId: varchar("author_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  authorId: uuid("author_id").notNull(),
   content: text("content").notNull(),
   images: text("images").array(),
   likes: integer("likes").notNull().default(0),
   comments: integer("comments").notNull().default(0),
-  teamId: varchar("team_id"),
+  teamId: uuid("team_id"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 })
 
 export const challenges = pgTable("challenges", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   description: text("description").notNull(),
   reward: integer("reward").notNull(),
@@ -89,22 +89,22 @@ export const challenges = pgTable("challenges", {
 })
 
 export const cafeEvents = pgTable("cafe_events", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   description: text("description"),
   date: timestamp("date").notNull(),
   location: text("location").notNull(),
   maxAttendees: integer("max_attendees"),
   currentAttendees: integer("current_attendees").notNull().default(0),
-  teamId: varchar("team_id"),
-  createdBy: varchar("created_by").notNull(),
+  teamId: uuid("team_id"),
+  createdBy: uuid("created_by").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 })
 
 // Team Merchandise table
 export const teamMerchandise = pgTable("team_merchandise", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  teamId: varchar("team_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  teamId: uuid("team_id").notNull(),
   itemName: text("item_name").notNull(),
   itemType: text("item_type").notNull(), // jersey, cap, mug, etc.
   price: integer("price").notNull(), // in cents
@@ -118,7 +118,7 @@ export const teamMerchandise = pgTable("team_merchandise", {
 
 // Season Tournaments table
 export const seasonTournaments = pgTable("season_tournaments", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
   season: text("season").notNull(), // "2024", "2025", etc.
   tournamentType: text("tournament_type").notNull(), // "championship", "sprint", "qualifier"
@@ -129,13 +129,13 @@ export const seasonTournaments = pgTable("season_tournaments", {
   currentTeams: integer("current_teams").default(0),
   status: text("status").default("upcoming"), // upcoming, active, completed
   rules: text("rules"),
-  sponsorId: varchar("sponsor_id"),
+  sponsorId: uuid("sponsor_id"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 })
 
 // F1 Team Performance Tracking
 export const f1TeamPerformance = pgTable("f1_team_performance", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   teamName: text("team_name").notNull(), // Ferrari, Mercedes, Red Bull, etc.
   season: text("season").notNull(),
   raceWeekend: text("race_weekend").notNull(), // "Bahrain GP", "Saudi Arabia GP", etc.
@@ -151,9 +151,9 @@ export const f1TeamPerformance = pgTable("f1_team_performance", {
 
 // Tournament Participation
 export const tournamentParticipation = pgTable("tournament_participation", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tournamentId: varchar("tournament_id").notNull(),
-  teamId: varchar("team_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  tournamentId: uuid("tournament_id").notNull(),
+  teamId: uuid("team_id").notNull(),
   registrationDate: timestamp("registration_date").defaultNow().notNull(),
   currentRound: integer("current_round").default(1),
   wins: integer("wins").default(0),
@@ -312,7 +312,7 @@ export const cafeEventsRelations = relations(cafeEvents, ({ one }) => ({
 
 // Social Media Posts table for F1 content aggregation
 export const socialMediaPosts = pgTable("social_media_posts", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   platform: text("platform").notNull(), // "twitter", "instagram", "tiktok"
   accountHandle: text("account_handle").notNull(),
   accountType: text("account_type").notNull(), // "news", "gossip", "driver", "team"
@@ -333,7 +333,7 @@ export const socialMediaPosts = pgTable("social_media_posts", {
 
 // AI-processed F1 content (mixed news + gossip posts)
 export const f1ProcessedContent = pgTable("f1_processed_content", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   content: text("content").notNull(),
   newsPercentage: integer("news_percentage").notNull().default(70), // 70% news, 30% gossip
@@ -352,11 +352,11 @@ export const f1ProcessedContent = pgTable("f1_processed_content", {
 
 // User comments on F1 content
 export const contentComments = pgTable("content_comments", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  contentId: varchar("content_id").notNull(),
-  userId: varchar("user_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  contentId: uuid("content_id").notNull(),
+  userId: uuid("user_id").notNull(),
   content: text("content").notNull(),
-  parentCommentId: varchar("parent_comment_id"), // for nested comments
+  parentCommentId: uuid("parent_comment_id"), // for nested comments
   likes: integer("likes").default(0),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -364,7 +364,7 @@ export const contentComments = pgTable("content_comments", {
 
 // Social Media Accounts to Monitor
 export const monitoredAccounts = pgTable("monitored_accounts", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   platform: text("platform").notNull(),
   handle: text("handle").notNull().unique(),
   displayName: text("display_name").notNull(),
@@ -380,11 +380,11 @@ export const monitoredAccounts = pgTable("monitored_accounts", {
 // Live race tracking tables
 // Races table for individual race information
 export const races = pgTable("races", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   season: text("season").notNull(),
   round: integer("round").notNull(),
   raceName: text("race_name").notNull(),
-  circuitId: varchar("circuit_id").notNull(),
+  circuitId: uuid("circuit_id").notNull(),
   raceDate: timestamp("race_date").notNull(),
   raceTime: text("race_time"), // "14:00:00Z"
   status: text("status").default("scheduled"), // scheduled, practice, qualifying, race, finished
@@ -397,7 +397,7 @@ export const races = pgTable("races", {
 
 // Circuits table for track information
 export const circuits = pgTable("circuits", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   circuitName: text("circuit_name").notNull(),
   location: text("location").notNull(),
   country: text("country").notNull(),
@@ -411,7 +411,7 @@ export const circuits = pgTable("circuits", {
 
 // Drivers table for current season drivers
 export const drivers = pgTable("drivers", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   driverNumber: integer("driver_number").notNull().unique(),
   firstName: text("first_name").notNull(),
   lastName: text("last_name").notNull(),
@@ -430,9 +430,9 @@ export const drivers = pgTable("drivers", {
 
 // Live race results for real-time tracking
 export const liveRaceResults = pgTable("live_race_results", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  raceId: varchar("race_id").notNull(),
-  driverId: varchar("driver_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  raceId: uuid("race_id").notNull(),
+  driverId: uuid("driver_id").notNull(),
   position: integer("position").notNull(),
   lapsCompleted: integer("laps_completed").default(0),
   gap: text("gap"), // "+1.234s" or "1 LAP"
@@ -450,10 +450,10 @@ export const liveRaceResults = pgTable("live_race_results", {
 
 // Fantasy Leagues table
 export const fantasyLeagues = pgTable("fantasy_leagues", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
   description: text("description"),
-  creatorId: varchar("creator_id").notNull(),
+  creatorId: uuid("creator_id").notNull(),
   maxParticipants: integer("max_participants").default(20),
   currentParticipants: integer("current_participants").default(0),
   entryFee: integer("entry_fee").default(0), // in points
@@ -470,9 +470,9 @@ export const fantasyLeagues = pgTable("fantasy_leagues", {
 
 // Fantasy Teams table
 export const fantasyTeams = pgTable("fantasy_teams", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").notNull(),
-  leagueId: varchar("league_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: uuid("user_id").notNull(),
+  leagueId: uuid("league_id").notNull(),
   teamName: text("team_name").notNull(),
   totalValue: integer("total_value").default(0), // total cost of drivers
   remainingBudget: integer("remaining_budget").default(100000000),
@@ -486,9 +486,9 @@ export const fantasyTeams = pgTable("fantasy_teams", {
 
 // Fantasy Team Drivers (lineup)
 export const fantasyTeamDrivers = pgTable("fantasy_team_drivers", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  fantasyTeamId: varchar("fantasy_team_id").notNull(),
-  driverId: varchar("driver_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  fantasyTeamId: uuid("fantasy_team_id").notNull(),
+  driverId: uuid("driver_id").notNull(),
   driverCost: integer("driver_cost").notNull(), // cost when selected
   isActive: boolean("is_active").default(true),
   addedAt: timestamp("added_at").defaultNow().notNull(),
@@ -496,8 +496,8 @@ export const fantasyTeamDrivers = pgTable("fantasy_team_drivers", {
 
 // Fantasy Driver Prices (dynamic pricing)
 export const fantasyDriverPrices = pgTable("fantasy_driver_prices", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  driverId: varchar("driver_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  driverId: uuid("driver_id").notNull(),
   price: integer("price").notNull(), // in cents
   weeklyChange: integer("weekly_change").default(0), // price change from last week
   popularity: integer("popularity").default(0), // % of teams that own this driver
@@ -506,9 +506,9 @@ export const fantasyDriverPrices = pgTable("fantasy_driver_prices", {
 
 // Fantasy Scoring Events
 export const fantasyScoringEvents = pgTable("fantasy_scoring_events", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  raceId: varchar("race_id").notNull(),
-  driverId: varchar("driver_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  raceId: uuid("race_id").notNull(),
+  driverId: uuid("driver_id").notNull(),
   eventType: text("event_type").notNull(), // "finish_position", "fastest_lap", "pole", "dnf"
   points: integer("points").notNull(),
   description: text("description"),
@@ -737,9 +737,9 @@ export const fantasyScoringEventsRelations = relations(fantasyScoringEvents, ({ 
 }))
 
 export const teamMembers = pgTable("team_members", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  teamId: varchar("team_id").notNull(),
-  userId: varchar("user_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  teamId: uuid("team_id").notNull(),
+  userId: uuid("user_id").notNull(),
   role: text("role").notNull().default("member"), // member, captain, engineer, principal, owner
   joinedAt: timestamp("joined_at").defaultNow().notNull(),
   isActive: boolean("is_active").notNull().default(true),
@@ -767,19 +767,19 @@ export const teamMembersRelations = relations(teamMembers, ({ one }) => ({
 
 // Post likes table
 export const postLikes = pgTable("post_likes", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  postId: varchar("post_id").notNull(),
-  userId: varchar("user_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  postId: uuid("post_id").notNull(),
+  userId: uuid("user_id").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 })
 
 // Post comments table  
 export const postComments = pgTable("post_comments", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  postId: varchar("post_id").notNull(),
-  userId: varchar("user_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  postId: uuid("post_id").notNull(),
+  userId: uuid("user_id").notNull(),
   content: text("content").notNull(),
-  parentCommentId: varchar("parent_comment_id"), // for nested comments
+  parentCommentId: uuid("parent_comment_id"), // for nested comments
   likes: integer("likes").default(0),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -787,9 +787,9 @@ export const postComments = pgTable("post_comments", {
 
 // Comment likes table
 export const commentLikes = pgTable("comment_likes", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  commentId: varchar("comment_id").notNull(),
-  userId: varchar("user_id").notNull(),
+  id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+  commentId: uuid("comment_id").notNull(),
+  userId: uuid("user_id").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 })
 

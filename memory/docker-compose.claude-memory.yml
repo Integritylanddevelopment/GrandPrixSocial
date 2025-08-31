@@ -1,0 +1,223 @@
+# Claude Enterprise Memory System - Complete Docker Compose Setup
+version: '3.8'
+
+services:
+  # Claude Memory System - Main Application
+  claude-memory:
+    build:
+      context: ../
+      dockerfile: memory/Dockerfile.claude-memory-system
+    container_name: claude-memory-system
+    hostname: claude-memory
+    restart: unless-stopped
+    environment:
+      - CLAUDE_MEMORY_HOME=/home/claude
+      - PYTHONPATH=/home/claude/memory
+      - SUPABASE_URL=${SUPABASE_URL:-https://eeyboymoyvrgsbmnezag.supabase.co}
+      - SUPABASE_KEY=${SUPABASE_SERVICE_ROLE_KEY:-}
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgresql://claude:claudepass@postgres:5432/claude_memory
+      - MEMORY_STORAGE_TYPE=hybrid
+      - ENABLE_CLOUD_SYNC=true
+      - ENABLE_LOCAL_CACHE=true
+      - LOG_LEVEL=INFO
+      - MAX_MEMORY_SIZE=2GB
+      - CLEANUP_INTERVAL=3600
+      - BACKUP_INTERVAL=86400
+    ports:
+      - "8000:8000"  # Main API
+      - "8001:8001"  # Memory API
+      - "8002:8002"  # Admin Dashboard
+    volumes:
+      - claude_memory_data:/home/claude/data
+      - claude_memory_logs:/home/claude/logs
+      - claude_memory_backups:/home/claude/backups
+      - claude_memory_cache:/home/claude/cache
+      - ./memory:/home/claude/memory:ro
+      - ./.env.local:/home/claude/.env.local:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - claude-network
+    healthcheck:
+      test: ["CMD", "./health-check.sh"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
+
+  # PostgreSQL Database - Local backup/cache
+  postgres:
+    image: postgres:16-alpine
+    container_name: claude-postgres
+    hostname: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=claude_memory
+      - POSTGRES_USER=claude
+      - POSTGRES_PASSWORD=claudepass
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./memory/sql:/docker-entrypoint-initdb.d:ro
+    networks:
+      - claude-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U claude -d claude_memory"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # Redis Cache - Fast memory access
+  redis:
+    image: redis:7-alpine
+    container_name: claude-redis
+    hostname: redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass claudecache
+    environment:
+      - REDIS_PASSWORD=claudecache
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+      - ./memory/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    networks:
+      - claude-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
+
+  # Memory Analytics Dashboard
+  memory-dashboard:
+    build:
+      context: ../
+      dockerfile: memory/Dockerfile.dashboard
+    container_name: claude-memory-dashboard
+    hostname: dashboard
+    restart: unless-stopped
+    environment:
+      - CLAUDE_API_URL=http://claude-memory:8000
+      - POSTGRES_URL=postgresql://claude:claudepass@postgres:5432/claude_memory
+      - REDIS_URL=redis://:claudecache@redis:6379
+    ports:
+      - "3000:3000"  # Dashboard UI
+    volumes:
+      - ./memory/dashboard:/app:ro
+    depends_on:
+      - claude-memory
+    networks:
+      - claude-network
+
+  # Background Task Processor
+  memory-worker:
+    build:
+      context: ../
+      dockerfile: memory/Dockerfile.claude-memory-system
+    container_name: claude-memory-worker
+    hostname: worker
+    restart: unless-stopped
+    command: ["python", "memory/background_processor.py"]
+    environment:
+      - CLAUDE_MEMORY_HOME=/home/claude
+      - WORKER_MODE=true
+      - REDIS_URL=redis://:claudecache@redis:6379
+      - DATABASE_URL=postgresql://claude:claudepass@postgres:5432/claude_memory
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+    volumes:
+      - claude_memory_data:/home/claude/data
+      - claude_memory_logs:/home/claude/logs
+      - ./memory:/home/claude/memory:ro
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - claude-network
+
+  # Memory Synchronization Service
+  memory-sync:
+    build:
+      context: ../
+      dockerfile: memory/Dockerfile.claude-memory-system
+    container_name: claude-memory-sync
+    hostname: sync
+    restart: unless-stopped
+    command: ["python", "memory/cloud_sync_service.py"]
+    environment:
+      - SYNC_INTERVAL=300  # 5 minutes
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - LOCAL_DB_URL=postgresql://claude:claudepass@postgres:5432/claude_memory
+      - REDIS_URL=redis://:claudecache@redis:6379
+    volumes:
+      - claude_memory_data:/home/claude/data
+      - claude_memory_logs:/home/claude/logs
+      - ./memory:/home/claude/memory:ro
+    depends_on:
+      - claude-memory
+    networks:
+      - claude-network
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: claude-nginx
+    hostname: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./memory/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./memory/nginx/ssl:/etc/ssl:ro
+    depends_on:
+      - claude-memory
+      - memory-dashboard
+    networks:
+      - claude-network
+
+# Volumes
+volumes:
+  claude_memory_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/memory
+  claude_memory_logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./logs
+  claude_memory_backups:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./backups
+  claude_memory_cache:
+    driver: local
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+# Networks
+networks:
+  claude-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16

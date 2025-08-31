@@ -1,0 +1,119 @@
+# Claude Enterprise Memory System - Standalone Docker Container
+# Multi-stage build for optimized production deployment
+
+# Stage 1: Base Python environment
+FROM python:3.12-slim as base
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    wget \
+    build-essential \
+    libpq-dev \
+    sqlite3 \
+    redis-tools \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create claude user
+RUN useradd --create-home --shell /bin/bash claude
+
+# Stage 2: Python dependencies
+FROM base as dependencies
+
+# Create working directory
+WORKDIR /app
+
+# Copy requirements files
+COPY requirements.txt ./
+COPY memory/requirements-memory.txt ./memory/
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r memory/requirements-memory.txt
+
+# Additional memory system dependencies
+RUN pip install --no-cache-dir \
+    supabase \
+    python-dotenv \
+    psycopg2-binary \
+    redis \
+    sqlalchemy \
+    alembic \
+    celery \
+    fastapi \
+    uvicorn \
+    httpx \
+    asyncpg \
+    asyncio-mqtt \
+    websockets \
+    schedule \
+    watchdog \
+    cryptography \
+    pydantic \
+    numpy \
+    pandas \
+    scikit-learn \
+    transformers \
+    torch \
+    sentence-transformers
+
+# Stage 3: Claude memory system
+FROM dependencies as claude-memory
+
+# Switch to claude user
+USER claude
+WORKDIR /home/claude
+
+# Copy memory system files
+COPY --chown=claude:claude memory/ ./memory/
+COPY --chown=claude:claude .env.local ./.env.local
+
+# Create directory structure
+RUN mkdir -p \
+    ./logs \
+    ./data \
+    ./backups \
+    ./uploads \
+    ./downloads \
+    ./cache \
+    ./tmp
+
+# Copy startup scripts
+COPY --chown=claude:claude memory/docker/start-memory-system.sh ./start-memory-system.sh
+COPY --chown=claude:claude memory/docker/health-check.sh ./health-check.sh
+
+# Make scripts executable
+RUN chmod +x ./start-memory-system.sh ./health-check.sh
+
+# Create configuration files
+RUN echo '#!/bin/bash\n\
+export CLAUDE_MEMORY_HOME="/home/claude"\n\
+export PYTHONPATH="/home/claude/memory:$PYTHONPATH"\n\
+export SUPABASE_URL="${SUPABASE_URL:-https://eeyboymoyvrgsbmnezag.supabase.co}"\n\
+export SUPABASE_KEY="${SUPABASE_KEY:-}"\n\
+export REDIS_URL="${REDIS_URL:-redis://localhost:6379}"\n\
+export DATABASE_URL="${DATABASE_URL:-}"\n\
+' > ./claude-env.sh && chmod +x ./claude-env.sh
+
+# Expose ports
+EXPOSE 8000 8001 8002 6379 5432
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=60s --retries=3 \
+    CMD ./health-check.sh
+
+# Default command
+CMD ["./start-memory-system.sh"]
+
+# Labels
+LABEL maintainer="Claude Enterprise Memory System"
+LABEL version="1.0.0"
+LABEL description="Standalone Claude memory system with enterprise features"

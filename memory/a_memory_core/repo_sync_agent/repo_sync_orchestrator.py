@@ -19,6 +19,7 @@ from vercel_monitor import VercelBuildMonitor
 from error_corrector import BuildErrorCorrector  
 from health_monitor import AgentHealthMonitor
 from sync_logger import SyncLogger
+from repository_creator import RepositoryCreator
 
 class RepoSyncOrchestrator:
     """
@@ -37,6 +38,7 @@ class RepoSyncOrchestrator:
         self.error_corrector = BuildErrorCorrector(self.project_path)
         self.health_monitor = AgentHealthMonitor(self.project_path)
         self.logger = SyncLogger(self.project_path)
+        self.repository_creator = RepositoryCreator(self.project_path)
         
         # Load configuration
         self.config = self._load_config()
@@ -389,15 +391,38 @@ class RepoSyncOrchestrator:
         
         # Execute CI/CD pipeline
         return self.execute_cicd_pipeline()
+    
+    def create_new_repository(self, repo_name: str, description: str = "", 
+                            private: bool = False, framework: str = "nextjs") -> Dict:
+        """Create complete new repository with GitHub and Vercel setup"""
+        self.log.info(f"🆕 Creating new repository: {repo_name}")
+        
+        return self.repository_creator.create_complete_repository(
+            repo_name, description, private, framework
+        )
+    
+    def setup_existing_repository(self, github_url: str, local_path: str, 
+                                framework: str = "nextjs") -> Dict:
+        """Clone and set up enterprise sync for existing repository"""
+        self.log.info(f"🔄 Setting up existing repository: {github_url}")
+        
+        return self.repository_creator.clone_and_setup_existing(
+            github_url, local_path, framework
+        )
 
 def main():
     """Main entry point for enterprise repo sync orchestrator"""
     import argparse
     
     parser = argparse.ArgumentParser(description='Enterprise Repo Sync Orchestrator')
-    parser.add_argument('action', choices=['deploy', 'health', 'force'], 
+    parser.add_argument('action', choices=['deploy', 'health', 'force', 'create', 'clone'], 
                        help='Action to perform')
     parser.add_argument('--project-path', help='Project directory path')
+    parser.add_argument('--repo-name', help='Repository name for creation')
+    parser.add_argument('--github-url', help='GitHub URL for cloning')
+    parser.add_argument('--description', help='Repository description', default="")
+    parser.add_argument('--private', action='store_true', help='Create private repository')
+    parser.add_argument('--framework', choices=['nextjs', 'react', 'python'], default='nextjs')
     
     args = parser.parse_args()
     
@@ -409,6 +434,20 @@ def main():
         result = orchestrator.health_check()
     elif args.action == 'force':
         result = orchestrator.force_deployment()
+    elif args.action == 'create':
+        if not args.repo_name:
+            print("Error: --repo-name required for repository creation")
+            return
+        result = orchestrator.create_new_repository(
+            args.repo_name, args.description, args.private, args.framework
+        )
+    elif args.action == 'clone':
+        if not args.github_url:
+            print("Error: --github-url required for repository cloning")
+            return
+        result = orchestrator.setup_existing_repository(
+            args.github_url, args.project_path or os.getcwd(), args.framework
+        )
     
     # Output result as JSON for programmatic consumption
     print(json.dumps(result, indent=2, default=str))

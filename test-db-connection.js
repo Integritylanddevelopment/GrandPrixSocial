@@ -1,78 +1,51 @@
-// Test Supabase database connection
-const { createClient } = require('@supabase/supabase-js')
+const dotenv = require('dotenv');
+const { Pool } = require('@neondatabase/serverless');
 
-async function testDatabaseConnection() {
-  console.log('🔌 Testing Supabase database connection...')
+// Load environment variables
+dotenv.config({ path: '.env.local' });
+
+async function testConnection() {
+  console.log('🔍 Testing database connection...');
+  console.log('DATABASE_URL:', process.env.DATABASE_URL ? 'SET' : 'NOT SET');
   
-  const supabaseUrl = 'https://eeyboymoyvrgsbmnezag.supabase.co'
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVleWJveW1veXZyZ3NibW5lemFnIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NTU0OTkxMSwiZXhwIjoyMDcxMTI1OTExfQ.eUTubEQh1c-1uBb4fUiHGGaJi08IMF2doCam1hlhTBA'
-  
-  const supabase = createClient(supabaseUrl, supabaseKey)
-  
+  if (!process.env.DATABASE_URL) {
+    console.error('❌ DATABASE_URL environment variable is not set');
+    console.log('Please check your .env.local file');
+    process.exit(1);
+  }
+
   try {
-    // Test basic connection
-    console.log('📊 Testing basic connection...')
-    const { data, error } = await supabase
-      .from('social_media_posts')
-      .select('count(*)')
-      .limit(1)
+    const pool = new Pool({ connectionString: process.env.DATABASE_URL });
     
-    if (error) {
-      console.error('❌ Database connection failed:', error.message)
-      return false
+    // Test query
+    const result = await pool.query('SELECT NOW() as current_time');
+    console.log('✅ Database connection successful!');
+    console.log('Current time:', result.rows[0].current_time);
+    
+    // Check if users table exists
+    const tableCheck = await pool.query(`
+      SELECT table_name 
+      FROM information_schema.tables 
+      WHERE table_schema = 'public' AND table_name = 'users'
+    `);
+    
+    if (tableCheck.rows.length > 0) {
+      console.log('✅ Users table exists');
+      
+      // Count users
+      const userCount = await pool.query('SELECT COUNT(*) FROM users');
+      console.log(`👥 Users in database: ${userCount.rows[0].count}`);
+    } else {
+      console.log('⚠️  Users table does not exist - needs migration');
     }
     
-    console.log('✅ Database connection successful!')
-    
-    // Check for scraped F1 data
-    console.log('📰 Checking for scraped F1 data...')
-    const { data: posts, error: postsError } = await supabase
-      .from('social_media_posts')
-      .select('*')
-      .eq('processed', false)
-      .limit(5)
-    
-    if (postsError) {
-      console.error('❌ Failed to query posts:', postsError.message)
-      return false
-    }
-    
-    console.log(`📄 Found ${posts.length} unprocessed F1 posts`)
-    
-    if (posts.length > 0) {
-      console.log('📋 Sample unprocessed posts:')
-      posts.forEach((post, index) => {
-        console.log(`${index + 1}. [${post.category}] ${post.content.substring(0, 100)}...`)
-      })
-    }
-    
-    // Test table structure
-    console.log('🏗️ Checking database schema...')
-    const { data: schema, error: schemaError } = await supabase.rpc('get_schema_info')
-    
-    if (schemaError && !schemaError.message.includes('function')) {
-      console.warn('⚠️ Could not get schema info, but database is accessible')
-    }
-    
-    console.log('🎉 Database access confirmed!')
-    return true
+    await pool.end();
     
   } catch (error) {
-    console.error('💥 Database test failed:', error.message)
-    return false
+    console.error('❌ Database connection failed:');
+    console.error(error.message);
+    process.exit(1);
   }
 }
 
-testDatabaseConnection()
-  .then(success => {
-    if (success) {
-      console.log('\n✅ DATABASE STATUS: READY FOR AGENT PROCESSING')
-      console.log('🤖 Agents can now access scraped F1 data for article generation')
-    } else {
-      console.log('\n❌ DATABASE STATUS: CONNECTION FAILED')
-      console.log('🔧 Database needs to be fixed before agent processing')
-    }
-  })
-  .catch(error => {
-    console.error('\n💥 Test script failed:', error)
-  })
+testConnection();
