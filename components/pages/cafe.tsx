@@ -12,7 +12,7 @@ import type { PostWithDetails, PostCommentWithAuthor } from "@/lib/schema"
 const SAMPLE_POSTS: PostWithDetails[] = [
   {
     id: 'sample-1',
-    content: 'What an incredible race at Monza! Max Verstappen showing why he\'s the current champion. The wheel-to-wheel racing was absolutely spectacular! 🏁',
+    content: 'What an incredible race at Monza! Max Verstappen showing why he\'s the current champion. The wheel-to-wheel racing was absolutely spectacular!',
     images: null,
     likes: 42,
     comments: 8,
@@ -34,7 +34,7 @@ const SAMPLE_POSTS: PostWithDetails[] = [
   },
   {
     id: 'sample-2',
-    content: 'Ferrari\'s strategy today was questionable at best. Charles had the pace but the team let him down again. When will they learn? 😤 #TifosiFrustration',
+    content: 'Ferrari\'s strategy today was questionable at best. Charles had the pace but the team let him down again. When will they learn? #TifosiFrustration',
     images: null,
     likes: 89,
     comments: 23,

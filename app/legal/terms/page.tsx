@@ -15,7 +15,7 @@ export default function TermsOfServicePage() {
         </div>
 
         {/* AI Notice */}
-        <Card className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 mb-8">
+        <Card className="bg-gray-900/50 border-gray-700 mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-blue-400 font-orbitron">
               <Brain className="h-6 w-6" />
@@ -165,7 +165,7 @@ export default function TermsOfServicePage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border-blue-500/30">
+          <Card className="bg-gray-900/50 border-gray-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-blue-400 font-orbitron">
                 <Brain className="h-5 w-5" />

@@ -25,12 +25,14 @@ export interface GeneratedArticle {
 }
 
 export class F1ArticleGenerator {
-  private apiKey: string
-  private baseUrl: string
+  private qwenUrl: string
+  private anthropicUrl: string
+  private useLocal: boolean
 
-  constructor(apiKey?: string) {
-    this.apiKey = apiKey || process.env.OPENAI_API_KEY || ''
-    this.baseUrl = 'https://api.openai.com/v1/chat/completions'
+  constructor(config?: { useLocal?: boolean, qwenUrl?: string }) {
+    this.useLocal = config?.useLocal ?? true
+    this.qwenUrl = config?.qwenUrl || process.env.QWEN_API_URL || 'http://localhost:11434'
+    this.anthropicUrl = process.env.ANTHROPIC_API_URL || 'http://localhost:11434'
   }
 
   /**
@@ -40,43 +42,12 @@ export class F1ArticleGenerator {
     const prompt = this.buildArticlePrompt(request)
     
     try {
-      // If no API key, return enhanced version of source content
-      if (!this.apiKey) {
+      // Use local Qwen for article generation
+      if (this.useLocal) {
+        return await this.generateWithQwen(request, prompt)
+      } else {
+        // Fallback to enhanced content if no local Qwen
         return this.generateFallbackArticle(request)
-      }
-
-      const response = await fetch(this.baseUrl, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${this.apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model: 'gpt-4',
-          messages: [
-            {
-              role: 'system',
-              content: 'You are an expert F1 journalist writing engaging, accurate articles for Grand Prix Social. Write in an exciting but professional tone.'
-            },
-            {
-              role: 'user',
-              content: prompt
-            }
-          ],
-          max_tokens: this.getMaxTokens(request.targetLength),
-          temperature: 0.7
-        })
-      })
-
-      if (!response.ok) {
-        throw new Error(`OpenAI API error: ${response.status}`)
-      }
-
-      const data = await response.json()
-      const generatedContent = data.choices[0]?.message?.content
-
-      if (!generatedContent) {
-        throw new Error('No content generated from OpenAI')
       }
 
       return this.parseGeneratedContent(generatedContent, request)
@@ -85,6 +56,111 @@ export class F1ArticleGenerator {
       console.error('AI article generation failed:', error)
       // Fall back to enhanced source content
       return this.generateFallbackArticle(request)
+    }
+  }
+
+  /**
+   * Generate article using local Qwen
+   */
+  private async generateWithQwen(request: ArticleGenerationRequest, prompt: string): Promise<GeneratedArticle> {
+    try {
+      console.log('🤖 Generating article with local Qwen:', request.title)
+
+      const response = await fetch(`${this.qwenUrl}/api/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'qwen2.5-coder:latest',
+          prompt: this.buildQwenPrompt(request),
+          stream: false,
+          options: {
+            temperature: 0.7,
+            top_p: 0.9,
+            top_k: 40
+          }
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error(`Qwen API error: ${response.status}`)
+      }
+
+      const data = await response.json()
+      const generatedContent = data.response
+
+      if (!generatedContent) {
+        throw new Error('No content generated from Qwen')
+      }
+
+      // Log the generation for training feedback
+      await this.logGenerationForTraining(request, generatedContent)
+
+      return this.parseGeneratedContent(generatedContent, request)
+
+    } catch (error) {
+      console.error('Qwen generation failed:', error)
+      console.log('🔄 Falling back to enhanced content')
+      return this.generateFallbackArticle(request)
+    }
+  }
+
+  /**
+   * Build optimized prompt for Qwen
+   */
+  private buildQwenPrompt(request: ArticleGenerationRequest): string {
+    const lengthGuide = {
+      short: '300-500 words',
+      medium: '600-1000 words', 
+      long: '1200-2000 words'
+    }
+
+    const targetLength = lengthGuide[request.targetLength || 'medium']
+
+    return `You are an expert Formula 1 journalist writing for Grand Prix Social. Transform this source material into an engaging F1 article.
+
+SOURCE TITLE: ${request.title}
+SOURCE: ${request.source}
+CONTENT: ${request.sourceContent}
+
+REQUIREMENTS:
+- Write exactly ${targetLength} 
+- Category: ${request.category || 'F1 news'}
+- Tone: Exciting but professional
+- Include F1 context and technical details
+- Make it engaging for F1 fans
+- Use markdown formatting
+
+Write a complete article that F1 fans will love to read. Focus on making the content more exciting and informative than the source while remaining accurate.
+
+Article:`
+  }
+
+  /**
+   * Log generation for training feedback loop
+   */
+  private async logGenerationForTraining(request: ArticleGenerationRequest, generatedContent: string): Promise<void> {
+    try {
+      const trainingData = {
+        timestamp: new Date().toISOString(),
+        sourceTitle: request.title,
+        sourceContent: request.sourceContent,
+        generatedContent,
+        category: request.category,
+        targetLength: request.targetLength,
+        tone: request.tone,
+        modelUsed: 'qwen2.5-coder:latest',
+        version: '1.0'
+      }
+
+      // Store for training feedback (async, don't block generation)
+      fetch('/api/ai/training-feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(trainingData)
+      }).catch(err => console.log('Training log failed:', err.message))
+
+    } catch (error) {
+      console.log('Training logging error:', error)
     }
   }
 
