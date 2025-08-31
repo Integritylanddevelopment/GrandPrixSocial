@@ -1,10 +1,20 @@
 import { createClient } from '@supabase/supabase-js'
 import { QwenConnector } from '@/lib/llm/qwen-connector'
 
-// Initialize Supabase
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
-const supabase = createClient(supabaseUrl, supabaseKey)
+// Force this route to be dynamic to prevent build-time execution
+export const dynamic = 'force-dynamic'
+
+// Create Supabase client lazily to avoid build-time environment issues
+function getSupabaseClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Supabase configuration missing - check environment variables')
+  }
+  
+  return createClient(supabaseUrl, supabaseKey)
+}
 
 // F1 RSS Sources
 const F1_SOURCES = [
@@ -50,6 +60,7 @@ export async function GET() {
   try {
     console.log('🏎️ Starting automated F1 news scraping...')
     
+    const supabase = getSupabaseClient()
     let totalScraped = 0
     const results = []
     
