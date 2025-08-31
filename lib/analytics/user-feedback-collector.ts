@@ -79,7 +79,11 @@ export class UserFeedbackCollector {
     this.baseUrl = '/api/analytics'
     this.sessionId = this.generateSessionId()
     this.userId = this.getUserId()
-    this.initializeTracking()
+    
+    // Only initialize tracking in browser environment
+    if (typeof window !== 'undefined') {
+      this.initializeTracking()
+    }
   }
 
   /**
@@ -94,9 +98,9 @@ export class UserFeedbackCollector {
         title: metadata.title,
         category: metadata.category,
         tags: metadata.tags,
-        referrer: document.referrer,
+        referrer: typeof document !== 'undefined' ? document.referrer : '',
         deviceType: this.getDeviceType(),
-        userAgent: navigator.userAgent
+        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : ''
       },
       engagementScore: 1 // Base view score
     }
@@ -205,14 +209,18 @@ export class UserFeedbackCollector {
    * Track scroll depth and time on page
    */
   private startViewTracking(contentId: string, contentType: 'article' | 'post') {
+    if (typeof window === 'undefined') return // Skip if not in browser
+    
     const startTime = Date.now()
     let maxScroll = 0
     let scrollSamples = 0
 
     const trackScroll = () => {
-      const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100)
-      maxScroll = Math.max(maxScroll, scrollDepth)
-      scrollSamples++
+      if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+        const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100)
+        maxScroll = Math.max(maxScroll, scrollDepth)
+        scrollSamples++
+      }
     }
 
     const trackingInterval = setInterval(trackScroll, 1000) // Every second
@@ -244,12 +252,14 @@ export class UserFeedbackCollector {
       window.removeEventListener('visibilitychange', sendTrackingData)
     }
 
-    window.addEventListener('beforeunload', sendTrackingData)
-    window.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'hidden') {
-        sendTrackingData()
-      }
-    })
+    if (typeof window !== 'undefined') {
+      window.addEventListener('beforeunload', sendTrackingData)
+      window.addEventListener('visibilitychange', () => {
+        if (typeof document !== 'undefined' && document.visibilityState === 'hidden') {
+          sendTrackingData()
+        }
+      })
+    }
   }
 
   /**
@@ -303,6 +313,8 @@ export class UserFeedbackCollector {
    * Store interaction locally if backend fails
    */
   private storeLocally(interaction: UserInteraction) {
+    if (typeof localStorage === 'undefined') return // Skip if not in browser
+    
     const stored = JSON.parse(localStorage.getItem('pendingInteractions') || '[]')
     stored.push(interaction)
     
@@ -344,7 +356,7 @@ export class UserFeedbackCollector {
       contentType: 'page',
       metadata: {
         path,
-        referrer: document.referrer,
+        referrer: typeof document !== 'undefined' ? document.referrer : '',
         deviceType: this.getDeviceType()
       },
       engagementScore: 1
@@ -354,6 +366,8 @@ export class UserFeedbackCollector {
   }
 
   private async sendPendingInteractions() {
+    if (typeof localStorage === 'undefined') return // Skip if not in browser
+    
     const pending = JSON.parse(localStorage.getItem('pendingInteractions') || '[]')
     
     if (pending.length > 0) {
@@ -376,11 +390,16 @@ export class UserFeedbackCollector {
   }
 
   private getUserId(): string | undefined {
-    // Get from auth context or localStorage
-    return localStorage.getItem('userId') || undefined
+    // Get from auth context or localStorage (only in browser)
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      return localStorage.getItem('userId') || undefined
+    }
+    return undefined
   }
 
   private getDeviceType(): 'mobile' | 'desktop' | 'tablet' {
+    if (typeof window === 'undefined') return 'desktop' // Default for SSR
+    
     const width = window.innerWidth
     if (width < 768) return 'mobile'
     if (width < 1024) return 'tablet'

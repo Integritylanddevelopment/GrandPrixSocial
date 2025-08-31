@@ -98,7 +98,7 @@ export default function AnalyticsTestPage() {
                 <TrackableShareButton
                   contentId="test-article-123"
                   platform="twitter"
-                  shareUrl={window?.location?.href}
+                  shareUrl={typeof window !== 'undefined' ? window.location.href : ''}
                 >
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-600 text-gray-300 hover:border-green-600 hover:text-green-400 transition-colors">
                     <Share2 className="w-5 h-5" />
