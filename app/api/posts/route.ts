@@ -1,91 +1,101 @@
 import { NextResponse } from "next/server"
-import { supabase } from "@/lib/supabase"
+import { getDb } from "@/lib/db"
+import { posts, users, teams } from "@/lib/schema"
+import { desc, eq } from "drizzle-orm"
 
 export async function GET() {
   try {
-    const { data: posts, error } = await supabase
-      .from('posts')
-      .select(`
-        id,
-        content,
-        images,
-        likes,
-        comments,
-        created_at,
-        author:users!posts_author_id_fkey (
-          id,
-          username,
-          name,
-          avatar,
-          favorite_team
-        ),
-        team:teams!posts_team_id_fkey (
-          id,
-          name,
-          color,
-          logo
-        )
-      `)
-      .order('created_at', { ascending: false })
-      .limit(50)
-
-    if (error) {
-      console.error("Supabase error:", error)
-      
-      // Check if it's an auth error (invalid API keys)
-      if (error.message.includes('Invalid API key')) {
-        return NextResponse.json({ 
-          success: false,
-          error: "Database authentication failed. Please configure valid Supabase API keys in .env.local",
-          details: "The current Supabase API keys are invalid or expired"
-        }, { status: 500 })
-      }
-      
-      return NextResponse.json({ 
+    // Check if database is properly configured
+    if (!process.env.DATABASE_URL || process.env.DATABASE_URL.includes("placeholder")) {
+      return NextResponse.json({
         success: false,
-        error: "Database error: " + error.message 
+        error: "Database not configured. Please configure DATABASE_URL in .env.local",
+        details: "The database connection string is missing or invalid"
       }, { status: 500 })
     }
 
-    return NextResponse.json(posts || [])
+    const db = getDb()
+    
+    const postsData = await db
+      .select({
+        id: posts.id,
+        content: posts.content,
+        images: posts.images,
+        likes: posts.likes,
+        comments: posts.comments,
+        createdAt: posts.createdAt,
+        author: {
+          id: users.id,
+          username: users.username,
+          name: users.name,
+          avatar: users.avatar,
+          favoriteTeam: users.favoriteTeam,
+        },
+        team: {
+          id: teams.id,
+          name: teams.name,
+          color: teams.color,
+          logo: teams.logo,
+        },
+      })
+      .from(posts)
+      .leftJoin(users, eq(posts.authorId, users.id))
+      .leftJoin(teams, eq(posts.teamId, teams.id))
+      .orderBy(desc(posts.createdAt))
+      .limit(50)
+
+    // Transform data to match the expected format
+    const transformedPosts = postsData.map(post => ({
+      id: post.id,
+      content: post.content,
+      images: post.images,
+      likes: post.likes,
+      comments: post.comments,
+      createdAt: post.createdAt,
+      author: post.author,
+      team: post.team,
+      isLiked: false, // Will be determined client-side based on user
+    }))
+
+    return NextResponse.json(transformedPosts)
   } catch (error) {
     console.error("Error fetching posts:", error)
     return NextResponse.json({ 
       success: false,
-      error: "Server error fetching posts" 
+      error: "Database connection failed: " + (error as Error).message 
     }, { status: 500 })
   }
 }
 
 export async function POST(request: Request) {
   try {
-    const { content, images, authorId, teamId } = await request.json()
-
-    const { data: newPost, error } = await supabase
-      .from('posts')
-      .insert({
-        content,
-        images,
-        author_id: authorId,
-        team_id: teamId,
-      })
-      .select()
-      .single()
-
-    if (error) {
-      console.error("Supabase error creating post:", error)
-      return NextResponse.json({ 
+    // Check if database is properly configured
+    if (!process.env.DATABASE_URL || process.env.DATABASE_URL.includes("placeholder")) {
+      return NextResponse.json({
         success: false,
-        error: "Failed to create post: " + error.message 
-      }, { status: 500 })
+        error: "Database not configured"
+      }, { status: 503 })
     }
 
-    return NextResponse.json(newPost)
+    const { content, images, authorId, teamId } = await request.json()
+    const db = getDb()
+
+    const newPost = await db
+      .insert(posts)
+      .values({
+        content,
+        images,
+        authorId,
+        teamId,
+      })
+      .returning()
+
+    return NextResponse.json(newPost[0])
   } catch (error) {
     console.error("Error creating post:", error)
     return NextResponse.json({ 
       success: false,
-      error: "Server error creating post" 
+      error: "Server error creating post: " + (error as Error).message 
     }, { status: 500 })
   }
 }
