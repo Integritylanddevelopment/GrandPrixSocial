@@ -1,0 +1,414 @@
+{
+  "memory_types": {
+    "a_memory_core": "Core orchestration and agent management",
+    "b_long_term_memory": "Permanent user profiles and historical data",
+    "c_short_term_memory": "Recent interactions and session data",
+    "d_working_memory": "Active development and temporary tasks",
+    "e_episodic": "Event history and user interaction episodes",
+    "e_procedural": "F1 rules, race procedures, and workflows",
+    "f_semantic": "F1 knowledge base and definitions",
+    "g_episodic": "Additional episodic memory (duplicate?)"
+  },
+  "core_agents": {
+    "alerts": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\alerts",
+      "files": {
+        "main_script": null,
+        "state_file": null,
+        "manifest": null,
+        "metadata": null,
+        "config": null,
+        "logic": null
+      },
+      "active": false
+    },
+    "analytics": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\analytics",
+      "files": {
+        "main_script": null,
+        "state_file": null,
+        "manifest": null,
+        "metadata": null,
+        "config": null,
+        "logic": null
+      },
+      "active": false
+    },
+    "claude_context_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\claude_context_agent",
+      "files": {
+        "main_script": null,
+        "state_file": null,
+        "manifest": null,
+        "metadata": null,
+        "config": null,
+        "logic": null
+      },
+      "active": false
+    },
+    "dashboards": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\dashboards",
+      "files": {
+        "main_script": null,
+        "state_file": null,
+        "manifest": null,
+        "metadata": null,
+        "config": null,
+        "logic": null
+      },
+      "active": false
+    },
+    "fantasy_league_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\fantasy_league_agent",
+      "files": {
+        "main_script": "fantasy_league_agent.py",
+        "state_file": "agent_state.json",
+        "manifest": null,
+        "metadata": null,
+        "config": null,
+        "logic": null
+      },
+      "active": true
+    },
+    "gui_launcher_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\gui_launcher_agent",
+      "files": {
+        "main_script": "gui_launcher_agent.py",
+        "state_file": "gui_launcher_agent_state.json",
+        "manifest": "gui_launcher_agent_manifest.json",
+        "metadata": "gui_launcher_agent_metadata.json",
+        "config": null,
+        "logic": "gui_launcher_agent_logic.json"
+      },
+      "active": true
+    },
+    "logs": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\logs",
+      "files": {
+        "main_script": null,
+        "state_file": null,
+        "manifest": null,
+        "metadata": null,
+        "config": null,
+        "logic": null
+      },
+      "active": false
+    },
+    "master_orchestrator_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\master_orchestrator_agent",
+      "files": {
+        "main_script": "master_orchestrator_agent.py",
+        "state_file": null,
+        "manifest": null,
+        "metadata": null,
+        "config": null,
+        "logic": null
+      },
+      "active": true
+    },
+    "memory": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory",
+      "files": {
+        "main_script": null,
+        "state_file": null,
+        "manifest": null,
+        "metadata": null,
+        "config": null,
+        "logic": null
+      },
+      "active": false
+    },
+    "memory_agent_core": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_agent_core",
+      "files": {
+        "main_script": "start_memory_core.py",
+        "state_file": "memory_agent_core_state.json",
+        "manifest": "memory_agent_core_manifest.json",
+        "metadata": "memory_agent_core_metadata.json",
+        "config": "memory_core_config.json",
+        "logic": null
+      },
+      "active": true
+    },
+    "memory_agent_registry_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_agent_registry_agent",
+      "files": {
+        "main_script": null,
+        "state_file": null,
+        "manifest": null,
+        "metadata": null,
+        "config": null,
+        "logic": "logic.json"
+      },
+      "active": false
+    },
+    "memory_agent_router_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_agent_router_agent",
+      "files": {
+        "main_script": null,
+        "state_file": "memory_agent_router_agent_state.json",
+        "manifest": "memory_agent_router_agent_manifest.json",
+        "metadata": null,
+        "config": null,
+        "logic": "logic.json"
+      },
+      "active": false
+    },
+    "memory_context_router_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_context_router_agent",
+      "files": {
+        "main_script": "memory_context_router_agent.py",
+        "state_file": "memory_context_router_agent_state.json",
+        "manifest": "memory_context_router_agent_manifest.json",
+        "metadata": "memory_context_router_agent_metadata.json",
+        "config": null,
+        "logic": "logic.json"
+      },
+      "active": true
+    },
+    "memory_core_log_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_core_log_agent",
+      "files": {
+        "main_script": "memory_core_log_agent.py",
+        "state_file": "memory_core_log_agent_state.json",
+        "manifest": null,
+        "metadata": "memory_core_log_agent_metadata.json",
+        "config": null,
+        "logic": "memory_core_log_agent_logic.json"
+      },
+      "active": true
+    },
+    "memory_indexer_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_indexer_agent",
+      "files": {
+        "main_script": "memory_indexer_agent.py",
+        "state_file": "memory_indexer_state.json",
+        "manifest": "memory_indexer_manifest.json",
+        "metadata": "memory_indexer_metadata.json",
+        "config": null,
+        "logic": "memory_indexer_logic.json"
+      },
+      "active": true
+    },
+    "memory_logic_enforcer_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_logic_enforcer_agent",
+      "files": {
+        "main_script": "memory_logic_enforcer_agent.py",
+        "state_file": "memory_logic_enforcer_agent_state.json",
+        "manifest": "memory_logic_enforcer_agent_manifest.json",
+        "metadata": "memory_logic_enforcer_agent_metadata.json",
+        "config": null,
+        "logic": "memory_logic_enforcer_agent_logic.json"
+      },
+      "active": true
+    },
+    "memory_orchestrator_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_orchestrator_agent",
+      "files": {
+        "main_script": null,
+        "state_file": "memory_orchestrator_state.json",
+        "manifest": "memory_orchestrator_agent_manifest.json",
+        "metadata": "memory_orchestrator_agent_metadata.json",
+        "config": null,
+        "logic": "memory_orchestrator_agent_logic.json"
+      },
+      "active": false
+    },
+    "memory_router_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_router_agent",
+      "files": {
+        "main_script": "memory_router_agent.py",
+        "state_file": "memory_router_agent_state.json",
+        "manifest": null,
+        "metadata": "memory_router_agent_metadata.json",
+        "config": null,
+        "logic": "memory_router_agent_logic.json"
+      },
+      "active": true
+    },
+    "repo_sync_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\repo_sync_agent",
+      "files": {
+        "main_script": "repo_sync_agent.py",
+        "state_file": null,
+        "manifest": "agent_manifest.json",
+        "metadata": null,
+        "config": "repo_sync_config.json",
+        "logic": null
+      },
+      "active": true
+    },
+    "system_health_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\system_health_agent",
+      "files": {
+        "main_script": "system_health_agent.py",
+        "state_file": "system_health_agent_state.json",
+        "manifest": "system_health_agent_manifest.json",
+        "metadata": "system_health_agent_metadata.json",
+        "config": null,
+        "logic": "system_health_agent_logic.json"
+      },
+      "active": true
+    },
+    "tag_intelligence_engine": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\tag_intelligence_engine",
+      "files": {
+        "main_script": "tag_intelligence_engine.py",
+        "state_file": null,
+        "manifest": null,
+        "metadata": null,
+        "config": "config.json",
+        "logic": null
+      },
+      "active": true
+    },
+    "user_intelligence_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\user_intelligence_agent",
+      "files": {
+        "main_script": "user_intelligence_agent.py",
+        "state_file": null,
+        "manifest": null,
+        "metadata": null,
+        "config": null,
+        "logic": null
+      },
+      "active": true
+    }
+  },
+  "database_requirements": {
+    "core_agents": {
+      "fantasy_league_agent": {
+        "state_table": "fantasy_league_agent_state",
+        "metrics_table": "fantasy_league_agent_metrics",
+        "logs_table": "fantasy_league_agent_logs",
+        "coordination_table": "fantasy_league_agent_coordination"
+      },
+      "gui_launcher_agent": {
+        "state_table": "gui_launcher_agent_state",
+        "metrics_table": "gui_launcher_agent_metrics",
+        "logs_table": "gui_launcher_agent_logs",
+        "coordination_table": "gui_launcher_agent_coordination"
+      },
+      "master_orchestrator_agent": {
+        "state_table": "master_orchestrator_agent_state",
+        "metrics_table": "master_orchestrator_agent_metrics",
+        "logs_table": "master_orchestrator_agent_logs",
+        "coordination_table": "master_orchestrator_agent_coordination"
+      },
+      "memory_agent_core": {
+        "state_table": "memory_agent_core_state",
+        "metrics_table": "memory_agent_core_metrics",
+        "logs_table": "memory_agent_core_logs",
+        "coordination_table": "memory_agent_core_coordination"
+      },
+      "memory_context_router_agent": {
+        "state_table": "memory_context_router_agent_state",
+        "metrics_table": "memory_context_router_agent_metrics",
+        "logs_table": "memory_context_router_agent_logs",
+        "coordination_table": "memory_context_router_agent_coordination"
+      },
+      "memory_core_log_agent": {
+        "state_table": "memory_core_log_agent_state",
+        "metrics_table": "memory_core_log_agent_metrics",
+        "logs_table": "memory_core_log_agent_logs",
+        "coordination_table": "memory_core_log_agent_coordination"
+      },
+      "memory_indexer_agent": {
+        "state_table": "memory_indexer_agent_state",
+        "metrics_table": "memory_indexer_agent_metrics",
+        "logs_table": "memory_indexer_agent_logs",
+        "coordination_table": "memory_indexer_agent_coordination"
+      },
+      "memory_logic_enforcer_agent": {
+        "state_table": "memory_logic_enforcer_agent_state",
+        "metrics_table": "memory_logic_enforcer_agent_metrics",
+        "logs_table": "memory_logic_enforcer_agent_logs",
+        "coordination_table": "memory_logic_enforcer_agent_coordination"
+      },
+      "memory_router_agent": {
+        "state_table": "memory_router_agent_state",
+        "metrics_table": "memory_router_agent_metrics",
+        "logs_table": "memory_router_agent_logs",
+        "coordination_table": "memory_router_agent_coordination"
+      },
+      "repo_sync_agent": {
+        "state_table": "repo_sync_agent_state",
+        "metrics_table": "repo_sync_agent_metrics",
+        "logs_table": "repo_sync_agent_logs",
+        "coordination_table": "repo_sync_agent_coordination"
+      },
+      "system_health_agent": {
+        "state_table": "system_health_agent_state",
+        "metrics_table": "system_health_agent_metrics",
+        "logs_table": "system_health_agent_logs",
+        "coordination_table": "system_health_agent_coordination"
+      },
+      "tag_intelligence_engine": {
+        "state_table": "tag_intelligence_engine_state",
+        "metrics_table": "tag_intelligence_engine_metrics",
+        "logs_table": "tag_intelligence_engine_logs",
+        "coordination_table": "tag_intelligence_engine_coordination"
+      },
+      "user_intelligence_agent": {
+        "state_table": "user_intelligence_agent_state",
+        "metrics_table": "user_intelligence_agent_metrics",
+        "logs_table": "user_intelligence_agent_logs",
+        "coordination_table": "user_intelligence_agent_coordination"
+      }
+    },
+    "memory_types": {
+      "a_memory_core": {
+        "storage_table": "core_memory_storage",
+        "index_table": "core_memory_index",
+        "metadata_table": "core_memory_metadata"
+      },
+      "b_long_term_memory": {
+        "storage_table": "lonterm_memory_storage",
+        "index_table": "lonterm_memory_index",
+        "metadata_table": "lonterm_memory_metadata"
+      },
+      "c_short_term_memory": {
+        "storage_table": "short_term_memory_storage",
+        "index_table": "short_term_memory_index",
+        "metadata_table": "short_term_memory_metadata"
+      },
+      "d_working_memory": {
+        "storage_table": "working_memory_storage",
+        "index_table": "working_memory_index",
+        "metadata_table": "working_memory_metadata"
+      },
+      "e_episodic": {
+        "storage_table": "episodic_memory_storage",
+        "index_table": "episodic_memory_index",
+        "metadata_table": "episodic_memory_metadata"
+      },
+      "e_procedural": {
+        "storage_table": "procedural_memory_storage",
+        "index_table": "procedural_memory_index",
+        "metadata_table": "procedural_memory_metadata"
+      },
+      "f_semantic": {
+        "storage_table": "semantic_memory_storage",
+        "index_table": "semantic_memory_index",
+        "metadata_table": "semantic_memory_metadata"
+      },
+      "g_episodic": {
+        "storage_table": "episodic_memory_storage",
+        "index_table": "episodic_memory_index",
+        "metadata_table": "episodic_memory_metadata"
+      }
+    },
+    "system_tables": [
+      "memory_system_state",
+      "agent_registry",
+      "memory_promotion_log",
+      "system_metrics",
+      "coordination_events",
+      "f1_specific_data",
+      "user_profiles",
+      "race_data",
+      "fantasy_data"
+    ]
+  },
+  "analysis_timestamp": "2025-08-30"
+}

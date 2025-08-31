@@ -1,0 +1,120 @@
+# Complete Claude + Qwen3 + Mobile GUI Docker Container
+# All-in-one local AI processing with phone access
+FROM ollama/ollama:latest
+
+# Install dependencies efficiently
+RUN apt-get update && apt-get install -y \
+    curl \
+    python3 \
+    python3-pip \
+    nodejs \
+    npm \
+    wget \
+    git \
+    supervisor \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip3 install flask requests
+
+# Create app directory
+WORKDIR /app
+
+# Copy all application files
+COPY claude_ollama_bridge.py /app/
+COPY web_gui.py /app/
+COPY templates/ /app/templates/
+COPY start_complete_system.sh /app/
+RUN chmod +x /app/start_complete_system.sh
+
+# Install specific Claude Code version for reliability
+RUN npm install -g @anthropic-ai/claude-code@1.0.98
+
+# Create supervisor configuration for managing all services
+RUN echo '[supervisord]\n\
+nodaemon=true\n\
+user=root\n\
+\n\
+[program:ollama]\n\
+command=/bin/ollama serve\n\
+autostart=true\n\
+autorestart=true\n\
+stdout_logfile=/dev/stdout\n\
+stdout_logfile_maxbytes=0\n\
+stderr_logfile=/dev/stderr\n\
+stderr_logfile_maxbytes=0\n\
+\n\
+[program:api-bridge]\n\
+command=python3 /app/claude_ollama_bridge.py\n\
+directory=/app\n\
+autostart=true\n\
+autorestart=true\n\
+stdout_logfile=/dev/stdout\n\
+stdout_logfile_maxbytes=0\n\
+stderr_logfile=/dev/stderr\n\
+stderr_logfile_maxbytes=0\n\
+\n\
+[program:mobile-gui]\n\
+command=python3 /app/web_gui.py\n\
+directory=/app\n\
+autostart=true\n\
+autorestart=true\n\
+stdout_logfile=/dev/stdout\n\
+stdout_logfile_maxbytes=0\n\
+stderr_logfile=/dev/stderr\n\
+stderr_logfile_maxbytes=0' > /etc/supervisor/conf.d/supervisord.conf
+
+# Create startup script that pulls model then starts services
+RUN echo '#!/bin/bash\n\
+set -e\n\
+\n\
+echo "=== Complete Claude + Qwen3 System Starting ==="\n\
+\n\
+# Start Ollama in background briefly to pull model\n\
+ollama serve &\n\
+OLLAMA_PID=$!\n\
+\n\
+# Wait for Ollama to be ready\n\
+echo "Waiting for Ollama to start..."\n\
+timeout=60\n\
+counter=0\n\
+while ! curl -s http://localhost:11434/api/version >/dev/null; do\n\
+    if [ $counter -eq $timeout ]; then\n\
+        echo "Timeout waiting for Ollama"\n\
+        exit 1\n\
+    fi\n\
+    sleep 2\n\
+    counter=$((counter + 1))\n\
+done\n\
+\n\
+echo "Pulling Qwen2.5:7b model..."\n\
+ollama pull qwen2.5:7b\n\
+\n\
+echo "Model ready! Starting all services with supervisor..."\n\
+kill $OLLAMA_PID\n\
+sleep 2\n\
+\n\
+echo "Services starting:"\n\
+echo "- Ollama + Qwen3: Port 11434 (internal)"\n\
+echo "- Claude API Bridge: Port 11434 (external)"\n\
+echo "- Mobile GUI: Port 8080"\n\
+echo "- Claude Code: Available with ANTHROPIC_API_URL=http://localhost:11434"\n\
+echo "================================================"\n\
+\n\
+# Start supervisor to manage all services\n\
+exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf' > /app/start_complete_system.sh
+
+# Expose ports
+EXPOSE 11434 8080
+
+# Set environment variables
+ENV ANTHROPIC_API_URL=http://localhost:11434
+ENV OLLAMA_HOST=0.0.0.0
+ENV OLLAMA_ORIGINS=*
+
+# Health check for the complete system
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s \
+  CMD curl -f http://localhost:11434/health && curl -f http://localhost:8080/api/health || exit 1
+
+# Start the complete system
+CMD ["/app/start_complete_system.sh"]

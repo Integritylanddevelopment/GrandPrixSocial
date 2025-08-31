@@ -11,6 +11,49 @@
     "vercel_project_id": "prj_dIgPyjUY0HRFYw3cYKOxTrAPQsaZ",
     "vercel_team_id": "team_qd9zTuDQ41euDNXJwHVVPocq",
     "vercel_token": "${VERCEL_TOKEN}",
-    "check_deployment": true
+    "check_deployment": true,
+    "enterprise_config": {
+      "max_retry_attempts": 3,
+      "build_timeout": 600,
+      "auto_error_correction": true,
+      "health_check_interval": 300,
+      "log_retention_days": 30,
+      "components": {
+        "orchestrator": "repo_sync_orchestrator.py",
+        "vercel_monitor": "vercel_monitor.py",
+        "error_corrector": "error_corrector.py",
+        "health_monitor": "health_monitor.py",
+        "sync_logger": "sync_logger.py"
+      },
+      "change_thresholds": {
+        "files_changed": 5,
+        "significance_weights": {
+          "typescript": 3,
+          "javascript": 3,
+          "react": 3,
+          "config": 1,
+          "styles": 2,
+          "docs": 1
+        }
+      },
+      "deployment_monitoring": {
+        "check_interval_seconds": 15,
+        "max_build_duration": 600,
+        "retry_failed_builds": true,
+        "present_errors_to_claude": true
+      },
+      "error_correction": {
+        "auto_fix_types": [
+          "missing_import",
+          "undefined_check", 
+          "hook_dependency"
+        ],
+        "manual_fix_types": [
+          "type_mismatch",
+          "syntax_error",
+          "module_resolution"
+        ]
+      }
+    }
   }
 }

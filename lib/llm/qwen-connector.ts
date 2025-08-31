@@ -57,7 +57,8 @@ export interface GeneratedArticle {
 }
 
 export class QwenConnector {
-  private readonly endpoint = 'http://localhost:12434/engines/llama.cpp/v1/chat/completions'
+  private readonly endpoint = process.env.QWEN_API_URL || 'http://localhost:12434/engines/llama.cpp/v1/chat/completions'
+  private readonly fallbackEndpoint = 'https://api.openai.com/v1/chat/completions'
   private readonly model = 'ai/qwen3:latest'
   
   constructor() {
@@ -215,9 +216,10 @@ Write the transfer analysis:`
   }
 
   /**
-   * Call Qwen3 LLM with OpenAI-compatible API
+   * Call Qwen3 LLM with OpenAI-compatible API and fallback
    */
   private async callQwen3(prompt: string): Promise<string> {
+    // Try local/cloud Qwen3 first
     try {
       const response = await fetch(this.endpoint, {
         method: 'POST',
@@ -250,7 +252,38 @@ Write the transfer analysis:`
       return data.choices[0]?.message?.content || ''
       
     } catch (error) {
-      console.error('Qwen3 API call failed:', error)
+      console.error('Qwen3 API call failed, trying fallback:', error)
+      
+      // Fallback to OpenAI if configured
+      if (process.env.OPENAI_API_KEY) {
+        try {
+          const fallbackResponse = await fetch(this.fallbackEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+            },
+            body: JSON.stringify({
+              model: 'gpt-3.5-turbo',
+              messages: [
+                { role: 'system', content: 'You are an expert F1 journalist.' },
+                { role: 'user', content: prompt }
+              ],
+              max_tokens: 1000,
+              temperature: 0.7
+            })
+          })
+          
+          if (fallbackResponse.ok) {
+            const fallbackData = await fallbackResponse.json()
+            console.log('✅ Using OpenAI fallback')
+            return fallbackData.choices[0]?.message?.content || ''
+          }
+        } catch (fallbackError) {
+          console.error('Fallback also failed:', fallbackError)
+        }
+      }
+      
       throw error
     }
   }

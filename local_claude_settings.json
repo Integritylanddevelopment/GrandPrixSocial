@@ -1,0 +1,7 @@
+{
+  "apiUrl": "http://localhost:12434/engines/llama.cpp/v1/chat/completions",
+  "model": "ai/qwen3:latest",
+  "endpoint": "http://localhost:12434/engines/llama.cpp/v1/chat/completions",
+  "baseUrl": "http://localhost:12434",
+  "anthropicApiUrl": "http://localhost:12434/engines/llama.cpp/v1/chat/completions"
+}

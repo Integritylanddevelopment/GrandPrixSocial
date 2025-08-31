@@ -13,14 +13,14 @@
   "behavior_patterns": {
     "page_preferences": {
       "/cafe": {
-        "visits": 2,
-        "avg_engagement": 0.6000000000000001,
-        "last_visit": "08-26_02-08PM"
+        "visits": 5,
+        "avg_engagement": 0.775,
+        "last_visit": "08-30_06-03PM"
       },
       "/paddock-talk": {
-        "visits": 2,
-        "avg_engagement": 0.75,
-        "last_visit": "08-26_02-08PM"
+        "visits": 5,
+        "avg_engagement": 0.96875,
+        "last_visit": "08-30_06-03PM"
       }
     },
     "engagement_style": "unknown",
@@ -31,5 +31,5 @@
     "recommendations_enabled": false,
     "privacy_level": "high"
   },
-  "last_updated": "08-26_02-08PM"
+  "last_updated": "08-30_06-03PM"
 }

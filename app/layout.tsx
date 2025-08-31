@@ -5,6 +5,7 @@ import "./globals.css"
 import MobileNavigation from "@/components/mobile-navigation"
 import Footer from "@/components/footer"
 import { AuthProvider } from "@/components/auth/auth-context"
+import { CompleteAnalyticsProvider } from "@/components/analytics/analytics-provider"
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -63,11 +64,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${orbitron.variable} ${rajdhani.variable} font-rajdhani antialiased`}>
         <AuthProvider>
-          <div className="min-h-screen bg-black">
-            <div className="pb-16 md:pb-0">{children}</div>
-          </div>
-          <MobileNavigation />
-          <Footer />
+          <CompleteAnalyticsProvider>
+            <div className="min-h-screen bg-black">
+              <div className="pb-16 md:pb-0">{children}</div>
+            </div>
+            <MobileNavigation />
+            <Footer />
+          </CompleteAnalyticsProvider>
         </AuthProvider>
       </body>
     </html>

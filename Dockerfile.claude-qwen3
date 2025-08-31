@@ -1,0 +1,76 @@
+# Claude + Qwen3 Integrated Docker Container
+# Complete local AI processing in one container
+FROM ollama/ollama:latest
+
+# Install Node.js for Claude Code
+RUN apt-get update && apt-get install -y \
+    curl \
+    python3 \
+    python3-pip \
+    npm \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Claude Code
+RUN npm install -g @anthropic-ai/claude-code
+
+# Install Python dependencies for API bridge
+RUN pip3 install flask requests --break-system-packages
+
+# Create working directory
+WORKDIR /app
+
+# Copy API bridge
+COPY claude_qwen3_api_bridge.py /app/
+COPY start_integrated_system.sh /app/
+RUN chmod +x /app/start_integrated_system.sh
+
+# Create startup script
+RUN echo '#!/bin/bash\n\
+# Start Ollama server in background\n\
+ollama serve &\n\
+OLLAMA_PID=$!\n\
+\n\
+# Wait for Ollama to be ready\n\
+echo "Waiting for Ollama server to start..."\n\
+while ! curl -s http://localhost:11434/api/version >/dev/null; do\n\
+    sleep 2\n\
+done\n\
+\n\
+# Pull Qwen3 model (if not already present)\n\
+echo "Ensuring Qwen3 model is available..."\n\
+ollama pull qwen2.5:7b || echo "Model already exists"\n\
+\n\
+# Start API bridge in background\n\
+echo "Starting Claude-Qwen3 API bridge..."\n\
+python3 /app/claude_qwen3_api_bridge.py &\n\
+BRIDGE_PID=$!\n\
+\n\
+# Wait for bridge to be ready\n\
+echo "Waiting for API bridge to start..."\n\
+while ! curl -s http://localhost:11434/health >/dev/null; do\n\
+    sleep 2\n\
+done\n\
+\n\
+echo "=== Claude + Qwen3 Integrated System Ready ==="\n\
+echo "Ollama: http://localhost:11434 (internal)"\n\
+echo "Claude Bridge: http://localhost:11434 (external)"\n\
+echo "Qwen3 Model: qwen2.5:7b"\n\
+echo "Claude Code: Available with local processing"\n\
+echo "================================================"\n\
+\n\
+# Keep container running\n\
+wait $OLLAMA_PID $BRIDGE_PID' > /app/start_integrated_system.sh
+
+# Update API bridge for container environment
+RUN sed -i 's/localhost:12434/localhost:11434\/api\/generate/g' /app/claude_qwen3_api_bridge.py
+
+# Expose ports
+EXPOSE 11434
+
+# Set environment variables for Claude Code
+ENV ANTHROPIC_API_URL=http://localhost:11434
+ENV OLLAMA_HOST=0.0.0.0
+
+# Start integrated system
+CMD ["/bin/bash", "/app/start_integrated_system.sh"]

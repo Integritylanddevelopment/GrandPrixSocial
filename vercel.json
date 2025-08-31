@@ -6,6 +6,6 @@
   "framework": "nextjs",
   "regions": ["iad1"],
   "env": {
-    "FORCE_REBUILD": "2025-08-18-cache-clear-v2"
+    "FORCE_REBUILD": "2025-08-27-env-security-fix"
   }
 }

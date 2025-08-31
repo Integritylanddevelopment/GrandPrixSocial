@@ -5,6 +5,7 @@ import { MessageSquare, Users, Trophy, Flame, Heart, MessageCircle, Share2, User
 import CafeIcon from "@/components/icons/cafe-icon"
 import { AuthButtons } from "@/components/auth/auth-buttons"
 import { useAuth } from "@/components/auth/auth-context"
+import { FeedbackTracking, TrackingWrapper, TrackableLikeButton, TrackableCommentForm } from "@/components/analytics/feedback-tracking"
 import type { PostWithDetails, PostCommentWithAuthor } from "@/lib/schema"
 
 export default function Cafe() {
@@ -162,16 +163,24 @@ export default function Cafe() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-red-950">
-      <div className="py-6">
-        <div className="mb-8 text-center">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <CafeIcon className="text-yellow-400" width={48} height={48} />
-            <h1 className="text-4xl font-bold font-orbitron text-yellow-400" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' }}>The F1 Café</h1>
-            <CafeIcon className="text-yellow-400" width={48} height={48} />
+    <>
+      <FeedbackTracking 
+        contentType="page" 
+        metadata={{ 
+          title: "F1 Cafe", 
+          category: "community" 
+        }} 
+      />
+      <TrackingWrapper className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-red-950">
+        <div className="py-6">
+          <div className="mb-8 text-center">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <CafeIcon className="text-yellow-400" width={48} height={48} />
+              <h1 className="text-4xl font-bold font-orbitron text-yellow-400" style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.3))' }}>The F1 Café</h1>
+              <CafeIcon className="text-yellow-400" width={48} height={48} />
+            </div>
+            <p className="text-gray-400">Connect with fellow F1 fans and share your passion for racing</p>
           </div>
-          <p className="text-gray-400">Connect with fellow F1 fans and share your passion for racing</p>
-        </div>
 
         {/* Auth Buttons */}
         <div className="mb-6">
@@ -346,6 +355,7 @@ export default function Cafe() {
           )}
         </div>
       </div>
-    </div>
+      </TrackingWrapper>
+    </>
   )
 }

@@ -1,0 +1,42 @@
+# Docker Compose for Cloud Deployment
+version: '3.8'
+
+services:
+  qwen3-api:
+    image: ollama/ollama:latest
+    ports:
+      - "12434:11434"
+    volumes:
+      - qwen_models:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: >
+      sh -c "
+        ollama serve &
+        sleep 10 &&
+        ollama pull qwen2.5:7b &&
+        wait
+      "
+
+  # Your Next.js app
+  grandprix-social:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - QWEN_API_URL=http://qwen3-api:11434/v1/chat/completions
+      - NODE_ENV=production
+    depends_on:
+      - qwen3-api
+    restart: unless-stopped
+
+volumes:
+  qwen_models:
