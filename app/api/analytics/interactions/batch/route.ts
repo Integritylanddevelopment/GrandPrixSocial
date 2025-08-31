@@ -1,9 +1,20 @@
 import { createClient } from '@supabase/supabase-js'
 import { NextRequest, NextResponse } from 'next/server'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
-const supabase = createClient(supabaseUrl, supabaseKey)
+// Force this route to be dynamic to prevent build-time execution
+export const dynamic = 'force-dynamic'
+
+// Create Supabase client lazily to avoid build-time environment issues
+function getSupabaseClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Supabase configuration missing - check environment variables')
+  }
+  
+  return createClient(supabaseUrl, supabaseKey)
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,6 +37,7 @@ export async function POST(request: NextRequest) {
       created_at: new Date(interaction.timestamp).toISOString()
     }))
 
+    const supabase = getSupabaseClient()
     const { error } = await supabase
       .from('user_interactions')
       .insert(formattedInteractions)

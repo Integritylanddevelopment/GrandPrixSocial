@@ -50,6 +50,7 @@ export async function POST(request: NextRequest) {
 async function updateContentPerformance(contentId: string, interactionType: string, engagementScore: number) {
   try {
     // Check if performance record exists
+    const supabase = getSupabaseClient()
     const { data: existing } = await supabase
       .from('content_performance')
       .select('*')
@@ -119,6 +120,7 @@ async function updateContentPerformance(contentId: string, interactionType: stri
 async function updateUserPreferences(userId: string, interaction: any) {
   try {
     // Get current preferences
+    const supabase = getSupabaseClient()
     const { data: existing } = await supabase
       .from('user_preferences')
       .select('preferences')
