@@ -6,6 +6,14 @@ export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
   try {
+    // Temporarily disable during build
+    return NextResponse.json({
+      success: true,
+      message: 'Training data generation temporarily disabled',
+      examples: 0,
+      averageScore: 0
+    })
+    
     const { minPerformanceScore = 70 } = await request.json()
     
     console.log('🧠 Generating training data for Qwen3...')
@@ -31,6 +39,12 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
+    // Temporarily disable during build
+    return NextResponse.json({
+      success: false,
+      error: 'Training data export temporarily disabled'
+    }, { status: 503 })
+    
     // Export existing training data for fine-tuning
     const trainingGenerator = new QwenTrainingGenerator()
     const jsonlData = await trainingGenerator.exportForFineTuning()
