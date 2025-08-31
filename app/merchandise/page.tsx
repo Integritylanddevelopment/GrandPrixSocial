@@ -112,8 +112,8 @@ export default function MerchandisePage() {
             </span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto font-rajdhani">
-            Shop F1 merchandise from Amazon, ClickBank, and top retailers. 
-            Stay on Grand Prix Social while our partners handle secure payments.
+            Shop official F1 merchandise through Amazon Associates. 
+            Stay on Grand Prix Social while Amazon handles secure payments.
           </p>
         </div>
 
@@ -143,9 +143,9 @@ export default function MerchandisePage() {
             <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-white font-bold">🛡️</span>
             </div>
-            <h3 className="text-lg font-semibold text-white font-rajdhani mb-2">Secure Partners</h3>
+            <h3 className="text-lg font-semibold text-white font-rajdhani mb-2">Amazon Security</h3>
             <p className="text-gray-400 text-sm font-rajdhani">
-              Amazon, ClickBank, Fiverr - trusted platforms handle your payments.
+              Amazon's trusted platform handles all secure payments and shipping.
             </p>
           </div>
           
@@ -153,9 +153,9 @@ export default function MerchandisePage() {
             <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-white font-bold">💰</span>
             </div>
-            <h3 className="text-lg font-semibold text-white font-rajdhani mb-2">Best Prices</h3>
+            <h3 className="text-lg font-semibold text-white font-rajdhani mb-2">Prime Shipping</h3>
             <p className="text-gray-400 text-sm font-rajdhani">
-              Direct from major retailers - competitive pricing and fast shipping.
+              Amazon Prime eligible items with fast, free shipping options.
             </p>
           </div>
         </div>
@@ -165,43 +165,40 @@ export default function MerchandisePage() {
           products={sampleProducts}
         />
 
-        {/* Instant Signup Guide */}
+        {/* Amazon Associates Integration */}
         <div className="mt-16 glass-purple p-8 rounded-lg border border-purple-500">
           <h2 className="text-3xl font-bold text-white font-orbitron mb-6 text-center">
-            🚀 Ready to Start Your Own Affiliate Program?
+            🚀 Powered by Amazon Associates
           </h2>
           <p className="text-gray-300 font-rajdhani text-center mb-8 max-w-3xl mx-auto">
-            Join the same instant-approval affiliate programs we use! Start earning commissions today without waiting for approvals.
+            All F1 merchandise is sourced through Amazon's trusted affiliate program, ensuring authentic products and secure transactions.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {Object.entries(instantPartnerConfig)
-              .filter(([_, config]) => config.instant)
-              .map(([key, config]) => (
-              <div key={key} className="bg-gray-800/50 rounded-lg p-4 text-center">
-                <h3 className="text-white font-semibold font-rajdhani mb-2">{config.name}</h3>
-                <p className="text-gray-400 text-sm font-rajdhani mb-3">{config.description}</p>
-                <div className="text-xs text-gray-500 mb-4 font-rajdhani">
-                  <div>Commission: {config.commission}</div>
-                  <div>Minimum: {config.paymentMinimum}</div>
-                </div>
-                <a 
-                  href={config.signupUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block w-full bg-purple-600 hover:bg-purple-700 text-white text-sm font-rajdhani py-2 px-4 rounded transition-colors"
-                >
-                  Sign Up Free
-                </a>
+          <div className="max-w-md mx-auto">
+            <div className="bg-gray-800/50 rounded-lg p-6 text-center">
+              <h3 className="text-white font-semibold font-rajdhani mb-2">Amazon Associates</h3>
+              <p className="text-gray-400 text-sm font-rajdhani mb-3">Official Amazon affiliate program for F1 merchandise</p>
+              <div className="text-xs text-gray-500 mb-4 font-rajdhani">
+                <div>Commission: 1-10%</div>
+                <div>Minimum: $10</div>
+                <div>Cookie Duration: 24 hours</div>
               </div>
-            ))}
+              <a 
+                href="https://affiliate-program.amazon.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block w-full bg-purple-600 hover:bg-purple-700 text-white text-sm font-rajdhani py-2 px-4 rounded transition-colors"
+              >
+                Learn More About Amazon Associates
+              </a>
+            </div>
           </div>
           
           <div className="mt-8 p-6 bg-gray-800/30 rounded-lg">
             <p className="text-gray-300 text-sm text-center font-rajdhani">
-              <strong className="text-purple-400">How it works:</strong> These are the exact same affiliate programs powering our store. 
-              Sign up instantly, get your affiliate links, and start earning commissions on F1 merchandise, courses, and services. 
-              No approval waiting period - start promoting immediately!
+              <strong className="text-purple-400">Why Amazon Associates:</strong> We exclusively partner with Amazon to ensure 
+              authentic F1 merchandise, reliable shipping, secure payments, and excellent customer service. 
+              All products are Prime-eligible where available.
             </p>
           </div>
         </div>

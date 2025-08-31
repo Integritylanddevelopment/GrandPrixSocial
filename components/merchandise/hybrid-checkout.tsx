@@ -33,76 +33,12 @@ interface HybridCheckoutProps {
 
 const partnerInfo = {
   amazon: {
-    name: "Amazon",
+    name: "Amazon Associates",
     logo: "/partners/amazon-logo.png",
     commission: "1-10%",
     color: "bg-orange-500",
-    description: "Massive F1 Product Selection",
+    description: "Official F1 Merchandise",
     instant: true
-  },
-  clickbank: {
-    name: "ClickBank",
-    logo: "/partners/clickbank-logo.png", 
-    commission: "50-75%",
-    color: "bg-green-600",
-    description: "Digital F1 Products",
-    instant: true
-  },
-  shareasale: {
-    name: "ShareASale",
-    logo: "/partners/shareasale-logo.png",
-    commission: "5-15%", 
-    color: "bg-blue-700",
-    description: "Affiliate Network",
-    instant: true
-  },
-  fiverr: {
-    name: "Fiverr",
-    logo: "/partners/fiverr-logo.png",
-    commission: "$150 CPA",
-    color: "bg-green-500",
-    description: "F1 Design Services",
-    instant: true
-  },
-  systeme: {
-    name: "Systeme.io",
-    logo: "/partners/systeme-logo.png",
-    commission: "30%",
-    color: "bg-indigo-600",
-    description: "Marketing Platform",
-    instant: true
-  },
-  gpbox: {
-    name: "TheGPBox",
-    logo: "/partners/gpbox-logo.png",
-    commission: "4%",
-    color: "bg-blue-500",
-    description: "Motorsport Marketplace",
-    instant: false
-  },
-  f1store: {
-    name: "F1 Official Store",
-    logo: "/partners/f1store-logo.png",
-    commission: "5%",
-    color: "bg-red-500",
-    description: "Official Formula 1 Merchandise",
-    instant: false
-  },
-  ebay: {
-    name: "eBay",
-    logo: "/partners/ebay-logo.png",
-    commission: "1-4%",
-    color: "bg-blue-600",
-    description: "F1 Collectibles & Vintage",
-    instant: true
-  },
-  fanatics: {
-    name: "Fanatics",
-    logo: "/partners/fanatics-logo.png",
-    commission: "8%",
-    color: "bg-purple-600",
-    description: "Sports Merchandise Giant",
-    instant: false
   }
 }
 
