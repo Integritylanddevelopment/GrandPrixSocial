@@ -5,9 +5,17 @@
 
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
-const supabase = createClient(supabaseUrl, supabaseKey)
+// Create Supabase client lazily to avoid build-time environment issues
+function getSupabaseClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Supabase configuration missing - check environment variables')
+  }
+  
+  return createClient(supabaseUrl, supabaseKey)
+}
 
 export interface TrainingExample {
   contentId: string
@@ -41,6 +49,7 @@ export class QwenTrainingGenerator {
     
     try {
       // Get high-performing content
+      const supabase = getSupabaseClient()
       const { data: highPerformingContent } = await supabase
         .from('content_performance')
         .select(`
@@ -106,6 +115,7 @@ export class QwenTrainingGenerator {
    * Get original content from articles or posts
    */
   private async getOriginalContent(contentId: string): Promise<string | null> {
+    const supabase = getSupabaseClient()
     // Try news articles first
     const { data: article } = await supabase
       .from('news_articles')
@@ -135,6 +145,7 @@ export class QwenTrainingGenerator {
    * Analyze user interactions for feedback summary
    */
   private async getUserFeedbackSummary(contentId: string) {
+    const supabase = getSupabaseClient()
     const { data: interactions } = await supabase
       .from('user_interactions')
       .select('interaction_type, engagement_score, metadata')
@@ -315,6 +326,7 @@ export class QwenTrainingGenerator {
       training_batch_id: `batch_${Date.now()}`
     }))
 
+    const supabase = getSupabaseClient()
     const { error } = await supabase
       .from('qwen_training_data')
       .insert(trainingRecords)
@@ -339,6 +351,7 @@ export class QwenTrainingGenerator {
    * Export training data for Qwen3 fine-tuning
    */
   async exportForFineTuning(batchId?: string): Promise<string> {
+    const supabase = getSupabaseClient()
     const query = supabase
       .from('qwen_training_data')
       .select('*')

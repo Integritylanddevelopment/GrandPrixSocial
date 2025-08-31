@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import QwenTrainingGenerator from '@/lib/analytics/qwen-training-generator'
 
+// Force this route to be dynamic to prevent build-time execution
+export const dynamic = 'force-dynamic'
+
 export async function POST(request: NextRequest) {
   try {
     const { minPerformanceScore = 70 } = await request.json()
