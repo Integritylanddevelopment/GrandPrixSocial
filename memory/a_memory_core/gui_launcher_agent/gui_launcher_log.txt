@@ -24,3 +24,39 @@
 2025-08-30 18:03:56,950 - INFO - GUI Launcher Agent starting...
 2025-08-30 18:03:56,952 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library, python-dotenv library
 2025-08-30 18:03:56,952 - ERROR - Failed to start GUI server
+2025-08-31 11:33:24,041 - INFO - GUI Launcher Agent initialized
+2025-08-31 11:33:24,041 - INFO - GUI Launcher Agent starting...
+2025-08-31 11:33:24,063 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library
+2025-08-31 11:33:24,063 - ERROR - Failed to start GUI server
+2025-08-31 11:34:23,945 - INFO - GUI Launcher Agent initialized
+2025-08-31 11:34:23,946 - INFO - GUI Launcher Agent starting...
+2025-08-31 11:34:23,965 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library
+2025-08-31 11:34:23,965 - ERROR - Failed to start GUI server
+2025-08-31 11:35:23,905 - INFO - GUI Launcher Agent initialized
+2025-08-31 11:35:23,905 - INFO - GUI Launcher Agent starting...
+2025-08-31 11:35:23,924 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library
+2025-08-31 11:35:23,924 - ERROR - Failed to start GUI server
+2025-08-31 11:36:45,884 - INFO - GUI Launcher Agent initialized
+2025-08-31 11:36:45,884 - INFO - GUI Launcher Agent starting...
+2025-08-31 11:36:45,907 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library
+2025-08-31 11:36:45,907 - ERROR - Failed to start GUI server
+2025-08-31 14:17:19,202 - INFO - GUI Launcher Agent initialized
+2025-08-31 14:17:19,202 - INFO - GUI Launcher Agent starting...
+2025-08-31 14:17:19,213 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library
+2025-08-31 14:17:19,213 - ERROR - Failed to start GUI server
+2025-08-31 14:18:29,120 - INFO - GUI Launcher Agent initialized
+2025-08-31 14:18:29,120 - INFO - GUI Launcher Agent starting...
+2025-08-31 14:18:29,131 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library
+2025-08-31 14:18:29,131 - ERROR - Failed to start GUI server
+2025-08-31 14:22:38,220 - INFO - GUI Launcher Agent initialized
+2025-08-31 14:22:38,220 - INFO - GUI Launcher Agent starting...
+2025-08-31 14:22:38,233 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library
+2025-08-31 14:22:38,233 - ERROR - Failed to start GUI server
+2025-08-31 14:39:01,949 - INFO - GUI Launcher Agent initialized
+2025-08-31 14:39:01,949 - INFO - GUI Launcher Agent starting...
+2025-08-31 14:39:01,965 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library
+2025-08-31 14:39:01,965 - ERROR - Failed to start GUI server
+2025-08-31 19:19:03,172 - INFO - GUI Launcher Agent initialized
+2025-08-31 19:19:03,172 - INFO - GUI Launcher Agent starting...
+2025-08-31 19:19:03,194 - ERROR - Missing dependencies: web_neural_gui.py, anthropic library
+2025-08-31 19:19:03,194 - ERROR - Failed to start GUI server

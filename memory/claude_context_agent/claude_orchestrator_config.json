@@ -1,0 +1,9 @@
+{
+  "auto_start_agents": true,
+  "health_check_interval": 30,
+  "agent_startup_delay": 2,
+  "max_restart_attempts": 3,
+  "claude_context_focus": true,
+  "memory_promotion_enabled": true,
+  "semantic_tagging_enabled": true
+}

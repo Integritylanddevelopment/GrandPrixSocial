@@ -1,0 +1,86 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "📱 Show Mobile QR Code",
+            "type": "shell",
+            "command": "python",
+            "args": ["mobile_interface/qr_code_generator.py"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Show QR code popup to connect your phone to the dev agent"
+        },
+        {
+            "label": "🚀 Start Mobile Interface",
+            "type": "shell",
+            "command": "START_MOBILE_INTERFACE.bat",
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Start complete mobile dev agent interface system"
+        },
+        {
+            "label": "🤖 Start Local Dev Agent",
+            "type": "shell", 
+            "command": "START_LOCAL_DEV_AGENT.bat",
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Start just the local dev agent (no mobile interface)"
+        },
+        {
+            "label": "🏭 Launch Enterprise System",
+            "type": "shell",
+            "command": "LAUNCH_ENTERPRISE_SYSTEM.bat", 
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Launch full enterprise agent system with CommandCore integration"
+        },
+        {
+            "label": "🧪 Test Local AI",
+            "type": "shell",
+            "command": "TEST_LOCAL_CLAUDE.bat",
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "detail": "Test local Qwen3 AI inference system"
+        }
+    ]
+}

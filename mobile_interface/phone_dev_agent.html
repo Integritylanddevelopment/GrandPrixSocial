@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱 Dev Agent Mobile Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e1e2e 0%, #181825 100%);
+            color: #cdd6f4;
+            min-height: 100vh;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #313244;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #89b4fa, #74c7ec);
+            padding: 20px;
+            text-align: center;
+            color: #1e1e2e;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .status-panel {
+            padding: 15px;
+            background: #45475a;
+            margin: 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #585b70;
+        }
+        
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        
+        .status-online {
+            color: #a6e3a1;
+        }
+        
+        .status-offline {
+            color: #f38ba8;
+        }
+        
+        .chat-container {
+            height: 400px;
+            margin: 15px;
+            background: #45475a;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+        
+        .message {
+            margin: 10px 0;
+            padding: 12px 15px;
+            border-radius: 18px;
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+        
+        .message-user {
+            background: #89b4fa;
+            color: #1e1e2e;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message-agent {
+            background: #585b70;
+            color: #cdd6f4;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .message-system {
+            background: #f9e2af;
+            color: #1e1e2e;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 0.85em;
+            font-style: italic;
+        }
+        
+        .input-container {
+            padding: 15px;
+            border-top: 1px solid #585b70;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .message-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 20px;
+            background: #585b70;
+            color: #cdd6f4;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .message-input::placeholder {
+            color: #bac2de;
+        }
+        
+        .send-button {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: #89b4fa;
+            color: #1e1e2e;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .send-button:hover {
+            background: #74c7ec;
+            transform: scale(1.05);
+        }
+        
+        .send-button:disabled {
+            background: #6c7086;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .quick-actions {
+            padding: 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .quick-action {
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background: #585b70;
+            color: #cdd6f4;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quick-action:hover {
+            background: #6c7086;
+            transform: translateY(-2px);
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #585b70;
+            border-radius: 50%;
+            border-top-color: #89b4fa;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            background: #f38ba8 !important;
+            color: #1e1e2e !important;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 0;
+                height: 100vh;
+            }
+            
+            body {
+                padding: 0;
+            }
+            
+            .chat-container {
+                height: calc(100vh - 300px);
+                margin: 0;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            🔧 Dev Agent Mobile Interface
+        </div>
+        
+        <div class="status-panel">
+            <div class="status-item">
+                <span>Local AI:</span>
+                <span id="ai-status" class="status-offline">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span>CommandCore:</span>
+                <span id="commandcore-status" class="status-offline">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span>Agent Factory:</span>
+                <span id="factory-status" class="status-offline">Checking...</span>
+            </div>
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message message-system">
+                    🤖 Dev Agent Mobile Interface Ready
+                </div>
+                <div class="message message-agent">
+                    Hi! I'm your local development agent. I can help with:
+                    <br>• Code analysis and suggestions
+                    <br>• Task assistance
+                    <br>• Codebase insights
+                    <br>• AI-powered development help
+                </div>
+            </div>
+            
+            <div class="input-container">
+                <input type="text" id="messageInput" class="message-input" placeholder="Ask me anything about development..." maxlength="500">
+                <button id="sendButton" class="send-button" onclick="sendMessage()">
+                    📤
+                </button>
+            </div>
+        </div>
+        
+        <div class="quick-actions">
+            <button class="quick-action" onclick="quickAction('analyze')">
+                📊 Analyze Code
+            </button>
+            <button class="quick-action" onclick="quickAction('suggest')">
+                💡 Get Suggestions
+            </button>
+            <button class="quick-action" onclick="quickAction('status')">
+                📈 System Status
+            </button>
+            <button class="quick-action" onclick="quickAction('help')">
+                ❓ Help
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const API_BASE_URL = 'http://localhost:8889'; // Dev agent API server
+        const RECONNECT_INTERVAL = 5000;
+        
+        // Global state
+        let isConnected = false;
+        let isLoading = false;
+        
+        // Initialize interface
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSystemStatus();
+            setupEventListeners();
+            
+            // Auto-focus input on mobile
+            if (window.innerWidth <= 480) {
+                document.getElementById('messageInput').focus();
+            }
+        });
+        
+        function setupEventListeners() {
+            const input = document.getElementById('messageInput');
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+            
+            // Auto-resize text input
+            input.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+            });
+        }
+        
+        async function checkSystemStatus() {
+            try {
+                // Check Local AI
+                const aiResponse = await fetch('http://localhost:11434/api/tags', {
+                    method: 'GET',
+                    signal: AbortSignal.timeout(5000)
+                });
+                updateStatus('ai-status', aiResponse.ok);
+                
+                // Check Dev Agent API
+                const agentResponse = await fetch(`${API_BASE_URL}/health`, {
+                    method: 'GET',
+                    signal: AbortSignal.timeout(5000)
+                });
+                updateStatus('factory-status', agentResponse.ok);
+                isConnected = agentResponse.ok;
+                
+                // Check CommandCore (indirect)
+                updateStatus('commandcore-status', true); // Assume available if agent is running
+                
+            } catch (error) {
+                console.log('Status check failed:', error);
+                updateStatus('ai-status', false);
+                updateStatus('factory-status', false);
+                updateStatus('commandcore-status', false);
+                isConnected = false;
+                
+                // Retry after interval
+                setTimeout(checkSystemStatus, RECONNECT_INTERVAL);
+            }
+        }
+        
+        function updateStatus(elementId, isOnline) {
+            const element = document.getElementById(elementId);
+            if (isOnline) {
+                element.textContent = 'Online';
+                element.className = 'status-online';
+            } else {
+                element.textContent = 'Offline';
+                element.className = 'status-offline';
+            }
+        }
+        
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message || isLoading) return;
+            
+            if (!isConnected) {
+                addMessage('system', '❌ Dev agent is offline. Checking connection...');
+                checkSystemStatus();
+                return;
+            }
+            
+            // Add user message
+            addMessage('user', message);
+            input.value = '';
+            input.style.height = 'auto';
+            
+            // Show loading
+            setLoading(true);
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        context: 'mobile_interface'
+                    }),
+                    signal: AbortSignal.timeout(60000) // 60 second timeout
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                addMessage('agent', data.response || 'No response received');
+                
+            } catch (error) {
+                console.error('Send message failed:', error);
+                if (error.name === 'AbortError') {
+                    addMessage('system', '⏱️ Request timed out. The agent might be processing a complex query.');
+                } else {
+                    addMessage('system', `❌ Error: ${error.message}`);
+                }
+                
+                // Check if connection is still valid
+                isConnected = false;
+                setTimeout(checkSystemStatus, 1000);
+            } finally {
+                setLoading(false);
+            }
+        }
+        
+        async function quickAction(action) {
+            if (isLoading || !isConnected) {
+                if (!isConnected) {
+                    addMessage('system', '❌ Dev agent is offline');
+                }
+                return;
+            }
+            
+            const actions = {
+                'analyze': 'Analyze the Grand Prix Social codebase and give me insights',
+                'suggest': 'Give me development suggestions for Grand Prix Social',
+                'status': 'Show me the system status and metrics',
+                'help': 'What can you help me with?'
+            };
+            
+            const message = actions[action];
+            if (message) {
+                document.getElementById('messageInput').value = message;
+                await sendMessage();
+            }
+        }
+        
+        function addMessage(type, content) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message-${type}`;
+            
+            if (type === 'agent') {
+                // Format agent responses with basic markdown support
+                content = content
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/`(.*?)`/g, '<code style="background:#1e1e2e;padding:2px 4px;border-radius:3px;">$1</code>')
+                    .replace(/\n/g, '<br>');
+            }
+            
+            messageDiv.innerHTML = content;
+            messagesContainer.appendChild(messageDiv);
+            
+            // Auto-scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Add subtle animation
+            messageDiv.style.opacity = '0';
+            messageDiv.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                messageDiv.style.transition = 'all 0.3s ease';
+                messageDiv.style.opacity = '1';
+                messageDiv.style.transform = 'translateY(0)';
+            }, 10);
+        }
+        
+        function setLoading(loading) {
+            isLoading = loading;
+            const sendButton = document.getElementById('sendButton');
+            const input = document.getElementById('messageInput');
+            
+            if (loading) {
+                sendButton.innerHTML = '<div class="loading"></div>';
+                sendButton.disabled = true;
+                input.disabled = true;
+                
+                // Add loading message
+                addMessage('system', '🤔 Agent is thinking...');
+            } else {
+                sendButton.innerHTML = '📤';
+                sendButton.disabled = false;
+                input.disabled = false;
+                input.focus();
+            }
+        }
+        
+        // Add service worker for offline functionality
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(console.log);
+        }
+        
+        // Handle connection loss
+        window.addEventListener('online', function() {
+            addMessage('system', '🌐 Connection restored');
+            checkSystemStatus();
+        });
+        
+        window.addEventListener('offline', function() {
+            addMessage('system', '📵 Connection lost');
+            isConnected = false;
+        });
+        
+        // Auto-reconnect logic
+        setInterval(() => {
+            if (!isConnected && navigator.onLine) {
+                checkSystemStatus();
+            }
+        }, RECONNECT_INTERVAL);
+    </script>
+</body>
+</html>

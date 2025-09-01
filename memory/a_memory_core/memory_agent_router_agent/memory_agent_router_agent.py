@@ -267,7 +267,8 @@ class MemoryAgentRouterAgent:
 
     def get_available_agents(self) -> list:
         """Get list of available active agents."""
-        return [name for name, info in self.agent_registry.items() if info.get("status") == "active"]
+        return [name for name, info in self.agent_registry.items() 
+                if isinstance(info, dict) and info.get("status") == "active"]
 
     def get_routing_statistics(self) -> dict:
         """Get routing statistics and performance metrics."""

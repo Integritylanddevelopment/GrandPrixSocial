@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>📱 Phone Access</title>
+    <style>
+        body { 
+            font-family: system-ui; 
+            text-align: center; 
+            padding: 50px; 
+            background: #f0f0f0; 
+        }
+        .big-button {
+            display: inline-block;
+            padding: 30px 60px;
+            background: #007AFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px;
+            box-shadow: 0 4px 15px rgba(0,122,255,0.3);
+        }
+        .big-button:hover { 
+            background: #0056b3; 
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <h1>📱 Mobile Dev Agent Access</h1>
+    <p>Click the button below to open the dev agent on your phone/device:</p>
+    
+    <a href="http://localhost:8888/simple_mobile.html" class="big-button">
+        🤖 Open Dev Agent
+    </a>
+    
+    <br><br>
+    
+    <small>
+        Make sure you've run SIMPLE_MOBILE_ACCESS.bat first!<br>
+        This works from any device on your network.
+    </small>
+    
+    <script>
+        // Auto-redirect on mobile devices
+        if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            setTimeout(() => {
+                window.location.href = 'http://localhost:8888/simple_mobile.html';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

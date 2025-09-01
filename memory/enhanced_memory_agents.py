@@ -21,7 +21,7 @@ MEMORY_ROOT = Path(__file__).parent
 sys.path.insert(0, str(MEMORY_ROOT))
 
 # Import the Claude adapter
-from config.cc_claude_adapter import ClaudeContextAdapter, save_claude_interaction
+from claude_context_agent.config.cc_claude_adapter import ClaudeContextAdapter, save_claude_interaction
 
 # Configure logging
 logging.basicConfig(

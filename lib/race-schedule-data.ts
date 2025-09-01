@@ -29,6 +29,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+11",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -46,6 +47,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+8",
     isSprint: true,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -63,6 +65,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+9",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -80,6 +83,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+3",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -98,6 +102,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "17:00",
     timezone: "GMT+3",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -115,6 +120,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:30",
     timezone: "GMT-4",
     isSprint: true,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -132,6 +138,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+2",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -149,6 +156,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+2",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -167,6 +175,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+2",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -184,6 +193,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "14:00",
     timezone: "GMT-4",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -201,6 +211,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+2",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -218,6 +229,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+1",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -236,6 +248,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+2",
     isSprint: true,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -254,6 +267,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+2",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -271,6 +285,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+2",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -288,6 +303,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "15:00",
     timezone: "GMT+2",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -305,6 +321,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "13:00",
     timezone: "GMT+4",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -322,6 +339,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "20:00",
     timezone: "GMT+8",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -339,6 +357,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "14:00",
     timezone: "GMT-5",
     isSprint: true,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -356,6 +375,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "14:00",
     timezone: "GMT-6",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -373,6 +393,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "14:00",
     timezone: "GMT-3",
     isSprint: true,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -390,6 +411,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "22:00",
     timezone: "GMT-8",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -407,6 +429,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "16:00",
     timezone: "GMT+3",
     isSprint: true,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",
@@ -424,6 +447,7 @@ export const f1Schedule2025: F1Race[] = [
     time: "17:00",
     timezone: "GMT+4",
     isSprint: false,
+    sessions: [],
     liveStreamOptions: {
       f1tv: "https://f1tv.formula1.com",
       espn: "https://www.espn.com/f1/",

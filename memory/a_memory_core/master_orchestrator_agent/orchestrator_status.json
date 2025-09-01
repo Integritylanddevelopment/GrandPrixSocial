@@ -1,0 +1,85 @@
+{
+  "orchestrator": {
+    "status": "running",
+    "uptime": "2025-08-31T22:31:32.776826",
+    "managed_agents": 12
+  },
+  "agents": {
+    "total": 12,
+    "running": 1,
+    "failed": 0,
+    "success_rate": 8.333333333333332
+  },
+  "systems": {
+    "memory_core": {
+      "total": 11,
+      "running": 1
+    },
+    "general": {
+      "total": 1,
+      "running": 0
+    }
+  },
+  "health": {
+    "repo_sync_agent": {
+      "status": "dead",
+      "last_check": "2025-08-31T14:17:28.117003",
+      "exit_code": 2
+    },
+    "fantasy_league_agent": {
+      "status": "dead",
+      "last_check": "2025-08-31T14:17:28.625409",
+      "exit_code": 0
+    },
+    "gui_launcher_agent": {
+      "status": "dead",
+      "last_check": "2025-08-31T14:17:29.132327",
+      "exit_code": 0
+    },
+    "memory_agent_router_agent": {
+      "status": "dead",
+      "last_check": "2025-08-31T14:17:29.641966",
+      "exit_code": 1
+    },
+    "memory_context_router_agent": {
+      "status": "dead",
+      "last_check": "2025-08-31T14:17:30.150408",
+      "exit_code": 0
+    },
+    "memory_core_log_agent": {
+      "status": "dead",
+      "last_check": "2025-08-31T14:17:30.659595",
+      "exit_code": 1
+    },
+    "memory_indexer_agent": {
+      "status": "healthy",
+      "last_check": "2025-08-31T22:31:30.865949",
+      "pid": 20568
+    },
+    "memory_logic_enforcer_agent": {
+      "status": "dead",
+      "last_check": "2025-08-31T14:17:31.678850",
+      "exit_code": 1
+    },
+    "memory_router_agent": {
+      "status": "dead",
+      "last_check": "2025-08-31T14:17:32.187559",
+      "exit_code": 1
+    },
+    "system_health_agent": {
+      "status": "dead",
+      "last_check": "2025-08-31T14:17:32.695906",
+      "exit_code": 1
+    },
+    "user_intelligence_agent": {
+      "status": "dead",
+      "last_check": "2025-08-31T14:17:33.204158",
+      "exit_code": 1
+    },
+    "context_document_monitor_agent": {
+      "status": "dead",
+      "last_check": "2025-08-31T14:17:36.732703",
+      "exit_code": 0
+    }
+  }
+}

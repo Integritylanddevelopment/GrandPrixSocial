@@ -45,6 +45,7 @@ const partnerInfo = {
 export default function HybridCheckout({ products, onPurchase }: HybridCheckoutProps) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [showCheckoutModal, setShowCheckoutModal] = useState(false)
+  const [showComingSoonModal, setShowComingSoonModal] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
   const trackAffiliateClick = async (product: Product) => {
@@ -100,7 +101,7 @@ export default function HybridCheckout({ products, onPurchase }: HybridCheckoutP
     const partner = partnerInfo[product.partner]
     
     return (
-      <Card className="group hover:scale-105 transition-all duration-300 glass-purple border-purple-500 hover:border-purple-400">
+      <Card className="group hover:scale-105 transition-all duration-300 bg-gray-900/50 border-gray-700 hover:border-green-400 relative">
         <CardHeader className="pb-3">
           <div className="relative aspect-square overflow-hidden rounded-lg">
             <Image
@@ -109,18 +110,11 @@ export default function HybridCheckout({ products, onPurchase }: HybridCheckoutP
               fill
               className="object-cover group-hover:scale-110 transition-transform duration-300"
             />
-            <div className="absolute top-2 right-2">
-              <Badge className={`${partner.color} text-white text-xs font-rajdhani`}>
-                {partner.name}
+            <div className="absolute bottom-2 left-2">
+              <Badge className="bg-green-500 text-white text-xs font-rajdhani">
+                Coming Soon
               </Badge>
             </div>
-            {partner.instant && (
-              <div className="absolute top-2 left-2">
-                <Badge className="bg-green-600 text-white text-xs font-rajdhani">
-                  INSTANT
-                </Badge>
-              </div>
-            )}
             {product.originalPrice && (
               <div className="absolute bottom-2 left-2">
                 <Badge variant="destructive" className="text-xs font-rajdhani">
@@ -172,37 +166,18 @@ export default function HybridCheckout({ products, onPurchase }: HybridCheckoutP
           
           <div className="space-y-2">
             <Button
-              onClick={() => handleBuyNow(product)}
-              disabled={!product.inStock || isLoading}
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-rajdhani"
+              onClick={() => setShowComingSoonModal(true)}
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-rajdhani"
             >
-              {isLoading ? (
-                'Loading...'
-              ) : !product.inStock ? (
-                'Out of Stock'
-              ) : (
-                <>
-                  <ShoppingCart className="w-4 h-4 mr-2" />
-                  {product.embedType === 'iframe' ? 'Buy Now - Stay Here' : 'Buy Now - Secure Popup'}
-                </>
-              )}
+              <ShoppingCart className="w-4 h-4 mr-2" />
+              Buy Now
             </Button>
           </div>
           
           <div className="text-xs text-gray-400 text-center font-rajdhani">
-            {product.embedType === 'iframe' ? (
-              <>
-                ✅ Checkout loads on Grand Prix Social
-                <br />
-                🏆 Partner handles all payments
-              </>
-            ) : (
-              <>
-                🔒 Secure checkout via {partner.name}
-                <br />
-                💰 You earn {partner.commission} commission
-              </>
-            )}
+            🚀 Motor Market is launching soon
+            <br />
+            🔔 We'll notify you when available
           </div>
         </CardContent>
       </Card>
@@ -211,31 +186,6 @@ export default function HybridCheckout({ products, onPurchase }: HybridCheckoutP
 
   return (
     <div className="space-y-6">
-      {/* Instant Partners Header */}
-      <div className="glass-purple p-4 rounded-lg border border-purple-500">
-        <div className="text-center mb-4">
-          <h2 className="text-2xl font-bold text-white font-orbitron mb-2">
-            🚀 Live Partner Stores
-          </h2>
-          <p className="text-gray-300 font-rajdhani">
-            Active affiliate partnerships - no approval needed, start earning immediately
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {Object.entries(partnerInfo)
-            .filter(([_, info]) => info.instant)
-            .map(([key, info]) => (
-            <div key={key} className="flex items-center gap-2 p-2 bg-gray-800/50 rounded">
-              <div className={`w-3 h-3 rounded-full ${info.color}`} />
-              <div className="text-sm">
-                <div className="text-white font-rajdhani">{info.name}</div>
-                <div className="text-green-400 text-xs font-rajdhani">LIVE</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Product Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -243,6 +193,13 @@ export default function HybridCheckout({ products, onPurchase }: HybridCheckoutP
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
+
+      {/* Coming Soon Modal */}
+      {showComingSoonModal && (
+        <ComingSoonModal
+          onClose={() => setShowComingSoonModal(false)}
+        />
+      )}
 
       {/* Iframe Checkout Modal */}
       {showCheckoutModal && selectedProduct && (
@@ -256,36 +213,51 @@ export default function HybridCheckout({ products, onPurchase }: HybridCheckoutP
         />
       )}
 
-      {/* Partner Status Grid */}
-      <div className="glass-purple p-6 rounded-lg border border-purple-500">
-        <h3 className="text-xl font-bold text-white font-orbitron mb-4 text-center">
-          Partner Network Status
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {Object.entries(partnerInfo).map(([key, info]) => (
-            <div key={key} className="flex items-center gap-3 p-3 bg-gray-800/30 rounded-lg">
-              <div className={`w-10 h-10 rounded-lg ${info.color} flex items-center justify-center`}>
-                <span className="text-white font-bold text-sm">
-                  {info.name.charAt(0)}
-                </span>
-              </div>
-              <div className="flex-1">
-                <div className="text-white font-semibold font-rajdhani">{info.name}</div>
-                <div className="text-sm text-gray-400 font-rajdhani">{info.description}</div>
-                <div className="flex items-center gap-2 mt-1">
-                  <Badge 
-                    className={info.instant ? "bg-green-600" : "bg-yellow-600"} 
-                    variant="secondary"
-                  >
-                    <span className="text-white text-xs font-rajdhani">
-                      {info.instant ? "LIVE" : "PENDING"}
-                    </span>
-                  </Badge>
-                  <span className="text-xs text-gray-400 font-rajdhani">{info.commission}</span>
-                </div>
-              </div>
+    </div>
+  )
+}
+
+// Coming Soon Modal
+function ComingSoonModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+      <div className="bg-gray-900 rounded-lg w-full max-w-md mx-4 p-6 border border-green-500">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span className="text-white text-2xl">🚀</span>
+          </div>
+          
+          <h3 className="text-2xl font-bold text-white font-orbitron mb-4">
+            Motor Market Loading...
+          </h3>
+          
+          <p className="text-gray-300 font-rajdhani mb-6">
+            We're working hard to bring you the best F1 merchandise from across the entire internet. 
+            Thanks for being a Grand Prix Social member - we'll be in touch as soon as we launch 
+            with exclusive deals on caps, shirts, helmets, and all the hottest racing gear!
+          </p>
+          
+          <div className="space-y-3 mb-6">
+            <div className="flex items-center gap-3 text-gray-300 font-rajdhani">
+              <span className="text-green-400">✓</span>
+              <span>Sourcing official team merchandise</span>
             </div>
-          ))}
+            <div className="flex items-center gap-3 text-gray-300 font-rajdhani">
+              <span className="text-green-400">✓</span>
+              <span>Negotiating exclusive member discounts</span>
+            </div>
+            <div className="flex items-center gap-3 text-gray-300 font-rajdhani">
+              <span className="text-green-400">✓</span>
+              <span>Building secure checkout experience</span>
+            </div>
+          </div>
+          
+          <Button 
+            onClick={onClose}
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-rajdhani"
+          >
+            Got it - Keep me posted!
+          </Button>
         </div>
       </div>
     </div>

@@ -237,10 +237,10 @@ export default function FantasyPage() {
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
           <div className="hidden">
-            <TabsList className="glass-purple border-purple-500">
-              <TabsTrigger value="leagues" className="glass-purple font-rajdhani">Browse Leagues</TabsTrigger>
-              <TabsTrigger value="create-team" className="glass-purple font-rajdhani">Build Team</TabsTrigger>
-              <TabsTrigger value="my-teams" className="glass-purple font-rajdhani">My Lineups</TabsTrigger>
+            <TabsList className="bg-gray-900/50 border-gray-700">
+              <TabsTrigger value="leagues" className="bg-gray-900/50 border-gray-700 font-rajdhani">Browse Leagues</TabsTrigger>
+              <TabsTrigger value="create-team" className="bg-gray-900/50 border-gray-700 font-rajdhani">Build Team</TabsTrigger>
+              <TabsTrigger value="my-teams" className="bg-gray-900/50 border-gray-700 font-rajdhani">My Lineups</TabsTrigger>
             </TabsList>
           </div>
 
@@ -248,7 +248,7 @@ export default function FantasyPage() {
             {/* Sample Featured Leagues */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Featured League 1 */}
-              <Card className="glass-purple hover:border-purple-400 transition-all duration-300">
+              <Card className="bg-gray-900/50 border-gray-700 hover:border-purple-400 transition-all duration-300">
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <Trophy className="w-6 h-6 text-purple-400" />
@@ -290,7 +290,7 @@ export default function FantasyPage() {
               </Card>
 
               {/* Featured League 2 */}
-              <Card className="glass-purple hover:border-purple-400 transition-all duration-300">
+              <Card className="bg-gray-900/50 border-gray-700 hover:border-purple-400 transition-all duration-300">
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <Users className="w-6 h-6 text-purple-400" />
@@ -335,7 +335,7 @@ export default function FantasyPage() {
               </Card>
 
               {/* Featured League 3 */}
-              <Card className="glass-purple hover:border-purple-400 transition-all duration-300">
+              <Card className="bg-gray-900/50 border-gray-700 hover:border-purple-400 transition-all duration-300">
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <DollarSign className="w-6 h-6 text-purple-400" />
@@ -386,7 +386,7 @@ export default function FantasyPage() {
           </TabsContent>
 
           <TabsContent value="my-teams">
-            <Card className="glass-purple">
+            <Card className="bg-gray-900/50 border-gray-700">
               <CardContent className="p-8 text-center">
                 <div className="text-gray-300 mb-6">
                   <Trophy className="w-12 h-12 mx-auto mb-4 text-purple-400 opacity-75" />

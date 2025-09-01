@@ -86,7 +86,7 @@ export default function TeamBuilder({ budget = 100000000, maxDrivers = 5 }: Team
   if (loading) {
     return (
       <div className="flex justify-center py-12">
-        <Card className="glass-purple border-purple-500 max-w-md">
+        <Card className="bg-gray-900/50 border-gray-700 max-w-md">
           <CardContent className="p-6">
             <div className="text-center text-purple-400 font-orbitron">Loading drivers...</div>
           </CardContent>
@@ -98,7 +98,7 @@ export default function TeamBuilder({ budget = 100000000, maxDrivers = 5 }: Team
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Team Summary */}
-      <Card className="glass-purple border-purple-500">
+      <Card className="bg-gray-900/50 border-gray-700">
         <CardHeader className="text-center">
           <CardTitle className="text-white font-orbitron text-2xl">Build Your Fantasy Team</CardTitle>
         </CardHeader>
@@ -139,7 +139,7 @@ export default function TeamBuilder({ budget = 100000000, maxDrivers = 5 }: Team
 
       {/* Selected Drivers */}
       {selectedDrivers.length > 0 && (
-        <Card className="glass-purple border-purple-500">
+        <Card className="bg-gray-900/50 border-gray-700">
           <CardHeader className="text-center">
             <CardTitle className="text-white font-orbitron">Your Selected Drivers</CardTitle>
           </CardHeader>
@@ -178,7 +178,7 @@ export default function TeamBuilder({ budget = 100000000, maxDrivers = 5 }: Team
       )}
 
       {/* Available Drivers */}
-      <Card className="glass-purple border-purple-500">
+      <Card className="bg-gray-900/50 border-gray-700">
         <CardHeader className="text-center">
           <CardTitle className="text-white font-orbitron">Available Drivers</CardTitle>
         </CardHeader>
@@ -258,7 +258,7 @@ export default function TeamBuilder({ budget = 100000000, maxDrivers = 5 }: Team
 
       {/* Save Team Button */}
       {selectedDrivers.length === maxDrivers && teamName.trim() && (
-        <Card className="glass-purple border-purple-500">
+        <Card className="bg-gray-900/50 border-gray-700">
           <CardContent className="p-4">
             <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-rajdhani transition-all duration-200">
               Save Team: {teamName}

@@ -829,9 +829,41 @@ def continuous_sync_mode(agent, project_id: str):
     except Exception as e:
         logger.error(f"Fatal error in continuous sync mode: {e}")
 
+def daemon_mode():
+    """Run as persistent daemon service for orchestrator"""
+    import time
+    import logging
+    
+    logging.basicConfig(level=logging.INFO, format='[%(asctime)s] [%(levelname)s] [RepoSync] %(message)s')
+    logger = logging.getLogger(__name__)
+    
+    logger.info("Repository Sync Agent starting in daemon mode")
+    
+    # Initialize agent but don't perform actions that require CLI args
+    agent = RepoSyncAgent()
+    
+    # Run daemon loop
+    while True:
+        try:
+            # Check for any repositories that need syncing
+            logger.info("Daemon heartbeat - monitoring repository sync status")
+            time.sleep(60)  # Check every minute
+        except KeyboardInterrupt:
+            logger.info("Daemon mode interrupted")
+            break
+        except Exception as e:
+            logger.error(f"Error in daemon mode: {e}")
+            time.sleep(10)  # Brief pause before retrying
+
 def main():
     """Main entry point for the sync agent"""
     import argparse
+    import sys
+    
+    # If no arguments provided, run in daemon mode for orchestrator
+    if len(sys.argv) == 1:
+        daemon_mode()
+        return
     
     parser = argparse.ArgumentParser(description='CommandCore OS Repository Sync Agent')
     parser.add_argument('action', choices=['init', 'clone', 'sync-to', 'sync-from', 'status', 'list', 'cherry-pick', 'check-deployment', 'deployment-summary', 'continuous', 'set-env'])

@@ -9,14 +9,20 @@ import requests
 from flask import Flask, request, Response, jsonify
 import uuid
 import time
+import os
 from datetime import datetime
 
 app = Flask(__name__)
 
-# Configuration
-QWEN3_ENDPOINT = "http://localhost:12434/engines/llama.cpp/v1/chat/completions"
-QWEN3_MODEL = "ai/qwen3:latest"
-BRIDGE_PORT = 11434  # Different port to avoid conflicts
+# Configuration - Dynamic port detection
+QWEN3_ENDPOINT = os.environ.get('QWEN3_ENDPOINT', "http://localhost:12434/v1/chat/completions")
+QWEN3_MODEL = os.environ.get('QWEN3_MODEL', "qwen2.5:latest")
+BRIDGE_PORT = int(os.environ.get('BRIDGE_PORT', 11434))
+
+print(f"Claude Code <-> Qwen3 API Bridge Starting...")
+print(f"Bridging: Claude Code -> localhost:{BRIDGE_PORT} -> Qwen3 {QWEN3_ENDPOINT}")
+print(f"Model mapping: Claude models -> {QWEN3_MODEL}")
+print("Ready for Claude Code local processing!")
 
 # Model name mappings (Claude Code → Qwen3)
 MODEL_MAPPING = {
@@ -27,6 +33,22 @@ MODEL_MAPPING = {
     "claude-sonnet-4-20250514": QWEN3_MODEL,
     # Add any other Claude model names that might be used
 }
+
+@app.before_request
+def log_request():
+    """Log all incoming requests for debugging"""
+    print(f"Incoming request: {request.method} {request.path}")
+    print(f"Headers: {dict(request.headers)}")
+
+# Catch-all route to see what Claude Code is trying to hit
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def catch_all(path):
+    if request.path == '/v1/messages':
+        return anthropic_messages_endpoint()
+    print(f"Catch-all: {request.method} /{path}")
+    print(f"Headers: {dict(request.headers)}")
+    return jsonify({"error": "Endpoint not found", "tried_path": f"/{path}"}), 404
 
 @app.route('/v1/messages', methods=['POST'])
 def anthropic_messages_endpoint():
@@ -228,11 +250,6 @@ def health_check():
         }), 500
 
 if __name__ == '__main__':
-    print("Claude Code <-> Qwen3 API Bridge Starting...")
-    print(f"Bridging: Claude Code -> localhost:{BRIDGE_PORT} -> Qwen3 {QWEN3_ENDPOINT}")
-    print(f"Model mapping: Claude models -> {QWEN3_MODEL}")
-    print("Ready for Claude Code local processing!")
-    
     app.run(
         host='localhost',
         port=BRIDGE_PORT,

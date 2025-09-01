@@ -72,5 +72,6 @@ EXPOSE 11434
 ENV ANTHROPIC_API_URL=http://localhost:11434
 ENV OLLAMA_HOST=0.0.0.0
 
-# Start integrated system
+# Override Ollama entrypoint and start integrated system
+ENTRYPOINT []
 CMD ["/bin/bash", "/app/start_integrated_system.sh"]

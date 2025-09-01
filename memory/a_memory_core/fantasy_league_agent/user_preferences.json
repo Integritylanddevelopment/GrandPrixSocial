@@ -1,11 +1,11 @@
 {
   "test_user_123": {
     "favorite_drivers": {
-      "Max Verstappen": 8,
-      "Lando Norris": 4
+      "Max Verstappen": 28,
+      "Lando Norris": 14
     },
     "favorite_constructors": {
-      "Red Bull Racing": 4
+      "Red Bull Racing": 14
     },
     "risk_tolerance": "medium",
     "budget_strategy": "balanced",
@@ -13,28 +13,70 @@
     "selection_history": [
       {
         "race_id": "dutch_gp_2024",
-        "timestamp": "2025-08-26T14:00:34.529678",
+        "timestamp": "2025-08-31T11:33:24.038125",
         "budget_used": 85000000,
         "primary_driver": "Max Verstappen",
         "constructor": "Red Bull Racing"
       },
       {
         "race_id": "dutch_gp_2024",
-        "timestamp": "2025-08-26T14:08:23.500766",
+        "timestamp": "2025-08-31T11:34:23.968279",
         "budget_used": 85000000,
         "primary_driver": "Max Verstappen",
         "constructor": "Red Bull Racing"
       },
       {
         "race_id": "dutch_gp_2024",
-        "timestamp": "2025-08-29T23:54:46.037099",
+        "timestamp": "2025-08-31T11:35:23.937658",
         "budget_used": 85000000,
         "primary_driver": "Max Verstappen",
         "constructor": "Red Bull Racing"
       },
       {
         "race_id": "dutch_gp_2024",
-        "timestamp": "2025-08-30T18:03:56.950718",
+        "timestamp": "2025-08-31T11:36:45.926663",
+        "budget_used": 85000000,
+        "primary_driver": "Max Verstappen",
+        "constructor": "Red Bull Racing"
+      },
+      {
+        "race_id": "dutch_gp_2024",
+        "timestamp": "2025-08-31T14:17:18.691461",
+        "budget_used": 85000000,
+        "primary_driver": "Max Verstappen",
+        "constructor": "Red Bull Racing"
+      },
+      {
+        "race_id": "dutch_gp_2024",
+        "timestamp": "2025-08-31T14:18:28.625431",
+        "budget_used": 85000000,
+        "primary_driver": "Max Verstappen",
+        "constructor": "Red Bull Racing"
+      },
+      {
+        "race_id": "dutch_gp_2024",
+        "timestamp": "2025-08-31T14:22:37.736375",
+        "budget_used": 85000000,
+        "primary_driver": "Max Verstappen",
+        "constructor": "Red Bull Racing"
+      },
+      {
+        "race_id": "dutch_gp_2024",
+        "timestamp": "2025-08-31T14:30:36.281900",
+        "budget_used": 85000000,
+        "primary_driver": "Max Verstappen",
+        "constructor": "Red Bull Racing"
+      },
+      {
+        "race_id": "dutch_gp_2024",
+        "timestamp": "2025-08-31T14:39:01.440929",
+        "budget_used": 85000000,
+        "primary_driver": "Max Verstappen",
+        "constructor": "Red Bull Racing"
+      },
+      {
+        "race_id": "dutch_gp_2024",
+        "timestamp": "2025-08-31T19:19:03.180182",
         "budget_used": 85000000,
         "primary_driver": "Max Verstappen",
         "constructor": "Red Bull Racing"

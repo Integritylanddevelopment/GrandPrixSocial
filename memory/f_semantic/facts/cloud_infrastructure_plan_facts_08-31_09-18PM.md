@@ -1,0 +1,110 @@
+# Facts from cloud_infrastructure_plan.md
+*Extracted: 08-31_09-18PM*
+
+- *Created: 2025-08-20*
+- *Project: Grand Prix Social - Full Cloud Migration*
+- - Custom authentication system
+- - Self-managed database
+- - AI integration throughout the platform
+- - Admin panel with mobile access
+- - Complete data ownership and control
+- - EC2 instances for application servers
+- - ECS/Fargate for containerized services
+- - Lambda for serverless functions
+- - RDS PostgreSQL for primary database
+- - S3 for static assets and user uploads
+- - ElastiCache Redis for session/caching
+- - CloudFront CDN for global distribution
+- - Route 53 for DNS management
+- - VPC with private/public subnets
+- - Application Load Balancer
+- - Compute Engine VMs
+- - Cloud Run for containers
+- - Cloud Functions for serverless
+- - Cloud SQL PostgreSQL
+- - Cloud Storage for assets
+- - Memorystore Redis
+- - Cloud CDN
+- - Cloud DNS
+- - VPC with subnets
+- - Cloud Load Balancing
+- **Option A: Keycloak (Open Source)**
+- - Enterprise-grade authentication
+- - Built-in admin console
+- - LDAP/AD integration ready
+- - Multi-tenancy support
+- - Java-based (resource heavy)
+- - Complex initial setup
+- - Docker container on ECS
+- - PostgreSQL backend
+- - Redis session store
+- **Option B: Custom JWT Implementation**
+- - Performance Insights
+- - CloudWatch metrics
+- - Custom alerting
+- - Encryption at rest (AES-256)
+- - Encryption in transit (TLS 1.3)
+- - VPC isolation
+- - IAM authentication
+- -- User authentication tables
+- -- Admin panel tables
+- -- AI/Memory system tables
+- **Phase 1: Basic Integration**
+- **Phase 2: Advanced AI Features**
+- - build:
+- - staging:
+- - production:
+- - GitHub Actions
+- - AWS CodePipeline
+- - Terraform for IaC
+- - Ansible for configuration
+- - Set up AWS/GCP infrastructure
+- - Deploy PostgreSQL database
+- - Implement custom auth service
+- - Create admin panel foundation
+- - Migrate from Supabase to PostgreSQL
+- - Port authentication to custom service
+- - Implement basic AI features
+- - Deploy staging environment
+- - Integrate OpenAI/Claude APIs
+- - Build memory system
+- - Implement personalization
+- - Create content generation features
+- - Complete admin dashboard
+- - Build mobile admin app
+- - Implement monitoring/analytics
+- - Security hardening
+- - Performance optimization
+- - Load testing
+- - Security audit
+- - Production deployment
+- - DNS cutover
+- - [ ] SSL/TLS everywhere (Let's Encrypt)
+- - [ ] WAF (Web Application Firewall)
+- - [ ] DDoS protection (CloudFlare/AWS Shield)
+- - [ ] Regular security audits
+- - [ ] Penetration testing
+- - [ ] GDPR/CCPA compliance
+- - [ ] Data encryption at rest
+- - [ ] Backup encryption
+- - [ ] Secrets management (AWS Secrets Manager)
+- - [ ] VPN access for admin
+- - [ ] Zero-trust network architecture
+- - [ ] Container scanning
+- - [ ] Dependency vulnerability scanning
+- 1. **Choose cloud provider** (AWS vs GCP vs Azure)
+- 2. **Select auth solution** (Keycloak vs custom)
+- 3. **Design database schema** in detail
+- 4. **Plan AI integration** priorities
+- 5. **Create infrastructure as code** (Terraform)
+- 6. **Set up development environment**
+- 7. **Begin incremental migration**
+- - [ ] 99.9% uptime SLA
+- - [ ] <100ms API response time
+- - [ ] <2s page load time
+- - [ ] Zero data breaches
+- - [ ] 100% GDPR compliance
+- - [ ] <1% AI error rate
+- - [ ] 90% user satisfaction score
+- ---
+- *This plan provides complete independence from third-party services while maintaining enterprise-grade reliability and security.*

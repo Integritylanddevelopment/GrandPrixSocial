@@ -82,7 +82,7 @@ export default function FantasyDashboard() {
   if (loading) {
     return (
       <div className="flex justify-center py-12">
-        <Card className="glass-purple border-purple-500 max-w-md">
+        <Card className="bg-gray-900/50 border-gray-700 max-w-md">
           <CardContent className="p-6">
             <div className="text-center text-purple-400 font-orbitron">Loading fantasy dashboard...</div>
           </CardContent>
@@ -94,7 +94,7 @@ export default function FantasyDashboard() {
   return (
     <div className="max-w-6xl mx-auto space-y-6">
       {/* Header */}
-      <Card className="glass-purple border-purple-500">
+      <Card className="bg-gray-900/50 border-gray-700">
         <CardHeader className="text-center">
           <CardTitle className="text-white font-orbitron text-3xl flex items-center justify-center gap-2">
             <Trophy className="w-8 h-8 text-yellow-500" />
@@ -124,7 +124,7 @@ export default function FantasyDashboard() {
         <TabsContent value="dashboard" className="space-y-6">
           {/* Quick Stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <Card className="glass-purple border-purple-500">
+            <Card className="bg-gray-900/50 border-gray-700">
               <CardContent className="p-4">
                 <div className="flex items-center gap-2">
                   <Users className="w-5 h-5 text-purple-400" />
@@ -136,7 +136,7 @@ export default function FantasyDashboard() {
               </CardContent>
             </Card>
             
-            <Card className="glass-purple border-purple-500">
+            <Card className="bg-gray-900/50 border-gray-700">
               <CardContent className="p-4">
                 <div className="flex items-center gap-2">
                   <Star className="w-5 h-5 text-yellow-500" />
@@ -148,7 +148,7 @@ export default function FantasyDashboard() {
               </CardContent>
             </Card>
             
-            <Card className="glass-purple border-purple-500">
+            <Card className="bg-gray-900/50 border-gray-700">
               <CardContent className="p-4">
                 <div className="flex items-center gap-2">
                   <DollarSign className="w-5 h-5 text-green-500" />
@@ -162,7 +162,7 @@ export default function FantasyDashboard() {
               </CardContent>
             </Card>
             
-            <Card className="glass-purple border-purple-500">
+            <Card className="bg-gray-900/50 border-gray-700">
               <CardContent className="p-4">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-blue-500" />
@@ -177,7 +177,7 @@ export default function FantasyDashboard() {
 
           {/* Recent Performance */}
           {leaderboard.length > 0 && (
-            <Card className="glass-purple border-purple-500">
+            <Card className="bg-gray-900/50 border-gray-700">
               <CardHeader>
                 <CardTitle className="text-white font-orbitron">Top Performers</CardTitle>
               </CardHeader>
@@ -236,7 +236,7 @@ export default function FantasyDashboard() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {leagues.map((league) => (
-              <Card key={league.id} className="glass-purple border-purple-500 hover:border-purple-400 transition-colors">
+              <Card key={league.id} className="bg-gray-900/50 border-gray-700 hover:border-purple-400 transition-colors">
                 <CardHeader>
                   <CardTitle className="text-white font-orbitron text-lg">{league.name}</CardTitle>
                   <p className="text-gray-300 text-sm font-rajdhani">{league.description}</p>
@@ -280,7 +280,7 @@ export default function FantasyDashboard() {
           </div>
 
           {userTeams.length === 0 ? (
-            <Card className="glass-purple border-purple-500">
+            <Card className="bg-gray-900/50 border-gray-700">
               <CardContent className="p-8 text-center">
                 <Trophy className="w-12 h-12 text-gray-500 mx-auto mb-4" />
                 <div className="text-white font-orbitron text-xl mb-2">No Teams Yet</div>
@@ -293,7 +293,7 @@ export default function FantasyDashboard() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {userTeams.map((team) => (
-                <Card key={team.id} className="glass-purple border-purple-500">
+                <Card key={team.id} className="bg-gray-900/50 border-gray-700">
                   <CardHeader>
                     <CardTitle className="text-white font-orbitron">{team.name}</CardTitle>
                     <div className="flex gap-2">
@@ -332,7 +332,7 @@ export default function FantasyDashboard() {
         </TabsContent>
 
         <TabsContent value="leaderboards" className="space-y-6">
-          <Card className="glass-purple border-purple-500">
+          <Card className="bg-gray-900/50 border-gray-700">
             <CardHeader>
               <CardTitle className="text-white font-orbitron flex items-center gap-2">
                 <Trophy className="w-6 h-6 text-yellow-500" />

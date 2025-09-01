@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Dev Chat Interface</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #ff6b6b;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin: 5px 0 0 0;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 15px 20px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            align-self: flex-end;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.claude {
+            background: rgba(255, 255, 255, 0.1);
+            align-self: flex-start;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.system {
+            background: rgba(255, 193, 7, 0.2);
+            align-self: center;
+            max-width: 60%;
+            text-align: center;
+            font-size: 13px;
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+        }
+
+        .input-area {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            max-width: 1160px;
+            margin: 0 auto;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        #messageInput {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px 50px 12px 16px;
+            color: white;
+            font-size: 16px;
+            resize: none;
+            min-height: 50px;
+            max-height: 120px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        #messageInput:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+        }
+
+        #messageInput::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .send-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .send-button:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .voice-button {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .voice-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .voice-button.recording {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+        }
+
+        .status {
+            padding: 10px 20px;
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+            border-top: 1px solid rgba(255, 193, 7, 0.3);
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .loading {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .loading::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ff6b6b;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .settings {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 10px 15px;
+            backdrop-filter: blur(10px);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .api-status {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .api-status.connected {
+            background: #4caf50;
+            box-shadow: 0 0 6px #4caf50;
+        }
+
+        .api-status.disconnected {
+            background: #f44336;
+            box-shadow: 0 0 6px #f44336;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .chat-container {
+                padding: 0 10px;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+            
+            .input-area {
+                padding: 15px;
+            }
+            
+            .header {
+                padding: 10px 15px;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 Claude Dev Chat</h1>
+        <p>Local development interface for chatting with Claude</p>
+    </div>
+
+    <div class="settings">
+        <span class="api-status disconnected" id="apiStatus"></span>
+        <span id="statusText">API Disconnected</span>
+    </div>
+
+    <div class="chat-container">
+        <div class="messages" id="messages">
+            <div class="message system">
+                Welcome to your local Claude chat interface! 
+                <br>Add your Anthropic API key to start chatting.
+            </div>
+        </div>
+    </div>
+
+    <div class="input-area">
+        <div class="input-container">
+            <button class="voice-button" id="voiceButton" title="Voice input">
+                🎤
+            </button>
+            <div class="input-wrapper">
+                <textarea 
+                    id="messageInput" 
+                    placeholder="Type your message... (Shift+Enter for new line, Enter to send)"
+                    rows="1"
+                ></textarea>
+            </div>
+            <button class="send-button" id="sendButton" title="Send message">
+                ➤
+            </button>
+        </div>
+    </div>
+
+    <div class="status" id="status" style="display: none;">
+        Ready to chat!
+    </div>
+
+    <script>
+        class ClaudeChatInterface {
+            constructor() {
+                this.messages = document.getElementById('messages');
+                this.messageInput = document.getElementById('messageInput');
+                this.sendButton = document.getElementById('sendButton');
+                this.voiceButton = document.getElementById('voiceButton');
+                this.status = document.getElementById('status');
+                this.apiStatus = document.getElementById('apiStatus');
+                this.statusText = document.getElementById('statusText');
+                
+                this.isRecording = false;
+                this.recognition = null;
+                this.apiKey = localStorage.getItem('claude_api_key') || '';
+                
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setupSpeechRecognition();
+                this.checkApiConnection();
+                this.loadChatHistory();
+                
+                // Auto-resize textarea
+                this.messageInput.addEventListener('input', this.autoResize.bind(this));
+            }
+
+            setupEventListeners() {
+                this.sendButton.addEventListener('click', () => this.sendMessage());
+                this.voiceButton.addEventListener('click', () => this.toggleVoiceInput());
+                
+                this.messageInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.sendMessage();
+                    }
+                });
+
+                // API key setup
+                if (!this.apiKey) {
+                    setTimeout(() => {
+                        this.promptForApiKey();
+                    }, 1000);
+                }
+            }
+
+            setupSpeechRecognition() {
+                if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    this.recognition = new SpeechRecognition();
+                    this.recognition.continuous = false;
+                    this.recognition.interimResults = false;
+                    this.recognition.lang = 'en-US';
+
+                    this.recognition.onstart = () => {
+                        this.isRecording = true;
+                        this.voiceButton.classList.add('recording');
+                        this.showStatus('Listening...', 'info');
+                    };
+
+                    this.recognition.onresult = (event) => {
+                        const transcript = event.results[0][0].transcript;
+                        this.messageInput.value = transcript;
+                        this.autoResize();
+                    };
+
+                    this.recognition.onend = () => {
+                        this.isRecording = false;
+                        this.voiceButton.classList.remove('recording');
+                        this.hideStatus();
+                    };
+
+                    this.recognition.onerror = (event) => {
+                        this.isRecording = false;
+                        this.voiceButton.classList.remove('recording');
+                        this.showStatus(`Speech recognition error: ${event.error}`, 'error');
+                    };
+                } else {
+                    this.voiceButton.style.display = 'none';
+                }
+            }
+
+            toggleVoiceInput() {
+                if (!this.recognition) return;
+
+                if (this.isRecording) {
+                    this.recognition.stop();
+                } else {
+                    this.recognition.start();
+                }
+            }
+
+            autoResize() {
+                this.messageInput.style.height = 'auto';
+                this.messageInput.style.height = Math.min(this.messageInput.scrollHeight, 120) + 'px';
+            }
+
+            promptForApiKey() {
+                const key = prompt('Enter your Anthropic API key to start chatting:');
+                if (key) {
+                    this.apiKey = key;
+                    localStorage.setItem('claude_api_key', key);
+                    this.checkApiConnection();
+                }
+            }
+
+            checkApiConnection() {
+                if (this.apiKey) {
+                    this.apiStatus.className = 'api-status connected';
+                    this.statusText.textContent = 'API Connected';
+                    this.addMessage('system', 'API key configured! You can now chat with Claude.');
+                } else {
+                    this.apiStatus.className = 'api-status disconnected';
+                    this.statusText.textContent = 'API Disconnected';
+                }
+            }
+
+            async sendMessage() {
+                const message = this.messageInput.value.trim();
+                if (!message || !this.apiKey) return;
+
+                // Add user message
+                this.addMessage('user', message);
+                this.messageInput.value = '';
+                this.autoResize();
+                
+                // Show typing indicator
+                this.sendButton.disabled = true;
+                this.showStatus('Claude is typing...', 'loading');
+
+                try {
+                    const response = await this.callClaudeAPI(message);
+                    this.addMessage('claude', response);
+                    this.saveChatHistory();
+                } catch (error) {
+                    console.error('Error:', error);
+                    this.addMessage('system', `Error: ${error.message}`);
+                } finally {
+                    this.sendButton.disabled = false;
+                    this.hideStatus();
+                }
+            }
+
+            async callClaudeAPI(message) {
+                // Note: This is a simplified example. In a real implementation,
+                // you'd want to proxy this through your backend to keep the API key secure.
+                
+                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': this.apiKey,
+                        'anthropic-version': '2023-06-01'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-3-sonnet-20240229',
+                        max_tokens: 1000,
+                        messages: [
+                            {
+                                role: 'user',
+                                content: message
+                            }
+                        ]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                return data.content[0].text;
+            }
+
+            addMessage(sender, content) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}`;
+                messageDiv.textContent = content;
+                
+                this.messages.appendChild(messageDiv);
+                this.messages.scrollTop = this.messages.scrollHeight;
+            }
+
+            showStatus(text, type = 'info') {
+                this.status.style.display = 'block';
+                this.status.innerHTML = type === 'loading' ? `<span class="loading">${text}</span>` : text;
+            }
+
+            hideStatus() {
+                this.status.style.display = 'none';
+            }
+
+            saveChatHistory() {
+                const messages = Array.from(this.messages.children).map(msg => ({
+                    sender: msg.classList.contains('user') ? 'user' : 
+                           msg.classList.contains('claude') ? 'claude' : 'system',
+                    content: msg.textContent
+                }));
+                localStorage.setItem('claude_chat_history', JSON.stringify(messages));
+            }
+
+            loadChatHistory() {
+                const history = localStorage.getItem('claude_chat_history');
+                if (history) {
+                    const messages = JSON.parse(history);
+                    // Clear existing messages except welcome
+                    const systemMessages = this.messages.querySelectorAll('.message.system');
+                    this.messages.innerHTML = '';
+                    systemMessages.forEach(msg => this.messages.appendChild(msg));
+                    
+                    // Add historical messages
+                    messages.slice(-20).forEach(msg => { // Only show last 20 messages
+                        if (msg.sender !== 'system' || !msg.content.includes('Welcome')) {
+                            this.addMessage(msg.sender, msg.content);
+                        }
+                    });
+                }
+            }
+        }
+
+        // Initialize the chat interface when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new ClaudeChatInterface();
+        });
+
+        // Add some helpful keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + K to focus message input
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('messageInput').focus();
+            }
+            
+            // Ctrl/Cmd + Shift + C to clear chat
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+                if (confirm('Clear chat history?')) {
+                    localStorage.removeItem('claude_chat_history');
+                    location.reload();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

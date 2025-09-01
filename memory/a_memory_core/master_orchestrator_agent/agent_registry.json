@@ -1,0 +1,140 @@
+{
+  "last_updated": "2025-08-31T14:39:00.856132",
+  "total_agents": 12,
+  "agents": {
+    "repo_sync_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\repo_sync_agent\\repo_sync_agent.py",
+      "system": "memory_core",
+      "status": "discovered",
+      "priority": 1,
+      "dependencies": [],
+      "capabilities": [
+        "synchronization"
+      ]
+    },
+    "context_document_monitor_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\claude_context_agent\\context_document_monitor_agent.py",
+      "system": "general",
+      "status": "discovered",
+      "priority": 3,
+      "dependencies": [
+        "memory_indexer_agent"
+      ],
+      "capabilities": []
+    },
+    "fantasy_league_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\fantasy_league_agent\\fantasy_league_agent.py",
+      "system": "memory_core",
+      "status": "discovered",
+      "priority": 1,
+      "dependencies": [],
+      "capabilities": []
+    },
+    "gui_launcher_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\gui_launcher_agent\\gui_launcher_agent.py",
+      "system": "memory_core",
+      "status": "discovered",
+      "priority": 1,
+      "dependencies": [],
+      "capabilities": []
+    },
+    "memory_agent_router_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_agent_router_agent\\memory_agent_router_agent.py",
+      "system": "memory_core",
+      "status": "discovered",
+      "priority": 1,
+      "dependencies": [],
+      "capabilities": [
+        "memory_management"
+      ]
+    },
+    "memory_context_router_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_context_router_agent\\memory_context_router_agent.py",
+      "system": "memory_core",
+      "status": "discovered",
+      "priority": 1,
+      "dependencies": [
+        "memory_indexer_agent"
+      ],
+      "capabilities": [
+        "memory_management"
+      ]
+    },
+    "memory_core_log_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_core_log_agent\\memory_core_log_agent.py",
+      "system": "memory_core",
+      "status": "discovered",
+      "priority": 1,
+      "dependencies": [],
+      "capabilities": [
+        "memory_management",
+        "logging"
+      ]
+    },
+    "memory_indexer_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_indexer_agent\\memory_indexer_agent.py",
+      "system": "memory_core",
+      "status": "discovered",
+      "priority": 1,
+      "dependencies": [],
+      "capabilities": [
+        "memory_management"
+      ]
+    },
+    "memory_logic_enforcer_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_logic_enforcer_agent\\memory_logic_enforcer_agent.py",
+      "system": "memory_core",
+      "status": "discovered",
+      "priority": 1,
+      "dependencies": [],
+      "capabilities": [
+        "memory_management",
+        "logging"
+      ]
+    },
+    "memory_router_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\memory_router_agent\\memory_router_agent.py",
+      "system": "memory_core",
+      "status": "discovered",
+      "priority": 1,
+      "dependencies": [],
+      "capabilities": [
+        "memory_management"
+      ]
+    },
+    "system_health_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\system_health_agent\\system_health_agent.py",
+      "system": "memory_core",
+      "status": "discovered",
+      "priority": 1,
+      "dependencies": [],
+      "capabilities": []
+    },
+    "user_intelligence_agent": {
+      "path": "C:\\D_Drive\\ActiveProjects\\GrandPrixSocial\\memory\\a_memory_core\\user_intelligence_agent\\user_intelligence_agent.py",
+      "system": "memory_core",
+      "status": "discovered",
+      "priority": 1,
+      "dependencies": [],
+      "capabilities": []
+    }
+  },
+  "systems": {
+    "memory_core": [
+      "repo_sync_agent",
+      "fantasy_league_agent",
+      "gui_launcher_agent",
+      "memory_agent_router_agent",
+      "memory_context_router_agent",
+      "memory_core_log_agent",
+      "memory_indexer_agent",
+      "memory_logic_enforcer_agent",
+      "memory_router_agent",
+      "system_health_agent",
+      "user_intelligence_agent"
+    ],
+    "general": [
+      "context_document_monitor_agent"
+    ]
+  }
+}
