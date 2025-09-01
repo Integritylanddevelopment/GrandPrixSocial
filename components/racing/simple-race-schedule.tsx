@@ -380,8 +380,8 @@ function formatLocalTime(raceDate: string, raceTime: string, raceTimezone: strin
   try {
     // Create a date object from race date and time
     const raceDateObj = parseISO(raceDate)
-    const [hours, minutes] = raceTime.split(':').map(Number)
-    raceDateObj.setHours(hours, minutes, 0, 0)
+    const [raceHours, raceMinutes] = raceTime.split(':').map(Number)
+    raceDateObj.setHours(raceHours, raceMinutes, 0, 0)
     
     // Convert from race timezone to user timezone
     const userTime = utcToZonedTime(zonedTimeToUtc(raceDateObj, raceTimezone), userTimezone)
@@ -399,8 +399,8 @@ function getCountdown(raceDate: string, raceTime: string, raceTimezone: string):
   try {
     // Create a date object from race date and time
     const raceDateObj = parseISO(raceDate)
-    const [hours, minutes] = raceTime.split(':').map(Number)
-    raceDateObj.setHours(hours, minutes, 0, 0)
+    const [raceHours, raceMinutes] = raceTime.split(':').map(Number)
+    raceDateObj.setHours(raceHours, raceMinutes, 0, 0)
     
     // Convert to UTC then to local time
     const raceInUTC = zonedTimeToUtc(raceDateObj, raceTimezone)
