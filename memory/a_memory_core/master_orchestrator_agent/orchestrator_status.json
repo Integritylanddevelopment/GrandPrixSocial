@@ -1,7 +1,7 @@
 {
   "orchestrator": {
     "status": "running",
-    "uptime": "2025-08-31T22:31:32.776826",
+    "uptime": "2025-08-31T22:34:33.326443",
     "managed_agents": 12
   },
   "agents": {
@@ -53,7 +53,7 @@
     },
     "memory_indexer_agent": {
       "status": "healthy",
-      "last_check": "2025-08-31T22:31:30.865949",
+      "last_check": "2025-08-31T22:34:30.878464",
       "pid": 20568
     },
     "memory_logic_enforcer_agent": {
