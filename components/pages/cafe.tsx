@@ -12,7 +12,7 @@ import type { PostWithDetails, PostCommentWithAuthor } from "@/lib/schema"
 const SAMPLE_POSTS: PostWithDetails[] = [
   {
     id: 'sample-1',
-    content: 'What an incredible race at Monza! Max Verstappen showing why he\'s the current champion. The wheel-to-wheel racing was absolutely spectacular!',
+    content: 'What an incredible race at Monza! Max Verstappen showing why he\'s the current champion. The wheel-to-wheel racing was absolutely spectacular! 🏁',
     images: null,
     likes: 42,
     comments: 8,
@@ -20,8 +20,8 @@ const SAMPLE_POSTS: PostWithDetails[] = [
     isLiked: false,
     author: {
       id: 'admin',
-      username: 'max_champion',
-      name: 'Alex Rodriguez',
+      username: 'f1_admin',
+      name: 'F1 Admin',
       avatar: null,
       favoriteTeam: 'Red Bull Racing'
     },
@@ -34,7 +34,7 @@ const SAMPLE_POSTS: PostWithDetails[] = [
   },
   {
     id: 'sample-2',
-    content: 'Ferrari\'s strategy today was questionable at best. Charles had the pace but the team let him down again. When will they learn? #TifosiFrustration',
+    content: 'Ferrari\'s strategy today was questionable at best. Charles had the pace but the team let him down again. When will they learn? 😤 #TifosiFrustration',
     images: null,
     likes: 89,
     comments: 23,
@@ -42,8 +42,8 @@ const SAMPLE_POSTS: PostWithDetails[] = [
     isLiked: false,
     author: {
       id: 'tifosi_fan',
-      username: 'marco_rossi',
-      name: 'Marco Rossi',
+      username: 'tifosi_fan',
+      name: 'Ferrari Fan',
       avatar: null,
       favoriteTeam: 'Ferrari'
     },
@@ -64,8 +64,8 @@ const SAMPLE_POSTS: PostWithDetails[] = [
     isLiked: false,
     author: {
       id: 'merc_fan',
-      username: 'sarah_hamilton',
-      name: 'Sarah Hamilton',
+      username: 'silver_arrows',
+      name: 'Mercedes Supporter',
       avatar: null,
       favoriteTeam: 'Mercedes'
     },
@@ -86,8 +86,8 @@ const SAMPLE_POSTS: PostWithDetails[] = [
     isLiked: false,
     author: {
       id: 'mclaren_fan',
-      username: 'james_norris',
-      name: 'James Norris',
+      username: 'papaya_power',
+      name: 'McLaren Fan',
       avatar: null,
       favoriteTeam: 'McLaren'
     },
@@ -126,7 +126,6 @@ export default function Cafe() {
   const [newComment, setNewComment] = useState<{[key: string]: string}>({})
   const [showComments, setShowComments] = useState<{[key: string]: boolean}>({})
   const [comments, setComments] = useState<{[key: string]: PostCommentWithAuthor[]}>({})
-  const [showShareMenu, setShowShareMenu] = useState<{[key: string]: boolean}>({})
 
   useEffect(() => {
     fetchPosts()
@@ -246,10 +245,10 @@ export default function Cafe() {
       
       if (data.shareUrl) {
         window.open(data.shareUrl, '_blank', 'width=600,height=400')
-      } else if (data.copyToClipboard) {
+      } else {
         // Copy to clipboard for platforms that don't support URL sharing
-        await navigator.clipboard.writeText(data.text)
-        alert(data.message)
+        navigator.clipboard.writeText(data.clipboardText)
+        alert(`Post copied to clipboard! Paste it in your ${platform} post.`)
       }
     } catch (error) {
       console.error('Failed to share post:', error)
@@ -363,39 +362,37 @@ export default function Cafe() {
                               <MessageCircle className="h-4 w-4" />
                               {post.comments}
                             </button>
-                            <div className="relative" onMouseEnter={() => setShowShareMenu(prev => ({...prev, [post.id]: true}))} onMouseLeave={() => setShowShareMenu(prev => ({...prev, [post.id]: false}))}>
+                            <div className="relative group">
                               <button className="flex items-center gap-2 hover:text-yellow-400 transition-colors">
                                 <Share2 className="h-4 w-4" />
                                 Share
                               </button>
-                              {showShareMenu[post.id] && (
-                                <div className="absolute bottom-full left-0 mb-2 flex bg-gray-800 rounded-lg p-2 gap-2 whitespace-nowrap z-20 shadow-lg">
-                                  <button 
-                                    onClick={() => sharePost('facebook', post)}
-                                    className="px-3 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition-colors min-w-[80px]"
-                                  >
-                                    Facebook
-                                  </button>
-                                  <button 
-                                    onClick={() => sharePost('twitter', post)}
-                                    className="px-3 py-2 bg-gray-900 text-white rounded text-sm hover:bg-gray-800 transition-colors min-w-[60px]"
-                                  >
-                                    X
-                                  </button>
-                                  <button 
-                                    onClick={() => sharePost('instagram', post)}
-                                    className="px-3 py-2 bg-pink-600 text-white rounded text-sm hover:bg-pink-700 transition-colors min-w-[80px]"
-                                  >
-                                    Instagram
-                                  </button>
-                                  <button 
-                                    onClick={() => sharePost('tiktok', post)}
-                                    className="px-3 py-2 bg-black text-white rounded text-sm hover:bg-gray-800 transition-colors min-w-[70px]"
-                                  >
-                                    TikTok
-                                  </button>
-                                </div>
-                              )}
+                              <div className="absolute bottom-full left-0 mb-2 hidden group-hover:flex bg-gray-800 rounded-lg p-2 gap-2 whitespace-nowrap z-10">
+                                <button 
+                                  onClick={() => sharePost('facebook', post)}
+                                  className="px-2 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700"
+                                >
+                                  Facebook
+                                </button>
+                                <button 
+                                  onClick={() => sharePost('twitter', post)}
+                                  className="px-2 py-1 bg-gray-900 text-white rounded text-xs hover:bg-gray-800"
+                                >
+                                  X
+                                </button>
+                                <button 
+                                  onClick={() => sharePost('instagram', post)}
+                                  className="px-2 py-1 bg-pink-600 text-white rounded text-xs hover:bg-pink-700"
+                                >
+                                  Instagram
+                                </button>
+                                <button 
+                                  onClick={() => sharePost('tiktok', post)}
+                                  className="px-2 py-1 bg-gray-900 text-white rounded text-xs hover:bg-gray-800"
+                                >
+                                  TikTok
+                                </button>
+                              </div>
                             </div>
                           </div>
                           

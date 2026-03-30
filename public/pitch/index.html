@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Grand Prix Social — Investor Pitch Deck 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --white: #ffffff;
+    --text-muted: rgba(255,255,255,0.6);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: #060f1e; }
+  body {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 16px;
+  }
+  .deck-wrap {
+    background: var(--navy); color: var(--white);
+    width: 100%; max-width: 860px;
+    position: relative; overflow: visible;
+    border-radius: 16px; box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  }
+  .slide {
+    display: none; min-height: 580px;
+    padding: 48px 52px 76px;
+    position: relative; animation: fadeIn 0.4s ease; flex-direction: column;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+  }
+  .slide.active { display: flex; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  .eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; font-weight:500; }
+  .slide-title { font-family:'Playfair Display',serif; font-size:clamp(22px,4vw,36px); line-height:1.15; margin-bottom:8px; }
+  .slide-sub { font-size:clamp(13px,1.8vw,15px); color:var(--text-muted); line-height:1.6; max-width:560px; }
+  .corner-deco { position:absolute; top:0; right:0; width:180px; height:180px; border-radius:0 16px 0 0; overflow:hidden; pointer-events:none; }
+  .corner-deco::before { content:''; position:absolute; top:-80px; right:-80px; width:260px; height:260px; border-radius:50%; border:1px solid rgba(201,168,76,0.15); }
+  .corner-deco::after { content:''; position:absolute; top:-40px; right:-40px; width:160px; height:160px; border-radius:50%; border:1px solid rgba(201,168,76,0.1); }
+  .flag-accent { position:absolute; bottom:76px; right:52px; display:flex; gap:3px; align-items:flex-end; opacity:0.18; }
+  .flag-col { width:6px; background:var(--gold); }
+  .card-grid { display:grid; gap:12px; margin-top:22px; }
+  .card-grid.cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .card-grid.cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .card { background:rgba(255,255,255,0.05); border:1px solid rgba(201,168,76,0.2); border-radius:10px; padding:16px; }
+  .card-gold { border-color:var(--gold); background:rgba(201,168,76,0.08); }
+  .card-label { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .card-value { font-family:'Playfair Display',serif; font-size:clamp(22px,3vw,28px); }
+  .card-desc { font-size:12px; color:var(--text-muted); margin-top:5px; line-height:1.5; }
+  .feature-row { display:flex; align-items:flex-start; gap:12px; margin-top:16px; }
+  .feature-icon { width:34px; height:34px; border-radius:8px; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:14px; }
+  .feature-text h4 { font-size:13px; font-weight:500; margin-bottom:3px; }
+  .feature-text p { font-size:12px; color:var(--text-muted); line-height:1.5; }
+  .bar-row { margin-top:10px; }
+  .bar-label { display:flex; justify-content:space-between; font-size:12px; color:var(--text-muted); margin-bottom:5px; }
+  .bar-track { height:6px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:3px; background:linear-gradient(90deg,var(--gold),var(--gold-light)); }
+  .pill { display:inline-block; padding:4px 10px; border-radius:20px; font-size:11px; font-weight:500; border:1px solid rgba(201,168,76,0.4); color:var(--gold-light); margin:3px; }
+  .timeline { margin-top:20px; }
+  .tl-item { display:flex; gap:14px; margin-bottom:18px; }
+  .tl-left { display:flex; flex-direction:column; align-items:center; }
+  .tl-dot { width:10px; height:10px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:4px; }
+  .tl-line { flex:1; width:1px; background:rgba(201,168,76,0.2); margin-top:4px; }
+  .tl-content h4 { font-size:13px; font-weight:500; color:var(--gold-light); }
+  .tl-content p { font-size:12px; color:var(--text-muted); margin-top:3px; line-height:1.5; }
+  .compare-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:20px; }
+  .compare-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:14px; }
+  .compare-card.us { border-color:var(--gold); background:rgba(201,168,76,0.07); }
+  .compare-name { font-size:12px; font-weight:500; margin-bottom:8px; }
+  .compare-tag { display:block; font-size:10px; padding:3px 7px; border-radius:4px; margin-bottom:4px; }
+  .tag-miss { background:rgba(255,255,255,0.08); color:var(--text-muted); }
+  .tag-hit { background:rgba(201,168,76,0.2); color:var(--gold-light); }
+  .ask-box { background:rgba(201,168,76,0.1); border:1px solid var(--gold); border-radius:12px; padding:24px 28px; margin-top:22px; text-align:center; }
+  .ask-amount { font-family:'Playfair Display',serif; font-size:clamp(36px,6vw,52px); color:var(--gold); line-height:1; }
+  .ask-label { font-size:12px; color:var(--text-muted); margin-top:6px; letter-spacing:1px; text-transform:uppercase; }
+  .fund-row { display:flex; align-items:center; gap:10px; margin-top:12px; }
+  .fund-pct { font-family:'Playfair Display',serif; font-size:20px; color:var(--gold); min-width:48px; }
+  .fund-bar { flex:1; height:5px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
+  .fund-bar-fill { height:100%; border-radius:3px; background:var(--gold); }
+  .fund-name { font-size:12px; color:var(--text-muted); min-width:140px; }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:22px; }
+  .hero-logo { font-family:'Playfair Display',serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:28px; }
+  .hero-title { font-family:'Playfair Display',serif; font-size:clamp(32px,6vw,52px); line-height:1.1; margin-bottom:16px; }
+  .hero-title span { color:var(--gold); }
+  .hero-tagline { font-size:clamp(13px,2vw,18px); color:var(--text-muted); max-width:500px; line-height:1.6; margin-bottom:24px; }
+  .hero-pills { display:flex; flex-wrap:wrap; gap:6px; }
+  .nav { position:sticky; bottom:0; left:0; right:0; display:flex; align-items:center; justify-content:space-between; padding:14px 52px; border-top:1px solid rgba(255,255,255,0.07); background:rgba(10,22,40,0.98); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index:10; padding-bottom:max(14px, env(safe-area-inset-bottom)); }
+  .nav-btn { background:transparent; border:1px solid rgba(201,168,76,0.3); color:var(--gold); font-family:'DM Sans',sans-serif; font-size:13px; padding:6px 16px; border-radius:6px; cursor:pointer; transition:all 0.2s; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+  .nav-btn:hover { background:rgba(201,168,76,0.12); border-color:var(--gold); }
+  .nav-btn:disabled { opacity:0.2; cursor:default; }
+  .slide-counter { font-size:11px; color:var(--text-muted); letter-spacing:1px; }
+  .dots { display:flex; gap:5px; align-items:center; }
+  .dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.2); cursor:pointer; transition:all 0.2s; }
+  .dot.active { background:var(--gold); width:18px; border-radius:3px; }
+  /* ── TABLET ≤680px ── */
+  @media (max-width:680px) {
+    body { padding:10px; align-items:flex-start; }
+    .deck-wrap { border-radius:12px; }
+    .slide { padding:28px 22px 72px; min-height:auto; }
+    .card-grid.cols-3 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .card-grid.cols-2 { grid-template-columns:1fr; }
+    .two-col { grid-template-columns:1fr; gap:12px; }
+    .compare-grid { grid-template-columns:1fr; gap:8px; }
+    .flag-accent { display:none; }
+    .corner-deco { width:90px; height:90px; }
+    .nav { padding:12px 20px; }
+    .fund-name { min-width:0; flex:1; }
+    .feature-row { gap:10px; margin-top:12px; }
+    .hero-tagline { font-size:15px; }
+    .slide-title { font-size:clamp(20px,5vw,30px); }
+    .ask-box { padding:18px 20px; margin-top:14px; }
+  }
+  /* ── PHONE ≤480px ── */
+  @media (max-width:480px) {
+    body { padding:0; align-items:flex-start; }
+    .deck-wrap { border-radius:0; min-height:100svh; min-height:100dvh; box-shadow:none; }
+    .slide { padding:22px 16px 70px; min-height:auto; }
+    .card-grid.cols-3 { grid-template-columns:1fr; }
+    .slide-title { font-size:clamp(20px,7vw,28px); line-height:1.2; }
+    .hero-title { font-size:clamp(28px,10vw,40px); }
+    .hero-logo { margin-bottom:16px; font-size:11px; }
+    .hero-tagline { font-size:14px; margin-bottom:18px; }
+    .hero-pills { gap:5px; }
+    .pill { font-size:10px; padding:3px 9px; }
+    .card { padding:12px; }
+    .card-value { font-size:clamp(20px,6vw,26px); }
+    .card-label { font-size:9px; }
+    .card-desc { font-size:11px; }
+    .feature-icon { width:30px; height:30px; font-size:13px; flex-shrink:0; }
+    .feature-text h4 { font-size:12px; }
+    .feature-text p { font-size:11px; }
+    .feature-row { margin-top:10px; gap:10px; }
+    .compare-tag { font-size:10px; padding:3px 6px; }
+    .compare-name { font-size:11px; }
+    .fund-row { gap:8px; margin-top:10px; }
+    .fund-pct { font-size:16px; min-width:40px; }
+    .fund-name { font-size:11px; min-width:0; flex:1; }
+    .fund-bar { height:4px; }
+    .tl-content h4 { font-size:12px; }
+    .tl-content p { font-size:11px; }
+    .tl-item { margin-bottom:14px; }
+    .nav { padding:10px 14px; }
+    .nav-btn { font-size:12px; padding:8px 14px; min-height:40px; }
+    .slide-counter { font-size:10px; }
+    .ask-box { padding:16px; margin-top:12px; }
+    .ask-amount { font-size:clamp(30px,10vw,44px); }
+    .ask-label { font-size:10px; margin-top:4px; }
+    .dot { width:5px; height:5px; }
+    .dot.active { width:14px; }
+    .dots { gap:4px; }
+    .eyebrow { font-size:10px; letter-spacing:2px; }
+    .corner-deco { display:none; }
+    /* Founder slide avatar */
+    .two-col > div:first-child > div[style*="56px"] { width:44px !important; height:44px !important; font-size:17px !important; }
+  }
+  /* ── TINY PHONES ≤360px ── */
+  @media (max-width:360px) {
+    .slide { padding:18px 13px 66px; }
+    .hero-title { font-size:26px; }
+    .slide-title { font-size:19px; }
+    .card { padding:10px; }
+    .fund-pct { font-size:14px; min-width:36px; }
+    .nav-btn { padding:7px 10px; font-size:11px; }
+  }
+</style>
+</head>
+<body>
+<div class="deck-wrap" id="deck">
+  <div class="corner-deco"></div>
+
+  <!-- SLIDE 1: COVER -->
+  <div class="slide active" id="slide-1">
+    <div class="hero-logo">Grand Prix Social</div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+      <div class="hero-title">The Home of the<br><span>F1 Fan.</span></div>
+      <div class="hero-tagline">One platform. Global community. Live fantasy. AI-powered race intelligence.</div>
+      <div class="hero-pills">
+        <span class="pill">Community</span>
+        <span class="pill">Fantasy Leagues</span>
+        <span class="pill">AI Analysis</span>
+        <span class="pill">Merchandise</span>
+        <span class="pill">Live Race Data</span>
+      </div>
+    </div>
+    <div style="margin-top:28px;font-size:12px;color:var(--text-muted);">
+      Investor Presentation &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; 2026
+    </div>
+    <div class="flag-accent">
+      <div class="flag-col" style="height:30px"></div><div class="flag-col" style="height:22px"></div>
+      <div class="flag-col" style="height:38px"></div><div class="flag-col" style="height:16px"></div>
+      <div class="flag-col" style="height:42px"></div><div class="flag-col" style="height:26px"></div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: THE PROBLEM -->
+  <div class="slide" id="slide-2">
+    <div class="eyebrow">The Problem</div>
+    <div class="slide-title">F1 fans are scattered<br>across a fragmented web.</div>
+    <div class="slide-sub" style="margin-top:10px;">There is no single destination for the 500M+ global F1 fans to connect, compete, and consume the sport they love.</div>
+    <div class="card-grid cols-3">
+      <div class="card"><div class="card-label">News</div><div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Fans bounce between Motorsport, F1.com, Reddit, and Twitter to stay current.</div></div>
+      <div class="card"><div class="card-label">Fantasy</div><div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Official Fantasy F1 is shallow — no social layer, no live KPI betting, no real community.</div></div>
+      <div class="card"><div class="card-label">Community</div><div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Reddit r/formula1 has no fantasy, no commerce, no real identity for fans.</div></div>
+    </div>
+    <div class="card card-gold" style="margin-top:12px;">
+      <div style="font-size:14px;line-height:1.6;">The result: <strong style="color:var(--gold-light);">fan engagement is diluted</strong> across 5+ apps. No platform owns the F1 fan experience end-to-end. That gap is the opportunity.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: THE SOLUTION -->
+  <div class="slide" id="slide-3">
+    <div class="eyebrow">The Solution</div>
+    <div class="slide-title">Grand Prix Social:<br>Everything F1, in one place.</div>
+    <div class="feature-row">
+      <div class="feature-text"><h4>F1 Café — Social Feed</h4><p>A community-first social feed connecting F1 fans globally. Post, react, and bond around every race weekend.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-text"><h4>Fantasy Formula — Live KPI Leagues</h4><p>Build your team, recruit drivers, bet on live race KPIs — fastest lap, most mentions, pit stop chaos and more. Powered by real-time AI tracking.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-text"><h4>Paddock Talk — AI News Analysis</h4><p>AI-curated F1 news with predictive race analysis, driver insights, and pre-race intelligence briefings.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-text"><h4>Merchandise &amp; Affiliate Commerce</h4><p>Integrated F1 gear and team collectibles with affiliate revenue model from day one.</p></div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: MARKET -->
+  <div class="slide" id="slide-4">
+    <div class="eyebrow">Market Opportunity</div>
+    <div class="slide-title">The fastest-growing sport<br>in the world.</div>
+    <div class="card-grid cols-3">
+      <div class="card card-gold"><div class="card-label">Global F1 Fans</div><div class="card-value">500M+</div><div class="card-desc">Worldwide fanbase spanning 195+ countries</div></div>
+      <div class="card"><div class="card-label">US Audience Growth</div><div class="card-value">40%</div><div class="card-desc">US viewership surge since Drive to Survive launched</div></div>
+      <div class="card"><div class="card-label">Fantasy Sports Market</div><div class="card-value">$48B</div><div class="card-desc">Global fantasy sports industry by 2027</div></div>
+    </div>
+    <div class="two-col" style="margin-top:14px;">
+      <div>
+        <div class="card-label" style="margin-bottom:10px;">Audience Growth Trend</div>
+        <div class="bar-row"><div class="bar-label"><span>2021</span><span>Baseline</span></div><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div></div>
+        <div class="bar-row" style="margin-top:10px;"><div class="bar-label"><span>2023</span><span>+31%</span></div><div class="bar-track"><div class="bar-fill" style="width:68%"></div></div></div>
+        <div class="bar-row" style="margin-top:10px;"><div class="bar-label"><span>2026</span><span>+79%</span></div><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div></div>
+      </div>
+      <div class="card" style="margin-top:0;">
+        <div class="card-label">Why Now</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.8;">&#10022; F1 races in Las Vegas &amp; Miami<br>&#10022; Netflix Drive to Survive effect<br>&#10022; Gen Z discovering motorsport<br>&#10022; No dominant fan platform yet</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: COMPETITION -->
+  <div class="slide" id="slide-5">
+    <div class="eyebrow">Competitive Landscape</div>
+    <div class="slide-title">Everyone does one thing.<br>We do everything.</div>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-name">Reddit r/formula1</div>
+        <span class="compare-tag tag-hit">&#10003; Community</span>
+        <span class="compare-tag tag-miss">&#10007; Fantasy</span>
+        <span class="compare-tag tag-miss">&#10007; AI Analysis</span>
+        <span class="compare-tag tag-miss">&#10007; Commerce</span>
+        <span class="compare-tag tag-miss">&#10007; Live Data</span>
+      </div>
+      <div class="compare-card">
+        <div class="compare-name">F1 Official App</div>
+        <span class="compare-tag tag-hit">&#10003; Live Data</span>
+        <span class="compare-tag tag-hit">&#10003; News</span>
+        <span class="compare-tag tag-miss">&#10007; Social Layer</span>
+        <span class="compare-tag tag-miss">&#10007; Deep Fantasy</span>
+        <span class="compare-tag tag-miss">&#10007; Community</span>
+      </div>
+      <div class="compare-card us">
+        <div class="compare-name" style="color:var(--gold-light);">Grand Prix Social &#10022;</div>
+        <span class="compare-tag tag-hit">&#10003; Community</span>
+        <span class="compare-tag tag-hit">&#10003; Live Fantasy</span>
+        <span class="compare-tag tag-hit">&#10003; AI Analysis</span>
+        <span class="compare-tag tag-hit">&#10003; Commerce</span>
+        <span class="compare-tag tag-hit">&#10003; Live Data</span>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px;">
+      <div style="font-size:13px;line-height:1.6;color:var(--text-muted);">No competitor combines <span style="color:var(--white);">social community + live AI fantasy + commerce</span> in a single platform. Grand Prix Social is building the ESPN of F1 fan culture.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: BUSINESS MODEL -->
+  <div class="slide" id="slide-6">
+    <div class="eyebrow">Business Model</div>
+    <div class="slide-title">Four revenue streams.<br>Built to scale.</div>
+    <div class="card-grid cols-2">
+      <div class="card"><div class="card-label">Premium Subscriptions</div><div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Ad-free experience, advanced AI analysis, private leagues. Target: $9.99/mo.</div></div>
+      <div class="card card-gold"><div class="card-label">Fantasy Entry Fees</div><div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Paid fantasy leagues per race weekend. Platform takes a rake — like DraftKings for F1.</div></div>
+      <div class="card"><div class="card-label">Merchandise &amp; Affiliates</div><div style="font-size:12px;color:var(--text-muted);line-height:1.6;">F1 gear, team collectibles, and affiliate partnerships. Revenue from day one.</div></div>
+      <div class="card"><div class="card-label">In-App Advertising</div><div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Targeted motorsport-adjacent brand advertising to a highly engaged niche audience.</div></div>
+    </div>
+    <div style="margin-top:16px;font-size:12px;color:var(--text-muted);line-height:1.9;">
+      Year 1: <span style="color:var(--white);">affiliate merch + subscriptions.</span><br>
+      Year 2: <span style="color:var(--white);">fantasy entry fees + sponsorships.</span><br>
+      Year 3+: <span style="color:var(--white);">full ad platform + Series B.</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: GO TO MARKET -->
+  <div class="slide" id="slide-7">
+    <div class="eyebrow">Go-to-Market</div>
+    <div class="slide-title">Reach fans where<br>they already live.</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content"><h4>Phase 1 — Influencer Launch (Months 1–3)</h4><p>Partner with F1 content creators on YouTube, TikTok, and Instagram. Seed the platform with ambassadors who already own the audience. Target 50–100 creators in the F1 space.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-content"><h4>Phase 2 — Paid Social (Months 3–6)</h4><p>Meta and TikTok ad campaigns targeting F1 fan demographics. Race weekend burst campaigns timed to the 24-race calendar for maximum relevance.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"></div></div>
+        <div class="tl-content"><h4>Phase 3 — Fan Site Partnerships (Months 6–12)</h4><p>Co-marketing with established F1 fan sites and podcasts. Embed Grand Prix Social widgets and fantasy leagues into partner properties.</p></div>
+      </div>
+    </div>
+    <div class="card card-gold" style="margin-top:16px;">
+      <div style="font-size:13px;">12-Month Target: <span style="color:var(--gold-light);font-weight:500;">10,000 registered users</span> — proven product-market fit ahead of Series A.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: FOUNDER -->
+  <div class="slide" id="slide-8">
+    <div class="eyebrow">The Founder</div>
+    <div class="slide-title">Built by a fan,<br>for every fan.</div>
+    <div class="two-col" style="align-items:start;">
+      <div>
+        <div style="width:56px;height:56px;border-radius:50%;background:rgba(201,168,76,0.15);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);margin-bottom:14px;">A</div>
+        <div style="font-size:17px;font-weight:500;margin-bottom:4px;">Alexander</div>
+        <div style="font-size:12px;color:var(--gold);margin-bottom:14px;letter-spacing:1px;">Founder &amp; CEO</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.7;">Full-stack builder who designed and developed the entire Grand Prix Social MVP independently — from architecture to front-end to AI integration.</div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:12px;">
+          <div class="card-label">The Origin Story</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">My son's love for F1 drew me into the sport. As we talked about what it would mean to build a team, manage drivers, and compete — I realized millions of fans want exactly that experience. Grand Prix Social was born from that conversation.</div>
+        </div>
+        <div class="card card-gold">
+          <div class="card-label">The Vision</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">Connect every F1 fan on the planet — from Dallas to Morocco to Japan — on one platform built for the sport they love. Then build the acquisition story that makes a major media company take notice.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: USE OF FUNDS -->
+  <div class="slide" id="slide-9">
+    <div class="eyebrow">Use of Funds</div>
+    <div class="slide-title">$400K to reach<br>product-market fit.</div>
+    <div style="margin-top:22px;">
+      <div class="fund-row">
+        <div class="fund-pct">35%</div>
+        <div style="flex:1;"><div class="fund-bar"><div class="fund-bar-fill" style="width:35%"></div></div></div>
+        <div class="fund-name" style="color:var(--white);">Backend Developer Hire</div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin:4px 0 12px 48px;">$140K — senior engineer for live fantasy infrastructure &amp; AI integrations</div>
+      <div class="fund-row">
+        <div class="fund-pct">22%</div>
+        <div style="flex:1;"><div class="fund-bar"><div class="fund-bar-fill" style="width:22%"></div></div></div>
+        <div class="fund-name" style="color:var(--white);">AI &amp; ML Development</div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin:4px 0 12px 48px;">$87.5K — live race KPI tracking, AI analysis pipeline, Paddock Talk engine</div>
+      <div class="fund-row">
+        <div class="fund-pct">17.5%</div>
+        <div style="flex:1;"><div class="fund-bar"><div class="fund-bar-fill" style="width:17.5%"></div></div></div>
+        <div class="fund-name" style="color:var(--white);">Infrastructure &amp; Hosting</div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin:4px 0 12px 48px;">$70K — scalable cloud architecture to support race-day traffic spikes</div>
+      <div class="fund-row">
+        <div class="fund-pct">13%</div>
+        <div style="flex:1;"><div class="fund-bar"><div class="fund-bar-fill" style="width:13%"></div></div></div>
+        <div class="fund-name" style="color:var(--white);">Legal &amp; IP Protection</div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin:4px 0 12px 48px;">$52.5K — entity formation, IP filing, terms, privacy compliance</div>
+      <div class="fund-row">
+        <div class="fund-pct">12.5%</div>
+        <div style="flex:1;"><div class="fund-bar"><div class="fund-bar-fill" style="width:12.5%"></div></div></div>
+        <div class="fund-name" style="color:var(--white);">Founder CEO Salary</div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin:4px 0 12px 48px;">$50K — founder operating salary, Year 1</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: THE ASK -->
+  <div class="slide" id="slide-10">
+    <div class="eyebrow">The Ask</div>
+    <div class="slide-title">Join us at the<br>starting grid.</div>
+    <div class="ask-box">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Seed Round</div>
+      <div class="ask-amount">$400,000</div>
+      <div class="ask-label">Equity + Convertible Note</div>
+    </div>
+    <div class="card-grid cols-3" style="margin-top:12px;">
+      <div class="card">
+        <div class="card-label">12-Month Milestone</div>
+        <div style="font-size:13px;color:var(--white);margin-bottom:4px;">10,000 users</div>
+        <div style="font-size:11px;color:var(--text-muted);">MVP live with fantasy + community</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Exit Strategy</div>
+        <div style="font-size:13px;color:var(--white);margin-bottom:6px;">Strategic Acquisition</div>
+        <div style="font-size:11px;color:var(--gold-light);margin-bottom:4px;">Target Buyers</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">ESPN · Sky Sports · DAZN · F1 Media</div>
+        <div style="font-size:11px;color:var(--gold-light);margin-bottom:4px;">Projected Valuation at Exit</div>
+        <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);margin-bottom:2px;">$50M – $150M</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-bottom:8px;">Conservative–optimistic range · Year 5</div>
+        <div style="font-size:11px;color:var(--gold-light);margin-bottom:4px;">Basis</div>
+        <div style="font-size:10px;color:var(--text-muted);line-height:1.6;">5–10x revenue multiple on $10M–$15M ARR. Comparable: Twitch ($970M), Barstool ($550M), fan platform deals at 8–12x EBITDA.</div>
+      </div>
+      <div class="card card-gold">
+        <div class="card-label">Contact</div>
+        <div style="font-size:12px;color:var(--white);margin-bottom:4px;">grandprix-social.com</div>
+        <div style="font-size:11px;color:var(--text-muted);">integritylanddevelopment@gmail.com</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;font-size:11px;color:var(--text-muted);text-align:center;">Not affiliated with Formula 1, FIA, or any F1 teams.</div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav">
+    <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)" disabled>&#8592; Prev</button>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+      <div class="dots" id="dots"></div>
+      <div class="slide-counter" id="counter">1 / 10</div>
+    </div>
+    <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">Next &#8594;</button>
+  </div>
+</div>
+
+<script>
+  let current = 1;
+  const total = 10;
+  const dotsEl = document.getElementById('dots');
+  for (let i = 1; i <= total; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  }
+  function goTo(n) {
+    document.getElementById('slide-' + current).classList.remove('active');
+    dotsEl.children[current - 1].classList.remove('active');
+    current = n;
+    document.getElementById('slide-' + current).classList.add('active');
+    dotsEl.children[current - 1].classList.add('active');
+    document.getElementById('counter').textContent = current + ' / ' + total;
+    document.getElementById('prev-btn').disabled = current === 1;
+    document.getElementById('next-btn').disabled = current === total;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function changeSlide(dir) {
+    const next = current + dir;
+    if (next >= 1 && next <= total) goTo(next);
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') changeSlide(1);
+    if (e.key === 'ArrowLeft') changeSlide(-1);
+  });
+  // Touch swipe support
+  let touchStartX = 0;
+  const deck = document.getElementById('deck');
+  deck.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  deck.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(dx) > 50) changeSlide(dx < 0 ? 1 : -1);
+  }, { passive: true });
+</script>
+</body>
+</html>
