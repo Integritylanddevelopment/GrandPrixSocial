@@ -42,7 +42,7 @@ class MemoryAgent:
         self.logger = logging.getLogger(f'Agent.{name}')
         self.running = False
         self.thread = None
-        
+    
     def start(self):
         """Start the agent in a separate thread"""
         if not self.running:
@@ -75,7 +75,7 @@ class MemoryOrchestratorAgent(MemoryAgent):
         super().__init__('MemoryOrchestrator', path)
         self.inbox_path = path / 'orchestrator_inbox.json'
         self.state_path = path / 'memory_orchestrator_agent_state.json'
-        
+    
     def process(self):
         """Process orchestrator tasks"""
         # Check inbox for messages
@@ -86,18 +86,18 @@ class MemoryOrchestratorAgent(MemoryAgent):
             messages = inbox.get('messages', [])
             if messages:
                 self.logger.info(f"Processing {len(messages)} messages")
-                
-                # Process each message
-                for msg in messages[:]:  # Copy to allow removal
-                    self.process_message(msg)
-                    messages.remove(msg)
-                
-                # Update inbox
-                inbox['messages'] = messages
-                inbox['last_processed'] = datetime.now().strftime("%m-%d_%I-%M%p")
-                
-                with open(self.inbox_path, 'w') as f:
-                    json.dump(inbox, f, indent=2)
+            
+            # Process each message
+            for msg in messages[:]:  # Copy to allow removal
+                self.process_message(msg)
+                messages.remove(msg)
+            
+            # Update inbox
+            inbox['messages'] = messages
+            inbox['last_processed'] = datetime.now().strftime("%m-%d_%I-%M%p")
+            
+            with open(self.inbox_path, 'w') as f:
+                json.dump(inbox, f, indent=2)
         
         # Update state
         self.update_state()
@@ -159,7 +159,7 @@ class WorkingMemoryAgent(MemoryAgent):
         super().__init__('WorkingMemory', path)
         self.active_dir = MEMORY_ROOT / 'd_working_memory' / 'active'
         self.promotion_rules_path = MEMORY_ROOT / 'a_memory_core' / 'promotion_rules.json'
-        
+    
     def process(self):
         """Check for files to promote"""
         if not self.active_dir.exists():
@@ -201,6 +201,7 @@ class WorkingMemoryAgent(MemoryAgent):
         dest_path.write_text(file_path.read_text(encoding='utf-8'), encoding='utf-8')
         
         # Add promotion metadata
+        file_age_days = (time.time() - file_path.stat().st_mtime) / 86400
         meta_path = dest_path.with_suffix('.meta.json')
         meta_path.write_text(json.dumps({
             'original_path': str(file_path),
@@ -215,7 +216,7 @@ class ContextRouterAgent(MemoryAgent):
     def __init__(self, path: Path):
         super().__init__('ContextRouter', path)
         self.routing_log_path = path / 'context_routing.log'
-        
+    
     def process(self):
         """Process routing tasks"""
         # Check for new content in working memory
@@ -273,7 +274,7 @@ class ClaudeContextAgent(MemoryAgent):
         self.current_session_path = self.project_root / 'CLAUDE_CURRENT_SESSION.md'
         self.context_state_path = path / 'claude_context_state.json'
         self.last_update_time = time.time()
-        
+    
     def process(self):
         """Update Claude context continuously"""
         try:
@@ -282,10 +283,10 @@ class ClaudeContextAgent(MemoryAgent):
             if current_time - self.last_update_time >= 30:  # Update every 30 seconds
                 self.update_session_context()
                 self.last_update_time = current_time
-                
+            
             # Monitor for Claude Code processes
             self.check_claude_code_status()
-            
+        
         except Exception as e:
             self.logger.error(f"Error in context processing: {e}")
     
@@ -296,7 +297,7 @@ class ClaudeContextAgent(MemoryAgent):
         # Initial setup
         self.create_initial_context()
         self.launch_claude_code()
-        
+    
     def create_initial_context(self):
         """Create initial session context from CLAUDE.md"""
         try:
@@ -309,21 +310,21 @@ class ClaudeContextAgent(MemoryAgent):
             project_status = self.get_project_status()
             
             # Create dynamic session context
-            session_context = f"""# 🏁 CLAUDE CURRENT SESSION - GRAND PRIX SOCIAL
+            session_context = f"""# [FLAG] CLAUDE CURRENT SESSION - GRAND PRIX SOCIAL
 *Auto-generated: {datetime.now().strftime('%Y-%m-%d %I:%M %p')}*
 *Memory System: ACTIVE*
 
-## 📡 LIVE PROJECT STATUS
+## [?] LIVE PROJECT STATUS
 {project_status}
 
 ---
 
-## 🧠 BASE CONTEXT (from CLAUDE.md)
+## [BRAIN] BASE CONTEXT (from CLAUDE.md)
 {claude_content}
 
 ---
 
-## 📋 SESSION NOTES
+## [CLIPBOARD] SESSION NOTES
 *This section auto-updates during your session*
 
 ### Recent Activity
@@ -342,7 +343,7 @@ class ClaudeContextAgent(MemoryAgent):
             
             self.current_session_path.write_text(session_context, encoding='utf-8')
             self.logger.info(f"Created current session context: {self.current_session_path}")
-            
+        
         except Exception as e:
             self.logger.error(f"Error creating initial context: {e}")
     
@@ -362,7 +363,7 @@ class ClaudeContextAgent(MemoryAgent):
                 updated_lines = []
                 
                 for line in lines:
-                    if line.startswith('## 📡 LIVE PROJECT STATUS'):
+                    if line.startswith('## [?] LIVE PROJECT STATUS'):
                         in_status_section = True
                         updated_lines.append(line)
                         updated_lines.append(project_status)
@@ -377,7 +378,7 @@ class ClaudeContextAgent(MemoryAgent):
                 # Write updated content
                 self.current_session_path.write_text('\n'.join(updated_lines), encoding='utf-8')
                 self.logger.debug("Updated session context")
-                
+        
         except Exception as e:
             self.logger.error(f"Error updating session context: {e}")
     
@@ -389,10 +390,10 @@ class ClaudeContextAgent(MemoryAgent):
             # Check git status
             try:
                 result = subprocess.run(['git', 'status', '--porcelain'], 
-                                      cwd=self.project_root, 
-                                      capture_output=True, 
-                                      text=True,
-                                      timeout=10)
+                                        cwd=self.project_root, 
+                                        capture_output=True, 
+                                        text=True,
+                                        timeout=10)
                 if result.returncode == 0:
                     changed_files = len(result.stdout.strip().split('\n')) if result.stdout.strip() else 0
                     status_parts.append(f"- **Git Status**: {changed_files} changed files")
@@ -410,7 +411,7 @@ class ClaudeContextAgent(MemoryAgent):
             status_parts.append(f"- **Last Update**: {datetime.now().strftime('%I:%M %p')}")
             
             return '\n'.join(status_parts)
-            
+        
         except Exception as e:
             return f"- **Status Error**: {e}"
     
@@ -433,15 +434,15 @@ class ClaudeContextAgent(MemoryAgent):
                 try:
                     # Launch with project directory
                     subprocess.Popen([cmd, str(self.project_root)], 
-                                   stdout=subprocess.DEVNULL, 
-                                   stderr=subprocess.DEVNULL)
+                                     stdout=subprocess.DEVNULL, 
+                                     stderr=subprocess.DEVNULL)
                     self.logger.info(f"Launched Claude Code with: {cmd}")
                     
                     # Wait a moment and check if it started
                     time.sleep(2)
                     if self.is_claude_code_running():
                         break
-                        
+                
                 except FileNotFoundError:
                     continue
                 except Exception as e:
@@ -449,7 +450,7 @@ class ClaudeContextAgent(MemoryAgent):
                     continue
             else:
                 self.logger.warning("Could not automatically launch Claude Code")
-                
+        
         except Exception as e:
             self.logger.error(f"Error launching Claude Code: {e}")
     
@@ -475,7 +476,7 @@ class ClaudeContextAgent(MemoryAgent):
             else:
                 # Claude not running - could save final state here
                 pass
-                
+        
         except Exception as e:
             self.logger.error(f"Error checking Claude Code status: {e}")
     
@@ -491,7 +492,7 @@ class ClaudeContextAgent(MemoryAgent):
             
             self.context_state_path.write_text(json.dumps(state, indent=2), encoding='utf-8')
             self.logger.info("Saved Claude context state")
-            
+        
         except Exception as e:
             self.logger.error(f"Error saving session state: {e}")
     
@@ -507,7 +508,7 @@ class PythonScriptAgent(MemoryAgent):
         super().__init__(name, script_path.parent)
         self.script_path = script_path
         self.process = None
-        
+    
     def start(self):
         """Start the Python script as a subprocess"""
         if not self.running and self.script_path.exists():
@@ -539,7 +540,7 @@ class PythonScriptAgent(MemoryAgent):
                 # Start monitoring thread
                 self.thread = threading.Thread(target=self.monitor_process, daemon=True)
                 self.thread.start()
-                
+            
             except Exception as e:
                 self.logger.error(f"Failed to start {self.name}: {e}")
                 self.running = False
@@ -556,7 +557,7 @@ class PythonScriptAgent(MemoryAgent):
                     break
                 
                 time.sleep(5)  # Check every 5 seconds
-                
+            
             except Exception as e:
                 self.logger.error(f"Error monitoring {self.name}: {e}")
                 break
@@ -591,7 +592,7 @@ class MemorySystemManager:
     def __init__(self):
         self.agents = []
         self.logger = logger
-        
+    
     def initialize_agents(self):
         """Initialize ALL memory agents automatically"""
         
@@ -721,18 +722,18 @@ def main():
         print("-" * 40)
         print("Agents running:")
         for agent in manager.agents:
-            print(f"  - {agent.name}: ACTIVE")
+            print(f" - {agent.name}: ACTIVE")
         print("-" * 40)
         print("\nMemory system is now:")
-        print("  - Processing working memory files")
-        print("  - Routing content to appropriate memory types")
-        print("  - Promoting aged content to long-term memory")
-        print("  - Orchestrating all memory operations")
+        print(" - Processing working memory files")
+        print(" - Routing content to appropriate memory types")
+        print(" - Promoting aged content to long-term memory")
+        print(" - Orchestrating all memory operations")
         print("\nPress Ctrl+C to stop\n")
         
         # Monitor agents
         manager.monitor()
-        
+    
     except KeyboardInterrupt:
         print("\n\nShutting down memory system...")
         manager.stop_all()
